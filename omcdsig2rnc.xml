@@ -1,0 +1,30 @@
+<comment># *********************************************</comment>
+<comment># </comment>
+<comment># <token>Relax</token> <token>NG</token> <token>Schema</token> <token>for</token> <token>OpenMath</token> <token>CD</token> <token>Signatures</token></comment>
+<comment># </comment>
+<comment># *********************************************</comment>
+
+<token>default</token> <token>namespace</token> = "<string><token>http:</token>//<token>www.openmath.org</token>/<token>OpenMathCDS</token></string>"
+
+<token>include</token> "<string><token>openmath2.rnc</token></string>" { <token>start</token> = <token>CDSignatures</token> }
+
+<token>CDSComment</token> = <token>element</token> <token>CDSComment</token> { <token>text</token> }
+<token>CDSReviewDate</token> = <token>element</token> <token>CDSReviewDate</token> { <token>text</token> }
+<token>CDSStatus</token> = <token>element</token> <token>CDSStatus</token> {
+   "<string><token>official</token></string>" |
+   "<string><token>experimental</token></string>" |
+   "<string><token>private</token></string>" |
+   "<string><token>obsolete</token></string>"}
+<token>CDSignatures</token> =
+  <token>element</token> <token>CDSignatures</token> {
+    <token>attlist.CDSignatures</token>,
+    (<token>CDSComment</token>)*,
+    (<token>CDSReviewDate</token>? &amp; <token>CDSStatus</token>),
+    (<token>CDSComment</token> | <token>Signature</token>)*
+  }
+<token>attlist.CDSignatures</token> =
+  <token>attribute</token> <token>cd</token> { <token>xsd:NCName</token> },
+  <token>attribute</token> <token>type</token> { <token>xsd:NCName</token> }
+<token>Signature</token> = <token>element</token> <token>Signature</token> { <token>attlist.Signature</token>, <token>OMOBJ</token>? }
+<token>attlist.Signature</token> = <token>attribute</token> <token>name</token> { <token>text</token> }
+

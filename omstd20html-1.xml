@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>Introduction to OpenMath</title>
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="#cha_int">This: 1 Introduction to <i>OpenMath</i></a><br/>
+    <a href="omstd20html-1.xml#sec_om-arch">1.1 <i>OpenMath</i> Architecture</a><br/>
+    <a href="omstd20html-1.xml#sec_intro-obj">1.2 <i>OpenMath</i> Objects and Encodings</a><br/>
+    <a href="omstd20html-1.xml#sec_intro-cd">1.3 Content Dictionaries</a><br/>
+    <a href="omstd20html-1.xml#sec_addnfiles">1.4 Additional Files</a><br/>
+    <a href="omstd20html-1.xml#sec_phrasebooks">1.5 Phrasebooks</a><br/><a href="omstd20html-2.xml">Next: 2 <i>OpenMath</i> Objects</a><br/></div>
+  <div><h1 name="cha_int" id="cha_int">
+  Chapter 1<br/>Introduction to <i>OpenMath</i></h1>
+
+
+
+
+
+<p>This chapter briefly introduces <i>OpenMath</i> concepts and notions that are
+referred to in the rest of this document.</p>
+
+<div><h2 name="sec_om-arch" id="sec_om-arch">1.1 <i>OpenMath</i> Architecture</h2>
+
+
+
+<div class="figure"><a name="fig_om" id="fig_om"/>
+    
+    <img src="om-arch.png" alt="om-arch.png"/>
+<div class="caption">
+  Figure 1.1 The <i>OpenMath</i> Architecture</div></div>
+
+<p>The architecture of <i>OpenMath</i> is described in <a href="omstd20html-1.xml#fig_om">Figure 1.1</a> and summarizes the interactions among the different
+<i>OpenMath</i> components.  There are three layers of representation of a
+mathematical object . The first is
+a  private layer that
+is the internal representation used by an application.  The second is
+an abstract layer that is the representation as an <i>OpenMath</i> object.
+<span>Note that these
+two layers may, in some cases, be the same.</span>
+The third is a
+communication layer that translates the <i>OpenMath</i> object representation into
+a stream of bytes. An application dependent program manipulates the
+mathematical objects using its internal representation, it can convert
+them to <i>OpenMath</i> objects and communicate them by using the byte stream
+representation of <i>OpenMath</i> objects.</p>
+</div>
+
+<div><h2 name="sec_intro-obj" id="sec_intro-obj">1.2 <i>OpenMath</i> Objects and Encodings</h2>
+
+
+
+<p><i>OpenMath</i> objects are representations of mathematical entities that
+can be communicated among various software applications in a
+meaningful way, that is, preserving their
+<span>"semantics"</span>.</p>
+
+<p><i>OpenMath</i> objects and encodings are described in detail in <a href="omstd20html-2.xml#cha_obj">Chapter 2</a> and <a href="omstd20html-3.xml#cha_enco">Chapter 3</a>.</p>
+
+
+<p>The standard endorses two encodings in <acronym>XML</acronym> and binary
+formats.
+<span>At the time of writing, these are the encodings
+supported by most existing <i>OpenMath</i> tools and applications,</span>
+
+however they are not the only possible encodings of <i>OpenMath</i>
+objects. Users who wish to define their own encoding
+
+<span>, are free to</span>
+do so provided that there is
+
+<span>a well-defined correspondence
+between the new encoding and the abstract model defined in <a href="omstd20html-2.xml#cha_obj">Chapter 2</a>. </span>
+</p>
+
+</div>
+
+<div><h2 name="sec_intro-cd" id="sec_intro-cd">1.3 Content Dictionaries</h2>
+
+
+
+<p>Content Dictionaries (CDs) are used to assign informal and formal
+semantics to all symbols used in the <i>OpenMath</i> objects. They define the
+symbols used to represent concepts arising in a particular area of
+mathematics.</p>
+
+<p>The Content Dictionaries are public, they represent the actual
+common knowledge among <i>OpenMath</i> applications.  Content Dictionaries fix
+the <span>"meaning"</span> of objects independently of the
+application.  The application receiving the object may then recognize
+whether or not, according to the semantics of the symbols defined in
+the Content Dictionaries, the object can be transformed to the
+corresponding internal representation used by the application.</p>
+</div>
+
+<div><h2 name="sec_addnfiles" id="sec_addnfiles">1.4 Additional Files</h2>
+ 
+<p>Several
+additional files are related to Content Dictionaries.  Signature
+<span>Dictionaries</span>
+contain the signatures of symbols defined in some <i>OpenMath</i> Content
+Dictionary and their format is endorsed by this standard.</p>
+
+<p>Furthermore, the standard fixes how to define a specific
+set of Content Dictionaries as a CDGroup.</p>
+
+<p>Auxiliary files that define presentation and rendering or that
+are used for manipulating and processing Content Dictionaries are not
+discussed by the standard.</p>
+
+</div>
+<div><h2 name="sec_phrasebooks" id="sec_phrasebooks">1.5 Phrasebooks</h2>
+
+
+
+
+<p>The conversion of an <i>OpenMath</i> object to/from the internal
+representation in a software application is performed by an interface
+program called a <i>Phrasebook</i>. The translation is
+governed by the Content Dictionaries and the specifics of the
+application. It is envisioned that a software application dealing with
+a specific area of mathematics declares which Content Dictionaries it
+understands. As a consequence, it is expected that the Phrasebook of
+the application is able to translate <i>OpenMath</i> objects built using symbols
+from these Content Dictionaries to/from the internal mathematical
+objects of the application.
+</p>
+
+ <p><i>OpenMath</i> objects do not
+specify any computational behaviour, they merely represent mathematical
+expressions.  Part of the <i>OpenMath</i> philosophy is to leave it to the
+application to decide what it does with an object once it has received
+it.  <i>OpenMath</i> is not a query or programming language. Because of this,
+<i>OpenMath</i> does not prescribe a way of forcing <span>"evaluation"</span> or
+<span>"simplification"</span> of objects like
+<m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math> or
+<m:math><m:mi>sin</m:mi><m:mo>(</m:mo><m:mi>&#960;</m:mi><m:mo>)</m:mo></m:math>. Thus,
+the same object <m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math> could be
+transformed to <m:math><m:mn>5</m:mn></m:math> by a computer algebra system,
+or displayed as <m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>3</m:mn></m:math> by a
+typesetting tool.</p>
+</div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="#cha_int">This: 1 Introduction to <i>OpenMath</i></a><br/><a href="omstd20html-2.xml">Next: 2 <i>OpenMath</i> Objects</a><br/></div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- RELAX NG Schema for OpenMath 2 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMath" xmlns:om="http://www.openmath.org/OpenMath">
+  <!-- OpenMath object constructor -->
+  <xs:element name="OMOBJ">
+    <xs:complexType>
+      <xs:group ref="om:omel"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
+      <xs:attribute name="version" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- Elements which can appear inside an OpenMath object -->
+  <xs:group name="omel">
+    <xs:choice>
+      <xs:element ref="om:OMS"/>
+      <xs:element ref="om:OMV"/>
+      <xs:element ref="om:OMI"/>
+      <xs:element ref="om:OMB"/>
+      <xs:element ref="om:OMSTR"/>
+      <xs:element ref="om:OMF"/>
+      <xs:element ref="om:OMA"/>
+      <xs:element ref="om:OMBIND"/>
+      <xs:element ref="om:OME"/>
+      <xs:group ref="om:OMATTR"/>
+      <xs:element ref="om:OMR"/>
+    </xs:choice>
+  </xs:group>
+  <!-- things which can be variables -->
+  <xs:group name="omvar">
+    <xs:choice>
+      <xs:element ref="om:OMV"/>
+      <xs:group ref="om:attvar"/>
+    </xs:choice>
+  </xs:group>
+  <xs:group name="attvar">
+    <xs:sequence>
+      <xs:element name="OMATTR">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="om:OMATP"/>
+            <xs:choice>
+              <xs:element ref="om:OMV"/>
+              <xs:group ref="om:attvar"/>
+            </xs:choice>
+          </xs:sequence>
+          <xs:attributeGroup ref="om:common.attributes"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:attributeGroup name="cdbase">
+    <xs:attribute name="cdbase" type="xs:anyURI"/>
+  </xs:attributeGroup>
+  <!-- attributes common to all elements -->
+  <xs:attributeGroup name="common.attributes">
+    <xs:attribute name="id" type="xs:ID"/>
+  </xs:attributeGroup>
+  <!-- attributes common to all elements that construct compount OM objects. -->
+  <xs:attributeGroup name="compound.attributes">
+    <xs:attributeGroup ref="om:common.attributes"/>
+    <xs:attributeGroup ref="om:cdbase"/>
+  </xs:attributeGroup>
+  <!-- symbol -->
+  <xs:element name="OMS">
+    <xs:complexType>
+      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+      <xs:attribute name="cd" use="required" type="xs:NCName"/>
+      <xs:attributeGroup ref="om:cdbase"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- variable -->
+  <xs:element name="OMV">
+    <xs:complexType>
+      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attribute name="name" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- integer -->
+  <xs:element name="OMI">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:restriction base="xs:anyType">
+          <xs:simpleType>
+            <xs:restriction base="xs:string">
+              <xs:pattern value="\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"/>
+            </xs:restriction>
+          </xs:simpleType>
+          <xs:attributeGroup ref="om:common.attributes"/>
+        </xs:restriction>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- byte array -->
+  <xs:element name="OMB">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:base64Binary">
+          <xs:attributeGroup ref="om:common.attributes"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <!-- string -->
+  <xs:element name="OMSTR">
+    <xs:complexType mixed="true">
+      <xs:attributeGroup ref="om:common.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- IEEE floating point number -->
+  <xs:element name="OMF">
+    <xs:complexType>
+      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attribute name="dec" type="xs:double"/>
+      <xs:attribute name="hex">
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:pattern value="[0-9A-F]+"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:attribute>
+    </xs:complexType>
+  </xs:element>
+  <!-- apply constructor -->
+  <xs:element name="OMA">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="om:omel"/>
+      <xs:attributeGroup ref="om:compound.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- binding constructor -->
+  <xs:element name="OMBIND">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:group ref="om:omel"/>
+        <xs:element ref="om:OMBVAR"/>
+        <xs:group ref="om:omel"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="om:compound.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- variables used in binding constructor -->
+  <xs:element name="OMBVAR">
+    <xs:complexType>
+      <xs:group maxOccurs="unbounded" ref="om:omvar"/>
+      <xs:attributeGroup ref="om:common.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- error constructor -->
+  <xs:element name="OME">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="om:OMS"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:group ref="om:omel"/>
+          <xs:element ref="om:OMFOREIGN"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="om:common.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- attribution constructor and attribute pair constructor -->
+  <xs:group name="OMATTR">
+    <xs:sequence>
+      <xs:element name="OMATTR">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element ref="om:OMATP"/>
+            <xs:group ref="om:omel"/>
+          </xs:sequence>
+          <xs:attributeGroup ref="om:compound.attributes"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:group>
+  <xs:element name="OMATP">
+    <xs:complexType>
+      <xs:sequence maxOccurs="unbounded">
+        <xs:element ref="om:OMS"/>
+        <xs:choice>
+          <xs:group ref="om:omel"/>
+          <xs:element ref="om:OMFOREIGN"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="om:compound.attributes"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- foreign constructor -->
+  <xs:element name="OMFOREIGN">
+    <xs:complexType mixed="true">
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:group ref="om:omel"/>
+        <xs:group ref="om:notom"/>
+      </xs:choice>
+      <xs:attributeGroup ref="om:compound.attributes"/>
+      <xs:attribute name="encoding" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!--
+    Any elements not in the om namespace
+    (valid om is allowed as a descendant)
+  -->
+  <xs:group name="notom">
+    <xs:sequence>
+      <xs:choice minOccurs="0">
+        <xs:any namespace="##other" processContents="skip"/>
+        <xs:any namespace="##local" processContents="skip"/>
+      </xs:choice>
+    </xs:sequence>
+  </xs:group>
+  <!-- reference constructor -->
+  <xs:element name="OMR">
+    <xs:complexType>
+      <xs:attributeGroup ref="om:common.attributes"/>
+      <xs:attribute name="href" use="required" type="xs:anyURI"/>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

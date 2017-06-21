@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>OpenMath DTD (Non-Normative)</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-d.xml">Previous: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/><a href="#app_dtd">This: E <i>OpenMath</i> DTD (Non-Normative)</a><br/><a href="omstd20html-f.xml">Next: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/></div>
+  <div><h1 name="app_dtd" id="app_dtd">
+  Appendix E<br/><i>OpenMath</i> DTD (Non-Normative)</h1>
+  
+  
+  <p>This is a DTD generated from the Relax NG Schema described in 
+    <a href="omstd20html-3.xml#sec_xml">Section 3.1</a>.  Note that we cannot express the 
+    fact that the <small><code>OMFOREIGN</code></small> element can
+    contain any well-formed XML, so we have simply restricted it to
+    contain any XML defined in the DTD.
+  </p>
+  <div class="literal"><pre>
+    &lt;?xml encoding="UTF-8"?&gt;
+
+&lt;!-- RELAX NG Schema for OpenMath 2 --&gt;
+
+&lt;!ENTITY % cdbase "
+  cdbase CDATA #IMPLIED"&gt;
+
+&lt;!-- attributes common to all elements --&gt;
+
+&lt;!ENTITY % common.attributes "
+  id ID #IMPLIED"&gt;
+
+&lt;!-- attributes common to all elements that construct compount OM objects. --&gt;
+
+&lt;!ENTITY % compound.attributes "
+  %common.attributes;
+  %cdbase;"&gt;
+
+&lt;!-- Elements which can appear inside an OpenMath object --&gt;
+
+&lt;!ENTITY % omel "OMS|OMV|OMI|OMB|OMSTR|OMF|OMA|OMBIND|OME|OMATTR|OMR"&gt;
+
+&lt;!-- OpenMath object constructor --&gt;
+
+&lt;!ELEMENT OMOBJ (%omel;)&gt;
+&lt;!ATTLIST OMOBJ
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;
+  version CDATA #IMPLIED&gt;
+
+&lt;!ENTITY % attvar "OMATTR"&gt;
+
+&lt;!-- things which can be variables --&gt;
+
+&lt;!ENTITY % omvar "OMV|%attvar;"&gt;
+
+&lt;!-- symbol --&gt;
+
+&lt;!ELEMENT OMS EMPTY&gt;
+&lt;!ATTLIST OMS
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;
+  name NMTOKEN #REQUIRED
+  cd NMTOKEN #REQUIRED
+  %cdbase;&gt;
+
+&lt;!-- variable --&gt;
+
+&lt;!ELEMENT OMV EMPTY&gt;
+&lt;!ATTLIST OMV
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;
+  name NMTOKEN #REQUIRED&gt;
+
+&lt;!-- integer --&gt;
+
+&lt;!ELEMENT OMI (#PCDATA)&gt;
+&lt;!ATTLIST OMI
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;&gt;
+
+&lt;!-- byte array --&gt;
+
+&lt;!ELEMENT OMB (#PCDATA)&gt;
+&lt;!ATTLIST OMB
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;&gt;
+
+&lt;!-- string --&gt;
+
+&lt;!ELEMENT OMSTR (#PCDATA)&gt;
+&lt;!ATTLIST OMSTR
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;&gt;
+
+&lt;!-- IEEE floating point number --&gt;
+
+&lt;!ELEMENT OMF EMPTY&gt;
+&lt;!ATTLIST OMF
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;
+  dec CDATA #IMPLIED
+  hex CDATA #IMPLIED&gt;
+
+&lt;!-- apply constructor --&gt;
+
+&lt;!ELEMENT OMA (%omel;)+&gt;
+&lt;!ATTLIST OMA
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;&gt;
+
+&lt;!-- binding constructor  --&gt;
+
+&lt;!ELEMENT OMBIND ((%omel;),OMBVAR,(%omel;))&gt;
+&lt;!ATTLIST OMBIND
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;&gt;
+
+&lt;!-- variables used in binding constructor --&gt;
+
+&lt;!ELEMENT OMBVAR (%omvar;)+&gt;
+&lt;!ATTLIST OMBVAR
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;&gt;
+
+&lt;!-- error constructor --&gt;
+
+&lt;!ELEMENT OME (OMS,(%omel;|OMFOREIGN)*)&gt;
+&lt;!ATTLIST OME
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;&gt;
+
+&lt;!-- attribution constructor and attribute pair constructor --&gt;
+
+&lt;!ELEMENT OMATTR (OMATP,(%omel;))&gt;
+&lt;!ATTLIST OMATTR
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;&gt;
+
+&lt;!ELEMENT OMATP (OMS,(%omel;|OMFOREIGN))+&gt;
+&lt;!ATTLIST OMATP
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;&gt;
+
+&lt;!-- foreign constructor --&gt;
+
+&lt;!ELEMENT OMFOREIGN ANY&gt;
+&lt;!ATTLIST OMFOREIGN
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %compound.attributes;
+  encoding CDATA #IMPLIED&gt;
+
+&lt;!--
+Any elements not in the om namespace
+(valid om is allowed as a descendant)
+--&gt;
+
+&lt;!-- reference constructor --&gt;
+
+&lt;!ELEMENT OMR EMPTY&gt;
+&lt;!ATTLIST OMR
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMath'
+  %common.attributes;
+  href CDATA #REQUIRED&gt;
+
+  </pre></div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-d.xml">Previous: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/><a href="#app_dtd">This: E <i>OpenMath</i> DTD (Non-Normative)</a><br/><a href="omstd20html-f.xml">Next: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/></div>
+</body>
+</html>

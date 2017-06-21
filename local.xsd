@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" xmlns:om="http://www.openmath.org/OpenMath">
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:attributeGroup name="local">
+    <xs:anyAttribute namespace="##other" processContents="skip"/>
+  </xs:attributeGroup>
+</xs:schema>

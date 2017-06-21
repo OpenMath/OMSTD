@@ -1,0 +1,33 @@
+
+<comment># <token>Schema</token> <token>for</token> <token>OpenMath</token> <token>CD</token> <token>groups</token></comment>
+
+<comment># <token>info</token> <token>on</token> <token>the</token> <token>CD</token> <token>group</token> <token>itself</token></comment>
+
+<token>default</token> <token>namespace</token> = "<string><token>http:</token>//<token>www.openmath.org</token>/<token>OpenMathCDG</token></string>"
+
+<token>CDGroupName</token> = <token>element</token> <token>CDGroupName</token> { <token>xsd:NCName</token> }
+<token>CDGroupVersion</token> = <token>element</token> <token>CDGroupVersion</token> { <token>xsd:nonNegativeInteger</token> }
+<token>CDGroupRevision</token> = <token>element</token> <token>CDGroupRevision</token> { <token>xsd:nonNegativeInteger</token> }
+<token>CDGroupURL</token> = <token>element</token> <token>CDGroupURL</token> { <token>text</token> }
+<token>CDGroupDescription</token> = <token>element</token> <token>CDGroupDescription</token> { <token>text</token> }
+<comment># <token>info</token> <token>on</token> <token>the</token> <token>CDs</token> <token>in</token> <token>the</token> <token>group</token></comment>
+<token>CDComment</token> = <token>element</token> <token>CDComment</token> { <token>text</token> }
+<token>CDGroupMember</token> =
+  <token>element</token> <token>CDGroupMember</token> {
+    <token>CDComment</token>?, <token>CDName</token>, <token>CDVersion</token>?, <token>CDURL</token>?
+  }
+<token>CDName</token> = <token>element</token> <token>CDName</token> { <token>xsd:NCName</token> }
+<token>CDVersion</token> = <token>element</token> <token>CDVersion</token> { <token>xsd:nonNegativeInteger</token> }
+<token>CDURL</token> = <token>element</token> <token>CDURL</token> { <token>text</token> }
+<comment># <token>structure</token> <token>of</token> <token>the</token> <token>group</token></comment>
+<token>CDGroup</token> =
+  <token>element</token> <token>CDGroup</token> {
+    <token>CDGroupName</token>,
+    <token>CDGroupVersion</token>,
+    <token>CDGroupRevision</token>?,
+    <token>CDGroupURL</token>,
+    <token>CDGroupDescription</token>,
+    (<token>CDGroupMember</token> | <token>CDComment</token>)*
+  }
+<token>start</token> = <token>CDGroup</token>
+

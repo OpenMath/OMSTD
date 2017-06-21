@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  *********************************************
+  
+  Relax NG Schema for OpenMath CD Signatures
+  
+  *********************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMathCDS" xmlns:o="http://www.openmath.org/OpenMathCDS" xmlns:openmath="http://www.openmath.org/OpenMath">
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:element name="CDSComment" type="xs:string"/>
+  <xs:element name="CDSReviewDate" type="xs:string"/>
+  <xs:element name="CDSStatus">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="official"/>
+        <xs:enumeration value="experimental"/>
+        <xs:enumeration value="private"/>
+        <xs:enumeration value="obsolete"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="CDSignatures">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="o:CDSComment"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="o:CDSReviewDate"/>
+          <xs:element ref="o:CDSStatus"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="o:CDSComment"/>
+          <xs:element ref="o:Signature"/>
+        </xs:choice>
+      </xs:sequence>
+      <xs:attributeGroup ref="o:attlist.CDSignatures"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.CDSignatures">
+    <xs:attribute name="cd" use="required" type="xs:NCName"/>
+    <xs:attribute name="type" use="required" type="xs:NCName"/>
+  </xs:attributeGroup>
+  <xs:element name="Signature">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="openmath:OMOBJ"/>
+      </xs:sequence>
+      <xs:attributeGroup ref="o:attlist.Signature"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:attributeGroup name="attlist.Signature">
+    <xs:attribute name="name" use="required"/>
+  </xs:attributeGroup>
+</xs:schema>

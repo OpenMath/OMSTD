@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  *********************************************
+  
+  Relax NG Schema for OpenMath CD
+  
+  *********************************************
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMathCD" xmlns:openmath="http://www.openmath.org/OpenMath" xmlns:openmathcd="http://www.openmath.org/OpenMathCD">
+  <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
+  <xs:element name="CDComment" type="xs:string"/>
+  <xs:element name="CDName" type="xs:NCName"/>
+  <xs:element name="CDUses">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="openmathcd:CDName"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CDURL" type="xs:anyURI"/>
+  <xs:element name="CDBase" type="xs:anyURI"/>
+  <xs:complexType name="text-or-om" mixed="true">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" ref="openmath:OMOBJ"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CDReviewDate" type="xs:date"/>
+  <xs:element name="CDDate" type="xs:date"/>
+  <xs:element name="CDVersion" type="xs:nonNegativeInteger"/>
+  <xs:element name="CDRevision" type="xs:nonNegativeInteger"/>
+  <xs:element name="CDStatus">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="official"/>
+        <xs:enumeration value="experimental"/>
+        <xs:enumeration value="private"/>
+        <xs:enumeration value="obsolete"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="Description" type="xs:string"/>
+  <xs:element name="Name" type="xs:NCName"/>
+  <xs:element name="Role">
+    <xs:simpleType>
+      <xs:restriction base="xs:token">
+        <xs:enumeration value="binder"/>
+        <xs:enumeration value="attribution"/>
+        <xs:enumeration value="semantic-attribution"/>
+        <xs:enumeration value="error"/>
+        <xs:enumeration value="application"/>
+        <xs:enumeration value="constant"/>
+      </xs:restriction>
+    </xs:simpleType>
+  </xs:element>
+  <xs:element name="CMP" type="xs:string"/>
+  <xs:element name="FMP">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="openmath:OMOBJ"/>
+      </xs:sequence>
+      <xs:attribute name="kind" type="xs:string"/>
+    </xs:complexType>
+  </xs:element>
+  <!-- allow embedded OM -->
+  <xs:element name="Example" type="openmathcd:text-or-om"/>
+  <xs:element name="CDDefinition">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" maxOccurs="unbounded" ref="openmathcd:CDComment"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="openmathcd:Name"/>
+          <xs:element ref="openmathcd:Role"/>
+          <xs:element ref="openmathcd:Description"/>
+        </xs:choice>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="openmathcd:CDComment"/>
+          <xs:element ref="openmathcd:Example"/>
+          <xs:element ref="openmathcd:FMP"/>
+          <xs:element ref="openmathcd:CMP"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CD">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="openmathcd:CDComment"/>
+          <xs:element ref="openmathcd:Description"/>
+          <xs:element ref="openmathcd:CDName"/>
+          <xs:element ref="openmathcd:CDURL"/>
+          <xs:element ref="openmathcd:CDBase"/>
+          <xs:element ref="openmathcd:CDReviewDate"/>
+          <xs:element ref="openmathcd:CDDate"/>
+          <xs:element ref="openmathcd:CDStatus"/>
+          <xs:element ref="openmathcd:CDUses"/>
+          <xs:element ref="openmathcd:CDVersion"/>
+          <xs:element ref="openmathcd:CDRevision"/>
+        </xs:choice>
+        <xs:sequence maxOccurs="unbounded">
+          <xs:element ref="openmathcd:CDDefinition"/>
+          <xs:element minOccurs="0" maxOccurs="unbounded" ref="openmathcd:CDComment"/>
+        </xs:sequence>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

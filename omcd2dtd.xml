@@ -1,0 +1,92 @@
+&lt;?xml encoding="UTF-8"?>
+
+&lt;!--
+*********************************************
+
+Relax NG Schema for OpenMath CD
+
+*********************************************
+-->
+
+&lt;!ENTITY % omdtd SYSTEM "openmath2.dtd"> %omdtd;
+
+&lt;!ELEMENT CDComment (#PCDATA)>
+&lt;!ATTLIST CDComment
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDName (#PCDATA)>
+&lt;!ATTLIST CDName
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDUses (CDName)*>
+&lt;!ATTLIST CDUses
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDURL (#PCDATA)>
+&lt;!ATTLIST CDURL
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDBase (#PCDATA)>
+&lt;!ATTLIST CDBase
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ENTITY % text-or-om "(#PCDATA|OMOBJ)*">
+
+&lt;!ELEMENT CDReviewDate (#PCDATA)>
+&lt;!ATTLIST CDReviewDate
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDDate (#PCDATA)>
+&lt;!ATTLIST CDDate
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDVersion (#PCDATA)>
+&lt;!ATTLIST CDVersion
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDRevision (#PCDATA)>
+&lt;!ATTLIST CDRevision
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDStatus (#PCDATA)>
+&lt;!ATTLIST CDStatus
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT Description (#PCDATA)>
+&lt;!ATTLIST Description
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT Name (#PCDATA)>
+&lt;!ATTLIST Name
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT Role (#PCDATA)>
+&lt;!ATTLIST Role
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CMP (#PCDATA)>
+&lt;!ATTLIST CMP
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT FMP (OMOBJ)>
+&lt;!ATTLIST FMP
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'
+  kind CDATA #IMPLIED>
+
+&lt;!-- allow embedded OM -->
+
+&lt;!ELEMENT Example %text-or-om;>
+&lt;!ATTLIST Example
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CDDefinition (CDComment*,(Name|Role|Description)+,
+                            (CDComment|Example|FMP|CMP)*)>
+&lt;!ATTLIST CDDefinition
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>
+
+&lt;!ELEMENT CD ((CDComment*|Description?|CDName|CDURL?|CDBase?
+                   |CDReviewDate?|CDDate|CDStatus|CDUses?|CDVersion
+                   |CDRevision)+,
+                  (CDDefinition,CDComment*)+)>
+&lt;!ATTLIST CD
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCD'>

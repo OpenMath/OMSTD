@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>Changes between OpenMath 1.1 and OpenMath 2 (Non-Normative)</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-e.xml">Previous: E <i>OpenMath</i> DTD (Non-Normative)</a><br/><a href="#app_whats_new">This: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/>
+    <a href="omstd20html-f.xml#chgformal">F.1 Changes to the Formal Definition of Objects</a><br/>
+    <a href="omstd20html-f.xml#chgenc">F.2 Changes to the encodings</a><br/>
+    <a href="omstd20html-f.xml#chgcd">F.3 Changes to Content Dictionaries</a><br/><a href="omstd20html-g.xml">Next: G Bibliography</a><br/></div>
+  <div><h1 name="app_whats_new" id="app_whats_new">
+  Appendix F<br/>Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</h1>
+  
+  
+  
+  <p>In this appendix we describe the major changes that occurred
+    between version 1.1 and version 2 of the <i>OpenMath</i> standard. All changes to
+    the encodings and content dictionaries have been designed to be
+    backward compatible, in other words all existing <i>OpenMath</i> objects and
+    Content Dictionaries are still valid in <i>OpenMath</i> 2.  On the other hand an
+    existing  <i>OpenMath</i> 1.1 application may not be able to process <i>OpenMath</i> 2
+    objects.
+  </p>
+  
+  <div><h2 name="chgformal" id="chgformal">F.1 Changes to the Formal Definition of Objects</h2>
+    
+    
+    <p>Additional features of abstract objects have been
+      introduced:</p>
+    <ul>
+      <li><p><i>OpenMath</i> symbols have an optional role qualifier which restricts the
+          place where they may occur within compound objects.
+          Although part of the abstract description of a symbol this information
+          is intended to be stored in the CD.  In the <acronym>XML</acronym> encoding it may be
+          used to provide a more restricted schema leading to tighter
+          validation.
+        </p></li>
+      <li><p>
+          In addition to their <i>name</i> and
+          <i>cd</i> properties, symbols now have an optional
+          <i>cdbase</i> property.  This can be used to
+          disambiguate between two CDs which are produced independently but have
+          the same name, and can also be used to produce a canonical URI for any
+          <i>OpenMath</i> symbol for use in frameworks such as RDFS or MathML which
+          need one.
+        </p></li>
+      <li><p>An <i>OpenMath</i> object may be attributed with a non-<i>OpenMath</i> object
+          using the new
+          <i>foreign</i> constructor.  This allows an
+          <acronym>XML</acronym>-encoded <i>OpenMath</i> object to be attributed with appropriate
+          Presentation MathML, for example, or a base-64 encoded MPEG file of
+          its aural rendering.
+        </p></li>
+      <li><p>In addition, an <i>OpenMath</i> error object may take as its
+arguments non-<i>OpenMath</i> objects wrapped in the new
+<i>foreign</i> constructor.
+        </p></li>
+      <li><p>The new role property can be used to indicate that a
+          symbol is an <i>attribution</i>, in which case an
+          application may ignore or remove it, or a <i>semantic
+            attribution</i> in which case removing it is no longer
+          guaranteed to produce an equivalent object.  
+        </p></li>
+      <li><p>Restrictions on the names of symbols, variables and
+          content dictionaries have been relaxed to be compatible with XML and
+          to be less Anglo-Saxon.
+        </p></li>
+    </ul>
+    
+  </div>
+  
+  <div><h2 name="chgenc" id="chgenc">F.2 Changes to the encodings</h2>
+    
+    
+    <p>The <i>OpenMath</i> version 2 standard still mandates two encodings:
+      <acronym>XML</acronym> and binary. The <acronym>XML</acronym> encoding in particular has been
+      updated to reflect the latest development of <acronym>XML</acronym> and is now a
+      full <acronym>XML</acronym> application.  Version 2
+      encodings are backward compatible with version 1.1 encodings.
+    </p>
+    <ul>
+      <li><p>Both encodings have been updated to support the
+          changes to the model of abstract objects described above.
+        </p></li>
+      <li><p>Encodings support internal and external sharing of
+          objects</p></li>
+      <li><p>An optional attribute defining the version of the
+          encoding can be specified for the encoded object</p></li>
+      <li><p>The <acronym>XML</acronym> encoding in version 2 is defined by a Relax
+          NG schema and the mandated character-based grammar of
+          version 1 has been removed, while the DTD has been relegated
+          to an Appendix.
+        </p></li>
+      <li><p>The symbolic values <small><code>INF</code></small>,
+<small><code>-INF</code></small> and <small><code>NaN</code></small> have
+been added to the decimal attribute of an <small><code>OMF</code></small>
+in the <acronym>XML</acronym> encoding,
+and guidelines on the interpretation of <small><code>NaN</code></small>s
+added to the compliance section.
+          </p></li>
+      <li><p>The Binary encoding has been extended to support the streaming
+        of objects.</p></li>
+    </ul>
+    
+    
+  </div>
+  
+  
+  <div><h2 name="chgcd" id="chgcd">F.3 Changes to Content Dictionaries</h2>
+    
+    
+    <ul>
+      <li><p>In <i>OpenMath</i> version 2 Content Dictionaries are defined in
+          terms of 
+          the abstract information content that needs
+          to be specified for defining <i>OpenMath</i> symbols. The current
+          implementation is thus just one possible encoding of this abstract model.
+        </p></li>
+      <li><p> The <i>CDUses</i> element is not part of this
+          information model and has been made optional and deprecated in the reference encoding
+          since it is trivial to extract its content automatically from the CD.
+        </p></li>
+      <li><p>
+          A CD may now, optionally, define its cdbase.
+        </p></li>
+      <li><p>
+          A CD symbol definition may now, optionally, define its role.
+        </p></li>
+      <li><p>
+          An FMP may, optionally, have a <small><code>kind</code></small>
+attribute for use in classifying different kinds of definitions.  The
+details of how this attribute is used are not mandated by the standard.
+        </p></li>
+      <li><p>The XML encoded Content Dictionaries now use elements from
+        the namespace <small><code>http://www.openmath.org/OpenMathCD</code></small>.</p></li>
+    </ul>
+    
+  </div>
+  
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-e.xml">Previous: E <i>OpenMath</i> DTD (Non-Normative)</a><br/><a href="#app_whats_new">This: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/><a href="omstd20html-g.xml">Next: G Bibliography</a><br/></div>
+</body>
+</html>

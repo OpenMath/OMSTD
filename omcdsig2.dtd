@@ -1,0 +1,39 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+*********************************************
+
+Relax NG Schema for OpenMath CD Signatures
+
+*********************************************
+-->
+
+<!ENTITY % omdtd SYSTEM "openmath2.dtd"> %omdtd;
+
+<!ELEMENT CDSComment (#PCDATA)>
+<!ATTLIST CDSComment
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
+
+<!ELEMENT CDSReviewDate (#PCDATA)>
+<!ATTLIST CDSReviewDate
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
+
+<!ELEMENT CDSStatus (#PCDATA)>
+<!ATTLIST CDSStatus
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
+
+<!ELEMENT CDSignatures (CDSComment,(CDSReviewDate?|CDSStatus),
+                            (CDSComment|Signature)*)>
+<!ATTLIST CDSignatures
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
+
+<!ATTLIST CDSignatures
+  cd NMTOKEN #REQUIRED
+  type NMTOKEN #REQUIRED>
+
+<!ELEMENT Signature (OMOBJ)>
+<!ATTLIST Signature
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
+
+<!ATTLIST Signature
+  name CDATA #REQUIRED>

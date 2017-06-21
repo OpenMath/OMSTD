@@ -1,0 +1,55 @@
+<?xml encoding="UTF-8"?>
+
+<!-- Schema for OpenMath CD groups -->
+
+<!-- info on the CD group itself -->
+
+<!ELEMENT CDGroupName (#PCDATA)>
+<!ATTLIST CDGroupName
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDGroupVersion (#PCDATA)>
+<!ATTLIST CDGroupVersion
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDGroupRevision (#PCDATA)>
+<!ATTLIST CDGroupRevision
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDGroupURL (#PCDATA)>
+<!ATTLIST CDGroupURL
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDGroupDescription (#PCDATA)>
+<!ATTLIST CDGroupDescription
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!-- info on the CDs in the group -->
+
+<!ELEMENT CDComment (#PCDATA)>
+<!ATTLIST CDComment
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDGroupMember (CDComment?,CDName,CDVersion?,CDURL?)>
+<!ATTLIST CDGroupMember
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDName (#PCDATA)>
+<!ATTLIST CDName
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDVersion (#PCDATA)>
+<!ATTLIST CDVersion
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!ELEMENT CDURL (#PCDATA)>
+<!ATTLIST CDURL
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
+
+<!-- structure of the group -->
+
+<!ELEMENT CDGroup (CDGroupName,CDGroupVersion,CDGroupRevision?,
+                   CDGroupURL,CDGroupDescription,
+                   (CDGroupMember|CDComment)*)>
+<!ATTLIST CDGroup
+  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>

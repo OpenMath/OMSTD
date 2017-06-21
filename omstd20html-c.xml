@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>Restricting the OpenMath Schema (Non-Normative)</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-b.xml">Previous: B <i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</a><br/><a href="#app_relaxrestricted">This: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/><a href="omstd20html-d.xml">Next: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/></div>
+  <div><h1 name="app_relaxrestricted" id="app_relaxrestricted">
+  Appendix C<br/>Restricting the <i>OpenMath</i> Schema (Non-Normative)</h1>
+  
+  
+  <p> Relax NG allows one to state constraints such as <i>
+      if the cd attribute of OMS is arith1 then the name attribute must be
+      one of lcm, gcd, plus etc.</i> Thus it is easy to use a
+    stylesheet to generate for any given CD, a Relax NG schema that
+    expresses the constraint that an <small><code>OMS</code></small> naming
+    that CD must only use symbols defined in the specified dictionary.
+    Similarly it is possible to use the <i>role</i>
+    information contained in the CD to restrict which symbols can be the
+    first child of an <small><code>OMBIND</code></small> or the odd-numbered
+    children of an <small><code>OMATP</code></small>. 
+  </p>
+  
+  <p> The modularisation mechanisms of Relax NG then allow one to
+    include these schema for all the CDs that you want to allow and, for
+    example, to replace the regexp-based validation of the
+    <small><code>OMS</code></small> attributes by explicit lists of allowed
+    CD names, and for each CD Name, a list of allowed symbol names.
+  </p>
+  
+  <p>
+    For example, a CD-specific Relax NG Schema for the arith1 CD shown in
+    <a href="omstd20html-a.xml#arith1.ocd">Appendix A.2</a> would look like:
+    <div class="literal"><pre>
+&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;grammar xmlns="http://relaxng.org/ns/structure/1.0" datatypeLibrary=""&gt;
+  &lt;define name="cd.attlist.OMS" combine="choice"&gt;
+    &lt;attribute name="cd"&gt;
+      &lt;value type="string"&gt;arith1&lt;/value&gt;
+    &lt;/attribute&gt;
+    &lt;attribute name="name"&gt;
+      &lt;choice&gt;
+        &lt;value type="string"&gt;lcm&lt;/value&gt;
+        &lt;value type="string"&gt;gcd&lt;/value&gt;
+        &lt;value type="string"&gt;plus&lt;/value&gt;
+        &lt;value type="string"&gt;unary_minus&lt;/value&gt;
+        &lt;value type="string"&gt;minus&lt;/value&gt;
+        &lt;value type="string"&gt;times&lt;/value&gt;
+        &lt;value type="string"&gt;divide&lt;/value&gt;
+        &lt;value type="string"&gt;power&lt;/value&gt;
+        &lt;value type="string"&gt;abs&lt;/value&gt;
+        &lt;value type="string"&gt;root&lt;/value&gt;
+        &lt;value type="string"&gt;sum&lt;/value&gt;
+        &lt;value type="string"&gt;product&lt;/value&gt;
+      &lt;/choice&gt;
+    &lt;/attribute&gt;
+  &lt;/define&gt;
+&lt;/grammar&gt;
+</pre></div>
+or, using the Relax NG compact syntax:
+<div class="literal"><pre>
+  cd.attlist.OMS |= 
+  attribute cd {string "arith1" },
+  attribute name {
+  string "lcm" |
+  string "gcd" |
+  string "plus" |
+  string "unary_minus" |
+  string "minus" |
+  string "times" |
+  string "divide" |
+  string "power" |
+  string "abs" |
+  string "root" |
+  string "sum" |
+  string "product" }
+</pre></div>
+</p>
+
+<p> To build a schema that allows only symbols from arith1 we just
+  need to include the <i>OpenMath</i> schema described in <a href="omstd20html-3.xml#ssec_xml">Section 3.1.1</a>, override the attribute declarations for
+  OMS, and then include the schema for arith1.  For example:
+  <div class="literal"><pre>
+    &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;grammar xmlns="http://relaxng.org/ns/structure/1.0"&gt;
+      &lt;include href="openmath.rng"&gt;
+        &lt;define name="attlist.OMS"&gt;
+          &lt;ref name="cd.attlist.OMS"/&gt;
+        &lt;/define&gt;
+      &lt;/include&gt;
+      &lt;include href="arith1.rng"/&gt;
+    &lt;/grammar&gt;
+  </pre></div>
+  or, in the compact syntax:
+  <div class="literal"><pre>
+    include "openmath.rnc" {
+    attlist.OMS = cd.attlist.OMS}
+    
+    include "arith1.rnc"
+  </pre></div>
+  Using this approach it is possible to include as many files as
+  required.
+</p>
+
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-b.xml">Previous: B <i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</a><br/><a href="#app_relaxrestricted">This: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/><a href="omstd20html-d.xml">Next: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/></div>
+</body>
+</html>

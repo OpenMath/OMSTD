@@ -1,0 +1,1027 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>Content Dictionaries</title>
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-3.xml">Previous: 3 <i>OpenMath</i> Encodings</a><br/><a href="#cha_cd">This: 4 Content Dictionaries</a><br/>
+    <a href="omstd20html-4.xml#sec_cd_summary">4.1 Introduction</a><br/>
+    <a href="omstd20html-4.xml#sect_func">4.2 Abstract Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sec_status">4.2.1 Content Dictionary Status</a><br/>
+        <a href="omstd20html-4.xml#sec_version">4.2.2 Content Dictionary Version Numbers</a><br/>
+    <a href="omstd20html-4.xml#sec_xml_cd">4.3 The <span>Reference</span> Encoding for Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sec_cd_schema">4.3.1 The Relax NG Schema for Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sect_pcdata">4.3.2 Further <span>Description of
+the CD Schema</span></a><br/>
+    <a href="omstd20html-4.xml#addfiles">4.4 Additional Information</a><br/>
+        <a href="omstd20html-4.xml#sigfiles">4.4.1 Signature
+<span>Dictionaries</span>
+</a><br/>
+            <a href="omstd20html-4.xml#sect_sigpcdata">4.4.1.1 <span>Abstract Specification</span>
+ of a Signature Dictionary</a><br/>
+            <a href="omstd20html-4.xml#sect_sigschema">4.4.1.2 A Relax NG Schema for a Signature Dictionary</a><br/>
+            <a href="omstd20html-4.xml#sect_sigex">4.4.1.3 Examples</a><br/>
+        <a href="omstd20html-4.xml#ssec_cdgroups">4.4.2 CDGroups</a><br/>
+            <a href="omstd20html-4.xml#sec_dtd_cdg">4.4.2.1 The Specification of CDGroups</a><br/>
+            <a href="omstd20html-4.xml#sect_cdgpcdata">4.4.2.2 Further Requirements of a CDGroup</a><br/>
+    <a href="omstd20html-4.xml#cdapprove">4.5 Content Dictionaries Reviewing Process</a><br/><a href="omstd20html-5.xml">Next: 5 <i>OpenMath</i> Compliance</a><br/></div>
+  <div><h1 name="cha_cd" id="cha_cd">
+  Chapter 4<br/>Content Dictionaries</h1>
+  
+  
+  
+  <p>In this chapter we give a brief overview of Content Dictionaries
+    before explicitly stating their functionality and encoding.</p>
+  <div><h2 name="sec_cd_summary" id="sec_cd_summary">4.1 Introduction</h2>
+    
+    
+    <p>Content Dictionaries (CDs) are central to the <i>OpenMath</i> philosophy of
+      transmitting mathematical information. It is the <i>OpenMath</i> Content
+      Dictionaries which actually hold the meanings of the objects being
+      transmitted.</p>
+    
+    <p>For example if application <m:math><m:mi>A</m:mi></m:math> is talking to
+      application <m:math><m:mi>B</m:mi></m:math>, and sends, say, an equation
+      involving multiplication of matrices, then <m:math><m:mi>A</m:mi></m:math> and
+      <m:math><m:mi>B</m:mi></m:math> must agree on what a matrix is, and on what
+      matrix multiplication is, and even on what constitutes an
+      equation. All this information is held within some Content
+      Dictionaries which both applications agree upon.</p>
+    
+    <p>A <i> Content Dictionary</i> holds the meanings of
+      (various) mathematical <span>"words"</span>. These words are <i>OpenMath</i>
+      basic objects referred to as <i>symbols</i> in <a href="omstd20html-2.xml#sec_omabs">Section 2.1</a>.</p>
+    
+    <p>With a set of symbol definitions (perhaps from several Content
+      Dictionaries), <m:math><m:mi>A</m:mi></m:math> and <m:math><m:mi>B</m:mi></m:math> can
+      now talk in a common <span>"language"</span>.</p>
+    
+    <p>It is important to stress that it is not Content Dictionaries
+      themselves which are being transmitted, but some <span>"mathematics"</span>
+      whose definitions are held within the Content Dictionaries. This means
+      that the applications must have already agreed on a set of Content
+      Dictionaries which they <span>"understand"</span> (i.e., can cope with
+      to some degree).</p>
+    
+    <p>In many cases, the Content
+      Dictionaries that an application understands will be constant, and be
+      intrinsic to the application's mathematical use. However the above
+      approach can also be used for applications which can handle every
+      Content Dictionary (such as an <i>OpenMath</i> parser, or perhaps a typesetting
+      system), or alternatively for applications which understand a
+      changeable number of Content Dictionaries (perhaps after being sent
+      Content Dictionaries in some way).</p>
+    
+    <p>The primary use of Content Dictionaries is thought to be for
+      designers of Phrasebooks, the programs which translate between the <i>OpenMath</i>
+      mathematical object and the corresponding (often internal) structure
+      of the particular application in question. For such a use the Content
+      Dictionaries have themselves been designed to be as readable and
+      precise as possible.</p>
+    
+    <p>Another possible use for <i>OpenMath</i> Content Dictionaries could rely on
+      their automatic comprehension by a machine (e.g., when given
+      definitions of objects defined in terms of previously understood
+      ones), in which case Content Dictionaries may have to be passed as
+      data. Towards this end, a Content Dictionary has been written which
+      contains a set of symbols sufficient to represent any other Content
+      Dictionary. This means that Content Dictionaries may be passed in the
+      same way as other (<i>OpenMath</i>) mathematical data.</p>
+    
+    <p>Finally, the syntax of the
+      <span>reference encoding for</span>
+      Content Dictionaries has been designed to be relatively easy to learn
+      and to write, and also free from the need for any specialist
+      software. This is because it is acknowledged that there is an enormous
+      amount of mathematical information to represent, and so most 
+      
+      Content Dictionaries 
+      
+      <span>are</span> 
+      written by <span>"ordinary"</span>
+      mathematicians, encoding their particular fields of expertise.  A
+      further reason is that the mathematics conveyed by a specific Content
+      Dictionary should be understandable independently of any
+      application.</p>
+    
+    <p>The key points from this section are:
+      <ul>
+	<li><p>Content Dictionaries should be readable and precise to help
+	    Phrasebook designers,</p></li>
+	<li><p>Content Dictionaries should be readily write-able to encourage
+	    widespread use,</p></li>
+	<li><p>It ought to be possible for a machine to understand a Content
+	    Dictionary to some degree.</p></li>
+      </ul>
+    </p>
+  </div>
+  
+  <div><h2 name="sect_func" id="sect_func">4.2 Abstract Content Dictionaries</h2>
+    
+    
+    <p>In this section we define the <span>abstract</span> structure of Content
+      Dictionaries.</p>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <p>A Content Dictionary consists of the
+      following mandatory pieces of information:
+      <ol>
+	<li><p>A <i>name</i> corresponding to the rules
+	    described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>.</p></li>
+	<li><p>A <i>description</i> of the Content
+	    Dictionary.
+	  </p></li>
+	<li><p>A <i>revision date</i>, the date of the
+	    last change to the Content Dictionary.  Dates should be stored in the
+	    ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03. 
+	  </p></li>
+	<li><p>A <i>review date</i>, a date until which
+	    the content dictionary is guaranteed to remain unchanged. 
+	  </p></li>
+	<li><p>A <i>version number</i> which consists
+	    of a major and minor part (see <a href="omstd20html-4.xml#sec_version">Section 4.2.2</a>). 
+	  </p></li>
+	<li><p>A <i>status</i>, as described in <a href="omstd20html-4.xml#sec_status">Section 4.2.1</a>. 
+	  </p></li>
+	<li><p>A <i>CD base</i> which, when combined
+	    with the CD name, forms a unique
+	    identifier for the Content Dictionary. It may or may not refer to an
+	    actual location from which it can be retrieved.   
+	  </p></li>
+	<li><p>A series of one or more
+	    <i>symbol definitions</i> as
+	    described below.
+	  </p></li>
+      </ol>
+    </p>
+    
+    <p>A symbol definition consists of the
+      following pieces of information:
+      <ol>
+	<li><p>A mandatory <i>name</i> corresponding to the rules
+	    described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>.</p></li>
+	<li><p>A mandatory <i>description</i> of the symbol,
+	    which can be as formal or informal as the author likes.
+	  </p></li>
+	<li><p>An optional <i>role</i> as described in
+	    <a href="omstd20html-2.xml#sec_roles">Section 2.1.4</a>.
+	  </p></li>
+	<li><p>Zero or more <i>commented mathematical
+	      properties</i> which are mathematical properties of the symbol
+	    expressed in a mechanism other than <i>OpenMath</i>.
+	  </p></li>
+	<li><p>Zero or more <i>formal mathematical
+	      properties</i> which are mathematical properties of the symbol
+	    expressed in <i>OpenMath</i>.  Note that it is common for commented and formal
+	    mathematical properties to be introduced in pairs, with the former
+	    describing the latter.
+	  </p><p>A Formal Mathematical Property may be given an optional
+	    <i>kind</i> attribute.  An author of a Content Dictionary
+	    may use this to indicate whether, for example, the property provides an
+	    algorithm for evaluation of the concept it is associated with.  At
+	    present no fixed scheme is mandated for how this information should be
+	    encoded or used by an application.
+	  </p></li>
+	<li><p>Zero or more <i>examples</i> which are
+	    intended to demonstrate the use of the symbol within an <i>OpenMath</i> object.
+	  </p></li>
+      </ol>
+    </p>
+    
+    
+    
+    <p>
+      Some pieces of information which might logically be thought to be part
+      of a Content Dictionary, such as the types or signatures of symbols,
+      are better represented externally.  This allows for new variants to be
+      associated with Content Dictionaries without the Dictionaries
+      themselves being changed.  A model for signatures is given in <a href="omstd20html-4.xml#sigfiles">Section 4.4.1</a>.</p>
+    
+    
+    <p>Content Dictionaries may be grouped into <i>CD
+	Groups</i>. These groups allow applications to easily refer to
+      collections of Content Dictionaries. One particular CDGroup of
+      interest is the <span>"MathML CDGroup"</span>. This group consists of
+      the collection of core Content Dictionaries that is designed to
+      have the same semantic scope as the content elements of
+      MathML 2 <a href="omstd20html-g.xml#MathML_2003">[17]</a>.  <i>OpenMath</i> objects
+      built from symbols that come from Content Dictionaries in this CDGroup
+      may be expected to be easily transformed between <i>OpenMath</i> and MathML
+      encodings.  The detailed structure of a CDGroup is described in
+      <a href="omstd20html-4.xml#ssec_cdgroups">Section 4.4.2</a> below.</p>
+    
+    <div><h3 name="sec_status" id="sec_status">4.2.1 Content Dictionary Status</h3>
+      
+      
+      <p>The status of a Content Dictionary can be either
+	<ul>
+	  <li><p>
+	      <small><code>official</code></small>: approved by the <i>OpenMath</i> Society
+	      according to the procedure outlined in <a href="omstd20html-4.xml#cdapprove">Section 4.5</a>;
+	    </p></li>
+	  
+	  <li><p>
+	      <small><code>experimental</code></small>: under development and thus
+	      liable to change;
+	    </p></li>
+	  <li><p>
+	      <small><code>private</code></small>: used by a private group of <i>OpenMath</i>
+	      users;
+	    </p></li>
+	  <li><p>
+	      <small><code>obsolete</code></small>: an obsolete Content
+	      Dictionary kept only for archival purposes.
+	    </p></li>
+	</ul>
+      </p>
+    </div>
+    
+    <div><h3 name="sec_version" id="sec_version">4.2.2 Content Dictionary Version Numbers</h3>
+      
+      
+      <p>A version number must consist of two parts, a major version and
+	a revision, both of which should be non-negative integers.  In CDs
+	that do not have status <i>experimental</i>, the version
+	number should be a positive integer.</p>
+      
+      <p>Unless a CD has status <i>experimental</i>,
+	no changes should ever be
+	introduced that invalidate objects built with previous versions.
+	Any change that influences phrasebook compliance, like adding a new
+	symbol to a Content Dictionary, is considered a major change
+	and should be reflected by an increase in the major version number. Other
+	changes, like adding an example or correcting a description, are
+	considered minor changes. For minor changes the version number is not
+	changed, but an increase should be made to the revision number.
+	Note that a change such as removing a symbol should
+	not be made unless the CD has status
+	<i>experimental</i>.
+	Should this be required then a new CD with a different name should be
+	produced so as not to invalidate existing objects.</p>
+      
+      <p>
+	When the major version number
+	is increased, the revision number is normally reset to zero.</p>
+      
+      <p>As detailed in <a href="omstd20html-5.xml#cha_comp">Chapter 5</a>, <i>OpenMath</i>
+	compliant applications state which versions of which CDs they support.
+      </p>
+      
+    </div>
+    
+  </div>
+  
+  <div><h2 name="sec_xml_cd" id="sec_xml_cd">4.3 The <span>Reference</span> Encoding for Content Dictionaries</h2>
+    
+    
+    
+    
+    
+    <p><span>The reference encoding of</span>
+      Content Dictionaries are as <acronym>XML</acronym> documents.  A valid Content Dictionary
+      document should 
+      
+      <span>conform to the Relax NG Schema for
+	Content Dictionaries given in <a href="omstd20html-4.xml#sec_cd_schema">Section 4.3.1</a>.
+      </span>
+    </p>
+    
+    
+    
+    <p>An example of a complete Content Dictionary is given in
+      Appendix <a href="omstd20html-a.xml#app_cdcd">Appendix A.1</a>, which is the
+      <small><code>Meta</code></small> Content Dictionary for describing
+      Content Dictionaries themselves. A more typical Content Dictionary is
+      given in <a href="omstd20html-a.xml#arith1.ocd">Appendix A.2</a>, the
+      <small><code>arith1</code></small> Content Dictionary for basic
+      arithmetic functions.</p>
+    
+    <div><h3 name="sec_cd_schema" id="sec_cd_schema">4.3.1 The Relax NG Schema for Content Dictionaries</h3>
+      
+      
+      <div class="literal"><pre>
+	<span style="color:brown;"># *********************************************</span>
+<span style="color:brown;"># </span>
+<span style="color:brown;"># Relax NG Schema for OpenMath CD</span>
+<span style="color:brown;"># </span>
+<span style="color:brown;"># *********************************************</span>
+
+<span style="font-weight:bold;">default</span> <span style="font-weight:bold;">namespace</span> = "http://www.openmath.org/OpenMathCD"
+
+<span style="font-weight:bold;">include</span> "openmath2.rnc" {<a name="rncsec_cd_schemastart" style="color:blue;">start</a> = <a href="#rncsec_cd_schemaCD">CD</a>}
+
+<a name="rncsec_cd_schemaCDComment" style="color:blue;">CDComment</a> = <span style="font-weight:bold;">element</span> CDComment { <span style="font-weight:bold;">text</span> }
+<a name="rncsec_cd_schemaCDName" style="color:blue;">CDName</a> = <span style="font-weight:bold;">element</span> CDName { <span style="font-weight:bold;">xsd:NCName</span> }
+<a name="rncsec_cd_schemaCDUses" style="color:blue;">CDUses</a> = <span style="font-weight:bold;">element</span> CDUses { <a href="#rncsec_cd_schemaCDName">CDName</a>* }
+<a name="rncsec_cd_schemaCDURL" style="color:blue;">CDURL</a> = <span style="font-weight:bold;">element</span> CDURL { <span style="font-weight:bold;">xsd:anyURI</span> }
+<a name="rncsec_cd_schemaCDBase" style="color:blue;">CDBase</a> = <span style="font-weight:bold;">element</span> CDBase { <span style="font-weight:bold;">xsd:anyURI</span> }
+<a name="rncsec_cd_schematext-or-om" style="color:blue;">text-or-om</a> = (<span style="font-weight:bold;">text</span> | <a href="#rncOMOBJ">OMOBJ</a>)*
+<a name="rncsec_cd_schemaCDReviewDate" style="color:blue;">CDReviewDate</a> = <span style="font-weight:bold;">element</span> CDReviewDate { <span style="font-weight:bold;">xsd:date</span> }
+<a name="rncsec_cd_schemaCDDate" style="color:blue;">CDDate</a> = <span style="font-weight:bold;">element</span> CDDate { <span style="font-weight:bold;">xsd:date</span> }
+<a name="rncsec_cd_schemaCDVersion" style="color:blue;">CDVersion</a> = <span style="font-weight:bold;">element</span> CDVersion { <span style="font-weight:bold;">xsd:nonNegativeInteger</span> }
+<a name="rncsec_cd_schemaCDRevision" style="color:blue;">CDRevision</a> = <span style="font-weight:bold;">element</span> CDRevision { <span style="font-weight:bold;">xsd:nonNegativeInteger</span> }
+<a name="rncsec_cd_schemaCDStatus" style="color:blue;">CDStatus</a> = <span style="font-weight:bold;">element</span> CDStatus {
+   "official" |
+   "experimental" |
+   "private" |
+   "obsolete"}
+<a name="rncsec_cd_schemaDescription" style="color:blue;">Description</a> = <span style="font-weight:bold;">element</span> Description { <span style="font-weight:bold;">text</span> }
+<a name="rncsec_cd_schemaName" style="color:blue;">Name</a> = <span style="font-weight:bold;">element</span> Name { <span style="font-weight:bold;">xsd:NCName</span> }
+<a name="rncsec_cd_schemaRole" style="color:blue;">Role</a> = <span style="font-weight:bold;">element</span> Role {
+   "binder" |
+   "attribution" |
+   "semantic-attribution" |
+   "error" |
+   "application" |
+   "constant" }
+<a name="rncsec_cd_schemaCMP" style="color:blue;">CMP</a> = <span style="font-weight:bold;">element</span> CMP { <span style="font-weight:bold;">text</span> }
+<a name="rncsec_cd_schemaFMP" style="color:blue;">FMP</a> = <span style="font-weight:bold;">element</span> FMP { 
+  <span style="font-weight:bold;">attribute</span> kind {<span style="font-weight:bold;">xsd:string</span>}?,
+  <a href="#rncOMOBJ">OMOBJ</a>
+  }
+<span style="color:brown;"># allow embedded OM</span>
+<a name="rncsec_cd_schemaExample" style="color:blue;">Example</a> = <span style="font-weight:bold;">element</span> Example { <a href="#rncsec_cd_schematext-or-om">text-or-om</a> }
+<a name="rncsec_cd_schemaCDDefinition" style="color:blue;">CDDefinition</a> =
+  <span style="font-weight:bold;">element</span> CDDefinition {
+    <a href="#rncsec_cd_schemaCDComment">CDComment</a>*,
+    (<a href="#rncsec_cd_schemaName">Name</a> &amp; <a href="#rncsec_cd_schemaRole">Role</a>? &amp; <a href="#rncsec_cd_schemaDescription">Description</a>),
+   (<a href="#rncsec_cd_schemaCDComment">CDComment</a> | <a href="#rncsec_cd_schemaExample">Example</a> | <a href="#rncsec_cd_schemaFMP">FMP</a> | <a href="#rncsec_cd_schemaCMP">CMP</a>)*
+  }
+<a name="rncsec_cd_schemaCD" style="color:blue;">CD</a> =
+  <span style="font-weight:bold;">element</span> CD {
+    (<a href="#rncsec_cd_schemaCDComment">CDComment</a>* &amp; <a href="#rncsec_cd_schemaDescription">Description</a>? &amp;
+     <a href="#rncsec_cd_schemaCDName">CDName</a> &amp; <a href="#rncsec_cd_schemaCDURL">CDURL</a>? &amp; <a href="#rncsec_cd_schemaCDBase">CDBase</a>? &amp;
+     <a href="#rncsec_cd_schemaCDReviewDate">CDReviewDate</a>? &amp; <a href="#rncsec_cd_schemaCDDate">CDDate</a> &amp; <a href="#rncsec_cd_schemaCDStatus">CDStatus</a> &amp; 
+     <a href="#rncsec_cd_schemaCDUses">CDUses</a>? &amp; 
+     <a href="#rncsec_cd_schemaCDVersion">CDVersion</a> &amp; <a href="#rncsec_cd_schemaCDRevision">CDRevision</a>),
+    ( <a href="#rncsec_cd_schemaCDDefinition">CDDefinition</a>,<a href="#rncsec_cd_schemaCDComment">CDComment</a>* )+
+  }
+
+
+      </pre></div>
+      
+    </div>
+    
+
+<div><h3 name="sect_pcdata" id="sect_pcdata">4.3.2 Further <span>Description of
+the CD Schema</span></h3>
+
+
+
+
+
+<p>
+We now describe the elements used in the above schema in terms of the
+abstract description of CDs in <a href="omstd20html-4.xml#sect_func">Section 4.2</a>.  Unless
+stated otherwise information is encoded as the content of the relevant
+element.
+</p>
+
+
+
+<dl>
+<dt><small><code>CDName</code></small></dt><dd><p>The
+ name of the Content Dictionary.
+</p>
+
+</dd>
+
+
+<dt><small><code>Description</code></small></dt>
+<dd><p>The text occurring in the <small><code>Description</code></small>
+  element is used to give a description of the enclosing element, which
+  could be a symbol or the entire Content Dictionary. The content of
+  this element can be any <acronym>XML</acronym> text.</p>
+  
+</dd>
+
+<dt><small><code>CDReviewDate</code></small></dt><dd><p>The
+
+review date of the Content
+  Dictionary. </p>
+  
+</dd>
+
+<dt><small><code>CDDate</code></small></dt><dd><p>The
+
+revision date of this version of the Content Dictionary.
+
+</p>
+  
+</dd>
+
+<dt><small><code>CDVersion</code></small></dt><dd>
+   
+   
+
+<p>The major version number of the CD.</p>
+   
+
+
+
+
+
+
+
+  
+</dd>
+
+<dt><small><code>CDRevision</code></small></dt><dd>
+    
+
+
+
+<p>The minor version number of the
+CD.</p>
+  
+</dd>
+
+<dt><small><code>CDStatus</code></small></dt><dd><p>The
+
+status of the Content Dictionary.
+
+</p>
+  
+</dd>
+
+<dt><small><code>CDBase</code></small></dt><dd><p>The
+CD base of the CD.
+
+</p>
+</dd>
+
+<dt><small><code>CDURL</code></small></dt><dd><p>The
+  text occurring in the <small><code>CDURL</code></small> element should
+  be a valid URL where the source file for the Content Dictionary
+  encoding can be found (if it exists). The filename should conform to
+  ISO 9660 <a href="omstd20html-g.xml#iso9660">[11]</a>.
+
+</p>
+
+</dd>
+
+<dt><small><code>CDUses</code></small></dt><dd>
+    <p>The content of this element should
+   be a series of <small><code>CDName</code></small> elements, each
+   naming a Content Dictionary used in the
+   <small><code>Example</code></small> and <small><code>FMP</code></small>s
+   of the current Content Dictionary. <span>This element is optional and deprecated since
+the information can easily be extracted automatically.</span></p>
+   
+ </dd>
+
+<dt><small><code>CDComment</code></small></dt><dd><p>The
+   content of this element should be text that does not convey any
+   crucial information concerning the current Content Dictionary. It
+   can be used in the Content Dictionary header to report the author
+   of the Content Dictionary and to log change information. In the
+   body of the Content Dictionary, it can be used to attach extra
+   remarks to certain symbols.</p> 
+   
+ </dd>
+
+<dt><small><code>CDDefinition</code></small></dt><dd><p>The
+element which contains the definition of an individual symbol.
+</p>
+  
+</dd>
+
+<dt><small><code>Name</code></small></dt><dd><p>The
+
+name of a symbol.
+
+</p>
+  
+</dd>
+
+
+<dt><small><code>Role</code></small></dt>
+<dd><p>The role of a symbol: it must be one of
+<i>binder</i>, 
+<i>attribution</i>, 
+<i>semantic-attribution</i>, 
+<i>error</i>, 
+<i>application</i>, or
+<i>constant</i>. 
+</p>
+</dd>
+
+
+<dt><small><code>Example</code></small></dt>
+<dd>
+ <p>The text occurring in the
+<small><code>Example</code></small> element is used to give examples of
+the enclosing symbol, and can be any <acronym>XML</acronym> text. In addition to text
+the element may contain examples as <acronym>XML</acronym> encoded <i>OpenMath</i>, inside
+<small><code>OMOBJ</code></small> elements.  Note that
+<small><code>Examples</code></small> must be with respect to some symbol
+and cannot be <span>"loose"</span> in the Content Dictionary.</p>
+  
+</dd>
+
+<dt><small><code>CMP</code></small></dt>
+<dd><p>
+
+
+<span>
+A Commented Mathematical Property.
+</span>
+
+</p>
+  
+</dd>
+
+<dt><small><code>FMP</code></small></dt><dd><p>
+
+
+<span>
+A Formal Mathematical Property.  It may take an optional
+<small><code>kind</code></small> attribute.
+</span>
+
+</p>
+</dd>
+
+</dl>
+</div>
+</div>
+
+
+<div><h2 name="addfiles" id="addfiles">4.4 Additional Information</h2>
+
+
+
+  <p>Content Dictionaries contain just one part of the
+information that can be associated to a symbol in order to  define its meaning and its
+functionality. <i>OpenMath</i> Signature <span>dictionaries</span>, CDGroups, and possibly <span>collections</span> of extra mathematical properties, are
+used to convey the different aspects that as a whole make up a mathematical
+definition.</p>
+
+<div><h3 name="sigfiles" id="sigfiles">4.4.1 Signature
+<span>Dictionaries</span>
+</h3>
+
+
+
+
+
+<p><i>OpenMath</i> may be used with any type system. One just needs to produce
+a Content Dictionary which gives the constructors of the type system,
+and then one may build <i>OpenMath</i> objects representing types in the given
+type system. These are typically associated with <i>OpenMath</i> objects via the
+<i>OpenMath</i> <b>attribution</b> constructor.</p>
+
+<p>A Small Type System, called STS, has been designed to give
+semi-formal signatures to <i>OpenMath</i> symbols and is documented
+in <a href="omstd20html-g.xml#OM_D132c">[4]</a>.  The signature file given in
+<a href="omstd20html-a.xml#arith1.sts">Appendix A.3</a> is based on this formalism. Using the
+same mechanism, <a href="omstd20html-g.xml#OMD132b">[3]</a> shows how pure type
+systems can also be employed to assign types to <i>OpenMath</i> symbols.</p>
+
+
+
+
+<div><h4 name="sect_sigpcdata" id="sect_sigpcdata">4.4.1.1 <span>Abstract Specification</span>
+ of a Signature Dictionary</h4>
+
+
+
+
+<p>Signature dictionaries
+have a header which specifies the
+type system being used and the Content
+Dictionary containing the symbols for which signatures are
+being given. Each signature takes the form of an <i>OpenMath</i>
+object in an appropriate encoding.</p>
+
+
+
+
+
+
+<ol>
+<li><p>
+A <i>type definition</i>: the
+  name of the Content
+  Dictionary or of the CDGroup (cfg. <a href="omstd20html-4.xml#ssec_cdgroups">Section 4.4.2</a>)
+  that represents the type system being used.
+
+</p></li>
+<li><p>
+A <i>CD name</i>: the name of the CD for which
+signatures are being defined.
+
+</p></li>
+<li><p>
+A <i>review date</i>
+as defined in <a href="omstd20html-4.xml#sect_func">Section 4.2</a>.
+</p></li>
+<li><p>
+A <i>status</i>:
+as defined in <a href="omstd20html-4.xml#sect_func">Section 4.2</a>.
+</p></li>
+<li><p>
+A series of <i>signatures</i> which are <i>OpenMath</i> objects in
+some encoding.  The objects must represent types as defined by the
+type definition.
+</p></li>
+</ol>
+
+</div>
+
+
+<div><h4 name="sect_sigschema" id="sect_sigschema">4.4.1.2 A Relax NG Schema for a Signature Dictionary</h4>
+
+
+<p>
+The following is a reference encoding of a signature dictionary,
+designed to be used with Content Dictionaries in the <acronym>XML</acronym> encoding.
+</p>
+
+<div class="literal"><pre>
+<span style="color:brown;"># *********************************************</span>
+<span style="color:brown;"># </span>
+<span style="color:brown;"># Relax NG Schema for OpenMath CD Signatures</span>
+<span style="color:brown;"># </span>
+<span style="color:brown;"># *********************************************</span>
+
+<span style="font-weight:bold;">default</span> <span style="font-weight:bold;">namespace</span> = "http://www.openmath.org/OpenMathCDS"
+
+<span style="font-weight:bold;">include</span> "openmath2.rnc" { <a name="rncsect_sigschemastart" style="color:blue;">start</a> = <a href="#rncsect_sigschemaCDSignatures">CDSignatures</a> }
+
+<a name="rncsect_sigschemaCDSComment" style="color:blue;">CDSComment</a> = <span style="font-weight:bold;">element</span> CDSComment { <span style="font-weight:bold;">text</span> }
+<a name="rncsect_sigschemaCDSReviewDate" style="color:blue;">CDSReviewDate</a> = <span style="font-weight:bold;">element</span> CDSReviewDate { <span style="font-weight:bold;">text</span> }
+<a name="rncsect_sigschemaCDSStatus" style="color:blue;">CDSStatus</a> = <span style="font-weight:bold;">element</span> CDSStatus {
+   "official" |
+   "experimental" |
+   "private" |
+   "obsolete"}
+<a name="rncsect_sigschemaCDSignatures" style="color:blue;">CDSignatures</a> =
+  <span style="font-weight:bold;">element</span> CDSignatures {
+    <a href="#rncsect_sigschemaattlist.CDSignatures">attlist.CDSignatures</a>,
+    (<a href="#rncsect_sigschemaCDSComment">CDSComment</a>)*,
+    (<a href="#rncsect_sigschemaCDSReviewDate">CDSReviewDate</a>? &amp; <a href="#rncsect_sigschemaCDSStatus">CDSStatus</a>),
+    (<a href="#rncsect_sigschemaCDSComment">CDSComment</a> | <a href="#rncsect_sigschemaSignature">Signature</a>)*
+  }
+<a name="rncsect_sigschemaattlist.CDSignatures" style="color:blue;">attlist.CDSignatures</a> =
+  <span style="font-weight:bold;">attribute</span> cd { <span style="font-weight:bold;">xsd:NCName</span> },
+  <span style="font-weight:bold;">attribute</span> type { <span style="font-weight:bold;">xsd:NCName</span> }
+<a name="rncsect_sigschemaSignature" style="color:blue;">Signature</a> = <span style="font-weight:bold;">element</span> Signature { <a href="#rncsect_sigschemaattlist.Signature">attlist.Signature</a>, <a href="#rncOMOBJ">OMOBJ</a>? }
+<a name="rncsect_sigschemaattlist.Signature" style="color:blue;">attlist.Signature</a> = <span style="font-weight:bold;">attribute</span> name { <span style="font-weight:bold;">text</span> }
+
+
+</pre></div>
+
+</div>
+
+
+<div><h4 name="sect_sigex" id="sect_sigex">4.4.1.3 Examples</h4>
+
+
+<p>An example of a signature dictionary for the type system STS and the
+<small><code>arith1</code></small> Content Dictionary is given in <a href="omstd20html-a.xml#arith1.sts">Appendix A.3</a>. Each signature entry is similar to the
+following one for the <i>OpenMath</i> symbol <small><code>&lt;OMS cd="arith1"
+name="plus"/&gt;</code></small>: <div class="literal"><pre>
+&lt;Signature name="plus"&gt;
+&lt;OMOBJ version="2.0"&gt;
+ &lt;OMA&gt;
+  &lt;OMS name="mapsto" cd="sts"/&gt;
+  &lt;OMA&gt;
+   &lt;OMS name="nassoc" cd="sts"/&gt; 
+   &lt;OMV name="AbelianSemiGroup"/&gt;
+  &lt;/OMA&gt;
+  &lt;OMV name="AbelianSemiGroup"/&gt;
+ &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+&lt;/Signature&gt;
+</pre></div>
+</p>
+</div>
+
+
+
+</div>
+
+<div><h3 name="ssec_cdgroups" id="ssec_cdgroups">4.4.2 CDGroups</h3>
+
+
+
+
+  <p>The CD
+Group mechanism is a convenience mechanism for identifying collections
+of CDs.  A CD Group file is an <acronym>XML</acronym> document used in the (static or
+dynamic) negotiation phase where communicating applications declare
+and agree on the Content Dictionaries which they process.  It is a
+complement, or an alternative, to the individual declaration of
+Content Dictionaries understood by an application.  Note that CD
+Groups do <i>not</i> affect the <i>OpenMath</i> objects themselves.
+Symbols in an object always refer to content dictionaries, not
+groups.</p>
+
+ <p>For an application to declare that
+it <span>"understands CDGroup G"</span> is exactly equivalent to, and
+interchangeable with, the declaration that it <span>"understands
+Content Dictionaries <m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+<m:math><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:math>, 
+<span>&#8230;</span> 
+<m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math>"</span>, where
+<m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>, 
+<span>&#8230;</span> 
+<m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math> are the members of
+CDGroup G.</p>
+
+
+<div><h4 name="sec_dtd_cdg" id="sec_dtd_cdg">4.4.2.1 The Specification of CDGroups</h4>
+
+
+
+<p>CDGroups are <acronym>XML</acronym> documents, hence  a valid  CDGroup
+ should 
+<ul>
+<li><p>be valid according to the <span>schema</span> given in
+  <a href="omstd20html-4.xml#fig_cdgroup.dtd">Figure 4.1</a>,</p></li>
+<li><p>adhere to the extra conditions on the content of the elements
+  given in <a href="omstd20html-4.xml#sect_cdgpcdata">Section 4.4.2.2</a>.</p></li>
+</ul>
+</p>
+
+<p>Apart from some header information such as <small><code>CDGroupName</code></small> and
+<small><code>CDGroup</code></small> version, a CDGroup is simply an unordered list of
+CDs, identified by name and optionally version number and URL.</p>
+
+
+<div class="figure"><a name="fig_cdgroup.dtd" id="fig_cdgroup.dtd"/>
+    
+<div class="literal"><pre>
+
+<span style="color:brown;"># Schema for OpenMath CD groups</span>
+
+<span style="color:brown;"># info on the CD group itself</span>
+
+<span style="font-weight:bold;">default</span> <span style="font-weight:bold;">namespace</span> = "http://www.openmath.org/OpenMathCDG"
+
+<a name="rncsec_dtd_cdgCDGroupName" style="color:blue;">CDGroupName</a> = <span style="font-weight:bold;">element</span> CDGroupName { <span style="font-weight:bold;">xsd:NCName</span> }
+<a name="rncsec_dtd_cdgCDGroupVersion" style="color:blue;">CDGroupVersion</a> = <span style="font-weight:bold;">element</span> CDGroupVersion { <span style="font-weight:bold;">xsd:nonNegativeInteger</span> }
+<a name="rncsec_dtd_cdgCDGroupRevision" style="color:blue;">CDGroupRevision</a> = <span style="font-weight:bold;">element</span> CDGroupRevision { <span style="font-weight:bold;">xsd:nonNegativeInteger</span> }
+<a name="rncsec_dtd_cdgCDGroupURL" style="color:blue;">CDGroupURL</a> = <span style="font-weight:bold;">element</span> CDGroupURL { <span style="font-weight:bold;">text</span> }
+<a name="rncsec_dtd_cdgCDGroupDescription" style="color:blue;">CDGroupDescription</a> = <span style="font-weight:bold;">element</span> CDGroupDescription { <span style="font-weight:bold;">text</span> }
+<span style="color:brown;"># info on the CDs in the group</span>
+<a name="rncsec_dtd_cdgCDComment" style="color:blue;">CDComment</a> = <span style="font-weight:bold;">element</span> CDComment { <span style="font-weight:bold;">text</span> }
+<a name="rncsec_dtd_cdgCDGroupMember" style="color:blue;">CDGroupMember</a> =
+  <span style="font-weight:bold;">element</span> CDGroupMember {
+    <a href="#rncsec_dtd_cdgCDComment">CDComment</a>?, <a href="#rncsec_dtd_cdgCDName">CDName</a>, <a href="#rncsec_dtd_cdgCDVersion">CDVersion</a>?, <a href="#rncsec_dtd_cdgCDURL">CDURL</a>?
+  }
+<a name="rncsec_dtd_cdgCDName" style="color:blue;">CDName</a> = <span style="font-weight:bold;">element</span> CDName { <span style="font-weight:bold;">xsd:NCName</span> }
+<a name="rncsec_dtd_cdgCDVersion" style="color:blue;">CDVersion</a> = <span style="font-weight:bold;">element</span> CDVersion { <span style="font-weight:bold;">xsd:nonNegativeInteger</span> }
+<a name="rncsec_dtd_cdgCDURL" style="color:blue;">CDURL</a> = <span style="font-weight:bold;">element</span> CDURL { <span style="font-weight:bold;">text</span> }
+<span style="color:brown;"># structure of the group</span>
+<a name="rncsec_dtd_cdgCDGroup" style="color:blue;">CDGroup</a> =
+  <span style="font-weight:bold;">element</span> CDGroup {
+    <a href="#rncsec_dtd_cdgCDGroupName">CDGroupName</a>,
+    <a href="#rncsec_dtd_cdgCDGroupVersion">CDGroupVersion</a>,
+    <a href="#rncsec_dtd_cdgCDGroupRevision">CDGroupRevision</a>?,
+    <a href="#rncsec_dtd_cdgCDGroupURL">CDGroupURL</a>,
+    <a href="#rncsec_dtd_cdgCDGroupDescription">CDGroupDescription</a>,
+    (<a href="#rncsec_dtd_cdgCDGroupMember">CDGroupMember</a> | <a href="#rncsec_dtd_cdgCDComment">CDComment</a>)*
+  }
+<a name="rncsec_dtd_cdgstart" style="color:blue;">start</a> = <a href="#rncsec_dtd_cdgCDGroup">CDGroup</a>
+
+
+</pre></div>
+
+<div class="caption">
+  Figure 4.1 <span>Relax NG</span> Specification of CDGroups</div></div>
+</div>
+
+<div><h4 name="sect_cdgpcdata" id="sect_cdgpcdata">4.4.2.2 Further Requirements of a CDGroup</h4>
+
+
+
+
+
+<p>The notion of being a valid CDGroup implies that the following
+requirements on the content of the elements described by the <span>schema</span> given in
+  <a href="omstd20html-4.xml#sect_sigschema">Section 4.4.1.2</a> are also met.</p>
+
+
+<dl>
+<dt><small><code>CDGroup</code></small></dt>
+<dd><p>The <acronym>XML</acronym> element <small><code>CDGroup</code></small> is the outermost
+  element in a CDGroup document.</p>
+  
+</dd>
+
+<dt><small><code>CDGroupName</code></small></dt>
+<dd>
+
+<p>The text occurring in the <small><code>CDGroupName</code></small>
+  element corresponds to the name of the CDGroup. For the syntactical
+  requirements, see <small><code>CDName</code></small> in <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+  
+</dd>
+
+<dt><small><code>CDGroupVersion</code></small></dt>
+<dt><small><code>CDGroupRevision</code></small></dt>
+<dd>
+<p>The text occurring in these elements contains the major and minor
+version numbers of the CDGroup.
+</p>
+</dd>
+
+<dt><small><code>CDGroupURL</code></small></dt>
+<dd><p>The text occurring in the <small><code>CDGroupURL</code></small>
+  element identifies the location of the CDGroup file, not necessarily
+  of the member Content Dictionaries. For the syntactical
+  requirements, see <small><code>CDURL</code></small> in <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+  
+</dd>
+
+<dt><small><code>CDGroupDescription</code></small></dt>
+<dd><p>The text occurring in the
+<small><code>CDGroupDescription</code></small> element describes the
+mathematical area of the CDGroup.</p>
+  
+</dd>
+
+<dt><small><code>CDGroupMember</code></small></dt>
+<dd><p>The <acronym>XML</acronym> element <small><code>CDGroupMember</code></small>
+  encloses the data identifying each member of the CDGroup.</p>
+  
+</dd>
+
+<dt><small><code>CDName</code></small></dt><dd><p>The
+  text occurring in the <small><code>CDName</code></small> element
+  corresponds to the name of a Content Dictionary in the CDGroup. For
+  the syntactical requirements, see <small><code>CDName</code></small> in
+  <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+  
+</dd>
+
+<dt><small><code>CDVersion</code></small></dt><dd><p>The
+  text occurring in the <small><code>CDVersion</code></small> element
+  identifies which version of the Content Dictionary is to be taken as
+  member of the CDGroup. This element is optional. In case it is
+  missing, the latest version is the one included in the CDGroup.  For
+  the syntactical requirements, see <small><code>CDVersion</code></small>
+  in <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+  
+</dd>
+
+<dt><small><code>CDURL</code></small></dt>
+<dd>
+
+<p>The text occurring in the <small><code>CDURL</code></small> element
+  identifies the location of the Content Dictionary to be taken as
+  member of the CDGroup. This element is optional. In case it is
+  missing, the location of the CDGroup identified by the element
+  <small><code>CDGroupURL</code></small> is assumed.  For the syntactical
+  requirements, see <small><code>CDURL</code></small> in <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+  
+</dd>
+
+<dt><small><code>CDComment</code></small></dt><dd><p>See
+  <small><code>CDComment</code></small> in <a href="omstd20html-4.xml#sect_pcdata">Section 4.3.2</a>.</p>
+
+
+
+</dd>
+
+</dl>
+
+
+
+
+
+
+
+
+</div>
+</div>
+</div>
+
+<div><h2 name="cdapprove" id="cdapprove">4.5 Content Dictionaries Reviewing Process</h2>
+
+
+
+
+<p>The <i>OpenMath</i> Society is responsible  for implementing a
+review and referee process to assess the accuracy of the mathematical
+content of Content Dictionaries.  The status (see <small><code>CDStatus</code></small>)
+and/or the version number (see <small><code>CDVersion</code></small> ) of a Content
+Dictionary may change as a result of this review process.</p>
+</div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-3.xml">Previous: 3 <i>OpenMath</i> Encodings</a><br/><a href="#cha_cd">This: 4 Content Dictionaries</a><br/><a href="omstd20html-5.xml">Next: 5 <i>OpenMath</i> Compliance</a><br/></div>
+</body>
+</html>

@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>The OpenMath Standard</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xml:space="preserve">
+
+
+<head>
+<title>The OpenMath Standard</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+<h1>The <i>OpenMath</i> Standard</h1>
+
+<div>
+<div class="mdata">
+<img src="keylogo.png" alt="OM logo"/>
+</div>
+
+<div class="mdata">
+Version: 2.0
+</div>
+
+<div class="mdata">
+The OpenMath Society
+</div>
+
+<div class="mdata"><span class="mdatahead">Editors</span><br/>
+S. Buswell, O. Caprotti, D. P. Carlisle, M. C. Dewar, M. Gaëtano and M. Kohlhase
+</div>
+
+<div class="mdata">
+June 2004
+</div>
+
+<div class="mdata">© 2000&#8211;2004 The OpenMath Society</div>
+</div>
+
+<div>
+<h3>Abstract</h3>
+<p>This document describes version 2 of
+<i>OpenMath</i>: a standard for
+the representation and communication of mathematical objects.
+<span class="finaledit">This version clarifies and extends <i>OpenMath</i> 1.1 <a href="omstd20html-g.xml#OM_1.1">[9]</a>.</span>
+ <i>OpenMath</i>
+allows the <i>meaning</i> of an object to be encoded
+rather than just a visual representation.  It is designed to allow the
+free exchange of mathematical objects between software systems and human
+beings.  On the worldwide web it is designed to allow mathematical
+expressions embedded in web pages to be manipulated and computed with in
+a meaningful and correct way.  It is designed to be machine-generatable
+and machine-readable, rather than written by hand.
+</p><p>The <i>OpenMath</i> Standard is the official reference for
+the <i>OpenMath</i> language and has been approved by the <i>OpenMath</i> Society.  It is not
+intended as an introductory document or a user's guide, for the latest
+available material of this nature please consult the <i>OpenMath</i> web-site at
+<a href="http://www.openmath.org">http://www.openmath.org</a>.</p><p>This document includes an overview of the
+<i>OpenMath</i> architecture, an abstract description of <i>OpenMath</i> objects and two
+mechanisms for producing concrete encodings of such objects.  The first,
+in <acronym>XML</acronym>, is designed primarily for use on the web, in documents, and
+for applications which want to mix <i>OpenMath</i> as a content representation with
+MathML as a presentation format.  The second, a binary format, is
+designed for applications which wish to exchange very large objects, or
+a lot of data as efficiently as possible.  This document also includes a
+description of Content Dictionaries - the mechanism by which the meaning
+of a symbol in the <i>OpenMath</i> language is encoded, as well as an XML encoding
+for them.  Finally it includes guidelines for the development of
+<i>OpenMath</i>-compliant applications. <span class="finaledit">Further background
+on <i>OpenMath</i> and guidelines for its use in applications may be found in the
+accompanying Primer <a href="omstd20html-g.xml#OM_primer">[10]</a>.</span></p>
+</div>
+
+
+
+
+
+
+  
+<h2><a name="toc" id="toc"/>Contents</h2><a href="omstd20html-1.xml#cha_int">1 Introduction to <i>OpenMath</i></a><br/>
+    <a href="omstd20html-1.xml#sec_om-arch">1.1 <i>OpenMath</i> Architecture</a><br/>
+    <a href="omstd20html-1.xml#sec_intro-obj">1.2 <i>OpenMath</i> Objects and Encodings</a><br/>
+    <a href="omstd20html-1.xml#sec_intro-cd">1.3 Content Dictionaries</a><br/>
+    <a href="omstd20html-1.xml#sec_addnfiles">1.4 Additional Files</a><br/>
+    <a href="omstd20html-1.xml#sec_phrasebooks">1.5 Phrasebooks</a><br/><a href="omstd20html-2.xml#cha_obj">2 <i>OpenMath</i> Objects</a><br/>
+    <a href="omstd20html-2.xml#sec_omabs">2.1 Formal Definition of <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_basic">2.1.1 Basic <i>OpenMath</i> objects</a><br/>
+        <a href="omstd20html-2.xml#sec_derived">2.1.2 Derived <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_compound">2.1.3 <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_roles">2.1.4 <i>OpenMath</i> Symbol Roles</a><br/>
+    <a href="omstd20html-2.xml#sec_omin">2.2 Further Description of <i>OpenMath</i> Objects</a><br/>
+    <a href="omstd20html-2.xml#sec_names">2.3 Names</a><br/>
+    <a href="omstd20html-2.xml#sec_summary">2.4 Summary</a><br/><a href="omstd20html-3.xml#cha_enco">3 <i>OpenMath</i> Encodings</a><br/>
+    <a href="omstd20html-3.xml#sec_xml">3.1 The <acronym>XML</acronym> Encoding</a><br/>
+        <a href="omstd20html-3.xml#ssec_xml">3.1.1 A <span>Schema</span> for the <acronym>XML</acronym> Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_xml-desc">3.1.2 <span>Informal</span> description of
+the <span><acronym>XML</acronym> Encoding</span></a><br/>
+        <a href="omstd20html-3.xml#sec_references">3.1.3 Some Notes on References</a><br/>
+            <a href="omstd20html-3.xml#sec_acyclicity">3.1.3.1 An Acyclicity Constraint</a><br/>
+            <a href="omstd20html-3.xml#sec_sharing_bvars">3.1.3.2 Sharing and Bound Variables</a><br/>
+        <a href="omstd20html-3.xml#xmldoc">3.1.4 Embedding <i>OpenMath</i> in <acronym>XML</acronym> Documents</a><br/>
+    <a href="omstd20html-3.xml#sec_binary">3.2 The Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_binary_grammar">3.2.1 A Grammar for the Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_bin-desc">3.2.2 Description of the Grammar</a><br/>
+        <a href="omstd20html-3.xml#sec_bin_example">3.2.3 Example of Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_both_sharing">3.2.4 Sharing</a><br/>
+            <a href="omstd20html-3.xml#sec_sharing">3.2.4.1 Sharing <span>in Objects beginning with the identifier [24]</span></a><br/>
+            <a href="omstd20html-3.xml#sec_sharing_references">3.2.4.2 Sharing with References (beginning with [24+64])</a><br/>
+        <a href="omstd20html-3.xml#sec_impl_note">3.2.5 Implementation Note</a><br/>
+        <a href="omstd20html-3.xml#sec_relation_OM1_binary">3.2.6 Relation to the <i>OpenMath</i> 1 binary encoding</a><br/>
+    <a href="omstd20html-3.xml#sec_enc_summary">3.3 Summary</a><br/><a href="omstd20html-4.xml#cha_cd">4 Content Dictionaries</a><br/>
+    <a href="omstd20html-4.xml#sec_cd_summary">4.1 Introduction</a><br/>
+    <a href="omstd20html-4.xml#sect_func">4.2 Abstract Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sec_status">4.2.1 Content Dictionary Status</a><br/>
+        <a href="omstd20html-4.xml#sec_version">4.2.2 Content Dictionary Version Numbers</a><br/>
+    <a href="omstd20html-4.xml#sec_xml_cd">4.3 The <span>Reference</span> Encoding for Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sec_cd_schema">4.3.1 The Relax NG Schema for Content Dictionaries</a><br/>
+        <a href="omstd20html-4.xml#sect_pcdata">4.3.2 Further <span>Description of
+the CD Schema</span></a><br/>
+    <a href="omstd20html-4.xml#addfiles">4.4 Additional Information</a><br/>
+        <a href="omstd20html-4.xml#sigfiles">4.4.1 Signature
+<span>Dictionaries</span>
+</a><br/>
+            <a href="omstd20html-4.xml#sect_sigpcdata">4.4.1.1 <span>Abstract Specification</span>
+ of a Signature Dictionary</a><br/>
+            <a href="omstd20html-4.xml#sect_sigschema">4.4.1.2 A Relax NG Schema for a Signature Dictionary</a><br/>
+            <a href="omstd20html-4.xml#sect_sigex">4.4.1.3 Examples</a><br/>
+        <a href="omstd20html-4.xml#ssec_cdgroups">4.4.2 CDGroups</a><br/>
+            <a href="omstd20html-4.xml#sec_dtd_cdg">4.4.2.1 The Specification of CDGroups</a><br/>
+            <a href="omstd20html-4.xml#sect_cdgpcdata">4.4.2.2 Further Requirements of a CDGroup</a><br/>
+    <a href="omstd20html-4.xml#cdapprove">4.5 Content Dictionaries Reviewing Process</a><br/><a href="omstd20html-5.xml#cha_comp">5 <i>OpenMath</i> Compliance</a><br/>
+    <a href="omstd20html-5.xml#sec_compl_encoding">5.1 Encodings</a><br/>
+        <a href="omstd20html-5.xml#sec_compl_xml_encoding">5.1.1 The XML Encoding</a><br/>
+            <a href="omstd20html-5.xml#sec_compl_xml_encoding_val">5.1.1.1 Generating Valid XML</a><br/>
+            <a href="omstd20html-5.xml#sec_compl_xml_encoding_float">5.1.1.2 Decimal versus Hexadecimal Float Representation</a><br/>
+    <a href="omstd20html-5.xml#sec_compl_omforeign">5.2 <i>OpenMath</i> Foreign Objects</a><br/>
+    <a href="omstd20html-5.xml#sec_compl_cd">5.3 Content Dictionaries</a><br/>
+    <a href="omstd20html-5.xml#sec_comp_lex">5.4 Lexical Errors</a><br/>
+    <a href="omstd20html-5.xml#sec_compl_om1">5.5 <i>OpenMath</i> 1 Objects</a><br/><a href="omstd20html-a.xml#app_cdfiles">A CD Files</a><br/>
+    <a href="omstd20html-a.xml#app_cdcd">A.1 The <b>meta</b> Content Dictionary</a><br/>
+    <a href="omstd20html-a.xml#arith1.ocd">A.2 The  <b>arith1</b> Content Dictionary File</a><br/>
+    <a href="omstd20html-a.xml#arith1.sts">A.3 The  <b>arith1</b> STS Signature File</a><br/>
+    <a href="omstd20html-a.xml#mathml.cdg">A.4 The  <b>MathML</b> CDGroup</a><br/>
+    <a href="omstd20html-a.xml#errorcd">A.5 The <b>error</b> Content Dictionary</a><br/><a href="omstd20html-b.xml#app_openmath.rng">B <i>OpenMath</i> Schema in Relax NG XML Syntax (Normative)</a><br/><a href="omstd20html-c.xml#app_relaxrestricted">C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/><a href="omstd20html-d.xml#app_xsd">D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/><a href="omstd20html-e.xml#app_dtd">E <i>OpenMath</i> DTD (Non-Normative)</a><br/><a href="omstd20html-f.xml#app_whats_new">F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/>
+    <a href="omstd20html-f.xml#chgformal">F.1 Changes to the Formal Definition of Objects</a><br/>
+    <a href="omstd20html-f.xml#chgenc">F.2 Changes to the encodings</a><br/>
+    <a href="omstd20html-f.xml#chgcd">F.3 Changes to Content Dictionaries</a><br/><a href="omstd20html-g.xml#bibliography">G Bibliography</a><br/>
+<h2>List of Figures</h2><a href="omstd20html-1.xml#fig_om">1.1 The <i>OpenMath</i> Architecture</a><br/><a href="omstd20html-2.xml#fig_obj">2.1 The <i>OpenMath</i> application and binding objects for
+<m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math> and
+<m:math><m:mi>&#955;</m:mi> <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo>
+<m:mn>2</m:mn></m:math> in tree-like notation.</a><br/><a href="omstd20html-3.xml#fig_shared_vs_unshared">3.1 Shared vs. unshared representations</a><br/><a href="omstd20html-3.xml#fig_sharing_between">3.2 Sharing between <i>OpenMath</i> objects (A cycle of order <m:math><m:mn>2</m:mn></m:math>).</a><br/><a href="omstd20html-3.xml#fig_bin-enc">3.3 Grammar of the binary encoding of <i>OpenMath</i> objects.</a><br/><a href="omstd20html-3.xml#fig_bin-enc_stream">3.4 Streaming a large Integer in the Binary Encoding.</a><br/><a href="omstd20html-3.xml#fig_bin-enc_ex">3.5 A Simple example of the <i>OpenMath</i> binary encoding.</a><br/><a href="omstd20html-3.xml#fig_bin-enc2">3.6 A binary encoding of the <i>OpenMath</i> object from <a href="omstd20html-3.xml#fig_shared_vs_unshared">Figure 3.1</a>.</a><br/><a href="omstd20html-4.xml#fig_cdgroup.dtd">4.1 <span>Relax NG</span> Specification of CDGroups</a><br/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<comment># <token>RELAX</token> <token>NG</token> <token>Schema</token> <token>for</token> <token>OpenMath</token> 2</comment>
+
+
+<token>default</token> <token>namespace</token> <token>om</token> = "<string><token>http:</token>//<token>www.openmath.org</token>/<token>OpenMath</token></string>"
+
+<token>start</token> = <token>OMOBJ</token>
+
+<comment># <token>OpenMath</token> <token>object</token> <token>constructor</token></comment>
+<token>OMOBJ</token> = <token>element</token> <token>OMOBJ</token> { <token>compound.attributes</token>,
+                        <token>attribute</token> <token>version</token> { <token>xsd:string</token> }?,
+                        <token>omel</token> }
+
+
+<comment># <token>Elements</token> <token>which</token> <token>can</token> <token>appear</token> <token>inside</token> <token>an</token> <token>OpenMath</token> <token>object</token></comment>
+<token>omel</token> = 
+  <token>OMS</token> | <token>OMV</token> | <token>OMI</token> | <token>OMB</token> | <token>OMSTR</token> | <token>OMF</token> | <token>OMA</token> | <token>OMBIND</token> | <token>OME</token> | <token>OMATTR</token> |<token>OMR</token>
+
+<comment># <token>things</token> <token>which</token> <token>can</token> <token>be</token> <token>variables</token></comment>
+<token>omvar</token> = <token>OMV</token> | <token>attvar</token>
+
+<token>attvar</token> = <token>element</token> <token>OMATTR</token> { <token>common.attributes</token>,(<token>OMATP</token> , (<token>OMV</token> | <token>attvar</token>))}
+
+
+<token>cdbase</token> = <token>attribute</token> <token>cdbase</token> { <token>xsd:anyURI</token>}?
+
+<comment># <token>attributes</token> <token>common</token> <token>to</token> <token>all</token> <token>elements</token></comment>
+<token>common.attributes</token> = (<token>attribute</token> <token>id</token> { <token>xsd:ID</token> })?
+
+<comment># <token>attributes</token> <token>common</token> <token>to</token> <token>all</token> <token>elements</token> <token>that</token> <token>construct</token> <token>compount</token> <token>OM</token> <token>objects</token>.</comment>
+<token>compound.attributes</token> = <token>common.attributes</token>,<token>cdbase</token>
+
+<comment># <token>symbol</token></comment>
+<token>OMS</token> = <token>element</token> <token>OMS</token> { <token>common.attributes</token>,
+                    <token>attribute</token> <token>name</token> { <token>xsd:NCName</token>},
+                    <token>attribute</token> <token>cd</token> { <token>xsd:NCName</token>},
+                    <token>cdbase</token> }
+
+<comment># <token>variable</token></comment>
+<token>OMV</token> = <token>element</token> <token>OMV</token> { <token>common.attributes</token>,
+                    <token>attribute</token> <token>name</token> { <token>xsd:NCName</token>} }
+
+<comment># <token>integer</token></comment>
+<token>OMI</token> = <token>element</token> <token>OMI</token> { <token>common.attributes</token>,
+                    <token>xsd:string</token> {<token>pattern</token> = "<string>\<token>s</token>*(-\<token>s</token>?)?[0-9]+(\<token>s</token>[0-9]+)*\<token>s</token>*</string>"}}
+<comment># <token>byte</token> <token>array</token></comment>
+<token>OMB</token> = <token>element</token> <token>OMB</token> { <token>common.attributes</token>, <token>xsd:base64Binary</token> }
+
+<comment># <token>string</token></comment>
+<token>OMSTR</token> = <token>element</token> <token>OMSTR</token> { <token>common.attributes</token>, <token>text</token> }
+
+<comment># <token>IEEE</token> <token>floating</token> <token>point</token> <token>number</token></comment>
+<token>OMF</token> = <token>element</token> <token>OMF</token> { <token>common.attributes</token>,
+                    ( <token>attribute</token> <token>dec</token> { <token>xsd:double</token> } |
+                      <token>attribute</token> <token>hex</token> { <token>xsd:string</token> {<token>pattern</token> = "<string>[0-9A-<token>F</token>]+</string>"}}) }
+
+<comment># <token>apply</token> <token>constructor</token></comment>
+<token>OMA</token> = <token>element</token> <token>OMA</token> { <token>compound.attributes</token>, <token>omel</token>+ }
+
+<comment># <token>binding</token> <token>constructor</token> </comment>
+<token>OMBIND</token> = <token>element</token> <token>OMBIND</token> { <token>compound.attributes</token>, <token>omel</token>, <token>OMBVAR</token>, <token>omel</token> }
+
+<comment># <token>variables</token> <token>used</token> <token>in</token> <token>binding</token> <token>constructor</token></comment>
+<token>OMBVAR</token> = <token>element</token> <token>OMBVAR</token> { <token>common.attributes</token>, <token>omvar</token>+ }
+
+<comment># <token>error</token> <token>constructor</token></comment>
+<token>OME</token> = <token>element</token> <token>OME</token> { <token>common.attributes</token>, <token>OMS</token>, (<token>omel</token>|<token>OMFOREIGN</token>)* }
+
+<comment># <token>attribution</token> <token>constructor</token> <token>and</token> <token>attribute</token> <token>pair</token> <token>constructor</token></comment>
+<token>OMATTR</token> = <token>element</token> <token>OMATTR</token> { <token>compound.attributes</token>, <token>OMATP</token>, <token>omel</token> }
+
+<token>OMATP</token> = <token>element</token> <token>OMATP</token> { <token>compound.attributes</token>, (<token>OMS</token>, (<token>omel</token> | <token>OMFOREIGN</token>) )+ }
+
+<comment># <token>foreign</token> <token>constructor</token></comment>
+<token>OMFOREIGN</token> =  <token>element</token> <token>OMFOREIGN</token> {
+    <token>compound.attributes</token>, <token>attribute</token> <token>encoding</token> {<token>xsd:string</token>}?,
+   (<token>omel</token>|<token>notom</token>)* }
+
+<comment># <token>Any</token> <token>elements</token> <token>not</token> <token>in</token> <token>the</token> <token>om</token> <token>namespace</token></comment>
+<comment># (<token>valid</token> <token>om</token> <token>is</token> <token>allowed</token> <token>as</token> <token>a</token> <token>descendant</token>)</comment>
+<token>notom</token> =
+  (<token>element</token> * - <token>om:</token>* {<token>attribute</token> * { <token>text</token> }*,(<token>omel</token>|<token>notom</token>)*}
+   | <token>text</token>)
+
+<comment># <token>reference</token> <token>constructor</token></comment>
+<token>OMR</token> = <token>element</token> <token>OMR</token> { <token>common.attributes</token>,
+                    <token>attribute</token> <token>href</token> { <token>xsd:anyURI</token> }
+                  }
+

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>Bibliography</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-f.xml">Previous: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/><a href="#bibliography">This: G Bibliography</a><br/></div>
+  <div><h1 name="bibliography" id="bibliography">
+  Appendix G<br/>Bibliography</h1><p><a name="rfc2045" id="rfc2045"/><b>[1]</b>  N. Borenstein and N. Freed <i>MIME (Multipurpose Internet Mail Extensions) Part One: Format of Internet Message Bodies</i>, November 1996.<br/><a href="http://www.ietf.org/rfc/rfc2045.txt">http://www.ietf.org/rfc/rfc2045.txt</a></p><p><a name="rfc2046" id="rfc2046"/><b>[2]</b>  N. Borenstein and N. Freed <i>MIME (Multipurpose Internet Mail Extensions) Part Two: Media
+Types</i>, November 1996.<br/><a href="http://www.ietf.org/rfc/rfc2046.txt">http://www.ietf.org/rfc/rfc2046.txt</a></p><p><a name="OMD132b" id="OMD132b"/><b>[3]</b>  Olga Caprotti and Arjeh M. Cohen <i>A Type System for <i>OpenMath</i></i> 1.3.2b <i>OpenMath</i> Esprit Consortium, February 1999.<br/><a href="http://www.openmath.org/standard/ecc.pdf">http://www.openmath.org/standard/ecc.pdf</a></p><p><a name="OM_D132c" id="OM_D132c"/><b>[4]</b>  J. Davenport <i>A Small <i>OpenMath</i> Type System</i>, April 1999.<br/><a href="http://www.openmath.org/standard/sts.pdf">http://www.openmath.org/standard/sts.pdf</a></p><p><a name="ieee754_85" id="ieee754_85"/><b>[5]</b>   <i>IEEE Standard for binary Floating-Point Arithmetic ANSI/IEEE Standard 754</i>, 1985.<br/><a href="http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html">http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html</a></p><p><a name="POSIX" id="POSIX"/><b>[6]</b>  IEEE and The Open Group <i>Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6 </i>, 2003.<br/><a href="http://www.unix.org/version3/ieee_std.html">http://www.unix.org/version3/ieee_std.html</a></p><p><a name="IETF2396" id="IETF2396"/><b>[7]</b>  IETF <i>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</i>, August 1998.<br/><a href="http://www.ietf.org/rfc/rfc2396.txt">http://www.ietf.org/rfc/rfc2396.txt</a></p><p><a name="RELAX" id="RELAX"/><b>[8]</b>  OASIS Committee Specification <i>RELAX NG Specification</i>, December 2001.<br/><a href="http://www.oasis-open.org/committees/relax-ng/spec-20011203.html">http://www.oasis-open.org/committees/relax-ng/spec-20011203.html</a></p><p><a name="OM_1.1" id="OM_1.1"/><b>[9]</b>  OpenMath Consortium <i><i>OpenMath</i> Version 1.1</i>, October 2002.<br/><a href="http://www.openmath.org/standard/om11/">http://www.openmath.org/standard/om11/</a></p><p><a name="OM_primer" id="OM_primer"/><b>[10]</b>  OpenMath Consortium <i><i>OpenMath</i> Primer</i>, June 2004.<br/><a href="http://www.openmath.org/standard/primer/">http://www.openmath.org/standard/primer/</a></p><p><a name="iso9660" id="iso9660"/><b>[11]</b>  Technical committee / subcommittee: JTC 1 <i>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</i>, 1988.<br/><a href="http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505">http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505</a></p><p><a name="UNICODE" id="UNICODE"/><b>[12]</b>  Unicode Consortium <i>The Unicode Standard: Version <span>4.0.0</span></i> Addison-Wesley, 2003.<br/><a href="http://www.unicode.org/versions/Unicode4.0.0">Online edition available from http://www.unicode.org/versions/Unicode4.0.0</a></p><p><a name="XSD" id="XSD"/><b>[13]</b>  World Wide Web Consortium <i>XML Schema Part 1: Structures &amp; Part 2: Datatypes</i>, May 2001.<br/><a href="http://www.w3.org/TR/xmlschema-1/">http://www.w3.org/TR/xmlschema-1/</a><br/><a href="http://www.w3.org/TR/xmlschema-2/">http://www.w3.org/TR/xmlschema-2/</a></p><p><a name="xmlns" id="xmlns"/><b>[14]</b>  World Wide Web Consortium <i>Namespaces in XML</i>, January 1999.<br/><a href="http://www.w3.org/TR/REC-xml-names/">http://www.w3.org/TR/REC-xml-names/</a></p><p><a name="xml_98" id="xml_98"/><b>[15]</b>  World Wide Web Consortium <i>Extensible Markup Language (XML) 1.0.</i>, February 1998.<br/><a href="http://www.w3.org/TR/1998/REC-xml-19980210">http://www.w3.org/TR/1998/REC-xml-19980210</a></p><p><a name="xml_04" id="xml_04"/><b>[16]</b>  World Wide Web Consortium <i>Extensible Markup Language (XML) 1.1. W3C Recommendation REC-xml11-20040204</i>, February 2004.<br/><a href="http://www.w3.org/TR/2004/REC-xml11-20040204/">http://www.w3.org/TR/2004/REC-xml11-20040204/</a></p><p><a name="MathML_2003" id="MathML_2003"/><b>[17]</b>  World Wide Web Consortium <i>Mathematical Markup Language (MathML) 2.0 Specification
+    (Second Edition)</i>, October 2003.<br/><a href="http://www.w3.org/TR/MathML2/">http://www.w3.org/TR/MathML2/</a></p><p><a name="owl" id="owl"/><b>[18]</b>  World Wide Web Consortium <i> OWL Web Ontology Language Overview </i>, February 2004.<br/><a href="http://www.w3.org/TR/2004/REC-owl-features-20040210/">http://www.w3.org/TR/2004/REC-owl-features-20040210/</a></p><p><a name="rdf" id="rdf"/><b>[19]</b>  World Wide Web Consortium <i>Resource Description Framework (RDF): Concepts and Abstract Syntax</i>, February 2004.<br/><a href="http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/">http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/</a></p></div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-f.xml">Previous: F Changes between <i>OpenMath</i> 1.1 and <i>OpenMath</i> 2 (Non-Normative)</a><br/><a href="#bibliography">This: G Bibliography</a><br/></div>
+</body>
+</html>

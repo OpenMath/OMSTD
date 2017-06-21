@@ -1,0 +1,57 @@
+<comment># *********************************************</comment>
+<comment># </comment>
+<comment># <token>Relax</token> <token>NG</token> <token>Schema</token> <token>for</token> <token>OpenMath</token> <token>CD</token></comment>
+<comment># </comment>
+<comment># *********************************************</comment>
+
+<token>default</token> <token>namespace</token> = "<string><token>http:</token>//<token>www.openmath.org</token>/<token>OpenMathCD</token></string>"
+
+<token>include</token> "<string><token>openmath2.rnc</token></string>" {<token>start</token> = <token>CD</token>}
+
+<token>CDComment</token> = <token>element</token> <token>CDComment</token> { <token>text</token> }
+<token>CDName</token> = <token>element</token> <token>CDName</token> { <token>xsd:NCName</token> }
+<token>CDUses</token> = <token>element</token> <token>CDUses</token> { <token>CDName</token>* }
+<token>CDURL</token> = <token>element</token> <token>CDURL</token> { <token>xsd:anyURI</token> }
+<token>CDBase</token> = <token>element</token> <token>CDBase</token> { <token>xsd:anyURI</token> }
+<token>text-or-om</token> = (<token>text</token> | <token>OMOBJ</token>)*
+<token>CDReviewDate</token> = <token>element</token> <token>CDReviewDate</token> { <token>xsd:date</token> }
+<token>CDDate</token> = <token>element</token> <token>CDDate</token> { <token>xsd:date</token> }
+<token>CDVersion</token> = <token>element</token> <token>CDVersion</token> { <token>xsd:nonNegativeInteger</token> }
+<token>CDRevision</token> = <token>element</token> <token>CDRevision</token> { <token>xsd:nonNegativeInteger</token> }
+<token>CDStatus</token> = <token>element</token> <token>CDStatus</token> {
+   "<string><token>official</token></string>" |
+   "<string><token>experimental</token></string>" |
+   "<string><token>private</token></string>" |
+   "<string><token>obsolete</token></string>"}
+<token>Description</token> = <token>element</token> <token>Description</token> { <token>text</token> }
+<token>Name</token> = <token>element</token> <token>Name</token> { <token>xsd:NCName</token> }
+<token>Role</token> = <token>element</token> <token>Role</token> {
+   "<string><token>binder</token></string>" |
+   "<string><token>attribution</token></string>" |
+   "<string><token>semantic-attribution</token></string>" |
+   "<string><token>error</token></string>" |
+   "<string><token>application</token></string>" |
+   "<string><token>constant</token></string>" }
+<token>CMP</token> = <token>element</token> <token>CMP</token> { <token>text</token> }
+<token>FMP</token> = <token>element</token> <token>FMP</token> { 
+  <token>attribute</token> <token>kind</token> {<token>xsd:string</token>}?,
+  <token>OMOBJ</token>
+  }
+<comment># <token>allow</token> <token>embedded</token> <token>OM</token></comment>
+<token>Example</token> = <token>element</token> <token>Example</token> { <token>text-or-om</token> }
+<token>CDDefinition</token> =
+  <token>element</token> <token>CDDefinition</token> {
+    <token>CDComment</token>*,
+    (<token>Name</token> &amp; <token>Role</token>? &amp; <token>Description</token>),
+   (<token>CDComment</token> | <token>Example</token> | <token>FMP</token> | <token>CMP</token>)*
+  }
+<token>CD</token> =
+  <token>element</token> <token>CD</token> {
+    (<token>CDComment</token>* &amp; <token>Description</token>? &amp;
+     <token>CDName</token> &amp; <token>CDURL</token>? &amp; <token>CDBase</token>? &amp;
+     <token>CDReviewDate</token>? &amp; <token>CDDate</token> &amp; <token>CDStatus</token> &amp; 
+     <token>CDUses</token>? &amp; 
+     <token>CDVersion</token> &amp; <token>CDRevision</token>),
+    ( <token>CDDefinition</token>,<token>CDComment</token>* )+
+  }
+

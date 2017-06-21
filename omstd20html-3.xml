@@ -1,0 +1,2611 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>OpenMath Encodings</title>
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-2.xml">Previous: 2 <i>OpenMath</i> Objects</a><br/><a href="#cha_enco">This: 3 <i>OpenMath</i> Encodings</a><br/>
+    <a href="omstd20html-3.xml#sec_xml">3.1 The <acronym>XML</acronym> Encoding</a><br/>
+        <a href="omstd20html-3.xml#ssec_xml">3.1.1 A <span>Schema</span> for the <acronym>XML</acronym> Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_xml-desc">3.1.2 <span>Informal</span> description of
+the <span><acronym>XML</acronym> Encoding</span></a><br/>
+        <a href="omstd20html-3.xml#sec_references">3.1.3 Some Notes on References</a><br/>
+            <a href="omstd20html-3.xml#sec_acyclicity">3.1.3.1 An Acyclicity Constraint</a><br/>
+            <a href="omstd20html-3.xml#sec_sharing_bvars">3.1.3.2 Sharing and Bound Variables</a><br/>
+        <a href="omstd20html-3.xml#xmldoc">3.1.4 Embedding <i>OpenMath</i> in <acronym>XML</acronym> Documents</a><br/>
+    <a href="omstd20html-3.xml#sec_binary">3.2 The Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_binary_grammar">3.2.1 A Grammar for the Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_bin-desc">3.2.2 Description of the Grammar</a><br/>
+        <a href="omstd20html-3.xml#sec_bin_example">3.2.3 Example of Binary Encoding</a><br/>
+        <a href="omstd20html-3.xml#sec_both_sharing">3.2.4 Sharing</a><br/>
+            <a href="omstd20html-3.xml#sec_sharing">3.2.4.1 Sharing <span>in Objects beginning with the identifier [24]</span></a><br/>
+            <a href="omstd20html-3.xml#sec_sharing_references">3.2.4.2 Sharing with References (beginning with [24+64])</a><br/>
+        <a href="omstd20html-3.xml#sec_impl_note">3.2.5 Implementation Note</a><br/>
+        <a href="omstd20html-3.xml#sec_relation_OM1_binary">3.2.6 Relation to the <i>OpenMath</i> 1 binary encoding</a><br/>
+    <a href="omstd20html-3.xml#sec_enc_summary">3.3 Summary</a><br/><a href="omstd20html-4.xml">Next: 4 Content Dictionaries</a><br/></div>
+  <div><h1 name="cha_enco" id="cha_enco">
+  Chapter 3<br/><i>OpenMath</i> Encodings</h1>
+
+
+
+<p>In this chapter, two encodings are defined that map between <i>OpenMath</i>
+objects and byte streams.  These byte streams constitute a low level
+representation that can be easily exchanged between processes (via
+almost any communication method) or stored and retrieved from
+files.</p>
+
+
+
+
+<p>The first encoding is a character-based
+encoding in <acronym>XML</acronym> format.  In previous versions of the <i>OpenMath</i> Standard
+this encoding was a restricted subset of the full legal <acronym>XML</acronym> syntax.
+In this version, however, we have removed all these restrictions so that
+the earlier encoding is a strict subset of the existing one.  The
+<acronym>XML</acronym> encoding can be used, for example, to send <i>OpenMath</i> objects via
+e-mail, cut-and-paste, etc. and to embed <i>OpenMath</i> objects in <acronym>XML</acronym>
+documents or to have <i>OpenMath</i> objects processed by <acronym>XML</acronym>-aware
+applications.</p>
+
+<p>The second encoding is a binary encoding that is meant to be
+used when the compactness of the encoding is important (inter-process
+communications over a network is an example).</p>
+
+<p>Note that these two encodings are sufficiently different for
+auto-detection to be effective: an application reading the bytes can
+very easily determine which encoding is used.</p>
+
+<div><h2 name="sec_xml" id="sec_xml">3.1 The <acronym>XML</acronym> Encoding</h2>
+
+
+<p>This encoding has been designed with two main goals in mind:
+<ol>
+<li><p>to provide an encoding that uses common character sets
+  (so that it can easily be included in most documents and transport
+  protocols) and that is both readable and writable by a human.</p></li>
+<li><p>to provide an encoding that can be included (embedded) in
+  <acronym>XML</acronym> documents or processed by <acronym>XML</acronym>-aware applications.</p></li>
+</ol> 
+</p>
+
+<div><h3 name="ssec_xml" id="ssec_xml">3.1.1 A <span>Schema</span> for the <acronym>XML</acronym> Encoding</h3>
+
+
+
+
+
+<p>The <acronym>XML</acronym> encoding of an <i>OpenMath</i> object is
+defined by the Relax NG schema <a href="omstd20html-g.xml#RELAX">[8]</a> given below.
+Relax NG has a number of advantages over the older XSD Schema format
+<a href="omstd20html-g.xml#XSD">[13]</a>, in particular it allows for tighter control
+of attributes and has a modular, extensible structure.  Although we
+have made the <acronym>XML</acronym> form, which is given in <a href="omstd20html-b.xml#app_openmath.rng">Appendix B</a>, normative, it is generated from the
+ compact syntax given below.  It is also very easy to restrict the schema to allow
+a limited set of <i>OpenMath</i> symbols as described in <a href="omstd20html-c.xml#app_relaxrestricted">Appendix C</a>.  </p>
+
+<p> Standard tools exist for generating a DTD
+or an XSD schema from a Relax NG Schema.  Examples of such documents
+are given in <a href="omstd20html-e.xml#app_dtd">Appendix E</a> and <a href="omstd20html-d.xml#app_xsd">Appendix D</a>,
+respectively.</p>
+
+<div class="literal"><pre>
+<span style="color:brown;"># RELAX NG Schema for OpenMath 2</span>
+
+
+<span style="font-weight:bold;">default</span> <span style="font-weight:bold;">namespace</span> <a name="rncssec_xmlnamespaceom" style="color:blue;">om</a> = "http://www.openmath.org/OpenMath"
+
+<a name="rncssec_xmlstart" style="color:blue;">start</a> = <a href="#rncOMOBJ">OMOBJ</a>
+
+<span style="color:brown;"># OpenMath object constructor</span>
+<a name="rncOMOBJ" style="color:blue;">OMOBJ</a> = <span style="font-weight:bold;">element</span> OMOBJ { <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>,
+                        <span style="font-weight:bold;">attribute</span> version { <span style="font-weight:bold;">xsd:string</span> }?,
+                        <a href="#rncssec_xmlomel">omel</a> }
+
+
+<span style="color:brown;"># Elements which can appear inside an OpenMath object</span>
+<a name="rncssec_xmlomel" style="color:blue;">omel</a> = 
+  <a href="#rncssec_xmlOMS">OMS</a> | <a href="#rncssec_xmlOMV">OMV</a> | <a href="#rncssec_xmlOMI">OMI</a> | <a href="#rncssec_xmlOMB">OMB</a> | <a href="#rncssec_xmlOMSTR">OMSTR</a> | <a href="#rncssec_xmlOMF">OMF</a> | <a href="#rncssec_xmlOMA">OMA</a> | <a href="#rncssec_xmlOMBIND">OMBIND</a> | <a href="#rncssec_xmlOME">OME</a> | <a href="#rncssec_xmlOMATTR">OMATTR</a> |<a href="#rncssec_xmlOMR">OMR</a>
+
+<span style="color:brown;"># things which can be variables</span>
+<a name="rncssec_xmlomvar" style="color:blue;">omvar</a> = <a href="#rncssec_xmlOMV">OMV</a> | <a href="#rncssec_xmlattvar">attvar</a>
+
+<a name="rncssec_xmlattvar" style="color:blue;">attvar</a> = <span style="font-weight:bold;">element</span> OMATTR { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,(<a href="#rncssec_xmlOMATP">OMATP</a> , (<a href="#rncssec_xmlOMV">OMV</a> | <a href="#rncssec_xmlattvar">attvar</a>))}
+
+
+<a name="rncssec_xmlcdbase" style="color:blue;">cdbase</a> = <span style="font-weight:bold;">attribute</span> cdbase { <span style="font-weight:bold;">xsd:anyURI</span>}?
+
+<span style="color:brown;"># attributes common to all elements</span>
+<a name="rncssec_xmlcommon.attributes" style="color:blue;">common.attributes</a> = (<span style="font-weight:bold;">attribute</span> id { <span style="font-weight:bold;">xsd:ID</span> })?
+
+<span style="color:brown;"># attributes common to all elements that construct compount OM objects.</span>
+<a name="rncssec_xmlcompound.attributes" style="color:blue;">compound.attributes</a> = <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,<a href="#rncssec_xmlcdbase">cdbase</a>
+
+<span style="color:brown;"># symbol</span>
+<a name="rncssec_xmlOMS" style="color:blue;">OMS</a> = <span style="font-weight:bold;">element</span> OMS { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,
+                    <span style="font-weight:bold;">attribute</span> name { <span style="font-weight:bold;">xsd:NCName</span>},
+                    <span style="font-weight:bold;">attribute</span> cd { <span style="font-weight:bold;">xsd:NCName</span>},
+                    <a href="#rncssec_xmlcdbase">cdbase</a> }
+
+<span style="color:brown;"># variable</span>
+<a name="rncssec_xmlOMV" style="color:blue;">OMV</a> = <span style="font-weight:bold;">element</span> OMV { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,
+                    <span style="font-weight:bold;">attribute</span> name { <span style="font-weight:bold;">xsd:NCName</span>} }
+
+<span style="color:brown;"># integer</span>
+<a name="rncssec_xmlOMI" style="color:blue;">OMI</a> = <span style="font-weight:bold;">element</span> OMI { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,
+                    <span style="font-weight:bold;">xsd:string</span> {<span style="font-weight:bold;">pattern</span> = "\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"}}
+<span style="color:brown;"># byte array</span>
+<a name="rncssec_xmlOMB" style="color:blue;">OMB</a> = <span style="font-weight:bold;">element</span> OMB { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>, <span style="font-weight:bold;">xsd:base64Binary</span> }
+
+<span style="color:brown;"># string</span>
+<a name="rncssec_xmlOMSTR" style="color:blue;">OMSTR</a> = <span style="font-weight:bold;">element</span> OMSTR { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>, <span style="font-weight:bold;">text</span> }
+
+<span style="color:brown;"># IEEE floating point number</span>
+<a name="rncssec_xmlOMF" style="color:blue;">OMF</a> = <span style="font-weight:bold;">element</span> OMF { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,
+                    ( <span style="font-weight:bold;">attribute</span> dec { <span style="font-weight:bold;">xsd:double</span> } |
+                      <span style="font-weight:bold;">attribute</span> hex { <span style="font-weight:bold;">xsd:string</span> {<span style="font-weight:bold;">pattern</span> = "[0-9A-F]+"}}) }
+
+<span style="color:brown;"># apply constructor</span>
+<a name="rncssec_xmlOMA" style="color:blue;">OMA</a> = <span style="font-weight:bold;">element</span> OMA { <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>, <a href="#rncssec_xmlomel">omel</a>+ }
+
+<span style="color:brown;"># binding constructor </span>
+<a name="rncssec_xmlOMBIND" style="color:blue;">OMBIND</a> = <span style="font-weight:bold;">element</span> OMBIND { <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>, <a href="#rncssec_xmlomel">omel</a>, <a href="#rncssec_xmlOMBVAR">OMBVAR</a>, <a href="#rncssec_xmlomel">omel</a> }
+
+<span style="color:brown;"># variables used in binding constructor</span>
+<a name="rncssec_xmlOMBVAR" style="color:blue;">OMBVAR</a> = <span style="font-weight:bold;">element</span> OMBVAR { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>, <a href="#rncssec_xmlomvar">omvar</a>+ }
+
+<span style="color:brown;"># error constructor</span>
+<a name="rncssec_xmlOME" style="color:blue;">OME</a> = <span style="font-weight:bold;">element</span> OME { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>, <a href="#rncssec_xmlOMS">OMS</a>, (<a href="#rncssec_xmlomel">omel</a>|<a href="#rncssec_xmlOMFOREIGN">OMFOREIGN</a>)* }
+
+<span style="color:brown;"># attribution constructor and attribute pair constructor</span>
+<a name="rncssec_xmlOMATTR" style="color:blue;">OMATTR</a> = <span style="font-weight:bold;">element</span> OMATTR { <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>, <a href="#rncssec_xmlOMATP">OMATP</a>, <a href="#rncssec_xmlomel">omel</a> }
+
+<a name="rncssec_xmlOMATP" style="color:blue;">OMATP</a> = <span style="font-weight:bold;">element</span> OMATP { <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>, (<a href="#rncssec_xmlOMS">OMS</a>, (<a href="#rncssec_xmlomel">omel</a> | <a href="#rncssec_xmlOMFOREIGN">OMFOREIGN</a>) )+ }
+
+<span style="color:brown;"># foreign constructor</span>
+<a name="rncssec_xmlOMFOREIGN" style="color:blue;">OMFOREIGN</a> =  <span style="font-weight:bold;">element</span> OMFOREIGN {
+    <a href="#rncssec_xmlcompound.attributes">compound.attributes</a>, <span style="font-weight:bold;">attribute</span> encoding {<span style="font-weight:bold;">xsd:string</span>}?,
+   (<a href="#rncssec_xmlomel">omel</a>|<a href="#rncssec_xmlnotom">notom</a>)* }
+
+<span style="color:brown;"># Any elements not in the om namespace</span>
+<span style="color:brown;"># (valid om is allowed as a descendant)</span>
+<a name="rncssec_xmlnotom" style="color:blue;">notom</a> =
+  (<span style="font-weight:bold;">element</span> * - <a href="#rncssec_xmlnamespaceom">om:</a>* {<span style="font-weight:bold;">attribute</span> * { <span style="font-weight:bold;">text</span> }*,(<a href="#rncssec_xmlomel">omel</a>|<a href="#rncssec_xmlnotom">notom</a>)*}
+   | <span style="font-weight:bold;">text</span>)
+
+<span style="color:brown;"># reference constructor</span>
+<a name="rncssec_xmlOMR" style="color:blue;">OMR</a> = <span style="font-weight:bold;">element</span> OMR { <a href="#rncssec_xmlcommon.attributes">common.attributes</a>,
+                    <span style="font-weight:bold;">attribute</span> href { <span style="font-weight:bold;">xsd:anyURI</span> }
+                  }
+
+
+</pre></div>
+<p/>
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<p><b>Note:</b> This schema 
+specifies names as being of the <small><code>xsd:NCName</code></small>
+type. At the time of writing, W3C Schema types are defined in terms of
+XML 1 <a href="omstd20html-g.xml#xml_98">[15]</a>.  This limits the characters allowed
+in a name to a subset of the characters available in Unicode 2.0, which
+is far more restrictive than the definition for an
+<i>OpenMath</i> name given in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>.
+It is expected that W3C Schema types will be augmented to match the
+new XML 1.1 recommendation <a href="omstd20html-g.xml#xml_04">[16]</a>, but for portability
+reasons applications
+should avoid  using the new XML 1.1 name characters unless they are
+absolutely required.
+The XML 1.1 specification has a useful appendix giving
+advice on good strategies to use when naming identifiers.</p>
+
+</div>
+
+<div><h3 name="sec_xml-desc" id="sec_xml-desc">3.1.2 <span>Informal</span> description of
+the <span><acronym>XML</acronym> Encoding</span></h3>
+
+
+<p>An encoded <i>OpenMath</i> object is placed inside an <small><code>OMOBJ</code></small> element.  This 
+element can contain the elements (and integers) described above.
+<span> It can take an optional
+<small><code>version</code></small> (<acronym>XML</acronym>) attribute which indicates to
+which version of the <i>OpenMath</i> standard it conforms.  In previous versions of
+this standard this attribute did not exist, so any <i>OpenMath</i> object without
+such an attribute must conform to version 1 (or equivalently 1.1) of the
+<i>OpenMath</i> standard.  Objects which conform to the description given in this
+document should have <small><code>version="2.0"</code></small>.
+</span></p>
+
+<p>We briefly discuss the <acronym>XML</acronym> encoding for each type of <i>OpenMath</i> object
+starting from the basic objects.</p>
+
+<dl>
+<dt>Integers</dt>
+<dd>
+ <p>are encoded using the
+<small><code>OMI</code></small> element around the sequence of their
+digits in base 10 or 16 (most significant digit first).  White space
+may be inserted between the characters of the integer representation,
+this will be ignored.  After ignoring white space, integers written in
+base 10 match the regular expression
+<small><code>-?[0-9]+</code></small>.  Integers written in base 16 match
+<small><code>-?x[0-9A-F]+</code></small>.  The integer 10 can be thus
+encoded as <small><code>&lt;OMI&gt; 10 &lt;/OMI&gt; </code></small> or as
+<small><code>&lt;OMI&gt; xA &lt;/OMI&gt; </code></small> but neither
+<small><code>&lt;OMI&gt; +10 &lt;/OMI&gt;</code></small> nor
+<small><code>&lt;OMI&gt; +xA &lt;/OMI&gt;</code></small> can be used.</p>
+
+<p>The negative integer <m:math><m:mn>-120</m:mn></m:math> can be encoded
+       as either as decimal <small><code>&lt;OMI&gt; -120
+       &lt;/OMI&gt;</code></small> or as hexadecimal <small><code>&lt;OMI&gt;
+       -x78 &lt;/OMI&gt;</code></small>.</p>
+
+  
+</dd>
+
+<dt>Symbols</dt><dd><p>are encoded using
+  the <small><code>OMS</code></small> element. This element has
+  
+  <span>three</span>
+  (<acronym>XML</acronym>) attributes <small><code>cd</code></small>,
+  <small><code>name</code></small><span>,  and
+    <small><code>cdbase</code></small></span>. The value of
+  <small><code>cd</code></small> is the name of the Content Dictionary in
+  which the symbol is defined and the value of
+  <small><code>name</code></small> is the name of the symbol.
+  <span>The optional <small><code>cdbase</code></small>
+    attribute is a URI that can be used to disambiguate between two  content
+    dictionaries with the same name.
+  If a symbol does not have an explicit <small><code>cdbase</code></small>
+attribute, then it inherits its <small><code>cdbase</code></small> from the
+first ancestor in the <acronym>XML</acronym> tree with one, should such an element
+exist.  In this document we have tended to omit the
+<small><code>cdbase</code></small> for clarity.
+  </span>
+ For
+  example:
+
+<blockquote><p><small><code>&lt;OMS
+ cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/&gt;</code></small></p>
+</blockquote>
+  is the encoding of the symbol named <small><code>sin</code></small> in
+  the Content Dictionary named <small><code>transc1</code></small>,
+<span>which is part of the collection
+maintained by the <i>OpenMath</i> Society</span>.</p>
+
+<p>As described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>,
+the three attributes of the
+  <small><code>OMS</code></small> can be used to build a URI reference for the symbol,
+for use in contexts where URI-based referencing mechanisms are used.
+For example the URI for the above symbol is
+ <small><code>http://www.openmath.org/cd/transc1#sin</code></small>.
+</p>
+<p>
+Note that the role attribute described in <a href="omstd20html-2.xml#sec_roles">Section 2.1.4</a> is contained in the Content Dictionary and is not
+part of the encoding of a symbol, also the <small><code>cdbase</code></small> attribute need not
+be explicit on each <small><code>OMS</code></small> as it is inherited
+from any ancestor element.</p>
+</dd>
+
+<dt>Variables</dt><dd><p>are encoded using
+  the <small><code>OMV</code></small> element, with only one
+  (<acronym>XML</acronym>) attribute, <small><code>name</code></small>, whose value is the
+  variable name.   For instance, the encoding of the object
+  representing the variable <m:math><m:mi>x</m:mi></m:math> is:
+  <small><code>&lt;OMV name="x"/&gt;</code></small></p>
+
+ 
+</dd>
+
+<dt>Floating-point numbers</dt><dd><p>are
+  encoded using the <small><code>OMF</code></small> element that has
+  either the (<acronym>XML</acronym>) attribute <small><code>dec</code></small> or the
+  (<acronym>XML</acronym>) attribute <small><code>hex</code></small>. The two
+  (<acronym>XML</acronym>) attributes cannot be present simultaneously. The value of
+  <small><code>dec</code></small> is the floating-point number expressed
+  in base 10, using the common syntax:</p>
+  
+  <blockquote><p>
+  <small><code>(-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?</code></small>.
+  </p>
+  <p>or one of the special values: INF, -INF or
+  NaN.</p>
+</blockquote>
+  <p>The value of
+  <small><code>hex</code></small> is a base 16 representation of the 
+ 64 bits of the <acronym>IEEE</acronym> Double.
+ Thus the number represents mantissa, exponent, and sign from lowest
+  to highest bits using a  least significant byte ordering.
+ This consists of a string of 16 digits <small><code>0</code></small>-<small><code>9</code></small>, <small><code>A</code></small>-<small><code>F</code></small>.
+  </p>
+  <p>For example, both <small><code>&lt;OMF
+    dec="1.0e-10"/&gt;</code></small> and 
+   <small><code>&lt;OMF hex="3DDB7CDFD9D7BDBB"/&gt;</code></small>
+  are valid representations of the floating point number
+  <m:math><m:mn>1</m:mn><m:mo>×</m:mo>
+<m:msup><m:mn>10</m:mn><m:mn>-10</m:mn></m:msup></m:math>.</p>
+ 
+ <p> The symbols <small><code>INF</code></small>,
+<small><code>-INF</code></small> and <small><code>NaN</code></small> represent
+positive and negative infinity, and <i>not a number</i> as
+defined in <a href="omstd20html-g.xml#ieee754_85">[6]</a>.  Note that while infinities
+have a unique representation, it is possible for NaNs to contain extra
+information about how they were generated and if this informations is to
+be preserved then the hexadecimal representation must be used.  For
+example
+<small><code>&lt;OMF hex="FFF8000000000000"/&gt;</code></small> and
+<small><code>&lt;OMF hex="FFF8000000000001"/&gt;</code></small> are both
+hexadecimal representations of NaNs.
+</p>
+
+
+</dd>
+
+<dt>Character strings</dt><dd><p>are encoded using the <small><code>OMSTR</code></small> element.
+  Its content is  a Unicode text . Note that as always in <acronym>XML</acronym> the
+  characters <small><code>&lt;</code></small> and <small><code>&amp;</code></small>  need to be represented by the
+  entity references <small><code>&amp;lt;</code></small> and
+<small><code>&amp;amp;</code></small> respectively.</p>
+  
+</dd>
+
+<dt>Bytearrays</dt><dd><p>are encoded using the <small><code>OMB</code></small> element. Its content
+  is a sequence of characters that is a base64 encoding of the data.
+  The base64 encoding is defined in <acronym>RFC</acronym>
+
+<span>2045 <a href="omstd20html-g.xml#rfc2045">[1]</a></span>.
+  Basically, it represents an arbitrary sequence of octets using 64
+  <span>"digits"</span> (<small><code>A</code></small> through <small><code>Z</code></small>, <small><code>a</code></small> through <small><code>z</code></small>, <small><code>0</code></small> through <small><code>9</code></small>, <small><code>+</code></small> and /, in order of increasing
+  value). Three octets are represented as four digits (the <small><code>=</code></small>
+  character is used for padding at the end of the data). All line
+  breaks and carriage return, space, form feed and horizontal
+  tabulation characters are ignored. The reader is referred to
+  
+  <a href="omstd20html-g.xml#rfc2045">[1]</a>
+for more detailed information.</p>
+
+</dd>
+
+</dl>
+ 
+
+
+<dl>
+<dt>Applications</dt><dd><p>are encoded using the <small><code>OMA</code></small> element. The
+  application whose head is the <i>OpenMath</i> object <m:math><m:msub><m:mi>e</m:mi><m:mn>0</m:mn></m:msub></m:math> and whose arguments
+  are the <i>OpenMath</i> objects <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>, <span>&#8230;</span>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math> is encoded as <small><code>&lt;OMA&gt;</code></small>
+  <m:math><m:msub><m:mi>C</m:mi><m:mn>0</m:mn></m:msub></m:math> <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math><span>&#8230;</span> <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math> <small><code>&lt;/OMA&gt;</code></small> where <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math> is the encoding of
+  <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math>.</p>
+
+<p>For example, <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math> is encoded as:
+<div class="literal"><pre>&lt;OMA&gt;  
+  &lt;OMS cd="transc1" name="sin"/&gt; 
+  &lt;OMV name="x"/&gt;  
+&lt;/OMA&gt;</pre></div>
+  provided that the symbol <small><code>sin</code></small> is defined to be a function
+  symbol in a Content Dictionary named <small><code>transc1</code></small>.</p>
+
+  
+</dd>
+
+<dt>Binding</dt><dd><p>is encoded using the <small><code>OMBIND</code></small> element.  The binding
+  by the <i>OpenMath</i> object <m:math><m:mi>b</m:mi></m:math> of the <i>OpenMath</i> variables <m:math><m:msub><m:mi>x</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>x</m:mi><m:mn>2</m:mn></m:msub></m:math>,
+  <m:math><m:mi>&#8230;</m:mi></m:math>, <m:math><m:msub><m:mi>x</m:mi><m:mi>n</m:mi></m:msub></m:math> in the object <m:math><m:mi>c</m:mi></m:math> is encoded as <small><code>&lt;OMBIND&gt;</code></small> <m:math><m:mi>B</m:mi></m:math>   <small><code>&lt;OMBVAR&gt;</code></small> <m:math><m:msub><m:mi>X</m:mi><m:mn>1</m:mn></m:msub></m:math> <m:math><m:mi>&#8230;</m:mi></m:math> <m:math><m:msub><m:mi>X</m:mi><m:mi>n</m:mi></m:msub></m:math> <small><code>&lt;/OMBVAR&gt;</code></small> <m:math><m:mi>C</m:mi></m:math> <small><code>&lt;/OMBIND&gt;</code></small> where <m:math><m:mi>B</m:mi></m:math>, <m:math><m:mi>C</m:mi></m:math>, and <m:math><m:msub><m:mi>X</m:mi><m:mi>i</m:mi></m:msub></m:math> are the encodings of <m:math><m:mi>b</m:mi></m:math>, <m:math><m:mi>c</m:mi></m:math>   and <m:math><m:msub><m:mi>x</m:mi><m:mi>i</m:mi></m:msub></m:math>, respectively.</p>
+
+<p>For instance the encoding of
+  <m:math><m:mi mathvariant="bold">binding</m:mi>
+       <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi><m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+     <m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo> <m:mi>x</m:mi><m:mo>)</m:mo><m:mo>)</m:mo></m:math> is:
+<div class="literal"><pre>&lt;OMBIND&gt;
+  &lt;OMS cd="fns1" name="lambda"/&gt;  
+  &lt;OMBVAR&gt;&lt;OMV name="x"/&gt;&lt;/OMBVAR&gt;  
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="sin"/&gt; 
+    &lt;OMV name="x"/&gt;  
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;</pre></div></p>
+  
+<p>Binders are defined in  Content Dictionaries, in particular,
+  the symbol <small><code>lambda</code></small> is defined in the Content Dictionary
+  <small><code>fns1</code></small> for functions over functions.</p>
+  
+</dd>
+
+<dt>Attributions</dt><dd><p>are encoded using the <small><code>OMATTR</code></small> element.  If
+  the <i>OpenMath</i> object <m:math><m:mi>e</m:mi></m:math> is attributed with (<m:math><m:msub><m:mi>s</m:mi><m:mn>1</m:mn></m:msub></m:math>, <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>), <span>&#8230;</span>, 
+  (<m:math><m:msub><m:mi>s</m:mi><m:mi>n</m:mi></m:msub></m:math>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math>) pairs (where <m:math><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub></m:math> are the attributes), it is encoded
+  as <small><code>&lt;OMATTR&gt;</code></small> <small><code>&lt;OMATP&gt;</code></small> <m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub></m:math> <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math> <span>&#8230;</span> <m:math><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math> <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math> <small><code>&lt;/OMATP&gt;</code></small> <m:math><m:mi>E</m:mi></m:math> <small><code>&lt;/OMATTR&gt;</code></small> where <m:math><m:msub><m:mi>S</m:mi><m:mi>i</m:mi></m:msub></m:math> is the encoding of the
+  symbol <m:math><m:msub><m:mi>s</m:mi><m:mi>i</m:mi></m:msub></m:math>, <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math> of the object <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math> and <m:math><m:mi>E</m:mi></m:math> is the encoding of
+  <m:math><m:mi>e</m:mi></m:math>.</p>
+
+<p>Examples are the use of attribution to decorate a group by its
+  automorphism group:
+<div class="literal"><pre>&lt;OMATTR&gt;    
+  &lt;OMATP&gt;
+    &lt;OMS cd="groups" name="automorphism_group" /&gt;  
+    [..group-encoding..] 
+  &lt;/OMATP&gt;  
+  [..group-encoding..] 
+&lt;/OMATTR&gt;</pre></div>
+or to express the type of a variable:
+<div class="literal"><pre>&lt;OMATTR&gt;    
+  &lt;OMATP&gt;
+    &lt;OMS cd="ecc" name="type" /&gt; 
+    &lt;OMS cd="ecc" name="real" /&gt;
+  &lt;/OMATP&gt; 
+  &lt;OMV name="x" /&gt;
+&lt;/OMATTR&gt;</pre></div></p>
+
+  
+<p>
+A special use of attributions is to associate non-<i>OpenMath</i> data with an
+<i>OpenMath</i> object.  This is done using the
+<small><code>OMFOREIGN</code></small> element.  The children of this
+element must be well-formed <acronym>XML</acronym>.  For example the attribution of the
+<i>OpenMath</i> object 
+  <m:math>
+     <m:mi>sin</m:mi><m:mfenced><m:mi>x</m:mi></m:mfenced></m:math> with its
+representation in Presentation MathML is:
+<div class="literal"><pre>&lt;OMATTR&gt;
+  &lt;OMATP&gt;
+    &lt;OMS cd="annotations1" name="presentation-form"/&gt;  
+    &lt;OMFOREIGN encoding="MathML-Presentation"&gt;
+      &lt;math xmlns="http://www.w3.org/1998/Math/MathML"&gt;
+        &lt;mi&gt;sin&lt;/mi&gt;&lt;mfenced&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;/mfenced&gt;
+      &lt;/math&gt;
+    &lt;/OMFOREIGN&gt;  
+  &lt;/OMATP&gt;
+  &lt;OMA&gt;
+   &lt;OMS cd="transc1" name="sin"/&gt; 
+   &lt;OMV name="x"/&gt;  
+  &lt;/OMA&gt;
+&lt;/OMATTR&gt;</pre></div>
+Of course not everything has a natural XML encoding in this way and
+often the contents of a <small><code>OMFOREIGN</code></small> will just
+be data or some kind of encoded string.  For example the attribution
+of the previous object with its <span>LaTeX</span> representation could be achieved
+as follows:
+<div class="literal"><pre>&lt;OMATTR&gt;
+  &lt;OMATP&gt;
+    &lt;OMS cd="annotations1" name="presentation-form"/&gt;  
+    &lt;OMFOREIGN encoding="text/x-latex"&gt;\sin(x)&lt;/OMFOREIGN&gt;  
+  &lt;/OMATP&gt;
+  &lt;OMA&gt;
+    &lt;OMS cd="transc1" name="sin"/&gt; 
+    &lt;OMV name="x"/&gt;  
+  &lt;/OMA&gt;
+&lt;/OMATTR&gt;</pre></div>
+For a discussion on the use of the <small><code>encoding</code></small>
+attribute see <a href="omstd20html-5.xml#sec_compl_omforeign">Section 5.2</a>.
+</p>
+</dd>
+
+
+
+
+ <dt>Errors</dt> 
+ <dd><p>are encoded using the <small><code>OME</code></small> element. The error whose
+  symbol is <m:math><m:mi>s</m:mi></m:math> and whose arguments are the <i>OpenMath</i> objects
+<span>or <i>OpenMath</i> derived objects</span>
+ <m:math><m:msub><m:mi>e</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <span>&#8230;</span>, <m:math><m:msub><m:mi>e</m:mi><m:mi>n</m:mi></m:msub></m:math> is encoded as <small><code>&lt;OME&gt;</code></small> <m:math><m:msub><m:mi>C</m:mi><m:mi>s</m:mi></m:msub></m:math> <m:math><m:msub><m:mi>C</m:mi><m:mn>1</m:mn></m:msub></m:math><span>&#8230;</span> <m:math><m:msub><m:mi>C</m:mi><m:mi>n</m:mi></m:msub></m:math> <small><code>&lt;/OME&gt;</code></small> where <m:math><m:msub><m:mi>C</m:mi><m:mi>s</m:mi></m:msub></m:math> is the encoding of <m:math><m:mi>s</m:mi></m:math> and <m:math><m:msub><m:mi>C</m:mi><m:mi>i</m:mi></m:msub></m:math> the encoding
+  of <m:math><m:msub><m:mi>e</m:mi><m:mi>i</m:mi></m:msub></m:math>.</p>
+
+<p>If an <small><code>aritherror</code></small> Content Dictionary contained a
+  <small><code>DivisionByZero</code></small> symbol, then the object
+  <m:math><m:mi mathvariant="bold">error</m:mi><m:mo>(</m:mo><m:mi>DivisionByZero</m:mi><m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>divide</m:mi><m:mo>,</m:mo> 
+  <m:mi>x</m:mi><m:mo>,</m:mo> <m:mn>0</m:mn><m:mo>)</m:mo><m:mo>)</m:mo></m:math> would be encoded as follows:
+
+<div class="literal"><pre>&lt;OME&gt;
+  &lt;OMS cd="aritherror" name="DivisionByZero"/&gt;  
+  &lt;OMA&gt;
+    &lt;OMS cd="arith1" name="divide" /&gt;
+    &lt;OMV name="x"/&gt;  
+    &lt;OMI&gt; 0 &lt;/OMI&gt;
+  &lt;/OMA&gt; 
+ &lt;/OME&gt;</pre></div></p>
+  
+<p>
+If a <small><code>mathml</code></small> Content Dictionary contained an
+  <small><code>unhandled_csymbol</code></small> symbol, then an <i>OpenMath</i> to
+MathML translator might return an error such as:
+<div class="literal"><pre>&lt;OME&gt;
+  &lt;OMS cd="mathml" name="unhandled_csymbol"/&gt;  
+  &lt;OMFOREIGN encoding="MathML-Content"&gt;
+    &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                    definitionURL="http://www.nag.co.uk/Airy#A"&gt;
+      &lt;mathml:mo&gt;Ai&lt;/mathml:mo&gt;
+    &lt;/mathml:csymbol&gt;
+  &lt;/OMFOREIGN&gt; 
+ &lt;/OME&gt;</pre></div></p>
+
+<p> Note that it is possible to embed fragments
+of valid <i>OpenMath</i> inside an <small><code>OMFOREIGN</code></small> element but that it
+cannot contain invalid <i>OpenMath</i>.  In addition, the arguments to an
+<small><code>OMERROR</code></small> must be well-formed <acronym>XML</acronym>.  If an
+application wishes to signal that the <i>OpenMath</i> it has received is invalid or
+is not well-formed then the offending data must be encoded as a string.
+For example:
+<div class="literal"><pre>&lt;OME&gt;
+  &lt;OMS cd="parser" name="invalid_XML"/&gt;  
+  &lt;OMSTR&gt;
+    &amp;ltOMA&amp;gt; &amp;lt;OMS name="cos" cd="transc1"&amp;gt;
+      &amp;lt;OMV name="v"&amp;gt; &amp;lt;/OMA&amp;gt;
+  &lt;/OMSTR&gt; 
+ &lt;/OME&gt;</pre></div>
+Note that the <span>"&lt;"</span> and <span>"&gt;"</span> characters have been escaped as is usual in
+an <acronym>XML</acronym> document.
+</p>
+
+</dd>
+
+
+
+ <dt>References</dt>
+ <dd><p>
+ <i>OpenMath</i> integers, floating point numbers, character strings,
+ bytearrays, applications, binding, attributions can also be encoded
+ as an empty <small><code>OMR</code></small> element with an <small><code>href</code></small>
+ attribute whose value is the value of a URI referencing an id
+ attribute of an <i>OpenMath</i> object of that type.
+The <i>OpenMath</i> element represented by this <small><code>OMR</code></small>
+ reference is a copy of the <i>OpenMath</i> element referenced
+ <small><code>href</code></small> attribute. Note that this copy
+ is <i>structurally equal</i>, but not identical
+ to the element referenced. <span class="finaledit">These URI
+ refererences will often be relative, in which case they are resolved using
+ the base URI of the document containing the <i>OpenMath</i>.</span></p>
+
+ <p>For instance, the <i>OpenMath</i> object
+
+ <m:math id="nestedap" display="block">
+   <m:mrow>
+     <m:mi mathvariant="bold">application</m:mi>
+     <m:mrow>
+       <m:mo fence="true">(</m:mo>
+       <m:mrow>
+         <m:mi>f</m:mi>
+         <m:mo separator="true">,</m:mo>
+         <m:mi mathvariant="bold">application</m:mi>
+         <m:mrow>
+           <m:mo fence="true">(</m:mo>
+           <m:mrow>
+             <m:mi>f</m:mi>
+             <m:mo separator="true">,</m:mo>
+             <m:mi mathvariant="bold">application</m:mi>
+             <m:mrow>
+               <m:mo fence="true">(</m:mo>
+               <m:mrow><m:mi>f</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi></m:mrow>
+               <m:mo fence="true">)</m:mo>
+             </m:mrow>
+             <m:mo separator="true">,</m:mo>
+             <m:mi mathvariant="bold">application</m:mi>
+             <m:mrow>
+               <m:mo fence="true">(</m:mo>
+               <m:mrow><m:mi>f</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi></m:mrow>
+               <m:mo fence="true">)</m:mo>
+             </m:mrow>
+             <m:mo fence="true">)</m:mo>
+           </m:mrow>
+           <m:mo separator="true">,</m:mo>
+           <m:mi mathvariant="bold">application</m:mi>
+           <m:mrow>
+             <m:mo fence="true">(</m:mo>
+             <m:mrow>
+               <m:mi>f</m:mi>
+               <m:mo separator="true">,</m:mo>
+               <m:mi mathvariant="bold">application</m:mi>
+               <m:mrow>
+                 <m:mo fence="true">(</m:mo>
+                 <m:mrow><m:mi>f</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi></m:mrow>
+                 <m:mo fence="true">)</m:mo>
+               </m:mrow>
+               <m:mo separator="true">,</m:mo>
+               <m:mi mathvariant="bold">application</m:mi>
+               <m:mrow>
+                 <m:mo fence="true">(</m:mo>
+                 <m:mrow><m:mi>f</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi><m:mo separator="true">,</m:mo><m:mi>a</m:mi></m:mrow>
+                 <m:mo fence="true">)</m:mo>
+               </m:mrow>
+               <m:mo fence="true">)</m:mo>
+             </m:mrow>
+           </m:mrow>
+           <m:mo fence="true">)</m:mo>
+         </m:mrow>
+       </m:mrow>
+     </m:mrow>
+   </m:mrow>
+ </m:math>
+</p>
+<p>can be encoded in the <acronym>XML</acronym> encoding as either one of the
+<acronym>XML</acronym> encodings given in <a href="omstd20html-3.xml#fig_shared_vs_unshared">Figure 3.1</a>
+(and some intermediate versions as well).</p>
+</dd>  </dl>
+
+<div class="figure"><a name="fig_shared_vs_unshared" id="fig_shared_vs_unshared"/>
+    
+    
+ <div class="literal"><pre>&lt;OMOBJ version="2.0"&gt;         &lt;OMOBJ version="2.0"&gt;
+  &lt;OMA&gt;                         &lt;OMA&gt;
+    &lt;OMV name="f"/&gt;               &lt;OMV name="f"/&gt; 
+    &lt;OMA&gt;                         &lt;OMA id="t1"&gt;
+      &lt;OMV name="f"/&gt;               &lt;OMV name="f"/&gt;
+      &lt;OMA&gt;                         &lt;OMA id="t11"&gt;
+        &lt;OMV name="f"/&gt;               &lt;OMV name="f"/&gt;
+        &lt;OMV name="a"/&gt;               &lt;OMV name="a"/&gt;
+        &lt;OMV name="a"/&gt;               &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;                        &lt;/OMA&gt;
+      &lt;OMA&gt;                         &lt;OMR href="#t11"/&gt;
+        &lt;OMV name="f"/&gt;
+        &lt;OMV name="a"/&gt; 
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;                                
+    &lt;/OMA&gt;                      &lt;/OMA&gt;
+    &lt;OMA&gt;                       &lt;OMR href="#t1"/&gt;
+      &lt;OMV name="f"/&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="f"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+      &lt;OMA&gt;
+        &lt;OMV name="f"/&gt;
+        &lt;OMV name="a"/&gt;
+        &lt;OMV name="a"/&gt;
+      &lt;/OMA&gt;
+    &lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;                     &lt;/OMOBJ&gt;
+</pre></div>
+<div class="caption">
+  Figure 3.1 Shared vs. unshared representations</div></div>
+</div>
+
+<div><h3 name="sec_references" id="sec_references">3.1.3 Some Notes on References</h3>
+
+
+<p>We say that an <i>OpenMath</i> element dominates all its children and all elements
+they dominate. An <small><code>OMR</code></small> element dominates its target,
+i.e. the element that carries the <small><code>id</code></small> attribute pointed to
+by the <small><code>xref</code></small> attribute. For instance in the representation
+in <a href="omstd20html-3.xml#fig_shared_vs_unshared">Figure 3.1</a>, the
+<small><code>OMA</code></small> element with <small><code>id="t1"</code></small> and
+also the second <small><code>OMR</code></small> dominate the
+<small><code>OMA</code></small> element with <small><code>id="t11"</code></small>.
+</p>
+
+<div><h4 name="sec_acyclicity" id="sec_acyclicity">3.1.3.1 An Acyclicity Constraint</h4>
+
+
+<p>The occurrences of the <small><code>OMR</code></small> element must obey the following global
+<i>acyclicity constraint</i>: An <i>OpenMath</i> element may not dominate itself.</p>
+
+<p>Consider for instance the following (illegal) <acronym>XML</acronym> representation
+<div class="literal"><pre>&lt;OMOBJ version="2.0"&gt;
+  &lt;OMA id="foo"&gt;
+    &lt;OMS cd="arith1" name="divide"/&gt;
+    &lt;OMI&gt;1&lt;/OMI&gt;
+    &lt;OMA&gt;
+       &lt;OMS cd="arith1" name="plus"/&gt;
+       &lt;OMI&gt;1&lt;/OMI&gt;
+       &lt;OMR xref="foo"/&gt;
+    &lt;/OMA&gt; 
+  &lt;/OMA&gt;
+&lt;/OMOBJ&gt;
+</pre></div>
+</p>
+
+<p>Here, the <small><code>OMA</code></small> element with
+<small><code>id="foo"</code></small> dominates its third child, which dominates the
+<small><code>OMR</code></small> element, which dominates its target: the element with
+<small><code>id="foo"</code></small>. So by transitivity, this element dominates itself, and
+by the acyclicity constraint, it is not the <acronym>XML</acronym> representation of an <i>OpenMath</i>
+element. Even though it could be given the interpretation of the continued fraction
+<m:math display="block">
+ <m:mfrac>
+   <m:mn>1</m:mn>
+   <m:mrow>
+     <m:mn>1</m:mn>
+     <m:mo>+</m:mo>
+     <m:mfrac>
+       <m:mn>1</m:mn>
+       <m:mrow>
+         <m:mn>1</m:mn>
+         <m:mo>+</m:mo>
+         <m:mfrac><m:mn>1</m:mn><m:mi>...</m:mi></m:mfrac>
+       </m:mrow>
+     </m:mfrac>
+   </m:mrow>
+ </m:mfrac>
+</m:math> this would correspond to an infinite tree of applications,
+which is not admitted by the structure of <i>OpenMath</i> objects described
+in <a href="omstd20html-2.xml#cha_obj">Chapter 2</a>.</p>
+
+<p>Note that the acyclicity constraints is not restricted
+to such simple cases, as the example in <a href="omstd20html-3.xml#fig_sharing_between">Figure 3.2</a>
+shows.</p>
+
+<div class="figure"><a name="fig_sharing_between" id="fig_sharing_between"/>
+    
+<div class="literal"><pre>&lt;OMOBJ version="2.0"&gt;                   &lt;OMOBJ version="2.0"&gt;
+  &lt;OMA id="bar"&gt;                         &lt;OMA id="baz"&gt;
+    &lt;OMS cd="arith1" name="plus"/&gt;         &lt;OMS cd="arith1" name="plus"/&gt;
+    &lt;OMI&gt;1&lt;/OMI&gt;                           &lt;OMI&gt;1&lt;/OMI&gt;
+    &lt;OMR xref="baz"/&gt;                      &lt;OMR xref="bar"/&gt;
+  &lt;/OMA&gt;                                 &lt;/OMA&gt;
+&lt;/OMOBJ&gt;                               &lt;/OMOBJ&gt;
+</pre></div><div class="caption">
+  Figure 3.2 Sharing between <i>OpenMath</i> objects (A cycle of order <m:math><m:mn>2</m:mn></m:math>).</div></div>
+
+<p> Here, the <small><code>OMA</code></small> with
+<small><code>id="bar"</code></small> dominates its third child, the
+<small><code>OMR</code></small> with <small><code>xref="baz"</code></small>,
+which dominates its target <small><code>OMA</code></small> with
+<small><code>id="baz"</code></small>, which in turn dominates its third
+child, the <small><code>OMR</code></small> with
+<small><code>xref="bar"</code></small>, this finally dominates its
+target, the original <small><code>OMA</code></small> element with
+<small><code>id="bar"</code></small>. So this pair of <i>OpenMath</i> objects
+violates the acyclicity constraint and is not the <acronym>XML</acronym>
+representation of an <i>OpenMath</i> object.</p>
+</div>
+
+
+<div><h4 name="sec_sharing_bvars" id="sec_sharing_bvars">3.1.3.2 Sharing and Bound Variables</h4>
+
+
+<p>Note that the <small><code>OMR</code></small> element is a
+<i>syntactic</i> referencing mechanism: an
+<small><code>OMR</code></small> element stands for the exact <acronym>XML</acronym>
+element it points to. In particular, referencing does not interact
+with binding in a semantically intuitive way, since it allows for
+variable capture. Consider for instance the following <acronym>XML</acronym>
+representation: <div class="literal"><pre>&lt;OMBIND id="outer"&gt;
+  &lt;OMS cd="fns1" name="lambda"/&gt;
+  &lt;OMBVAR&gt;&lt;OMV name="X"/&gt;&lt;/OMBVAR&gt;
+  &lt;OMA&gt;
+    &lt;OMV name="f"/&gt;
+    &lt;OMBIND id="inner"&gt;
+      &lt;OMS cd="fns1" name="lambda"/&gt;
+      &lt;OMBVAR&gt;&lt;OMV name="X"/&gt;&lt;/OMBVAR&gt;
+      &lt;OMR id="copy" href="#orig"/&gt;
+    &lt;/OMBIND&gt;
+    &lt;OMA id="orig"&gt;&lt;OMV name="g"/&gt;&lt;OMV name="X"/&gt;&lt;/OMA&gt;
+  &lt;/OMA&gt;
+&lt;/OMBIND&gt;
+</pre></div>
+it represents the <i>OpenMath</i> object
+<m:math display="block">
+  <m:mi mathvariant="bold">binding</m:mi>
+  <m:mrow>
+    <m:mo fence="true">(</m:mo>
+    <m:mo>&#955;</m:mo>
+      <m:mo separator="true">,</m:mo>
+    <m:mi>X</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mrow>
+      <m:mi mathvariant="bold">application</m:mi>
+      <m:mo fence="true">(</m:mo>
+      <m:mi>f</m:mi>
+      <m:mo separator="true">,</m:mo>
+      <m:mi mathvariant="bold">binding</m:mi>
+      <m:mrow>
+        <m:mo fence="true">(</m:mo>
+        <m:mo>&#955;</m:mo>
+        <m:mo separator="true">,</m:mo>
+        <m:mi>X</m:mi>
+        <m:mo separator="true">,</m:mo>
+        <m:mrow>
+          <m:mi mathvariant="bold">application</m:mi>
+          <m:mo fence="true">(</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo separator="true">,</m:mo>
+          <m:mi>X</m:mi>
+          <m:mo fence="true">)</m:mo>
+        </m:mrow>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+      <m:mo separator="true">,</m:mo>
+      <m:mrow>
+        <m:mi mathvariant="bold">application</m:mi>
+        <m:mo fence="true">(</m:mo>
+        <m:mi>g</m:mi>
+        <m:mo separator="true">,</m:mo>
+        <m:mi>X</m:mi>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+      <m:mo fence="true">)</m:mo>
+    </m:mrow>
+    <m:mo fence="true"/>
+  </m:mrow>
+  </m:math> which has two sub-terms of the form
+<m:math>
+  <m:mi mathvariant="bold">application</m:mi>
+  <m:mo fence="true">(</m:mo>
+  <m:mi>g</m:mi>
+  <m:mo separator="true">,</m:mo>
+  <m:mi>X</m:mi>
+  <m:mo fence="true">)
+  </m:mo> </m:math>, one with <small><code>id="orig"</code></small> (the one explicitly
+represented) and one with <small><code>id="copy"</code></small>, represented by the
+<small><code>OMR</code></small> element. In the original, the variable
+<m:math><m:mi>X</m:mi></m:math> is bound by the <i>outer</i>
+<small><code>OMBIND</code></small> element, and in the copy, the variable
+<m:math><m:mi>X</m:mi></m:math> is bound by the <i>inner</i>
+<small><code>OMBIND</code></small> element. We say that the inner
+<small><code>OMBIND</code></small> has captured the variable <m:math><m:mi>X</m:mi></m:math>.
+</p>
+
+<p>It is well-known that variable capture does not conserve semantics. For
+  instance, we could use <m:math><m:mi>&#945;</m:mi></m:math>-conversion to rename the inner occurrence of
+  <m:math><m:mi>X</m:mi></m:math> into, say, 
+  <m:math><m:mi>Y</m:mi></m:math> arriving at the (same) object
+<m:math display="block">
+  <m:mi mathvariant="bold">binding</m:mi>
+  <m:mrow>
+    <m:mo fence="true">(</m:mo>
+    <m:mo>&#955;</m:mo>
+      <m:mo separator="true">,</m:mo>
+    <m:mi>X</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mrow>
+      <m:mi mathvariant="bold">application</m:mi>
+      <m:mo fence="true">(</m:mo>
+      <m:mi>f</m:mi>
+      <m:mo separator="true">,</m:mo>
+      <m:mi mathvariant="bold">binding</m:mi>
+      <m:mrow>
+        <m:mo fence="true">(</m:mo>
+        <m:mo>&#955;</m:mo>
+        <m:mo separator="true">,</m:mo>
+        <m:mi mathcolor="red">Y</m:mi>
+        <m:mo separator="true">,</m:mo>
+        <m:mrow>
+          <m:mi mathvariant="bold">application</m:mi>
+          <m:mo fence="true">(</m:mo>
+          <m:mi>g</m:mi>
+          <m:mo separator="true">,</m:mo>
+          <m:mi mathcolor="red">Y</m:mi>
+          <m:mo fence="true">)</m:mo>
+        </m:mrow>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+      <m:mo separator="true">,</m:mo>
+      <m:mrow>
+        <m:mi mathvariant="bold">application</m:mi>
+        <m:mo fence="true">(</m:mo>
+        <m:mi>g</m:mi>
+        <m:mo separator="true">,</m:mo>
+        <m:mi>X</m:mi>
+        <m:mo fence="true">)</m:mo>
+      </m:mrow>
+      <m:mo fence="true">)</m:mo>
+    </m:mrow>
+    <m:mo fence="true">)</m:mo>
+  </m:mrow>
+  </m:math>
+ Using references that
+capture variables in this way can easily lead to representation errors, and is not
+  recommended.
+</p>
+</div>
+</div>
+
+<div><h3 name="xmldoc" id="xmldoc">3.1.4 Embedding <i>OpenMath</i> in <acronym>XML</acronym> Documents</h3>
+
+
+     
+<p>The above encoding of <acronym>XML</acronym> encoded <i>OpenMath</i> specifies the grammar to be
+used in files that encode a single <i>OpenMath</i> object, and specifies the
+character streams that a conforming <i>OpenMath</i> application should be able
+to accept or produce.</p>
+
+<p>When embedding <acronym>XML</acronym> encoded <i>OpenMath</i> objects into a larger <acronym>XML</acronym> document
+one may wish, or need, to use other <acronym>XML</acronym> features. For example use of
+extra <acronym>XML</acronym> attributes to specify <acronym>XML</acronym> Namespaces <a href="omstd20html-g.xml#xmlns">[14]</a>
+or <small><code>xml:lang</code></small> attributes to specify the language used in
+strings <a href="omstd20html-g.xml#xml_04">[16]</a>. 
+
+</p>
+
+ 
+
+
+
+<p>If such <acronym>XML</acronym> features are used then the <acronym>XML</acronym> application controlling the
+document must, if passing the <i>OpenMath</i> fragment to an <i>OpenMath</i> application,
+remove any such extra attributes and must ensure that the
+fragment is encoded according to the <span>schema</span> specified above.</p>
+</div>
+</div>
+
+<div><h2 name="sec_binary" id="sec_binary">3.2 The Binary Encoding</h2>
+
+
+<p>The binary encoding was essentially designed to be more compact than
+the <acronym>XML</acronym> encodings, so that it can be more efficient if large
+amounts of data are involved. For the current encoding, we tried to
+keep the right balance between compactness, speed of encoding and
+decoding and simplicity (to allow a simple specification and easy
+implementations).</p>
+
+<div><h3 name="sec_binary_grammar" id="sec_binary_grammar">3.2.1 A Grammar for the Binary Encoding</h3>
+
+
+     
+
+<div class="figure"><a name="fig_bin-enc" id="fig_bin-enc"/>
+    
+    
+    <table>
+          <tr>
+            <td>start </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [24] object [25] </td>
+            <td>|</td>
+            <td>
+	      [24+64]
+	      [<m:math><m:mi>m</m:mi></m:math>]
+              [<m:math><m:mi>n</m:mi></m:math>]
+	      object [25]</td>
+          </tr>
+          
+          <tr>
+            <td>object </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> basic </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> compound</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>cdbase</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>foreign</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>reference</td>
+          </tr>
+          
+          <tr>
+            <td>basic</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> integer </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> float</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> variable</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> symbol</td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> string</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> bytearray</td>
+          </tr>
+          
+          <tr>
+            <td>integer </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [1] [_] </td>
+            <td>|</td>
+            <td> [1+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              id:<m:math><m:mi>n</m:mi></m:math>               [_]
+            </td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td><m:math><m:mo>|</m:mo></m:math></td>
+            <td> [1+32] [_] </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [1+128] {_} </td>
+            <td>|</td>
+            <td> [1+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              id:<m:math><m:mi>n</m:mi></m:math>               {_}
+            </td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [1+32+128] {_} </td>
+            <td/>
+            <td/>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [2]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [_] digits:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [2+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              [_] digits:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [2+32]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [_] digits:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [2+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              [_] digits:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [2+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>n</m:mi></m:math>}
+              [_]
+              digits:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>n</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [2+32+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              [_] digits:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td>float </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [3] {_}{_} </td>
+            <td>|</td>
+            <td> [3+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              id:<m:math><m:mi>n</m:mi></m:math>               {_}{_}</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [3+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              id:<m:math><m:mi>n</m:mi></m:math>               {_}{_}</td>
+          </tr>
+          
+          <tr>
+            <td>variable </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [5]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              varname:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [5+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              varname:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [5+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              varname:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [5+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              varname:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td>symbol</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [8]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              cdname:<m:math><m:mi>n</m:mi></m:math>               symbname:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [8+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              [<m:math><m:mi>k</m:mi></m:math>]
+              cdname:<m:math><m:mi>n</m:mi></m:math>               symbname:<m:math><m:mi>m</m:mi></m:math>               id:<m:math><m:mi>k</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [8+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              cdname:<m:math><m:mi>n</m:mi></m:math>               symbname:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [8+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              {<m:math><m:mi>k</m:mi></m:math>}
+              cdname:<m:math><m:mi>n</m:mi></m:math>               symbname:<m:math><m:mi>m</m:mi></m:math>               id:<m:math><m:mi>k</m:mi></m:math></td>
+          </tr>
+          
+          <tr>
+            <td>string </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [6]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [6+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td><m:math><m:mo>|</m:mo></m:math></td>
+            <td> [6+32]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [6+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [6+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [6+32+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              <span>bytes</span>:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [7]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              
+              <span>bytes</span>:<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [7+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              
+              <span>bytes</span>:<m:math><m:mn/><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [7+32]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              <span>bytes</span>:<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [7+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              
+              <span>bytes</span>:<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [7+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              
+              <span>bytes</span>:<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [7+32+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              <span>bytes</span>:<m:math><m:mn>2</m:mn><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td>bytearray </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [4]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [4+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td><m:math><m:mo>|</m:mo></m:math></td>
+            <td> [4+32]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [4+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [4+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>               id:<m:math><m:mi>m</m:mi></m:math>             </td>
+          </tr>
+          
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [4+32+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td>cdbase</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [9]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              uri:<m:math><m:mi>n</m:mi></m:math> 	      object
+            </td>
+	  </tr>
+
+	  <tr>
+            <td/>
+            <td>|</td>
+            <td> [9+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              uri:<m:math><m:mi>n</m:mi></m:math> 	      object
+            </td>
+          </tr>
+
+          <tr>
+            <td>foreign</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [12]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [12+64]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              [<m:math><m:mi>k</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>               id:<m:math><m:mi>k</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td><m:math><m:mo>|</m:mo></m:math></td>
+            <td> [12+32]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [12+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td>|</td>
+            <td> [12+64+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              {<m:math><m:mi>k</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>               id:<m:math><m:mi>k</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [12+32+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              {<m:math><m:mi>m</m:mi></m:math>}
+              bytes:<m:math><m:mi>n</m:mi></m:math>               bytes:<m:math><m:mi>m</m:mi></m:math>             </td>
+            <td/>
+            <td/>
+          </tr>
+          
+          <tr>
+            <td>compound</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td>application</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>binding</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>attribution</td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>error</td>
+          </tr>
+          
+          <tr>
+            <td>application</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [16] object objects [17] </td>
+            <td>|</td>
+            <td> [16+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               object objects [17]
+            </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [16+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               object objects [17]
+            </td>
+          </tr>
+          
+          <tr>
+	    <td>binding</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [26] object bvars object [27] </td>
+            <td>|</td>
+            <td> [26+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               object bvars object [27]
+            </td>
+          </tr>
+          
+          <tr>
+	    <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [26+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               object bvars object [27]
+            </td>
+          </tr>
+          
+          <tr>
+	    <td>attribution</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [18] attrpairs object [19] </td>
+            <td>|</td>
+            <td> [18+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               attrpairs object [19]
+            </td>
+          </tr>
+          
+          <tr>
+	    <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [18+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               attrpairs object [19]
+            </td>
+          </tr>
+          
+          <tr>
+	    <td>error</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [22] symbol objects [23] </td>
+            <td>|</td>
+            <td> [22+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               symbol objects [23]</td>
+          </tr>
+          
+          <tr>
+	    <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [22+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               symbol objects [23]</td>
+          </tr>
+          
+          <tr>
+            <td>attrpairs </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [20] pairs [21] </td>
+            <td>|</td>
+            <td> [20+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               pairs [21]
+            </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [20+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               pairs [21]
+            </td>
+          </tr>
+          
+          <tr>
+            <td>pairs </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> symbol object</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> symbol object pairs</td>
+          </tr>
+          
+          <tr>
+            <td>bvars </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [28] vars [29] </td>
+            <td>|</td>
+            <td> [28+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               vars [29]
+            </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [28+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               vars [29]
+            </td>
+          </tr>
+          
+          <tr>
+            <td>vars </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td>
+	      
+	      <i>empty</i>
+	    </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> attrvar vars</td>
+          </tr>
+          
+          <tr>
+            <td>attrvar </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> variable</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [18] attrpairs attrvar [19] </td>
+            <td>|</td>
+            <td> [18+64]
+              [<m:math><m:mi>m</m:mi></m:math>]
+              id:<m:math><m:mi>m</m:mi></m:math>               attrpairs attrvar [19]
+            </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td/>
+            <td/>
+            <td>|</td>
+            <td> [18+64+128]
+              {<m:math><m:mi>m</m:mi></m:math>}
+              id:<m:math><m:mi>m</m:mi></m:math>               attrpairs attrvar [19]
+            </td>
+          </tr>
+          
+          <tr>
+            <td>objects </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> <i>empty</i> </td>
+          </tr>
+
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> object objects</td>
+          </tr>
+          
+          <tr>
+	    <td>reference</td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td>internal_reference</td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td>external_reference</td>
+          </tr>
+          
+          <tr>
+            <td>internal_reference </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [30] [_] </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [30+128] {_}</td>
+          </tr>
+          
+          <tr>
+            <td>external_reference </td>
+            <td><m:math><m:mo>&#8594;</m:mo></m:math></td>
+            <td> [31]
+              [<m:math><m:mi>n</m:mi></m:math>]
+              uri:<m:math><m:mi>n</m:mi></m:math>             </td>
+          </tr>
+          
+          <tr>
+            <td/>
+            <td>|</td>
+            <td> [31+128]
+              {<m:math><m:mi>n</m:mi></m:math>}
+              uri:<m:math><m:mi>n</m:mi></m:math>             </td>
+          </tr>
+        </table>
+  <div class="caption">
+  Figure 3.3 Grammar of the binary encoding of <i>OpenMath</i> objects.</div></div>
+  
+  <p><a href="omstd20html-3.xml#fig_bin-enc">Figure 3.3</a> gives a grammar for the binary
+    encoding <span> (<span>"start"</span> is the start
+      symbol).</span>.</p>
+  <p>The following conventions are used in this section:
+    [<m:math><m:mi>n</m:mi></m:math>] denotes a byte whose value is the integer
+    <m:math><m:mi>n</m:mi></m:math> (<m:math><m:mi>n</m:mi></m:math> can range from 0 to 255),
+    {<m:math><m:mi>m</m:mi></m:math>} denotes four bytes representing the (unsigned) integer
+    <m:math><m:mi>m</m:mi></m:math> in network byte order, [_] denotes an arbitrary byte, {_}
+    denotes an arbitrary sequence of four bytes.
+    <span class="finaledit">Finally,
+      <i>empty</i> stands for the empty list of tokens.</span>
+    </p>
+  
+  <p><i>xxxx</i>:<m:math><m:mi>n</m:mi></m:math>,
+    where <i>xxxx</i> is one of <i>symbname</i>,
+    <i>cdname</i>, <i>varname</i>,
+    <i>uri</i>, <i>id</i>, <i>digits</i>, or
+    <i>bytes</i> denotes a sequence of <m:math><m:mi>n</m:mi></m:math> bytes
+    that conforms to the constraints on <i>xxxx</i> strings. For
+    instance, for <i>symbname</i>, <i>varname</i>, or
+    <i>cdname</i> this is the regular expression described in
+    <a href="omstd20html-2.xml#sec_names">Section 2.3</a>, for <i>uri</i> it is the grammar for
+    URIs in <a href="omstd20html-g.xml#IETF2396">[7]</a>.</p>
+</div>
+
+<div><h3 name="sec_bin-desc" id="sec_bin-desc">3.2.2 Description of the Grammar</h3>
+  
+  
+<p>An <i>OpenMath</i> object is encoded as a sequence of bytes starting with the begin object tag
+(
+<span>values 24 and 88</span>) and ending with the end
+object tag (value 25). These are similar to
+the <small><code>&lt;OMOBJ&gt;</code></small> and <small><code>&lt;/OMOBJ&gt;</code></small> tags of
+the <acronym>XML</acronym> encoding. <span>Objects with start token [88]
+  have two additional bytes <m:math><m:mi>m</m:mi></m:math> and <m:math><m:mi>n</m:mi></m:math> that characterize the version
+(<m:math><m:mrow><m:mi>m</m:mi><m:mo>.</m:mo><m:mi>n</m:mi></m:mrow></m:math>) of the encoding
+directly after the start token. This is similar to <small><code>&lt;OMOBJ
+  version="m.n"&gt;</code></small></span></p> 
+
+<p>The encoding of each kind of <i>OpenMath</i> object begins with a tag that is a single byte,
+holding a <span><i>token identifier</i></span>
+<span> that describes the kind of object</span>, 
+<span>two
+  flags, and a status bit.</span>
+The identifier is stored in the first <span>five
+  bits (1 to 5). Bit 6 is used as a 
+  <span><i>status bit</i></span> which is currently only used for managing
+  streaming of some basic objects. Bits 7 and 8 are the <span><i>sharing
+    flag</i></span> and the <span><i>long flag</i></span>. The sharing flag
+  indicates that the encoded object may be shared in another (part of an) object
+  somewhere else (see <a href="omstd20html-3.xml#sec_sharing_references">Section 3.2.4.2</a>). Note that if the sharing
+  flag is set (in the right column of the grammar in 
+  <a href="omstd20html-3.xml#fig_bin-enc">Figure 3.3</a>, then the encoding includes a representation of
+  an identifier that serves as the target of a reference (internal with token
+  identifier 30 or external with token identifier 31). If the long
+  flag is set, this signifies that  the names, strings, and data fields in the
+  encoded <i>OpenMath</i> object are longer than 255 bytes or characters. </span>
+</p>
+
+<p>The concept of structure sharing in <i>OpenMath</i> encodings and
+  in particular the sharing bit in the binary encoding has been
+  introduced in <i>OpenMath</i> 2 (see section <a href="omstd20html-3.xml#sec_sharing_references">Section 3.2.4.2</a> for
+  details). The binary encoding in <i>OpenMath</i> 2 leaves the tokens with sharing flag 0
+  unchanged to ensure <i>OpenMath</i> 1 compatibility. To make use of functionality like
+  the version attribute on the <i>OpenMath</i> object
+  introduced in <i>OpenMath</i> 2, the tokens with sharing flag 1 should be used.</p>
+
+<p>To facilitate the streaming of <i>OpenMath</i> objects, some basic
+  objects (integers, strings, bytearrays, and foreign objects) have variant token
+  identifiers with the fifth bit set. The idea behind this is that these basic
+  objects can be split into packets. If the fifth bit is not set, this packet is
+  the final packet of the basic object. If the bit is set, then more packets of
+  the basic object will follow directly after this one. Note that all packets
+  making up a basic object must have the same token identifier (up to the fifth
+  bit). In <a href="omstd20html-3.xml#fig_bin-enc_stream">Figure 3.4</a> we have represented an integer
+  that is split up into three packets.  </p>
+
+<p>Here is a description of the binary encodings of every kind of <i>OpenMath</i> object:
+
+<dl>
+
+  <dt>Integers</dt><dd><p>are encoded depending on how large they
+      are. There are four possible formats.  Integers between -128 and 127 are
+      encoded as the small integer tags (<span>token
+	identifier</span> 1) followed by a single byte that is the 
+      value of the integer (interpreted as a signed character). For
+      example 16 is encoded as <small><code>0x01 0x10</code></small>.  Integers between
+      <m:math>
+	<m:msup>
+          <m:mn>-2</m:mn>
+          <m:mn>31</m:mn>
+        </m:msup>
+      </m:math>       (<m:math><m:mn>-2147483648</m:mn></m:math>) and
+      <m:math>
+        <m:msup>
+          <m:mn>2</m:mn>
+          <m:mn>31</m:mn>
+        </m:msup>
+        <m:mo>-</m:mo>
+        <m:mn>1</m:mn>
+      </m:math>       (<m:math><m:mn>2147483647</m:mn></m:math>) are encoded as
+      the small integer tag with the long flag set followed by the integer
+      encoded in little endian format in four bytes (network byte order:
+      the most significant byte comes first). For example, 128 is encoded
+      as <small><code>0x81</code></small> <small><code>0x00000080</code></small>.  The most
+      general encoding begins 
+      with the big integer tag (token identifier 2) with the long flag set
+      if the number of bytes in the encoding of the digits is greater or
+      equal than 256. It is followed by the length (in bytes) of the
+      sequence of digits, encoded on one byte (0 to 255, if the long flag
+      was not set) or four bytes (network byte order, if the long flag was
+      set).  It is then followed by a byte describing the sign and the
+      base.  This 'sign/base' byte is <small><code>+</code></small>
+      (<small><code>0x2B</code></small>) or <small><code>-</code></small>
+      (<small><code>0x2D</code></small>) for the sign or-ed with the base mask bits
+      that can be <small><code>0</code></small> for base 10 
+      or <small><code>0x40</code></small> for base 16 <span>or
+	<small><code>0x80</code></small> for <span>"base 256"</span></span>.  It is
+      followed by the 
+      <span>sequence</span> of digits (as 
+      characters <span>for bases 10 and 16 as in the <acronym>XML</acronym>
+	encoing, and as bytes for base 256</span>) in their natural
+      order.  For example, <span>the decimal
+	number</span> 8589934592
+      (<m:math><m:msup><m:mn>2</m:mn><m:mn>33</m:mn></m:msup></m:math>) is encoded  as
+      <small><code>0x02 
+        0x0A 0x2B 0x38 0x35 0x38 0x39 0x39 0x33 0x34 0x35 0x39 0x32</code></small>
+       and the
+      <span>hexadecimal number</span>
+      <small><code>xfffffff1</code></small> is 
+      encoded as <small><code>0x02 0x08
+	0x6b 0x66 0x66 0x66 0x66 0x66 0x66 0x66 0x31</code></small>
+      <span> in the base 16
+      character encoding and as <small><code>0x02 0x04
+	0xFF 0xFF 0xFF 0xFI</code></small> in the byte encoding (base 256)</span>.</p>
+    <p> Note that it is    
+      permitted to encode a <span>"small"</span> integer in any <span>"bigger"</span>
+      format.</p>
+    <p>To splice sequences of integer packets into
+      integers, we have to consider three cases: In the case of token identifiers
+      1, 33, and 65 the sequence of packets is treated as a sequence of integer digits
+      to the base of <m:math><m:msup><m:mn>2</m:mn><m:mn>7</m:mn></m:msup></m:math> (most
+      significant first). The case of token identifiers 129, 161, and 193 is analogous
+      with digits of base <m:math><m:msup><m:mn>2</m:mn><m:mn>31</m:mn></m:msup></m:math>. In the
+      case of token identifiers 2, 34, 66, 130, 162, and 194 the integer is assembled by 
+      concatenating the string of decimal digits in the packets in sequence order
+      (which corresponds to most significant first).  Note that in all cases only
+      the sequence-initial packet may contain a signed
+      integer. The sign of this packet determines the sign of the overall
+      integer.</p>
+
+    <div class="figure"><a name="fig_bin-enc_stream" id="fig_bin-enc_stream"/>
+      
+
+      <table>
+	    <tr>
+	      <th>Byte</th><th>Hex</th><th>Meaning</th>
+              <th>   </th>
+	      <th>Byte</th><th>Hex</th><th>Meaning</th>
+	    </tr>
+	  
+	    <tr>
+	      <td>1</td><td>22</td><td>begin streamed big integer tag</td>
+              <td>   </td>
+	      <td>7</td><td>2B</td><td>sign + (disregarded)</td>
+	    </tr>
+	    <tr>
+	      <td>2</td><td>FF</td><td>255 digits in packet</td>
+              <td>   </td>
+	      <td>8</td><td>...</td><td> the 255 digits as characters</td>
+	    </tr>
+	    <tr>
+	      <td>3</td><td>2B</td><td>sign +</td>
+              <td>   </td>
+	      <td>9</td><td>2</td><td>begin final big integer tag</td>
+	    </tr>
+	    <tr>
+	      <td>4</td><td>...</td><td> the 255 digits as characters</td>
+              <td>   </td>
+	      <td>10</td><td>42</td><td>68 digits in packet</td>
+	    </tr>
+	    <tr>
+	      <td>5</td><td>22</td><td>begin streamed big integer tag</td>
+              <td>   </td>
+	      <td>11</td><td>2B</td><td>sign + (disregarded)</td>
+	    </tr>
+	    <tr>
+	      <td>6</td><td>FF</td><td>255 digits in packet</td>
+              <td>   </td>
+	      <td>12</td><td>...</td><td> the 68 digits as characters</td>
+	    </tr>
+	  </table>
+    <div class="caption">
+  Figure 3.4 Streaming a large Integer in the Binary Encoding.</div></div>
+</dd>
+
+
+
+<dt>Symbols</dt>
+<dd><p>are encoded as the symbol tags
+    (<span>token identifier</span> 8) with the long flag
+    set if the maximum of the length <span>in bytes in the <acronym>UTF-8</acronym> encoding</span> of the Content Dictionary name
+    or the symbol name is greater than or equal to 256
+<span>. The symbol tag is  followed by the
+  length in bytes in the <acronym>UTF-8</acronym> encoding of the Content Dictionary name, the symbol
+  name, and the <small><code>id</code></small> (if the shared bit was set) as a byte
+  (if the long flag was not set) or a four byte integer (in network byte
+  order). These are followed by the bytes of the <acronym>UTF-8</acronym> encoding of the Content
+  Dictionary name, the symbol name, and the <small><code>id</code></small>.</span>
+</p>
+</dd>
+
+
+
+<dt>Variables</dt>
+<dd><p>are encoded using the variable tags
+    (<span>token identifiers</span> 5) with the long
+  flag set if the number of bytes in the <acronym>UTF-8</acronym> encoding of the variable name is
+  greater than or equal to 256.  Then, there is the number of characters
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the characters of the name of
+  the variable. For example, the variable x is encoded as <small><code>0x05
+    0x01 0x78</code></small>.</p>
+</dd>
+
+
+
+<dt>Floating-point number</dt>
+<dd><p>are encoded using the floating-point
+  number tags (<span>token identifier</span> 3) followed by eight bytes that are the IEEE 754
+  representation <a href="omstd20html-g.xml#ieee754_85">[6]</a>, most significant bytes first. For
+  example, 0.1 is encoded as <small><code>0x03 0x000000000000f03f</code></small>.</p>
+</dd>
+
+
+
+<dt>Character string</dt>
+<dd><p>are encoded in two ways depending on whether
+  ,
+  <span>the string is encoded in
+  <acronym>UTF-16</acronym> or <acronym>ISO-8859-1</acronym>
+  (<acronym>LATIN-1</acronym>).
+  In the case of <acronym>LATIN-1</acronym></span> it is encoded as the one
+  byte character string tags (<span>token identifier</span> 6) with the long flag set if the number
+  of bytes (characters) in the string is greater than or equal to 256.
+  Then, there is the number of characters as a byte (if the length
+  flag was not set) or a four byte integer (in network byte order),
+  followed by the characters in the string. If the string <span> is encoded in
+  <acronym>UTF-16</acronym>, it is encoded as the <acronym>UTF-16</acronym></span> character string
+  tags (<span>token identifier</span> 7) with the long flag set if the number of characters in the
+  string is greater or equal to 256. Then, there is the number of
+  <span><acronym>UTF-16</acronym> units, which will be the
+  number of characters unless characters in the higher planes of
+  Unicode are used,</span> as a byte (if the long flag was not set) or a four byte
+  integer (in network byte order), followed by the characters
+  (<acronym>UTF-16</acronym> encoded  Unicode).</p>
+
+<p>Sequences of string packets are assumed to have the
+  same encoding for every packet. They are assembled into strings by 
+      concatenating the strings in the packets in sequence order.</p>
+
+</dd>
+
+
+
+  <dt>Bytearrays</dt>
+  <dd><p>are encoded using the bytearray tags (<span>token identifier</span> 4) with the
+      long flag set if the number  elements is
+      greater than or equal to 256. Then, there is the number of elements,
+      as a byte (if the long flag was not set) or a four byte integer
+      (in network byte order), followed by the elements of the arrays in
+      their normal order.</p>
+
+    <p>Sequences of bytearray packets are assembled into
+      byte arrays by
+      concatenating the bytearrays in the packets in sequence order.
+    </p>
+
+  </dd>
+
+
+ <dt>Foreign Objects</dt>
+  <dd>
+    <p>are encoded using the foreign object tags (token identifier 12) with the
+      long flag set if the number of bytes is greater than or equal to 256 and the
+      streaming bit set for dividing it up into packets. Then, there is the number
+      <m:math><m:mi>n</m:mi></m:math> of bytes used to encode the encoding, and the
+      number <m:math><m:mi>m</m:mi></m:math> of bytes used to encode the foreign
+      object. <m:math><m:mi>n</m:mi></m:math> and <m:math><m:mi>m</m:mi></m:math> are represented as a
+      byte (if the long flag was not set) or a four byte integer (in network byte
+      order). These numbers are followed by an <m:math><m:mi>n</m:mi></m:math>-byte
+      representation of the encoding attribute and an <m:math><m:mi>m</m:mi></m:math> byte
+      sequence of bytes encoding the foreign object in their normal order (we call these
+      the payload bytes). The encoding attribute is encoded in <acronym>UTF-8</acronym>.</p>
+    <p>Sequences of foreign object
+      packets are assembled into foreign objects by concatenating the payload bytes in
+      the packets in sequence order.</p>
+     <p>Note that the foreign object is encoded as a stream of
+      bytes, not a stream of characters. Character based formats
+  (including XML based formats) should be encoded in <acronym>UTF-8</acronym> to produce
+  a stream of bytes to use as the payload of the foreign object.</p>
+  </dd>
+
+
+
+  <dt>cdbase scopes</dt>
+  <dd>
+    <p>are encoded using the token identifier 9. The purpose of these
+      scoping devices is to associate a <small><code>cdbase</code></small> with an
+      object. The start token [9] (or [137] if the long flag is set) is followed
+      by a single-byte (or 4-byte- if the long flag is set) number
+      <m:math><m:mi>n</m:mi></m:math> and then by a seqence of <m:math><m:mi>n</m:mi></m:math>       bytes that represent the value of the <small><code>cdbase</code></small>
+      attribute (a URI) in <acronym>UTF-8</acronym> encoding. This is then followed by the binary
+      encoding of a single object: the object over which this
+  <small><code>cdbase</code></small> attribute has scope. </p>
+  </dd>
+
+
+
+
+  <dt>Applications</dt>
+  <dd><p>are encoded using the application tags (<span>token identifiers</span> 16 and 17). More
+  precisely, the application of <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math> to
+  <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math><span>&#8230;</span>
+  <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math> is encoded
+  using the application tags (<span>token
+    identifier</span> 16), the sequence of the encodings of 
+  <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math> to
+  <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math> and the end application tags
+  (<span>token identifier</span> 17).</p> 
+</dd>
+
+
+ 
+  <dt>Bindings</dt>
+  <dd><p>are encoded using the binding
+ tags (<span>token identifiers</span> 26 and 27). More precisely,
+ the binding by <m:math><m:mi>B</m:mi></m:math> of variables
+ <m:math><m:msub><m:mi>V</m:mi><m:mn>1</m:mn></m:msub></m:math><span>&#8230;</span>
+ <m:math><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub></m:math> in <m:math><m:mi>C</m:mi></m:math> is
+ encoded as the binding tag (<span>token
+ identifier</span> 26), followed by the encoding of <m:math><m:mi>B</m:mi></m:math>,
+ followed by the binding variables tags (<span>token
+ identifier</span> 28), followed by the encodings of the variables
+ <m:math><m:msub><m:mi>V</m:mi><m:mn>1</m:mn></m:msub></m:math> <span>&#8230;</span>
+ <m:math><m:msub><m:mi>V</m:mi><m:mi>n</m:mi></m:msub></m:math>, followed by the end binding
+ variables tags (<span>token identifier</span> 29),
+ followed by the encoding of <m:math><m:mi>C</m:mi></m:math>, followed by the end binding
+ tags (<span>token identifier</span> 27).</p>
+ </dd> 
+
+
+ <dt>Attributions</dt>
+ <dd><p>are encoded using the attribution
+     tags (<span>token identifiers </span> 18 and 19). More
+     precisely, attribution of the object <m:math><m:mi>E</m:mi></m:math> with
+     (<m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+     <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math>),
+     <m:math><m:mi>&#8230;</m:mi></m:math>      (<m:math><m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math>,
+     <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math>) pairs (where
+     <m:math><m:msub><m:mi>S</m:mi><m:mi>i</m:mi></m:msub></m:math> are the attributes) is 
+     encoded as the attributed object tag (<span>token
+       identifier</span> 18), followed by the encoding 
+     of the attribute pairs as the attribute pairs tags
+     (<span>token identifier</span> 20), followed by 
+     the encoding of each symbol and value, followed by the end attribute
+     pairs tag (<span>token identifier</span> 21),
+     followed by the encoding of <m:math><m:mi>E</m:mi></m:math>, followed by the end 
+     attributed object tag (<span>token identifier</span> 19).</p>
+ </dd>
+
+
+
+  <dt>Errors</dt>
+  <dd><p>are encoded using the error tags
+      (<span>token identifiers</span> 22 and 23). More precisely, 
+  <m:math><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub></m:math> applied to
+  <m:math><m:msub><m:mi>E</m:mi><m:mn>1</m:mn></m:msub></m:math><span>&#8230;</span>
+  <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math> is encoded as the error tag
+  (<span>token identifier</span> 22), 
+  the encoding of <m:math><m:msub><m:mi>S</m:mi><m:mn>0</m:mn></m:msub></m:math>, the sequence of
+  the encodings of <m:math><m:msub><m:mi>E</m:mi><m:mn>0</m:mn></m:msub></m:math> to
+  <m:math><m:msub><m:mi>E</m:mi><m:mi>n</m:mi></m:msub></m:math> and the end error tag
+  (<span>token identifier</span> 23).</p> 
+</dd>
+
+
+
+<dt>Internal References</dt>
+<dd>
+  <p>are encoded using the internal reference tags [30] and [30+128] (the sharing flag cannot
+  be set on this tag, since chains of references are not allowed in the <i>OpenMath</i>
+  binary encoding) with long flag set if the number of <i>OpenMath</i> sub-objects in the
+  encoded <i>OpenMath</i> is
+  greater than or equal to 256. Then, there is the ordinal number of the
+  referenced <i>OpenMath</i> object as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order).</p>
+</dd>
+
+
+
+<dt>External References</dt>
+<dd>
+  <p>are encoded using the external reference tags [31] and [31+128] (the sharing flag cannot
+  be set on this tag, since chains of references are not allowed in the <i>OpenMath</i>
+  binary encoding) with the
+  long flag set if the number of bytes in the reference URI is
+  greater than or equal to 256. Then, there is the number of bytes in the URI used
+  for the external reference 
+  as a byte (if the long flag was not set) or a four byte integer
+  (in network byte order), followed by the URI.</p>
+</dd>
+
+
+</dl> 
+</p>
+
+</div>
+
+<div><h3 name="sec_bin_example" id="sec_bin_example">3.2.3 Example of Binary Encoding</h3>
+
+
+<p>As 
+<span>a simple</span>
+example of the binary encoding, we can consider the <i>OpenMath</i> object
+<m:math display="block" revisionflag="added">
+  <m:mi mathvariant="bold">application</m:mi>
+  <m:mo fence="true">(</m:mo>
+  <m:mi>times</m:mi>
+  <m:mo separator="true">,</m:mo>
+  <m:mrow>
+    <m:mi mathvariant="bold">application</m:mi>
+    <m:mo fence="true">(</m:mo>
+    <m:mi>plus</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mi>x</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mi>y</m:mi>
+    <m:mo fence="true">)</m:mo>
+  </m:mrow>
+  <m:mo separator="true">,</m:mo>
+  <m:mrow>
+    <m:mi mathvariant="bold">application</m:mi>
+    <m:mo fence="true">(</m:mo>
+    <m:mi>plus</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mi>x</m:mi>
+    <m:mo separator="true">,</m:mo>
+    <m:mi>z</m:mi>
+    <m:mo fence="true">)</m:mo>
+  </m:mrow>
+  <m:mo fence="true">)</m:mo>
+</m:math>
+
+ 
+It is binary encoded as the sequence of bytes given in <a href="omstd20html-3.xml#fig_bin-enc_ex">Figure 3.5</a>.</p>
+
+<div class="figure"><a name="fig_bin-enc_ex" id="fig_bin-enc_ex"/>
+    
+
+    <table>
+	  <tr>
+	    <th>Byte</th><th>Hex</th><th>Meaning</th>
+	    <th>Byte</th><th>Hex</th><th>Meaning</th>
+	    <th>Byte</th><th>Hex</th><th>Meaning</th>
+	  </tr>
+	
+	  <tr>
+	    <td>1</td><td>58</td><td>begin object tag</td>
+	    <td>19</td><td>10</td><td>begin application tag</td>
+	    <td>40</td><td>10</td><td>begin application tag </td>
+	  </tr>
+	  <tr>
+	    <td>2</td><td>2</td><td> version 2.0 (major)</td>
+	    <td>20</td><td>08</td><td>symbol tag</td>
+	    <td>41</td><td>48</td><td>symbol tag (with share bit on) </td>
+	  </tr>
+	  <tr>
+	    <td>3</td><td>0</td><td> version 2.0 (minor)</td>
+	    <td>21</td><td>06</td><td>cd length</td>
+	    <td>42</td><td>01</td><td>reference to second symbol seen (arith1:plus)</td>
+	  </tr>
+	  <tr>
+	    <td>4</td><td>10</td><td>begin application tag</td>
+	    <td>22</td><td>04</td><td>name length</td>
+	    <td>43</td><td>45</td><td>variable tag (with share bit on) </td>
+	  </tr>
+	  <tr>
+	    <td>5</td><td>08</td><td>symbol tag</td>
+	    <td>23</td><td>61</td><td>a (cd name begin</td>
+	    <td>44</td><td>00</td><td>reference to first variable seen (x) </td>
+	  </tr>
+	  <tr>
+	    <td>6</td><td>06</td><td>cd length </td>
+	    <td>24</td><td>72</td><td>r  .</td>
+	    <td>45</td><td>05</td><td>variable tag </td>
+	  </tr>
+	  <tr>
+	    <td>7</td><td>05</td><td>name length</td>
+	    <td>25</td><td>69</td><td>i  .</td>
+	    <td>46</td><td>01</td><td>name length </td>
+	  </tr>
+	  <tr>
+	    <td>8</td><td>61</td><td>a (cd name begin</td>
+	    <td>26</td><td>74</td><td>t  .</td>
+	    <td>47</td><td>7a</td><td>z (variable name) </td>
+	  </tr>
+	  <tr>
+	    <td>9</td><td>72</td><td>r  .</td>
+	    <td>27</td><td>68</td><td>h  .</td>
+	    <td>48</td><td>11</td><td>end application tag </td>
+	  </tr>
+	  <tr>
+	    <td>10</td><td>69</td><td>i  .</td>
+	    <td>28</td><td>31</td><td>1  .)</td>
+	    <td>49</td><td>11</td><td>end application tag </td>
+	  </tr>
+	  <tr>
+	    <td>11</td><td>74</td><td>t  .</td>
+	    <td>29</td><td>70</td><td>p (symbol name begin</td>
+	    <td>50</td><td>11</td><td>end application tag </td>
+	  </tr>
+	  <tr>
+	    <td>12</td><td>68</td><td>h  .</td>
+	    <td>30</td><td>6c</td><td>l  .</td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>13</td><td>31</td><td>1  .)</td>
+	    <td>31</td><td>75</td><td>u  . </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>14</td><td>74</td><td>t (symbol name begin</td>
+	    <td>32</td><td>73</td><td>s  .) </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>15</td><td>69</td><td>i  .</td>
+	    <td>33</td><td>05</td><td>variable tag</td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>16</td><td>6d</td><td>m  .</td>
+	    <td>34</td><td>01</td><td>name length </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>17</td><td>65</td><td>e  .</td>
+	    <td>35</td><td>78</td><td>x (name) </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td>18</td><td>73</td><td>s  .)</td>
+	    <td>36</td><td>05</td><td>variable tag </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td/><td/><td/>
+	    <td>37</td><td>01</td><td>name length </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td/><td/><td/>
+	    <td>38</td><td>79</td><td>y (variable name) </td>
+	    <td/><td/><td/>
+	  </tr>
+	  <tr>
+	    <td/><td/><td/>
+	    <td>39</td><td>11</td><td>end application tag </td>
+	    <td/><td/><td/>
+	  </tr>
+	</table> 
+  <div class="caption">
+  Figure 3.5 A Simple example of the <i>OpenMath</i> binary encoding.</div></div>
+  
+</div>
+
+<div><h3 name="sec_both_sharing" id="sec_both_sharing">3.2.4 Sharing</h3>
+  
+  
+  <p>
+    <i>OpenMath</i> 2 introduced a new sharing mechanism, described below.  First however
+    we describe the original <i>OpenMath</i> 1 mechanism.
+  </p>
+  
+  <div><h4 name="sec_sharing" id="sec_sharing">3.2.4.1 Sharing <span>in Objects beginning with the identifier [24]</span></h4>
+    
+    
+    <p>This
+      <span>form of sharing is deprecated but included for
+	backwards compatibility with <i>OpenMath</i> 1.  It</span>
+      
+      supports the sharing of symbols, variables and strings
+      (up to a certain length for strings) within one object. That is, sharing between
+      objects is not supported.  A reference to a shared symbol, variable or string is
+      encoded as the corresponding tag with the long flag not set and the shared flag
+      set, followed by a positive integer <m:math><m:mi>n</m:mi></m:math> encoded as one byte (0
+      to 255). This integer references the <m:math><m:mi>n</m:mi> <m:mo>+</m:mo>
+	<m:mn>1</m:mn></m:math>-th such sharable sub-object (symbol, variable or string up to
+      255 characters) in the current <i>OpenMath</i> object (counted in the order they are
+      generated by the encoding).  For example, <small><code>0x48 0x01</code></small>
+      references a symbol that is identical to the second symbol that was found in the
+      current object.  Strings with 8 bit characters and strings with 16 bit characters
+      are two different kinds of objects for this sharing. Only strings containing less
+      than 256 characters can be shared (i.e. only strings up to 255 characters).</p>
+  </div>
+  
+  <div><h4 name="sec_sharing_references" id="sec_sharing_references">3.2.4.2 Sharing with References (beginning with [24+64])</h4>
+    
+    
+    <p>In the binary encoding specified in the last section (which we keep
+      for compatibility reasons, but deprecate in favor of the more
+      efficient binary encoding specified in this section) only symbols,
+      variables, and short strings could be shared. In this section, we will
+      present a second binary encoding, which shares most of the identifiers
+      with the one in the last one, but handles sharing differently. This
+      encoding is signaled by the shared object tag [88].</p>
+    
+    <p>The main difference is the interpretation of the sharing flag (bit 7),
+      which can be set on all objects that allow it. Instead of encoding a reference to a
+      previous occurrence of an object of the same type, it indicates
+      whether an object will be referenced later in the encoding. This
+      corresponds to the information, whether an <small><code>id</code></small>
+      attribute is set
+      in the <acronym>XML</acronym> encoding. On the object identifier (where sharing does not
+      make sense), the shared flag signifies the encoding described here
+      ([88]=[24+64]).
+    </p>
+    
+    <p>Otherwise integers, floats, variables, symbols, strings, bytearrays, and constructs
+      are treated exactly as in the binary encoding described in the last section.</p>
+    
+    <p>The binary encoding with references uses the additional reference tags [30]
+      for (short) internal references, [30+128] for long internal references, [31] for
+      (short) external references, [31+128] for long external references. Internal
+      references are used to share sub-objects in the encoded object (see <a href="omstd20html-3.xml#fig_bin-enc2">Figure 3.6</a> for an example) by referencing their position; external
+      references allow to reference <i>OpenMath</i> objects in other documents by a URI.</p>
+    
+    <p>Identifiers [30+64] and [30+64+128] are not used, since they would encode
+      references that are shared themselves. Chains of references are redundant, and
+      decrease both space and time efficiency, therefore they are not allowed in the
+      <i>OpenMath</i> binary encoding.</p>
+    
+    <p>References consist of the identifier [30] ([30+128] for long references)
+      followed by a positive integer <m:math><m:mi>n</m:mi></m:math> coded on one byte (4 bytes for long
+      references). This integer references the
+      <m:math><m:mrow><m:mi>n</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:math>th shared sub-object (one
+      where the 
+      shared flag is set) in the current object (counted in the order they are generated
+      in the encoding). For example <small><code>Ox7E Ox01</code></small> references the
+      second shared sub-object. <a href="omstd20html-3.xml#fig_bin-enc2">Figure 3.6</a> shows the binary
+      encoding of the object in <a href="omstd20html-3.xml#fig_shared_vs_unshared">Figure 3.1</a>
+      above.</p>
+    
+    <div class="figure"><a name="fig_bin-enc2" id="fig_bin-enc2"/>
+      
+      <table>
+	    <tr>
+	      <th>Byte</th><th>Hex</th><th>Meaning</th>
+	      <th>Byte</th><th>Hex</th><th>Meaning</th>
+	      <th>Byte</th><th>Hex</th><th>Meaning</th>
+	    </tr>
+	  
+	    <tr>
+	      <td>1</td><td>58</td><td>begin object tag</td>
+	      <td>12</td><td>50</td><td>begin application tag (shared)</td>
+	      <td>23</td><td>1E</td><td>short reference</td>
+	    </tr>
+	    <tr>
+	      <td>2</td><td>2</td><td> version 2.0 (major)</td>
+	      <td>13</td><td>05</td><td>variable tag</td>
+	      <td>24</td><td>00</td><td>to the first shared object</td>
+	    </tr>
+	    <tr>
+	      <td>3</td><td>0</td><td> version 2.0 (minor)</td>
+	      <td>14</td><td>01</td><td>variable length</td>
+	      <td>25</td><td>11</td><td>end application tag</td>
+	    </tr>
+	    <tr>
+	      <td>4</td><td>10</td><td>begin application tag</td>
+	      <td>15</td><td>66</td><td>f  (variable name)</td>
+	      <td>26</td><td>1E</td><td>short reference</td>
+	    </tr>
+	    <tr>
+	      <td>5</td><td>05</td><td>variable tag</td>
+	      <td>16</td><td>05</td><td>variable tag</td>
+	      <td>27</td><td>00</td><td>to the second shared object</td>
+	    </tr>
+	    <tr>
+	      <td>6</td><td>01</td><td>variable length</td>
+	      <td>17</td><td>01</td><td>variable length</td>
+	      <td>28</td><td>11</td><td>end application tag</td>
+	    </tr>
+	    <tr>
+	      <td>7</td><td>66</td><td>f  (variable name)</td>
+	      <td>18</td><td>61</td><td>a  (variable name)</td>
+	      <td/>
+	    </tr>
+	    <tr>
+	      <td>8</td><td>50</td><td>begin application tag (shared)</td>
+	      <td>19</td><td>05</td><td>variable tag</td>
+	      <td/>
+	    </tr>
+	    <tr>
+	      <td>9</td><td>05</td><td>variable tag</td>
+	      <td>20</td><td>01</td><td>variable length</td>
+	      <td/>
+	    </tr>
+	    <tr>
+	      <td>10</td><td>01</td><td>variable length</td>
+	      <td>21</td><td>61</td><td>a  (variable name)</td>
+	      <td/>
+	    </tr>
+	    <tr>
+	      <td>11</td><td>66</td><td>f  (variable name)</td>
+	      <td>22</td><td>11</td><td>end application tag</td>
+	      <td/>
+	    </tr>
+	  </table>
+    <div class="caption">
+  Figure 3.6 A binary encoding of the <i>OpenMath</i> object from <a href="omstd20html-3.xml#fig_shared_vs_unshared">Figure 3.1</a>.</div></div>
+    
+    <p>It is easy to see that in this binary encoding, the size of the encoding is
+      <m:math><m:mn>13</m:mn><m:mo>+</m:mo><m:mn>7</m:mn>
+	<m:mo fence="true">(</m:mo><m:mi>d</m:mi><m:mo>-</m:mo><m:mn>1</m:mn><m:mo fence="true">)</m:mo></m:math> bytes,
+      where <m:math><m:mi>d</m:mi></m:math> is the depth of the tree, while a totally unshared encoding
+      is <m:math><m:mn>8</m:mn><m:mo>*</m:mo><m:msup><m:mn>2</m:mn><m:mi>d</m:mi></m:msup><m:mo>-</m:mo><m:mn>8</m:mn></m:math>       bytes (sharing variables saves up to 256 bytes for trees up to depth 8 and wastes space
+      for greater depths). The shared <acronym>XML</acronym> encoding only uses
+      <m:math><m:mn>32</m:mn><m:mi>d</m:mi><m:mo>+</m:mo><m:mn>29</m:mn></m:math> bytes, which is more space
+      efficient starting at depth 9.</p>
+    
+    <p>Note that in the conversion from the <acronym>XML</acronym> to the
+      binary encoding the identifiers on the
+      objects are not preserved. Moreover, even though the <acronym>XML</acronym> encoding
+      allows references across objects, as in <a href="omstd20html-3.xml#fig_sharing_between">Figure 3.2</a>, the binary
+      encoding does not (the binary encoding has no notion of a multi-object
+      collection, while in the <acronym>XML</acronym> encoding this would naturally correspond to
+      e.g. the embedding of multiple <i>OpenMath</i> objects into a single <acronym>XML</acronym>
+      document).</p>
+    
+    <p>Note that objects need not be fully shared (or shared at all) in the
+      binary encoding with sharing.</p>
+  </div>
+</div>
+
+<div><h3 name="sec_impl_note" id="sec_impl_note">3.2.5 Implementation Note</h3>
+  
+  
+  <p>A typical implementation of the binary encoding comes in two parts. The
+    first part deals with the unshared encodings, i.e. objects starting with the
+    identifier <small><code>[24]</code></small>.</p>
+  
+  <p>This part uses four tables, each of 256 entries, for symbol, variables, 8
+    bit character strings whose lengths are less than 256 characters and 16 bit
+    character strings whose lengths are less than 256 characters.  When an object is
+    read, all the tables are first flushed. Each time a sharable sub-object is read,
+    it is entered in the corresponding table if it is not full. When a reference to
+    the shared <m:math><m:mi>i</m:mi></m:math>-th object of a given type is read, it stands
+    for the <m:math><m:mi>i</m:mi></m:math>-th entry in the corresponding table. It is an
+    encoding error if the <m:math><m:mi>i</m:mi></m:math>-th position in the table has not
+    already been assigned (i.e. forward references are not allowed).  Sharing is not
+    mandatory, there may be duplicate entries in the tables (if the application that
+    wrote the object chose not to share optimally).
+  </p>
+  
+  <p>
+    The part for the shared representations of <i>OpenMath</i> objects uses an unbounded
+    array for storing shared sub-objects. Whenever an object has the shared flag
+    set, then it is read and a pointer to the generated data structure is stored at
+    the next position of the array. Whenever a reference of the form 
+    <small><code>[30] [_]</code></small> is
+    encountered, the array is queried for the value at <small><code>[_]</code></small>
+    and analogously for <small><code>[30+128] {_}</code></small>. Note that the
+    application can decide to copy the value or share it among sub-terms as long as
+    it respects the identity conditions given by the tree-nature of the <i>OpenMath</i>
+    objects.  The implementation must take care to ensure that no variables
+    are captured during this process (see section
+    <a href="omstd20html-3.xml#sec_sharing_bvars">Section 3.1.3.2</a>), and possibly have methods for recovering
+    from cyclic dependency relations (this can be done by standard loop-checking
+    methods).
+  </p>
+  
+  <p>Writing an object is simple. The tables are first flushed. Each time a
+    sharable sub-object is encountered (in the natural order of output given by the
+    encoding), it is either entered in the corresponding table (if it is not full) and
+    output in the normal way or replaced by the right reference if it is already
+    present in the table.</p>
+</div>
+
+
+<div><h3 name="sec_relation_OM1_binary" id="sec_relation_OM1_binary">3.2.6 Relation to the <i>OpenMath</i> 1 binary encoding</h3>
+  
+  <p>The <i>OpenMath</i> 2 binary encoding significantly extends the
+    <i>OpenMath</i> 1 binary encoding to accommodate the new features and in particular sharing of
+    sub-objects. The tags and structure of the  <i>OpenMath</i> 1 binary encoding are still
+    present in the current <i>OpenMath</i> binary encoding, so that binary encoded <i>OpenMath</i> 1 objects
+    are still valid in the <i>OpenMath</i> 2 binary encoding and correspond to the same abstract
+    <i>OpenMath</i> objects. In some cases, the binary encoding tags without the shared flag
+    can still be used as more compact representations of the objects (which are
+    not shared, and do not have an identifier).
+  </p>
+  <p>As the binary encoding is geared towards compactness, <i>OpenMath</i> objects
+    should be constructed so as to maximise internal sharing
+    (if computationally feasible). Note that since
+    sharing is done only at the
+    encoding level, this does not alter the meaning of an <i>OpenMath</i> object, only
+    allows it to be represented more compactly.
+  </p>
+</div>
+</div>
+
+<div><h2 name="sec_enc_summary" id="sec_enc_summary">3.3 Summary</h2>
+  
+  
+  <p>The key points of this chapter are:
+    <ul>
+      <li><p>The <acronym>XML</acronym> encoding for <i>OpenMath</i> objects uses most common
+	  character sets.</p></li>
+      <li><p>The <acronym>XML</acronym> encoding is readable, writable and can be
+	  embedded in most documents and transport protocols.</p></li>
+      <li><p>The binary encoding for <i>OpenMath</i> objects should be used when
+	  efficiency is a key issue. It is compact yet simple enough to allow
+	  fast encoding and decoding of objects.</p></li>
+    </ul>
+  </p>
+</div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-2.xml">Previous: 2 <i>OpenMath</i> Objects</a><br/><a href="#cha_enco">This: 3 <i>OpenMath</i> Encodings</a><br/><a href="omstd20html-4.xml">Next: 4 Content Dictionaries</a><br/></div>
+</body>
+</html>

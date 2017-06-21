@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Schema for OpenMath CD groups -->
+<!-- info on the CD group itself -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMathCDG" xmlns:o="http://www.openmath.org/OpenMathCDG">
+  <xs:element name="CDGroupName" type="xs:NCName"/>
+  <xs:element name="CDGroupVersion" type="xs:nonNegativeInteger"/>
+  <xs:element name="CDGroupRevision" type="xs:nonNegativeInteger"/>
+  <xs:element name="CDGroupURL" type="xs:string"/>
+  <xs:element name="CDGroupDescription" type="xs:string"/>
+  <!-- info on the CDs in the group -->
+  <xs:element name="CDComment" type="xs:string"/>
+  <xs:element name="CDGroupMember">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="o:CDComment"/>
+        <xs:element ref="o:CDName"/>
+        <xs:element minOccurs="0" ref="o:CDVersion"/>
+        <xs:element minOccurs="0" ref="o:CDURL"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CDName" type="xs:NCName"/>
+  <xs:element name="CDVersion" type="xs:nonNegativeInteger"/>
+  <xs:element name="CDURL" type="xs:string"/>
+  <!-- structure of the group -->
+  <xs:element name="CDGroup">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="o:CDGroupName"/>
+        <xs:element ref="o:CDGroupVersion"/>
+        <xs:element minOccurs="0" ref="o:CDGroupRevision"/>
+        <xs:element ref="o:CDGroupURL"/>
+        <xs:element ref="o:CDGroupDescription"/>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element ref="o:CDGroupMember"/>
+          <xs:element ref="o:CDComment"/>
+        </xs:choice>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

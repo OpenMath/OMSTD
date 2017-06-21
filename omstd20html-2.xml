@@ -1,0 +1,785 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>OpenMath Objects</title>
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-1.xml">Previous: 1 Introduction to <i>OpenMath</i></a><br/><a href="#cha_obj">This: 2 <i>OpenMath</i> Objects</a><br/>
+    <a href="omstd20html-2.xml#sec_omabs">2.1 Formal Definition of <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_basic">2.1.1 Basic <i>OpenMath</i> objects</a><br/>
+        <a href="omstd20html-2.xml#sec_derived">2.1.2 Derived <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_compound">2.1.3 <i>OpenMath</i> Objects</a><br/>
+        <a href="omstd20html-2.xml#sec_roles">2.1.4 <i>OpenMath</i> Symbol Roles</a><br/>
+    <a href="omstd20html-2.xml#sec_omin">2.2 Further Description of <i>OpenMath</i> Objects</a><br/>
+    <a href="omstd20html-2.xml#sec_names">2.3 Names</a><br/>
+    <a href="omstd20html-2.xml#sec_summary">2.4 Summary</a><br/><a href="omstd20html-3.xml">Next: 3 <i>OpenMath</i> Encodings</a><br/></div>
+  <div><h1 name="cha_obj" id="cha_obj">
+  Chapter 2<br/><i>OpenMath</i> Objects</h1>
+
+
+
+
+<p>In this chapter we provide a self-contained description of <i>OpenMath</i>
+objects. We first do so by means of an abstract grammar
+description (<a href="omstd20html-2.xml#sec_omabs">Section 2.1</a>)
+and then give a more informal description (<a href="omstd20html-2.xml#sec_omin">Section 2.2</a>).</p>
+
+
+<div><h2 name="sec_omabs" id="sec_omabs">2.1 Formal Definition of <i>OpenMath</i> Objects</h2>
+
+
+
+<p><i>OpenMath</i> represents mathematical objects as terms or as labelled
+trees that are called <i>OpenMath</i> objects or <i>OpenMath</i> expressions. The definition
+of an abstract <i>OpenMath</i> object is then the following.</p>
+
+
+<div><h3 name="sec_basic" id="sec_basic">2.1.1 Basic <i>OpenMath</i> objects</h3>
+ <p>The Basic <i>OpenMath</i> Objects form
+the leaves of the <i>OpenMath</i> Object tree.  A Basic <i>OpenMath</i> Object is of one of
+the following.</p> 
+<ul>
+<li><p><span>(i)</span> Integer.</p><p>Integers in
+  the mathematical sense, with no predefined range.  They are
+  <span>"infinite precision"</span> integers (also called
+  <span>"bignums"</span> in computer algebra).</p></li>
+<li><p><span>(ii)</span> <acronym>IEEE</acronym> floating point
+    number.</p><p>Double precision floating-point numbers
+    following the <acronym>IEEE</acronym> 754-1985
+    standard <a href="omstd20html-g.xml#ieee754_85">[6]</a>.</p></li>
+<li><p><span>(iii)</span> Character string.</p><p>A Unicode Character string. This also corresponds to <span>"characters"</span> in
+  <acronym>XML</acronym>.</p></li>
+<li><p><span>(iv)</span> Bytearray.</p><p>A sequence of bytes.</p></li>
+<li><p><span>(v)</span> Symbol.</p><p>A Symbol encodes three fields of
+    information, a <i>symbol name</i>, a <i>Content
+    Dictionary name</i>, and (optionally) a <i>Content
+    Dictionary base URI</i>, The name of a symbol is a sequence
+    of characters matching the regular expression described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>.  The Content Dictionary is the location of
+    the definition of the symbol, consisting of a name (a sequence of
+    characters matching the regular expression described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>) and, optionally, a unique prefix called a
+    <i>cdbase</i> which is used to disambiguate multiple
+    Content Dictionaries of the same name.  There are other properties
+    of the symbol that are not explicit in these fields but whose
+    values may be obtained by inspecting the Content Dictionary
+    specified. These include the symbol definition, formal properties
+    and examples and, optionally, a <i>Role</i> which is
+    a restriction on where the symbol may appear in an <i>OpenMath</i> object.  The
+    possible roles are described in <a href="omstd20html-2.xml#sec_roles">Section 2.1.4</a>.
+    </p></li>
+<li><p><span>(vi)</span> Variable.</p><p>A Variable 
+<span>must have</span> a
+<i>name</i> which is a sequence of characters matching a
+regular expression, as described in <a href="omstd20html-2.xml#sec_names">Section 2.3</a>.
+</p></li>
+</ul>
+</div>
+
+<div><h3 name="sec_derived" id="sec_derived">2.1.2 Derived <i>OpenMath</i> Objects</h3>
+
+
+<p>Derived <i>OpenMath</i> objects are currently used as a way by which non-<i>OpenMath</i>
+data is embedded inside an <i>OpenMath</i> object.
+A derived <i>OpenMath</i> object is built as follows: 
+<ul>
+<li><p><span>(i)</span> If <m:math><m:mi>A</m:mi></m:math> is
+<i>not</i> an <i>OpenMath</i> object, then <m:math><m:mi mathvariant="bold">foreign</m:mi><m:mfenced><m:mi>A</m:mi></m:mfenced></m:math> is an <i>OpenMath</i>
+<i>foreign object</i>.  An <i>OpenMath</i> foreign object may optionally
+have an <i>encoding</i> field which describes how its contents
+should be interpreted.</p></li>
+</ul>
+</p>
+</div>
+
+<div><h3 name="sec_compound" id="sec_compound">2.1.3 <i>OpenMath</i> Objects</h3>
+
+  
+<p><i>OpenMath</i> objects are built recursively as follows.
+<ul>
+<li><p><span>(i)</span> Basic <i>OpenMath</i> objects are <i>OpenMath</i> objects.
+(<span>Note that derived <i>OpenMath</i> objects are
+<i>not</i> <i>OpenMath</i> objects, but are used to construct <i>OpenMath</i>
+objects as described below.)</span></p></li>
+
+<li><p>
+    <span>(ii)</span> If
+    <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+    <span>&#8230;</span>,
+    <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math>     <m:math><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:math>     are <i>OpenMath</i> objects, then
+  <m:math display="block">
+  <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo> <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo>
+  </m:math>
+  is an <i>OpenMath</i> <i>application object</i>.</p></li> <li><p><span>(iii)</span> If
+  <m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math>   are <i>OpenMath</i> symbols, and
+
+<span>
+<m:math><m:mi>A</m:mi></m:math> is an <i>OpenMath</i> object, and
+  <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <span>&#8230;</span>, <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math> <m:math><m:mo>(</m:mo><m:mi>n</m:mi><m:mo>&gt;</m:mo><m:mn>0</m:mn><m:mo>)</m:mo></m:math> are <i>OpenMath</i> objects or <i>OpenMath</i> derived objects, then
+</span>
+
+  <m:math display="block"><m:mi mathvariant="bold">attribution</m:mi>
+  <m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub>
+  <m:mspace width=".3em"/> <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mspace width=".3em"/> <m:mi>&#8230;</m:mi> <m:mspace width=".3em"/>
+  <m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:math> is an <i>OpenMath</i>
+  <i>attribution object</i>.
+  </p><p>
+   <m:math><m:mi>A</m:mi></m:math>   is the object <i>stripped of attributions</i>. <span>
+  <m:math><m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math>   are referred to as <i>keys</i> and
+  <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <span>&#8230;</span>,
+  <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math> as their associated
+  <i>values</i></span>.
+  
+  <span>If, after  recursively
+  applying stripping to remove attributions, the resulting
+  un-attributed object is a 
+  variable, the original attributed object is called an <i>attributed
+  variable</i>.</span>
+  </p></li>
+
+<li><p><span>(iv)</span> If <m:math><m:mi>B</m:mi></m:math> and
+  <m:math><m:mi>C</m:mi></m:math> are <i>OpenMath</i> objects, and
+  <m:math><m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+  <m:math><m:mi>&#8230;</m:mi></m:math>,
+  <m:math><m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub></m:math>   <m:math><m:mo>(</m:mo><m:mi>n</m:mi> <m:mo>&#8805;</m:mo>
+  <m:mn>0</m:mn><m:mo>)</m:mo></m:math> are <i>OpenMath</i> variables or attributed
+  variables, then
+  <m:math display="block">
+  <m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi><m:mo>,</m:mo> <m:msub><m:mi>v</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo> <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>v</m:mi><m:mi>n</m:mi></m:msub><m:mo>,</m:mo> <m:mi>C</m:mi><m:mo>)</m:mo>
+  </m:math>
+is an <i>OpenMath</i> <i>binding object</i>.</p></li>
+<li><p><span>(v)</span> If <m:math><m:mi>S</m:mi></m:math> is an
+<i>OpenMath</i> symbol and <m:math><m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub></m:math>,
+<span>&#8230;</span>,
+<m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math> <m:math><m:mo>(</m:mo><m:mi>n</m:mi> <m:mo>&#8805;</m:mo>
+<m:mn>0</m:mn><m:mo>)</m:mo></m:math> are <i>OpenMath</i> objects <span>or
+<i>OpenMath</i> derived objects</span>, then <m:math display="block"><m:mi mathvariant="bold">error</m:mi>
+<m:mo>(</m:mo><m:mi>S</m:mi><m:mo>,</m:mo>
+<m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mi>&#8230;</m:mi><m:mo>,</m:mo><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo>
+  </m:math>
+  is an <i>OpenMath</i> <i>error object</i>.</p></li>
+</ul>
+ <span><i>OpenMath</i> objects that are contstructed via rules (ii)
+   to (v) are jointly called <span><i>compound <i>OpenMath</i> objects</i></span></span>
+</p>
+</div>
+
+<div><h3 name="sec_roles" id="sec_roles">2.1.4 <i>OpenMath</i> Symbol Roles</h3>
+
+
+<p>
+We say that an <i>OpenMath</i> symbol is used to <i>construct</i>
+an <i>OpenMath</i> object if it is the first child of an <i>OpenMath</i> application,
+binding or error object, or an even-indexed child of an <i>OpenMath</i>
+attribution object (i.e. the <i>key</i> in a
+<i>(key, value)</i> pair).
+The <i>role</i> of an <i>OpenMath</i> symbol is a restriction
+on how it may be used to construct a compound <i>OpenMath</i> object and, in the
+case of the key in an attribution object, a clarification of how that
+attribution should be interpreted.  <span class="finaledit">The </span>possible roles are:
+<ol class="lowerroman">
+
+<li><p><i>binder</i> The symbol may 
+appear as the first child of an <i>OpenMath</i> binding object.
+</p></li>
+
+<li><p> <i>attribution</i> The symbol may 
+be used as key in an <i>OpenMath</i> attribution object, i.e. as the first
+element of a (key, value) pair, or in an equivalent context (for example
+to refer to the value of an attribution).  This form of attribution
+may be ignored by an application, so should be used for information
+which does not change the meaning of the attributed <i>OpenMath</i> object.
+</p></li> 
+
+<li><p> <i>semantic-attribution</i> This is the
+same as <i>attribution</i> except that it modifies the
+meaning of the attributed <i>OpenMath</i> object and thus cannot be ignored by an
+application<span class="finaledit">, without changing the meaning</span>.  </p></li> 
+
+<li><p> <i>error</i> The symbol <span class="finaledit">may</span> appear
+as the first child of an <i>OpenMath</i> error object.  </p></li>
+
+<li><p> <i>application</i> The symbol <span class="finaledit">may</span> appear
+as the first child of an <i>OpenMath</i> application object.  </p></li>
+
+<li><p> <i>constant</i> The symbol cannot be
+used to construct an <i>OpenMath</i> compound object.
+
+</p></li>
+
+</ol>
+
+A symbol cannot have more than one role and 
+cannot be used to construct a compound <i>OpenMath</i> object in a way
+which requires a different role (using the definition of construct given
+earlier in this section).
+This means that one cannot use a symbol which binds some variables to
+construct, say, an application object.  However it does not prevent
+the use of that symbol as an <i>argument</i> in an
+application object (where by argument we mean a child with index
+greater than 1). 
+</p>
+
+<p> 
+If no role is indicated then the symbol can be used anywhere.  Note
+that this is not the same as saying that the symbol's role is
+<i>constant</i>.
+</p>
+
+
+</div>
+
+</div>
+<div><h2 name="sec_omin" id="sec_omin">2.2 Further Description of <i>OpenMath</i> Objects</h2>
+
+
+
+
+  
+
+<p>Informally, an <i>OpenMath</i> <span><i>object</i></span> can be
+viewed as a tree and is also referred to as a term.  The objects at
+the leaves of <i>OpenMath</i> trees are called <span><i>basic
+objects</i></span>.  The basic objects supported by <i>OpenMath</i> are:
+<dl>
+<dt>Integer</dt><dd><p>Arbitrary Precision
+integers.</p> </dd>
+<dt>Float</dt><dd> <p><i>OpenMath</i> floats are
+<acronym>IEEE</acronym> 754 Double precision floating-point
+numbers. Other types of floating point number may be encoded in <i>OpenMath</i>
+by the use of suitable content dictionaries.</p>
+  
+</dd>
+
+<dt>Character strings</dt><dd><p>are
+  sequences of characters. These characters come from the Unicode
+  standard <a href="omstd20html-g.xml#UNICODE">[12]</a>.</p>
+  
+</dd>
+<dt>Bytearrays</dt><dd><p>are sequences of
+bytes. There is no <span>"byte"</span> in <i>OpenMath</i> as an object of its
+own. However, a single byte can of course be represented by a
+bytearray of length 1.  The difference between strings and bytearrays
+is the following: a character string is a sequence of bytes with a
+fixed interpretation (as characters, Unicode texts may require several
+bytes to code one character), whereas a bytearray is an uninterpreted
+sequence of bytes with no intrinsic meaning.  Bytearrays could be used
+inside <i>OpenMath</i> errors to provide information to, for example, a debugger;
+they could also contain intermediate results of calculations, or
+<span>"handles"</span> into computations or databases.</p>
+</dd>
+
+<dt>Symbols</dt><dd>
+  
+  
+  <p>
+ are uniquely defined by the Content Dictionary in which they occur
+  and by a name.
+The form of these definitions is explained in
+  <a href="omstd20html-4.xml#cha_cd">Chapter 4</a>.  Each symbol has no more than one
+  definition in a Content Dictionary. Many Content Dictionaries may
+  define differently a symbol with the same name (e.g. the symbol
+  <small><code>union</code></small> is defined as
+  associative-commutative set theoretic union in a Content Dictionary
+  <small><code>set1</code></small> but another Content Dictionary,
+  <small><code>multiset1</code></small> might define a symbol
+  <small><code>union</code></small> as the union of multi-sets).
+
+
+  
+</p>
+  
+ 
+  </dd>
+
+<dt>Variables</dt><dd><p>are meant to
+  denote parameters, variables or indeterminates (such as bound
+  variables of function definitions, variables in summations and
+  integrals, independent variables of derivatives).   
+</p>
+</dd>
+
+</dl> </p>
+
+
+<p>Derived <i>OpenMath</i> objects are constructed from
+non-<i>OpenMath</i> data.  They differ from bytearrays in that they can have any
+structure.  Currently there is only one way of making a derived <i>OpenMath</i>
+object.</p>
+
+<dl>
+<dt>Foreign</dt><dd><p>is used to import a
+non-<i>OpenMath</i> object into an <i>OpenMath</i> attribution.  Examples of its use could
+be to annotate a formula with a visual or aural rendering, an
+animation, etc.  They may also appear in <i>OpenMath</i> error objects, for
+example to allow an application to report an error in processing such
+an object.  
+</p>
+</dd>
+
+</dl>
+
+
+<p>The four following constructs can be used to make compound
+ <i>OpenMath</i> objects <span> out of basic or derived <i>OpenMath</i>
+objects</span>.</p>
+<dl>
+<dt>Application</dt><dd><p>constructs an
+  <i>OpenMath</i> object from a sequence of one or more <i>OpenMath</i> objects. The first
+  <span class="finaledit">child</span>
+  of an application is referred to as its <span>"head"</span> while
+  the remaining objects are called its <span>"arguments"</span>.  An <i>OpenMath</i>
+  application object can be used to convey the mathematical notion of
+  application of a function to a set of arguments.  For instance,
+  suppose that the <i>OpenMath</i> symbol <m:math><m:mi>sin</m:mi></m:math> is defined in
+  a <span>suitable</span> Content Dictionary,
+   then <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>sin</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>)</m:mo></m:math> is the abstract <i>OpenMath</i> object
+  corresponding to <m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi>
+  <m:mo>)</m:mo></m:math>.  More generally, an <i>OpenMath</i> application object can
+  be used as a constructor to convey a mathematical object built from
+  other objects such as a polynomial constructed from a set of
+  monomials.  Constructors build inhabitants of some symbolic type,
+  for instance the type of rational numbers or the type of
+  polynomials.  The rational number, usually denoted as
+  <m:math><m:mn>1</m:mn><m:mo>/</m:mo><m:mn>2</m:mn></m:math>, is represented by the
+  <i>OpenMath</i> application object <m:math><m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>Rational</m:mi><m:mo>,</m:mo>
+  <m:mn>1</m:mn><m:mo>,</m:mo> <m:mn>2</m:mn><m:mo>)</m:mo></m:math>. The symbol
+  <m:math><m:mi>Rational</m:mi></m:math> must be defined, by a Content
+  Dictionary, as a constructor symbol for the rational numbers.</p>
+   
+<div class="figure"><a name="fig_obj" id="fig_obj"/>
+      <img src="lambda.png" alt="lambda.png"/>
+<div class="caption">
+  Figure 2.1 The <i>OpenMath</i> application and binding objects for
+<m:math><m:mi>sin</m:mi> <m:mo>(</m:mo><m:mi>x</m:mi> <m:mo>)</m:mo></m:math> and
+<m:math><m:mi>&#955;</m:mi> <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo>
+<m:mn>2</m:mn></m:math> in tree-like notation.</div></div>
+
+  
+</dd>
+
+<dt>Binding</dt><dd><p>objects are
+  constructed from an <i>OpenMath</i> object, and from a sequence of zero or more
+  variables followed by another <i>OpenMath</i> object.  The first <i>OpenMath</i> object is
+  the <span>"binder"</span> object. Arguments 2 to
+  <m:math><m:mi>n</m:mi><m:mo>-</m:mo><m:mn>1</m:mn></m:math> are always variables to
+  be bound in the <span>"body"</span> which is the
+  <m:math><m:msup><m:mi>n</m:mi><m:mi>th</m:mi></m:msup></m:math> argument object. It
+  is allowed to have no bound variables, but the binder object and the
+  body should be present. Binding can be used to express functions or
+  logical statements.  The function <m:math><m:mi>&#955;</m:mi>
+  <m:mi>x</m:mi><m:mo>.</m:mo><m:mi>x</m:mi> <m:mo>+</m:mo><m:mn>2</m:mn></m:math>, in which
+  the variable <m:math><m:mi>x</m:mi></m:math> is bound by
+  <m:math><m:mi>&#955;</m:mi></m:math>, corresponds to a binding object having
+  as binder the <i>OpenMath</i> symbol <m:math><m:mi>lambda</m:mi></m:math>: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi><m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>plus</m:mi><m:mo>,</m:mo>
+  <m:mi>x</m:mi> <m:mo>,</m:mo>
+  <m:mn>2</m:mn><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math></p>
+  
+  
+  
+
+
+<p>Phrasebooks are allowed to use <m:math><m:mi>&#945;</m:mi></m:math>   conversion in order to avoid clashes of variable names. Suppose an
+  object <m:math><m:mi>&#937;</m:mi></m:math> contains an occurrence of the
+  object <m:math><m:mi mathvariant="bold">binding</m:mi>
+  <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>C</m:mi>
+  <m:mo>)</m:mo></m:math>.  This object <m:math><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo>
+  <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>C</m:mi> <m:mo>)</m:mo></m:math> can be replaced
+  in <m:math><m:mi>&#937;</m:mi></m:math> by <m:math><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>B</m:mi> <m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo> <m:mi>C'</m:mi><m:mo>)</m:mo></m:math> where
+  <m:math><m:mi>z</m:mi></m:math> is a variable not occurring free in
+  <m:math><m:mi>C</m:mi></m:math> and <m:math><m:mi>C'</m:mi></m:math> is obtained
+  from <m:math><m:mi>C</m:mi></m:math> by replacing each free (i.e., not bound
+  by any intermediate <b>binding</b> construct) occurrence
+  of <m:math><m:mi>v</m:mi></m:math> by <m:math><m:mi>z</m:mi></m:math>.  This
+  operation preserves the semantics of the object
+  <m:math><m:mi>&#937;</m:mi></m:math>. In the above example, a phrasebook is
+  thus allowed to transform the object to, e.g.  <m:math revisionflag="deleted" display="block"><m:mi mathvariant="bold">binding</m:mi>
+  <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>z</m:mi>
+  <m:mo>,</m:mo><m:mi>z</m:mi><m:mo>)</m:mo><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math>
+  <m:math revisionflag="added" display="block"><m:mi mathvariant="bold">binding</m:mi><m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo> <m:mi mathvariant="bold">application</m:mi><m:mo>(</m:mo><m:mi>plus</m:mi><m:mo>,</m:mo>
+  <m:mi>z</m:mi> <m:mo>,</m:mo>
+  <m:mn>2</m:mn><m:mo>)</m:mo><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math>
+</p>
+<p>Repeated occurrences of the same variable in a binding operator
+  are allowed. An <i>OpenMath</i> application should treat a binding with
+  multiple occurrences of the same variable as equivalent to the
+  binding in which all but the last occurrence of each variable is
+  replaced by a new variable which does not occur free in the body of
+  the binding.  <m:math display="block"><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi><m:mo>,</m:mo>
+  <m:mi>v</m:mi> <m:mo>,</m:mo> <m:mi>v</m:mi> <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math> is semantically
+  equivalent to: <m:math display="block"><m:mi mathvariant="bold">binding</m:mi> <m:mo>(</m:mo><m:mi>lambda</m:mi> <m:mo>,</m:mo>
+  <m:msup><m:mi>v</m:mi><m:mo>'</m:mo></m:msup> <m:mo>,</m:mo> <m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math> so that the
+  resulting function is actually a constant in its first argument
+  (<m:math><m:msup><m:mi>v</m:mi><m:mo>'</m:mo></m:msup></m:math> does not occur free
+  in the body <m:math><m:mi mathvariant="bold">application</m:mi>
+  <m:mo>(</m:mo><m:mi>times</m:mi><m:mo>,</m:mo><m:mi>v</m:mi>
+  <m:mo>,</m:mo><m:mi>v</m:mi><m:mo>)</m:mo> <m:mo>)</m:mo></m:math>).</p>
+
+  
+</dd>
+
+<dt>Attribution</dt><dd><p>decorates an
+  object with a sequence of one or more pairs made up of an <i>OpenMath</i>
+  symbol, the <span>"attribute"</span>, and an associated  object, the <span>"value of the
+  attribute"</span>.  The value of the attribute can be an <span><i>OpenMath</i></span> attribution object itself. As an
+  example of this, consider the <i>OpenMath</i> objects representing groups,
+  automorphism groups, and group dimensions. It is then possible to
+  attribute an <i>OpenMath</i> object representing a group by its automorphism
+  group, itself attributed by its dimension.</p>
+
+<p>
+<i>OpenMath</i> objects can be attributed with <i>OpenMath</i> foreign objects, which are
+containers for non-<i>OpenMath</i> structures.  For example a mathematical
+expression could be attributed with its spoken or visual rendering.
+</p>
+
+<p>Composition of attributions, as in
+  <m:math display="block">
+<m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo><m:mi>&#8230;</m:mi><m:mo>,</m:mo><m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub><m:mo>)</m:mo><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo>
+  <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/> <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo></m:math> is
+  semantically equivalent to a single attribution, that is <m:math display="block"><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mn>1</m:mn></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mn>1</m:mn></m:msub><m:mo>,</m:mo>
+  <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub> <m:mspace width=".3em"/> <m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub><m:mo>,</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub>
+  <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mrow><m:mi>h</m:mi><m:mo>+</m:mo><m:mn>1</m:mn></m:mrow></m:msub><m:mo>,</m:mo>
+  <m:mi>&#8230;</m:mi><m:mo>,</m:mo> <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub> <m:mspace width=".3em"/>
+  <m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub><m:mo>)</m:mo><m:mtext>.</m:mtext></m:math>
+  The operation that produces an object with a single layer of
+  attribution is called <i>flattening</i>.</p>
+
+<p>Multiple attributes with the same name are allowed.  While the
+  order of the given attributes does not imply any notion of priority,
+  potentially it could be significant. For instance, consider the case
+  in which <m:math><m:msub><m:mi>S</m:mi><m:mi>h</m:mi></m:msub> <m:mo>=</m:mo>
+  <m:msub><m:mi>S</m:mi><m:mi>n</m:mi></m:msub></m:math> (<m:math><m:mi>h</m:mi>
+  <m:mo>&lt;</m:mo> <m:mi>n</m:mi></m:math>) in the example above. Then, the
+  object is to be interpreted as if the value
+  <m:math><m:msub><m:mi>A</m:mi><m:mi>n</m:mi></m:msub></m:math> overwrites the value
+  <m:math><m:msub><m:mi>A</m:mi><m:mi>h</m:mi></m:msub></m:math>.  (<i>OpenMath</i> however does
+  not mandate that an application preserves the attributes or their
+  order.)</p>
+
+<p>Attribution acts as either adornment
+  annotation or as semantical annotation. When the key has role
+  <i>attribution</i>, then replacement of the
+  attributed object by the object itself is not harmful and preserves
+  the semantics. When the key has role
+  <i>semantic-attribution</i> then the attributed
+  object is modified by the attribution and cannot be viewed as
+  semantically equivalent to the stripped object. If the attribute
+  lacks the role specification then attribution is acting as adornment
+  annotation.
+  </p>
+
+
+<p>Objects can be decorated in a multitude of ways.
+
+<span>An example of the use of an adornment attribution
+would be to indicate the colour in which an <i>OpenMath</i> object should be
+displayed, for example <m:math><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+<m:mi>colour</m:mi> <m:mspace width=".3em"/> <m:mi>red</m:mi> <m:mo>)</m:mo></m:math>.
+Note that both <m:math><m:mi>A</m:mi></m:math> and <m:math><m:mi>red</m:mi></m:math> are
+<span class="finaledit">arbitary</span> <i>OpenMath</i>
+objects <span class="finaledit">whereas <m:math><m:mi>color</m:mi></m:math> is
+a symbol</span>.
+An example of the use of a semantic attribution would be to indicate the
+type of an object.  For example</span>
+the object <m:math><m:mi mathvariant="bold">attribution</m:mi><m:mo>(</m:mo><m:mi>A</m:mi><m:mo>,</m:mo>
+<m:mi>type</m:mi> <m:mspace width=".3em"/> <m:mi>t</m:mi> <m:mo>)</m:mo></m:math> represents the judgment stating that object <m:math><m:mi>A</m:mi></m:math> has type <m:math><m:mi>t</m:mi></m:math>. Note that both
+<m:math><m:mi>A</m:mi></m:math> and <m:math><m:mi>t</m:mi></m:math> are <span class="finaledit">arbitary</span> <i>OpenMath</i>
+objects <span class="finaledit">whereas <m:math><m:mi>type</m:mi></m:math> is
+a symbol</span>.</p>
+
+
+
+
+            
+  
+  
+</dd>
+
+<dt>Error</dt><dd><p>is made up of an <i>OpenMath</i>
+  symbol and a sequence of zero or more <i>OpenMath</i> objects. This object has
+  no direct mathematical meaning.  Errors occur as the result of some
+  treatment on an <i>OpenMath</i> object and are thus of real interest only when
+  some sort of communication is taking place. Errors may occur inside
+  other objects and also inside other errors.  Error objects might
+  consist only of a symbol as in the object: <m:math><m:mi mathvariant="bold">error</m:mi> <m:mo>(</m:mo><m:mi>S</m:mi>
+  <m:mo>)</m:mo></m:math>.</p> 
+</dd>
+
+</dl> 
+</div>
+
+<div><h2 name="sec_names" id="sec_names">2.3 Names</h2>
+
+
+<p>The names of symbols, variables and content dictionaries must
+conform to the production <small><code>Name</code></small> specified in the following
+grammar
+(which is identical to that for <acronym>XML</acronym> names in XML 1.1,
+<a href="omstd20html-g.xml#xml_04">[16]</a>). Informally speaking, a name is a sequence
+of Unicode <a href="omstd20html-g.xml#UNICODE">[12]</a>
+characters which begins with a letter and cannot contain
+certain punctuation and combining  characters.  The notation
+<small><code>#x...</code></small> represents the hexadecimal value of 
+the encoding of a Unicode character. 
+Some of the character values or <i>code points</i> in the
+following productions are currently unassigned, but this is
+likely to change in the future as Unicode evolves<sup><a href="#xml1">*1</a></sup>.
+
+</p><p class="footnote"><a name="xml1" id="xml1"/><sup>*1</sup>
+We note that in XML 1 the name production explicitly listed 
+the characters that were allowed, so all the characters added in
+versions of Unicode after 2.0 (which amounted to tens of thousands of
+characters) were not allowed in names.
+</p>
+
+<blockquote>
+<table>
+<tr>
+<td>Name </td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td> NameStartChar (NameChar)* </td>
+</tr>
+<tr>
+<td>NameStartChar</td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td>  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] |</td></tr>
+<tr><td/><td/><td>[#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] |</td></tr>
+<tr><td/><td/><td>[#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] |</td></tr>
+<tr><td/><td/><td>[#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] |</td></tr>
+<tr><td/><td/><td>[#x10000-#xEFFFF] 
+</td>
+</tr>
+<tr>
+<td>NameChar</td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td>  NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] |</td></tr>
+<tr><td/><td/><td>[#x203F-#x2040] </td>
+</tr>
+</table>
+</blockquote>
+
+
+<p><b>CD Base</b>  A cdbase must conform to the grammar for URIs described in
+<a href="omstd20html-g.xml#IETF2396">[7]</a>.  Note that if non-ASCII characters are
+used in a CD or symbol name then when a URI for that symbol is
+constructed it will be necessary to map the non-ASCII characters to a
+sequence of octets.  The precise mechanism for doing this depends on
+the URI scheme.</p>
+
+<p><b>Note on content dictionary names</b>  
+It is a common convention to store a Content Dictionary in a file of
+the same name, which can cause difficulties on many file systems.  If
+this convention is to be followed then <i>OpenMath</i>
+<i>recommends</i> that the name be restricted to the
+subset of the above grammar which is a legal POSIX
+<a href="omstd20html-g.xml#POSIX">[5]</a> filename, namely:
+<blockquote>
+<table>
+<tr>
+<td>Name </td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td> (PosixLetter | '_') (Char)*
+</td>
+</tr>
+<tr>
+<td>Char</td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td> PosixLetter | Digit | '.' | '-' | '_' 
+</td>
+</tr>
+<tr>
+<td>PosixLetter</td>
+<td> <m:math><m:mo>&#8594;</m:mo></m:math> </td>
+<td> 
+'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
+</td>
+</tr>
+</table>
+</blockquote>
+</p>
+
+<p><b>Canonical URIs for Symbols</b>  
+To facilitate the use of <i>OpenMath</i> within a URI-based framework (such as RDF
+<a href="omstd20html-g.xml#rdf">[19]</a> or OWL <a href="omstd20html-g.xml#owl">[18]</a>), we provide the
+following scheme for constructing a canonical URI
+for an <i>OpenMath</i> Symbol:
+<blockquote>
+  <p><small><code>URI = cdbase-value + '/' + cd-value + '#' + name-value</code></small></p>
+</blockquote>
+So for example the URI for the symbol with cdbase
+<small><code>http://www.openmath.org/cd</code></small>, cd
+<small><code>transc1</code></small> and name <small><code>sin</code></small>
+is:
+<blockquote>
+  <p><small><code>http://www.openmath.org/cd/transc1#sin</code></small></p>
+</blockquote>
+In particular, this now allows us to refer uniquely to an <i>OpenMath</i> symbol from a
+MathML document <a href="omstd20html-g.xml#MathML_2003">[17]</a>:
+<div class="literal"><pre>
+&lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
+                definitionURL="http://www.openmath.org/cd/transc1#sin"&gt;
+  &lt;mo&gt; sin &lt;/mo&gt; 
+&lt;/csymbol&gt;
+</pre></div>
+</p>
+
+</div>
+
+<div><h2 name="sec_summary" id="sec_summary">2.4 Summary</h2>
+
+
+<ul>
+<li><p><i>OpenMath</i> supports basic objects like integers, symbols,
+  floating-point numbers, character strings, bytearrays, and
+  variables.</p></li>
+<li><p><i>OpenMath</i> compound objects are of four kinds:
+  applications, bindings, errors, and attributions.</p></li>
+<li><p><i>OpenMath</i> objects may be attributed
+with non-<i>OpenMath</i> objects via the use of foreign <i>OpenMath</i> objects.
+  </p></li>
+<li><p><i>OpenMath</i> objects have the expressive power to cover all
+  areas of computational mathematics.</p></li>
+</ul>
+
+ <p>Observe that an <i>OpenMath</i>
+application object is viewed as a <span>"tree"</span> by software
+applications that do not understand Content Dictionaries, whereas a
+Phrasebook that understands the semantics of the symbols, as defined
+in the Content Dictionaries, should interpret the object as functional
+application, constructor, or binding accordingly. Thus, for example,
+for some applications, the <i>OpenMath</i> object corresponding to
+<m:math><m:mn>2</m:mn><m:mo>+</m:mo><m:mn>5</m:mn></m:math> may result in a command
+that writes <m:math><m:mn>7</m:mn></m:math>.</p>
+</div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-1.xml">Previous: 1 Introduction to <i>OpenMath</i></a><br/><a href="#cha_obj">This: 2 <i>OpenMath</i> Objects</a><br/><a href="omstd20html-3.xml">Next: 3 <i>OpenMath</i> Encodings</a><br/></div>
+</body>
+</html>

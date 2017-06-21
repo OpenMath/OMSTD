@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<?xml-stylesheet  type="text/xsl" href="pmathml.xsl"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:m="http://www.w3.org/1998/Math/MathML" xml:space="preserve">
+
+
+<head>
+<title>OpenMath Schema in XSD Syntax (Non-Normative)</title>
+
+<style>
+
+body {
+margin-left: 1em;
+margin-right: 1em;
+}
+
+div.mdata {
+margin-top: .5em;
+margin-bottom: .5em;
+margin-left: 5em;
+}
+
+span.mdatahead {
+font-weight: bold;
+}
+
+div.minitoc {
+border-width: thin;
+border-style: solid;
+border-color: blue;
+font-size: 90%;
+margin-top: 1em;
+margin-bottom: 1em;
+padding: 1em 1em 1em 1em;
+}
+
+p {text-align:justify;	   
+  }
+code {font-size: 125%;
+      font-family: monospace; 
+     }
+.figure {
+border-width:thin;
+border-style: solid;
+border-color: black;
+margin: 0.5em 0.5em 0.5em 0.5em;
+padding: 0.5em 0.5em 0.5em 0.5em;
+}
+
+div.caption {
+margin-top: 1em;
+}
+
+.footnote{
+font-size: 75%;
+font-style: italic;
+}
+.delliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: red;
+text-decoration: line-through;
+}
+.newliteral {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+color: green;
+}
+.literal {
+font-size: 75%;
+background-color: #efefef;
+border-color: black;
+border-style: solid;
+border-width: 1px;
+padding: 1em;
+margin:bottom: 1em;
+}
+.del {
+color: red;
+text-decoration: line-through;
+}
+.new {
+color: green;
+}
+.chg {
+color: blue;
+}
+.changetoc {
+border-style: solid;
+border-color: black;
+border-width: 1px;
+margin: 2em 2em 2em 2em;
+background-color: yellow;
+}
+
+.lowerroman {
+list-style-type: lower-roman;
+}
+</style>
+</head>
+<body>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-c.xml">Previous: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/><a href="#app_xsd">This: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/><a href="omstd20html-e.xml">Next: E <i>OpenMath</i> DTD (Non-Normative)</a><br/></div>
+  <div><h1 name="app_xsd" id="app_xsd">
+  Appendix D<br/><i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</h1>
+  
+  
+  <p>This is an XSD Schema generated from the Relax NG Schema described in 
+    <a href="omstd20html-3.xml#sec_xml">Section 3.1</a>.
+  </p>
+  <div class="literal"><pre>
+    
+
+&lt;<span style="font-weight: bold; color: red">schema</span>
+ xmlns:xs="http://www.w3.org/2001/XMLSchema"
+ xmlns:om="http://www.openmath.org/OpenMath" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMath"&gt;<a name="d0t17327"/>
+  &lt;!-- OpenMath object constructor --&gt;<a name="d0t17329"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMOBJ"&gt;<a name="d0t17331"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17333"/>
+      &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17335"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17337"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="version" type="xs:string"/&gt;<a name="d0t17339"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17340"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17341"/>
+  &lt;!-- Elements which can appear inside an OpenMath object --&gt;<a name="d0t17343"/>
+  &lt;<span style="font-weight: bold; color: red">group</span> name="omel"&gt;<a name="d0t17345"/>
+    &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17347"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMS"/&gt;<a name="d0t17349"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMV"/&gt;<a name="d0t17351"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMI"/&gt;<a name="d0t17353"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMB"/&gt;<a name="d0t17355"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMSTR"/&gt;<a name="d0t17357"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMF"/&gt;<a name="d0t17359"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMA"/&gt;<a name="d0t17361"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMBIND"/&gt;<a name="d0t17363"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OME"/&gt;<a name="d0t17365"/>
+      &lt;<span style="font-weight: bold; color: red">group</span> ref="om:OMATTR"/&gt;<a name="d0t17367"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMR"/&gt;<a name="d0t17369"/>
+    &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17370"/>
+  &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d0t17371"/>
+  &lt;!-- things which can be variables --&gt;<a name="d0t17373"/>
+  &lt;<span style="font-weight: bold; color: red">group</span> name="omvar"&gt;<a name="d0t17375"/>
+    &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17377"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMV"/&gt;<a name="d0t17379"/>
+      &lt;<span style="font-weight: bold; color: red">group</span> ref="om:attvar"/&gt;<a name="d0t17381"/>
+    &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17382"/>
+  &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d0t17383"/>
+  &lt;<span style="font-weight: bold; color: red">group</span> name="attvar"&gt;<a name="d0t17385"/>
+    &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17387"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> name="OMATTR"&gt;<a name="d0t17389"/>
+        &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17391"/>
+          &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17393"/>
+            &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMATP"/&gt;<a name="d0t17395"/>
+            &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17397"/>
+              &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMV"/&gt;<a name="d0t17399"/>
+              &lt;<span style="font-weight: bold; color: red">group</span> ref="om:attvar"/&gt;<a name="d0t17401"/>
+            &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17402"/>
+          &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17403"/>
+          &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17405"/>
+        &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17406"/>
+      &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17407"/>
+    &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17408"/>
+  &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d0t17409"/>
+  &lt;<span style="font-weight: bold; color: red">attributeGroup</span> name="cdbase"&gt;<a name="d0t17411"/>
+    &lt;<span style="font-weight: bold; color: red">attribute</span> name="cdbase" type="xs:anyURI"/&gt;<a name="d0t17413"/>
+  &lt;/<span style="font-weight: bold; color: red">attributeGroup</span>&gt;<a name="d0t17414"/>
+  &lt;!-- attributes common to all elements --&gt;<a name="d0t17416"/>
+  &lt;<span style="font-weight: bold; color: red">attributeGroup</span> name="common.attributes"&gt;<a name="d0t17418"/>
+    &lt;<span style="font-weight: bold; color: red">attribute</span> name="id" type="xs:ID"/&gt;<a name="d0t17420"/>
+  &lt;/<span style="font-weight: bold; color: red">attributeGroup</span>&gt;<a name="d0t17421"/>
+  &lt;!-- attributes common to all elements that construct compount OM objects. --&gt;<a name="d0t17423"/>
+  &lt;<span style="font-weight: bold; color: red">attributeGroup</span> name="compound.attributes"&gt;<a name="d0t17425"/>
+    &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17427"/>
+    &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:cdbase"/&gt;<a name="d0t17429"/>
+  &lt;/<span style="font-weight: bold; color: red">attributeGroup</span>&gt;<a name="d0t17430"/>
+  &lt;!-- symbol --&gt;<a name="d0t17432"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMS"&gt;<a name="d0t17434"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17436"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17438"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="name" use="required" type="xs:NCName"/&gt;<a name="d0t17440"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="cd" use="required" type="xs:NCName"/&gt;<a name="d0t17442"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:cdbase"/&gt;<a name="d0t17444"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17445"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17446"/>
+  &lt;!-- variable --&gt;<a name="d0t17448"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMV"&gt;<a name="d0t17450"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17452"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17454"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="name" use="required" type="xs:NCName"/&gt;<a name="d0t17456"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17457"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17458"/>
+  &lt;!-- integer --&gt;<a name="d0t17460"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMI"&gt;<a name="d0t17462"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17464"/>
+      &lt;<span style="font-weight: bold; color: red">simpleContent</span>&gt;<a name="d0t17466"/>
+        &lt;<span style="font-weight: bold; color: red">restriction</span> base="xs:anyType"&gt;<a name="d0t17468"/>
+          &lt;<span style="font-weight: bold; color: red">simpleType</span>&gt;<a name="d0t17470"/>
+            &lt;<span style="font-weight: bold; color: red">restriction</span> base="xs:string"&gt;<a name="d0t17472"/>
+              &lt;<span style="font-weight: bold; color: red">pattern</span> value="\s*(-\s?)?[0-9]+(\s[0-9]+)*\s*"/&gt;<a name="d0t17474"/>
+            &lt;/<span style="font-weight: bold; color: red">restriction</span>&gt;<a name="d0t17475"/>
+          &lt;/<span style="font-weight: bold; color: red">simpleType</span>&gt;<a name="d0t17476"/>
+          &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17478"/>
+        &lt;/<span style="font-weight: bold; color: red">restriction</span>&gt;<a name="d0t17479"/>
+      &lt;/<span style="font-weight: bold; color: red">simpleContent</span>&gt;<a name="d0t17480"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17481"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17482"/>
+  &lt;!-- byte array --&gt;<a name="d0t17484"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMB"&gt;<a name="d0t17486"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17488"/>
+      &lt;<span style="font-weight: bold; color: red">simpleContent</span>&gt;<a name="d0t17490"/>
+        &lt;<span style="font-weight: bold; color: red">extension</span> base="xs:base64Binary"&gt;<a name="d0t17492"/>
+          &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17494"/>
+        &lt;/<span style="font-weight: bold; color: red">extension</span>&gt;<a name="d0t17495"/>
+      &lt;/<span style="font-weight: bold; color: red">simpleContent</span>&gt;<a name="d0t17496"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17497"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17498"/>
+  &lt;!-- string --&gt;<a name="d0t17500"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMSTR"&gt;<a name="d0t17502"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span> mixed="true"&gt;<a name="d0t17504"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17506"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17507"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17508"/>
+  &lt;!-- IEEE floating point number --&gt;<a name="d0t17510"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMF"&gt;<a name="d0t17512"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17514"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17516"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="dec" type="xs:double"/&gt;<a name="d0t17518"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="hex"&gt;<a name="d0t17520"/>
+        &lt;<span style="font-weight: bold; color: red">simpleType</span>&gt;<a name="d0t17522"/>
+          &lt;<span style="font-weight: bold; color: red">restriction</span> base="xs:string"&gt;<a name="d0t17524"/>
+            &lt;<span style="font-weight: bold; color: red">pattern</span> value="[0-9A-F]+"/&gt;<a name="d0t17526"/>
+          &lt;/<span style="font-weight: bold; color: red">restriction</span>&gt;<a name="d0t17527"/>
+        &lt;/<span style="font-weight: bold; color: red">simpleType</span>&gt;<a name="d0t17528"/>
+      &lt;/<span style="font-weight: bold; color: red">attribute</span>&gt;<a name="d0t17529"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17530"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17531"/>
+  &lt;!-- apply constructor --&gt;<a name="d0t17533"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMA"&gt;<a name="d0t17535"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17537"/>
+      &lt;<span style="font-weight: bold; color: red">group</span> maxOccurs="unbounded" ref="om:omel"/&gt;<a name="d0t17539"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17541"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17542"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17543"/>
+  &lt;!-- binding constructor --&gt;<a name="d0t17545"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMBIND"&gt;<a name="d0t17547"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17549"/>
+      &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17551"/>
+        &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17553"/>
+        &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMBVAR"/&gt;<a name="d0t17555"/>
+        &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17557"/>
+      &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17558"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17560"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17561"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17562"/>
+  &lt;!-- variables used in binding constructor --&gt;<a name="d0t17564"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMBVAR"&gt;<a name="d0t17566"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17568"/>
+      &lt;<span style="font-weight: bold; color: red">group</span> maxOccurs="unbounded" ref="om:omvar"/&gt;<a name="d0t17570"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17572"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17573"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17574"/>
+  &lt;!-- error constructor --&gt;<a name="d0t17576"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OME"&gt;<a name="d0t17578"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17580"/>
+      &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17582"/>
+        &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMS"/&gt;<a name="d0t17584"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span> minOccurs="0" maxOccurs="unbounded"&gt;<a name="d0t17586"/>
+          &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17588"/>
+          &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMFOREIGN"/&gt;<a name="d0t17590"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17591"/>
+      &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17592"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17594"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17595"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17596"/>
+  &lt;!-- attribution constructor and attribute pair constructor --&gt;<a name="d0t17598"/>
+  &lt;<span style="font-weight: bold; color: red">group</span> name="OMATTR"&gt;<a name="d0t17600"/>
+    &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17602"/>
+      &lt;<span style="font-weight: bold; color: red">element</span> name="OMATTR"&gt;<a name="d0t17604"/>
+        &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17606"/>
+          &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17608"/>
+            &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMATP"/&gt;<a name="d0t17610"/>
+            &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17612"/>
+          &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17613"/>
+          &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17615"/>
+        &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17616"/>
+      &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17617"/>
+    &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17618"/>
+  &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d0t17619"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMATP"&gt;<a name="d0t17621"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17623"/>
+      &lt;<span style="font-weight: bold; color: red">sequence</span> maxOccurs="unbounded"&gt;<a name="d0t17625"/>
+        &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMS"/&gt;<a name="d0t17627"/>
+        &lt;<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17629"/>
+          &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17631"/>
+          &lt;<span style="font-weight: bold; color: red">element</span> ref="om:OMFOREIGN"/&gt;<a name="d0t17633"/>
+        &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17634"/>
+      &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17635"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17637"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17638"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17639"/>
+  &lt;!-- foreign constructor --&gt;<a name="d0t17641"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMFOREIGN"&gt;<a name="d0t17643"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span> mixed="true"&gt;<a name="d0t17645"/>
+      &lt;<span style="font-weight: bold; color: red">choice</span> minOccurs="0" maxOccurs="unbounded"&gt;<a name="d0t17647"/>
+        &lt;<span style="font-weight: bold; color: red">group</span> ref="om:omel"/&gt;<a name="d0t17649"/>
+        &lt;<span style="font-weight: bold; color: red">group</span> ref="om:notom"/&gt;<a name="d0t17651"/>
+      &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17652"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:compound.attributes"/&gt;<a name="d0t17654"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="encoding" type="xs:string"/&gt;<a name="d0t17656"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17657"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17658"/>
+  &lt;!--
+    Any elements not in the om namespace
+    (valid om is allowed as a descendant)
+  --&gt;<a name="d0t17660"/>
+  &lt;<span style="font-weight: bold; color: red">group</span> name="notom"&gt;<a name="d0t17662"/>
+    &lt;<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17664"/>
+      &lt;<span style="font-weight: bold; color: red">choice</span> minOccurs="0"&gt;<a name="d0t17666"/>
+        &lt;<span style="font-weight: bold; color: red">any</span> namespace="##other" processContents="skip"/&gt;<a name="d0t17668"/>
+        &lt;<span style="font-weight: bold; color: red">any</span> namespace="##local" processContents="skip"/&gt;<a name="d0t17670"/>
+      &lt;/<span style="font-weight: bold; color: red">choice</span>&gt;<a name="d0t17671"/>
+    &lt;/<span style="font-weight: bold; color: red">sequence</span>&gt;<a name="d0t17672"/>
+  &lt;/<span style="font-weight: bold; color: red">group</span>&gt;<a name="d0t17673"/>
+  &lt;!-- reference constructor --&gt;<a name="d0t17675"/>
+  &lt;<span style="font-weight: bold; color: red">element</span> name="OMR"&gt;<a name="d0t17677"/>
+    &lt;<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17679"/>
+      &lt;<span style="font-weight: bold; color: red">attributeGroup</span> ref="om:common.attributes"/&gt;<a name="d0t17681"/>
+      &lt;<span style="font-weight: bold; color: red">attribute</span> name="href" use="required" type="xs:anyURI"/&gt;<a name="d0t17683"/>
+    &lt;/<span style="font-weight: bold; color: red">complexType</span>&gt;<a name="d0t17684"/>
+  &lt;/<span style="font-weight: bold; color: red">element</span>&gt;<a name="d0t17685"/>
+&lt;/<span style="font-weight: bold; color: red">schema</span>&gt;
+
+  </pre></div>
+</div>
+  <div class="minitoc"><a href="omstd20html-0.xml">OpenMath 2</a> <a href="omstd20html-0.xml#toc">Table of Contents</a><br/><br/><a href="omstd20html-c.xml">Previous: C Restricting the <i>OpenMath</i> Schema (Non-Normative)</a><br/><a href="#app_xsd">This: D <i>OpenMath</i> Schema in XSD Syntax (Non-Normative)</a><br/><a href="omstd20html-e.xml">Next: E <i>OpenMath</i> DTD (Non-Normative)</a><br/></div>
+</body>
+</html>

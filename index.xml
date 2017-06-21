@@ -1,0 +1,39 @@
+<page>
+
+<page-title>The OpenMath Standard 2.0</page-title>
+
+
+<p>The document is available in both XHTML and PDF formats.
+To view the XHTML versions you need a browser with reasonable CSS support and
+support for presentation MathML: both
+Mozilla and Internet Explorer 6 display it correctly.</p>
+
+<p>A ZIP archive of the files in this distribution including the DocBook sources and all necessary stylesheets <a href="om20.zip">is also available</a>.</p>
+
+<h3>OpenMath 2.0  Standard Document</h3>
+<table style="text-align:left">
+
+<tr style="background-color:#FFFFAA;"><th>XHTML (normative version)</th><td><link uri="omstd20html-0.xml">omstd20html-0.xml</link></td></tr>
+
+<tr><th>XHTML (single file)</th><td><link uri="omstd20html.xml">omstd20html.xml</link></td></tr>
+<tr><th>PDF</th><td><link uri="omstd20.pdf">omstd20.pdf</link></td></tr>
+</table>
+
+<h3>OpenMath 2.0 Standard Document, with diff-marking showing changes from OpenMath Version 1.1</h3>
+<table style="text-align:left">
+<tr><th>XHTML (single file)</th><td><link uri="omstd20html-diff.xml">omstd20html-diff.xml</link></td></tr>
+<tr><th>PDF</th><td><link uri="omstd20-diff.pdf">omstd20-diff.pdf</link></td></tr>
+</table>
+
+<h3>Schema</h3>
+<table style="text-align:left">
+<tr>
+<th>&#160;</th><th>OpenMath</th><th>CD</th><th>CD Signatures</th><th>CD Groups</th>
+</tr>
+<tr style="background-color:#FFFFAA;"><th>RNG (normative version)</th><td><link uri="openmath2.rng">openmath2.rng</link></td><td><link uri="omcd2.rng">omcd2.rng</link></td><td><link uri="omcdsig2.rng">omcdsig2.rng</link></td><td><link uri="omcdgroup2.rng">omcdgroup2.rng</link></td></tr>
+<tr><th>RNC (source)</th><td><link uri="openmath2.rnc">openmath2.rnc</link></td><td><link uri="omcd2.rnc">omcd2.rnc</link></td><td><link uri="omcdsig2.rnc">omcdsig2.rnc</link></td><td><link uri="omcdgroup2.rnc">omcdgroup2.rnc</link></td></tr>
+<tr><th>XSD (derived)</th><td><link uri="openmath2.xsd">openmath2.xsd</link></td><td><link uri="omcd2.xsd">omcd2.xsd</link></td><td><link uri="omcdsig2.xsd">omcdsig2.xsd</link></td><td><link uri="omcdgroup2.xsd">omcdgroup2.xsd</link></td></tr>
+<tr><th>DTD (derived)</th><td><link uri="openmath2.dtd">openmath2.dtd</link></td><td><link uri="omcd2.dtd">omcd2.dtd</link></td><td><link uri="omcdsig2.dtd">omcdsig2.dtd</link></td><td><link uri="omcdgroup2.dtd">omcdgroup2.dtd</link></td></tr>
+</table>
+
+</page>
