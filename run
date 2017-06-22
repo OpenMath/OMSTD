@@ -1,4 +1,5 @@
 #!/usr/bin/bash
+ 
 
 # http://saxon.sourceforge.net/
 export XSLT="java -jar saxon9he.jar -versionmsg:off "
@@ -174,3 +175,12 @@ fi
 echo zip
 rm tmp.*
 zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
+
+if [ -d "../OpenMath.github.io/standard/om20-editors-draft" ]
+   then
+       echo copying html to ../OpenMath.github.io/standard/om20-editors-draft
+       cp omstd20.html omstd20-diff.html ../OpenMath.github.io/standard/om20-editors-draft
+else
+    echo skipping copying to website
+fi
+
