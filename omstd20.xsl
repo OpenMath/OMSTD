@@ -186,7 +186,7 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
 <h3>Change-marked edition notes</h3>
 <p>
 This edition contains colour coded change markings
-relative to the OpenMath 1.0 document...</p>
+relative to the OpenMath 2.0 document...</p>
 <ul>
 <li class="new">New text is marked with css class "new" (green).</li>
 <li class="del">Deleted text is marked with css class "del" (red).</li>
