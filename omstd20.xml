@@ -255,14 +255,13 @@ aware) so include subset of the DTD inline below.
 <releaseinfo>2.0r1</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
-
 <editor><firstname>S.</firstname><surname>Buswell</surname></editor>
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
 <editor><firstname>D.</firstname><othername>P.</othername><surname>Carlisle</surname></editor>
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
 <editor><firstname>M.</firstname><surname role="finaledit">Ga&#235;tano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
-<date>March 2017</date>
+<date>June 2017</date>
 
 <copyright>
 <year>2000&#8211;2017</year>
@@ -274,7 +273,8 @@ aware) so include subset of the DTD inline below.
 <para>This document describes version 2 revision 1 of
 &OM;: a standard for
 the representation and communication of mathematical objects.
-<phrase role="finaledit">This revision clarifies the first &OM; 2.0 <citation>OM_2.0r0</citation>.</phrase>
+<phrase role="finaledit">This revision clarifies the first &OM; 
+      2.0 <citation>OM_2.0r0</citation>.</phrase>
  &OM;
 allows the <emphasis>meaning</emphasis> of an object to be encoded
 rather than just a visual representation.  It is designed to allow the
@@ -294,7 +294,8 @@ available material of this nature please consult the &OM; web-site at
 <para revisionflag="changed">This document includes an overview of the
 &OM; architecture, an abstract description of &OM; objects and two
 mechanisms for producing concrete encodings of such objects.  The first,
-in &exml; (either innate or Strict Content MathML), is designed primarily for use on the web, in documents, and
+in &exml; (either innate or Strict Content MathML), is designed primarily 
+for use on the web, in documents, and
 for applications which want to mix &OM; as a content representation with
 MathML as a presentation format.   The second, a binary format, is
 designed for applications which wish to exchange very large objects, or
@@ -358,7 +359,8 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para revisionflag="changed">The standard endorses two encodings in &exml; (an innate one described here, and one in Strict Content MathML) and a  binary
+<para revisionflag="changed">The standard endorses two encodings in &exml; 
+(an innate one described here, and one in Strict Content MathML) and a  binary
 format.
 <phrase>At the time of writing, these are the encodings
 supported by most existing &OM; tools and applications,</phrase>
@@ -561,7 +563,8 @@ objects as described below.)</phrase></para>
     <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math>
     are &OM; objects, then
   <math display="block">
-  <mi mathvariant="bold">application</mi><mo>(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
+  <mi mathvariant="bold">application</mi><mo>(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo> 
+  <mi>&#8230;</mi><mo>,</mo> <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
   is an &OM; <emphasis>application object</emphasis>.</para>
     
@@ -572,7 +575,9 @@ objects as described below.)</phrase></para>
 <phrase>
 <math><mi>A</mi></math> is an &OM; object, and
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; derived objects, then
+  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> 
+  <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; 
+  objects or &OM; derived objects, then
 </phrase>
 
   <math display="block"><mi mathvariant="bold">attribution</mi>
@@ -612,7 +617,9 @@ objects as described below.)</phrase></para>
   <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed
   variables, then
   <math display="block">
-  <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
+  <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> 
+  <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> 
+  <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
 is an &OM; <emphasis>binding object</emphasis>.</para>
 
@@ -626,7 +633,8 @@ is an &OM; <emphasis>binding object</emphasis>.</para>
 <phrase> or &OM; derived objects</phrase>, then <math
 display="block"><mi mathvariant="bold">error</mi>
 <mo>(</mo><mi>S</mi><mo>,</mo>
-<msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
+<msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo>
+<msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
   is an &OM; <emphasis>error object</emphasis>.</para>
 </listitem>
@@ -1141,7 +1149,8 @@ is:
   <para revisionflag="changed"><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
 </blockquote>
 In particular, this now allows us to refer uniquely to an &OM; symbol from a
-MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</citation> section 4.2.3 for MathML-3):
+MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</citation> 
+section 4.2.3 for MathML-3):
 <literallayout>
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
                 definitionURL="http://www.openmath.org/cd/transc1#sin"&gt;
@@ -1251,20 +1260,18 @@ respectively.</para>
 &omrnc;
 </literallayout>
 
-<para><emphasis role="bold">Note:</emphasis> This schema 
-specifies names as being of the <systemitem>xsd:NCName</systemitem>
-type. At the time of writing, W3C Schema types are defined in terms of
-XML 1 <citation>xml_98</citation>.  This limits the characters allowed
-in a name to a subset of the characters available in Unicode 2.0, which
-is far more restrictive than the definition for an
-&OM; name given in <xref linkend="sec_names"/>.
-It is expected that W3C Schema types will be augmented to match the
-new XML 1.1 recommendation <citation>xml_04</citation>, but for portability
-reasons applications
-should avoid  using the new XML 1.1 name characters unless they are
-absolutely required.
-The XML 1.1 specification has a useful appendix giving
-advice on good strategies to use when naming identifiers.</para>
+<para revisionflag="changed"><emphasis role="bold">Note:</emphasis> 
+In the original edition of OpenMath 2.0 as published, names are specified
+as being of the <systemitem>xsd:NCName</systemitem> type. 
+When the original edition of OpenMath 2.0 was published, 
+W3C Schema types were defined in terms of XML 1 <citation>xml_98</citation>. 
+This limited the characters allowed in a name to a
+subset of the characters available in Unicode 2.0, which was far more 
+restrictive than the definition for an &OM; name given in <xref linkend="sec_names"/>. 
+The situation has changed with the appearance of XML 1.0 5th edition, 
+and more specifically erratum NE17 in <citation>erratum_NE17</citation>, 
+and there is no known contradiction remaining.
+</para>
 
 </section>
 
@@ -1272,8 +1279,8 @@ advice on good strategies to use when naming identifiers.</para>
 <title><phrase>Informal</phrase> description of
 the <phrase>&exml; Encoding</phrase></title>
 
-<para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  This 
-element can contain the elements (and integers) described above.
+<para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  
+This element can contain the elements (and integers) described above.
 <phrase> It can take an optional
 <systemitem>version</systemitem> (&exml;) attribute which indicates to
 which version of the &OM; standard it conforms.  In previous versions of
@@ -1381,7 +1388,8 @@ from any ancestor element.</para>
  64 bits of the <acronym>ieee</acronym> Double.
  Thus the number represents mantissa, exponent, and sign from lowest
   to highest bits using a  least significant byte ordering.
- This consists of a string of 16 digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>.
+ This consists of a string of 16 digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, 
+ <systemitem>A</systemitem>-<systemitem>F</systemitem>.
   </para>
   <para>For example, both <systemitem>&lt;OMF
     dec="1.0e-10"/&gt;</systemitem> and 
@@ -1406,20 +1414,25 @@ hexadecimal representations of NaNs.
 
 </listitem>
 </varlistentry>
-<varlistentry><term>Character strings</term><listitem><para>are encoded using the <systemitem>OMSTR</systemitem> element.
+<varlistentry><term>Character strings</term><listitem><para>are encoded using the 
+<systemitem>OMSTR</systemitem> element.
   Its content is  a Unicode text. Note that as always in &exml; the
-  characters <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem>  need to be represented by the
+  characters <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem> 
+  need to be represented by the
   entity references <systemitem>&amp;lt;</systemitem> and
 <systemitem>&amp;amp;</systemitem> respectively.</para>
   
 </listitem>
 </varlistentry>
-<varlistentry><term>Bytearrays</term><listitem><para>are encoded using the <systemitem>OMB</systemitem> element. Its content
+<varlistentry><term>Bytearrays</term><listitem><para>are encoded using the 
+<systemitem>OMB</systemitem> element. Its content
   is a sequence of characters that is a base64 encoding of the data.
   The base64 encoding is defined in <acronym>rfc</acronym>
   <phrase>2045 <citation>rfc2045</citation></phrase>.
   Basically, it represents an arbitrary sequence of octets using 64
-  <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
+  <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, 
+  <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> 
+  through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
   value). Three octets are represented as four digits (the <systemitem>=</systemitem>
   character is used for padding at the end of the data). All line
   breaks and carriage return, space, form feed and horizontal
@@ -1552,12 +1565,18 @@ attribute see <xref linkend="sec_compl_omforeign"/>.
   symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects
 <phrase>or &OM; derived objects</phrase>
  <math><msub><mi>e</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
+  <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as 
+  <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> 
+  <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> 
+  <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> 
+  where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of 
+  <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
   of <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
 <para>If an <systemitem>aritherror</systemitem> Content Dictionary contained a
   <systemitem>DivisionByZero</systemitem> symbol, then the object
-  <math><mi mathvariant="bold">error</mi><mo>(</mo><mi>DivisionByZero</mi><mo>,</mo> <mi mathvariant="bold">application</mi>
+  <math><mi mathvariant="bold">error</mi><mo>(</mo><mi>DivisionByZero</mi><mo>,</mo> 
+  <mi mathvariant="bold">application</mi>
   <mo>(</mo><mi>divide</mi><mo>,</mo> 
   <mi>x</mi><mo>,</mo> <mn>0</mn><mo>)</mo><mo>)</mo></math> would be encoded as follows:
 
@@ -1598,8 +1617,8 @@ For example:
       &lt;OMV name="v"&gt; &lt;/OMA&gt;
   </OMSTR> 
  </OME>]]></literallayout>
-Note that the <quote>&lt;</quote> and <quote>&gt;</quote> characters have been escaped as is usual in
-an &exml; document.
+Note that the <quote>&lt;</quote> and <quote>&gt;</quote> characters have been 
+escaped as is usual in an &exml; document.
 </para>
 
 </listitem>
@@ -3061,7 +3080,8 @@ The identifier is stored in the first <phrase>five
 
 <varlistentry>
   <term>Bytearrays</term>
-  <listitem><para revisionflag="changed">are encoded using the bytearray tags (<phrase>token identifier</phrase> 4) with the
+  <listitem><para revisionflag="changed">are encoded using the bytearray tags 
+  (<phrase>token identifier</phrase> 4) with the
       long flag set if the number of elements is
       greater than or equal to 256. Then, there is the number of elements,
       as a byte (if the long flag was not set) or a four byte integer
@@ -3435,8 +3455,8 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <para>The binary encoding with references uses the additional reference tags [30]
       for (short) internal references, [30+128] for long internal references, [31] for
       (short) external references, [31+128] for long external references. Internal
-      references are used to share sub-objects in the encoded object (see <xref
-										linkend="fig_bin-enc2"/> for an example) by referencing their position; external
+      references are used to share sub-objects in the encoded object 
+      (see <xref linkend="fig_bin-enc2"/> for an example) by referencing their position; external
       references allow to reference &OM; objects in other documents by a URI.</para>
     
     <para>Identifiers [30+64] and [30+64+128] are not used, since they would encode
@@ -4514,8 +4534,8 @@ For example (again using the &exml; encoding):
 </OMATTR>]]></literallayout>
 </para>
 
-<para revisionflag="changed"> An exception to the above guidelines occurs when a MathML object
-is converted to &OM;.  MathML also has an
+<para revisionflag="changed"> An exception to the above guidelines occurs when a 
+MathML object is converted to &OM;.  MathML also has an
 <systemitem>encoding</systemitem> attribute which can appear in various
 places and whose format is a string.  Only two values are predefined,
 <systemitem>MathML-Content</systemitem> and
@@ -4816,8 +4836,8 @@ or, using the Relax NG compact syntax:
 </para>
 
 <para> To build a schema that allows only symbols from arith1 we just
-  need to include the &OM; schema described in <xref
-                                                     linkend="ssec_xml"/>, override the attribute declarations for
+  need to include the &OM; schema described in <xref linkend="ssec_xml"/>, 
+  override the attribute declarations for
   OMS, and then include the schema for arith1.  For example:
   <literallayout>
     <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -5814,7 +5834,8 @@ Types</title>
   
   <biblioentry id="iso9660" role="Misc">
     <author><othername>Technical committee / subcommittee: JTC 1</othername></author>
-    <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</title>
+    <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of 
+       CDROM for Information Interchange</title>
     <bibliomisc>ISO 9660</bibliomisc>
     <pubdate>1988</pubdate>
     <bibliomisc>http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505</bibliomisc>
@@ -5840,6 +5861,14 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
+  <biblioentry id="erratum_NE17" role="Misc">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Namespaces in XML 1.0 (Second Edition) Errata</title>
+    <pubdate role="month">November</pubdate>
+    <pubdate>2008</pubdate>
+    <bibliomisc>https://www.w3.org/XML/2006/xml-names-errata</bibliomisc>
+  </biblioentry>
+
   <biblioentry id="xml_04" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Markup Language (XML) 1.1.</title>
@@ -6259,8 +6288,6 @@ Types</title>
     <pubdate role="month">June</pubdate>
     <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop</bibliomisc>
   </biblioentry>
-  
-  
   
   <biblioentry id="Cohen_Kohlhase_99om" role="Misc">
     <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
