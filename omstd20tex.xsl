@@ -98,6 +98,8 @@ relative to the OpenMath 1.0 document\ldots
 \item New text is marked in green.
 \color£redﬂ
 \item Deleted text is marked in red.
+\color£blueﬂ
+\item Changed paragraphs of text (especially for r1) are marked in blue.
 \end£itemizeﬂ
 
 \subsubsection*£Sections with modified textﬂ
