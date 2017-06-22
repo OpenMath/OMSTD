@@ -2,6 +2,8 @@
 
 # http://surfnet.dl.sourceforge.net/project/saxon/Saxon-HE/9.5/SaxonHE9-5-1-1J.zip
 export XSLT="java -jar saxon9he.jar -versionmsg:off "
+#export XSLT="java -jar /Applications/SaxonHE9-7-0-7J/saxon9he.jar -versionmsg:off "
+
 
 # https://code.google.com/p/jing-trang/downloads/detail?name=trang-20091111.zip&can=2&q=
 export TRANG="java -jar trang.jar "
