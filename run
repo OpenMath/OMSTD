@@ -113,14 +113,14 @@ $TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
 # done
 
 
-echo validate
-rxp -sxV omstd20.xml
-
 
 echo html
-$XSLT  -o:omstd20html.xml omstd20.xml omstd20.xsl
-echo chunked html
-$XSLT   omstd20.xml omstd20.xsl chunk="true"
+$XSLT -dtd:on  -o:omstd20html.xml omstd20.xml omstd20.xsl
+
+# currently doesn't work and probaly not required
+# echo chunked html
+# $XSLT   omstd20.xml omstd20.xsl chunk="true"
+
 echo html-diff
 $XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
 
