@@ -11,7 +11,6 @@ To build it, just run `source ./run` on top-level. If you have `trang.jar`, `rxp
 `saxon9he.jar` installed, this should build the standard for you.
 
 
-rxp is inessential, if you do not have it just comment that line out of the run build script.
 
 saxon9he is available from [sourcefourge](http://saxon.sourceforge.net/)
 
