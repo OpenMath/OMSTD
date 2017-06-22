@@ -1,11 +1,11 @@
 #!/usr/bin/bash
 
-# http://surfnet.dl.sourceforge.net/project/saxon/Saxon-HE/9.5/SaxonHE9-5-1-1J.zip
+# http://saxon.sourceforge.net/
 export XSLT="java -jar saxon9he.jar -versionmsg:off "
-#export XSLT="java -jar /Applications/SaxonHE9-7-0-7J/saxon9he.jar -versionmsg:off "
 
 
-# https://code.google.com/p/jing-trang/downloads/detail?name=trang-20091111.zip&can=2&q=
+
+# https://code.google.com/archive/p/jing-trang/downloads
 export TRANG="java -jar trang.jar "
 
 
@@ -114,18 +114,26 @@ $TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
 
 
 
-echo html
-$XSLT -dtd:on  -o:omstd20html.xml omstd20.xml omstd20.xsl
+echo single page html5
+$XSLT  -dtd:on  omstd20.xml omstd20.xsl html5=yes prefix=omstd20 
 
-# currently doesn't work and probaly not required
+echo html diff version
+$XSLT omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff
+
+
+
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html
+# $XSLT -dtd:on  -o:omstd20html.xml omstd20.xml omstd20.xsl
+
+# currently doesn't work and probably not required
 # echo chunked html
 # $XSLT   omstd20.xml omstd20.xsl chunk="true"
 
-echo html-diff
-$XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html-diff
+# $XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
 
-echo single page html5
-$XSLT omstd20.xml omstd20.xsl html5=yes prefix=omstd20 
 
 echo tex
 $XSLT  -o:omstd20.tex omstd20.xml omstd20tex.xsl 
@@ -165,4 +173,4 @@ fi
 
 echo zip
 rm tmp.*
-zip -q om20.zip o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
