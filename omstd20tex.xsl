@@ -9,6 +9,8 @@
 <xsl:param name="showdiffs" select="false()"/>
 <xsl:output method="text" encoding="iso-8859-1"/>
 
+<xsl:strip-space elements="math msub msup mfrac mrow mfenced"/>
+<xsl:preserve-space elements="mtext"/>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
@@ -453,12 +455,12 @@ changelog entry here
 
 
 <xsl:template match="tbody|thead">
-<xsl:apply-templates/>
+<xsl:apply-templates select="*"/>
 </xsl:template>
 
 <xsl:template match="row">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<xsl:apply-templates/>
+<xsl:apply-templates select="*"/>
 <xsl:if test="parent::thead or position() &lt; last()">\\
 </xsl:if>
 </xsl:if>
@@ -607,10 +609,10 @@ changelog entry here
 <!-- MathML -->
 <xsl:template match="math">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')"
->\protect\(<xsl:apply-templates/>\protect\)</xsl:if></xsl:template>
+>\protect\(<xsl:apply-templates select="*"/>\protect\)</xsl:if></xsl:template>
 <xsl:template match="math[@display='block']">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')"
->\protect\[<xsl:apply-templates/>\protect\]</xsl:if></xsl:template>
+>\protect\[<xsl:apply-templates select="*"/>\protect\]</xsl:if></xsl:template>
 
 <xsl:template match="id('nestedap')" priority="3">
 \begin£centerﬂ\(\displaystyle
@@ -621,7 +623,7 @@ changelog entry here
 
 <xsl:template match="mfenced">
 <xsl:text>(</xsl:text>
-<xsl:apply-templates/>
+<xsl:apply-templates select="*"/>
 <xsl:text>)</xsl:text>
 </xsl:template>
 
@@ -683,7 +685,7 @@ changelog entry here
 
 <xsl:template match="mrow">
 <xsl:text>£</xsl:text>
-<xsl:apply-templates />
+<xsl:apply-templates select="*"/>
 <xsl:text>ﬂ</xsl:text>
 </xsl:template>
 
