@@ -11,6 +11,8 @@
 <xsl:param name="showdiffs" select="false()"/>
 <xsl:param name="chunk" select="false()"/>
 <xsl:param name="html5" select="'no'"/>
+<xsl:param name="draft" select="no"/>
+<xsl:param name="date" select="''"/>
 
 <xsl:output method="xml" encoding="iso-8859-1"/>
 
@@ -172,6 +174,15 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
 <div class="mdata">
 <xsl:value-of select="bookinfo/date"/>
 </div>
+
+<xsl:if test="$draft='yes'">
+ <div class="mdata" style="font-size:110%;background-color:#EEE;padding:.5em;">
+  <b>Editors' Draft:</b> Built <xsl:value-of select="$date"/><br/>
+  Source Repository: <a href="https://github.com/OpenMath/OMSTD/">https://github.com/OpenMath/OMSTD</a><br/>
+  This Version: <a href="https://openmath.github.io/standard/om20-editors-draft/">https://openmath.github.io/standard/om20-editors-draft</a><br/>
+  Normative version: <a href="https://openmath.github.io/standard/om20-2004-06-30/">https://openmath.github.io/standard/om20-2004-06-30</a>
+ </div>
+</xsl:if>
 
 <div class="mdata">&#169; <xsl:value-of select="bookinfo/copyright/year"/> <xsl:value-of select="bookinfo/copyright/holder"/></div>
 </div>
