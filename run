@@ -125,7 +125,7 @@ $TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
 
 
 echo single page html5
-$XSLT  -dtd:on  omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
+$XSLT  -strip:none  -dtd:on  omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
 
 echo html diff version
 $XSLT omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE
