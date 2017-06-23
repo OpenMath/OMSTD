@@ -7,11 +7,8 @@ repository was initialised as copy of the original version in the
 
 It has been updated with a draft version which had been prepared as dropbox om-2017-03-17.
 
-To build it, just run `source ./run` on top-level. If you have `trang.jar`, `rxp`, and
+To build it, just run `source ./run` on top-level. If you have `trang.jar` and
 `saxon9he.jar` installed, this should build the standard for you.
 
-
-
-saxon9he is available from [sourcefourge](http://saxon.sourceforge.net/)
-
-trang is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
+* `saxon9he` is available from [sourcefourge](http://saxon.sourceforge.net/)
+ * `trang` is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
