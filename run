@@ -17,7 +17,8 @@ else
     DRAFT=yes
 fi
 
-DATE =`date --iso`
+DATE=`date --iso`
+
 
 echo RNC/xml
 for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
