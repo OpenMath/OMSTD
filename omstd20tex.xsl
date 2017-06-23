@@ -55,6 +55,7 @@
 %hyperref
 }
 \definecolor{green}{rgb}{0,0.3,0}
+\AtBeginDocument{
 \let\cellsep&amp;
 \catcode`\&amp;=12
 \catcode`\_=12
@@ -63,6 +64,7 @@
 \catcode`\$=12
 \catcode`\£=1
 \catcode`\ß=2
+}
 
 \begin{document}
 \catcode`\%=12
