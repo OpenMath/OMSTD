@@ -648,9 +648,13 @@ changelog entry here
 </xsl:template>
 
 
-<xsl:template match="tbody|thead">
-<xsl:apply-templates/>
+<xsl:template match="tbody">
+<tbody><xsl:apply-templates/></tbody>
 </xsl:template>
+<xsl:template match="thead">
+<thead><xsl:apply-templates/></thead>
+</xsl:template>
+
 
 <xsl:template match="row">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
