@@ -252,9 +252,8 @@ aware) so include subset of the DTD inline below.
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0</releaseinfo>
+<releaseinfo>2.0r1</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
-
 
 <editor><firstname>S.</firstname><surname>Buswell</surname></editor>
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
@@ -262,27 +261,22 @@ aware) so include subset of the DTD inline below.
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
 <editor><firstname>M.</firstname><surname role="finaledit">Ga&#235;tano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
-<date>June 2004</date>
+<editor><firstname>J.</firstname><othername>H.</othername><surname>Davenport (revision 1)</surname></editor>
+<editor><firstname>P.</firstname><othername>D.F.</othername><surname>Ion (revision 1)</surname></editor>
+<date>June 2017</date>
 
 <copyright>
-<year>2000&#8211;2004</year>
+<year>2000&#8211;2017</year>
 <holder>The OpenMath Society</holder>
 </copyright>
 
 <abstract>
-<para revisionflag="deleted">This document proposes &OM; as a standard for the communication of
-  semantically rich mathematical objects. This draft of the &OM; 
-  standard comprises the following: a description of &OM; objects, the
-  grammar of &exml; and of the binary encoding of objects, a
-  description of Content Dictionaries and an &exml; document type
-  definition for validating Content Dictionaries. The non-normative
-  <xref linkend="cha_his"/> of this document briefly overviews the history
-  of &OM;.</para>
 
-<para revisionflag="added">This document describes version 2 of
+<para revisionflag="changed">This document describes version 2 revision 1 of
 &OM;: a standard for
 the representation and communication of mathematical objects.
-<phrase role="finaledit">This version clarifies and extends &OM; 1.1 <citation>OM_1.1</citation>.</phrase>
+<phrase role="finaledit">This revision clarifies the first &OM; 2.0 
+<citation>OM_2.0r0</citation>.</phrase>
  &OM;
 allows the <emphasis>meaning</emphasis> of an object to be encoded
 rather than just a visual representation.  It is designed to allow the
@@ -293,18 +287,20 @@ a meaningful and correct way.  It is designed to be machine-generatable
 and machine-readable, rather than written by hand.
 </para>
 
-<para revisionflag="added">The &OM; Standard is the official reference for
+<para revisionflag="changed">The &OM; Standard is the official reference for
 the &OM; language and has been approved by the &OM; Society.  It is not
 intended as an introductory document or a user's guide, for the latest
-available material of this nature please consult the &OM; web-site at
+available material of this nature, and the latest version of the standard, 
+please consult the &OM; web-site at
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
-<para revisionflag="added">This document includes an overview of the
+<para revisionflag="changed">This document includes an overview of the
 &OM; architecture, an abstract description of &OM; objects and two
 mechanisms for producing concrete encodings of such objects.  The first,
-in &exml;, is designed primarily for use on the web, in documents, and
+in &exml; (either innate or Strict Content MathML), is designed primarily 
+for use on the web, in documents, and
 for applications which want to mix &OM; as a content representation with
-MathML as a presentation format.  The second, a binary format, is
+MathML as a presentation format.   The second, a binary format, is
 designed for applications which wish to exchange very large objects, or
 a lot of data as efficiently as possible.  This document also includes a
 description of Content Dictionaries - the mechanism by which the meaning
@@ -320,101 +316,9 @@ accompanying Primer <citation>OM_primer</citation>.</phrase></para>
 <toc/>
 <lot><title>List of Figures</title></lot>
 
-<chapter id="cha_his" revisionflag="deleted">
-<title>&OM; Movement</title>
-
-<para>This chapter is a historical account of &OM; and should be regarded
-as non-normative.</para>
-
-<para>&OM; is a standard for representing mathematical objects,
-allowing them to be exchanged between computer programs, stored in
-databases, or published on the worldwide web.  While the original
-designers were mainly developers of computer algebra systems, it
-<phrase revisionflag="deleted">is now attracting</phrase>
-<phrase revisionflag="added">has since attracted</phrase>
-interest from other areas of scientific computation and
-from many publishers of electronic documents with a significant
-mathematical content.  There is a strong relationship to the MathML
-recommendation <citation>MathML_2003</citation> from the Worldwide Web
-Consortium, and a large overlap between the two developer communities.
-MathML deals principally with the <emphasis>presentation</emphasis> of
-mathematical objects, while &OM; is solely concerned with their
-semantic meaning or <emphasis>content</emphasis>.  While MathML does
-have some limited facilities for dealing with content, it also allows
-semantic information encoded in &OM; to be embedded inside a MathML
-structure.  Thus the two technologies may be seen as highly
-complementary.</para>
-
-<section id="sec_hist">
-<title>History</title>
-
-<para>&OM; was originally developed through a series of workshops held
-in Zurich (1993 and 1996), Oxford (1994), Amsterdam (1995), Copenhagen
-(1995), Bath (1996), Dublin (1996), Nice (1997), Yorktown Heights
-(1997), Berlin (1998), and Tallahassee (1998).  The participants in
-these workshops formed a global &OM; community which was coordinated
-by a Steering Committee and operated through electronic mailing groups
-and ad-hoc working parties.  This loose arrangement has been
-formalised through the establishment of an &OM; Society.  Up until the
-end of 1996 much of the work of the community was funded through a
-grant from the Human Capital and Mobility program of the European
-Union, 
-<phrase revisionflag="added"> and by</phrase>
-the contributions of several institutions and individuals.  A
-document outlining the objectives and basic design of &OM; was
-produced (later published as
-<citation>Abbott_Leeuwen_Strotmann_98</citation>).  By the end of 1996
-a simplified specification had been agreed upon and some prototype
-implementations had come about
-<citation>Dalmas_Gaetano_Watt_97</citation>.</para>
-
-<para>In 1996 a group of European participants in &OM; decided to bid
-for funding under the European Union's Fourth Framework Programme for
-strategic research in information technology.  This bid was successful
-and the project started in late 1997.  The principal aims of the
-project were to formalise &OM; as a standard and to develop it
-further through industrial applications; this process led to the
-OpenMath 1.0 and 1.1 standards which were endorsed at
-workshops in Eindhoven (June 1999) and Pisa (September 2002).</para>
-
-<para revisionflag="added">In November 1998 the &OM; Society was established to coordinate
-all &OM; activities. The society is based in Helsinki, Finland and is
-coordinated by the executive committee whose members are elected by the
-society. The official web page of the society is
-<ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
-
-<para revisionflag="added">In 2001 the European Union agreed to fund a Thematic Network
-under its Fifth Framework programme to coordinate further work on
-&OM; and MathML, and in particular to support a further series of workshops.  
-This document is one outcome of that project, and seeks to update &OM;
-in the light of recent developments in XML and of the &OM; community's
-collective experience working with the old standard.</para>
-</section>
-
-<section id="sec_omsoc">
-<title>&OM; Society</title>
-
-<para revisionflag="deleted">In November 1998 the &OM; Society has been established to coordinate
-all &OM; activities. The society is based in Helsinki, Finland and is
-steered by the executive committee whose members are elected by the
-society. The official web page of the society is
-<ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
-
-<para revisionflag="added">The &OM; Society continues to provide
-long-term coordination of &OM; activities.  Membership is open to
-anybody who is active in &OM;; for further details see the web-site
-at 
-<ulink url="http://www.openmath.org/society/index.html">
-http://www.openmath.org/society/index.html</ulink>.</para>
-
-</section>
-
-</chapter>
 
 <chapter id="cha_int">
 <title>Introduction to &OM;</title>
-
-
 
 
 <para>This chapter briefly introduces &OM; concepts and notions that are
@@ -432,11 +336,10 @@ referred to in the rest of this document.</para>
 <para>The architecture of &OM; is described in <xref
 linkend="fig_om"/> and summarizes the interactions among the different
 &OM; components.  There are three layers of representation of a
-mathematical object <citation revisionflag="deleted">OM_98</citation>. The first is
-a  private layer that
+mathematical object. The first is a  private layer that
 is the internal representation used by an application.  The second is
 an abstract layer that is the representation as an &OM; object.
-<phrase revisionflag="added">Note that these
+<phrase>Note that these
 two layers may, in some cases, be the same.</phrase>
 The third is a
 communication layer that translates the &OM; object representation into
@@ -459,22 +362,16 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para>The standard endorses two encodings in &exml; and binary
-formats.
-<phrase revisionflag="added">At the time of writing, these are the encodings
+<para revisionflag="changed">The standard endorses two encodings 
+in &exml; (an innate one described here, and one in Strict Content 
+MathML) and a  binary format.
+<phrase>At the time of writing, these are the encodings
 supported by most existing &OM; tools and applications,</phrase>
-<phrase revisionflag="deleted"> These are the encodings supported by 
-the official &OM; libraries</phrase>
 however they are not the only possible encodings of &OM;
-objects. Users who wish to define their own encoding
-<phrase revisionflag="deleted">using some other
-specific language (e.g. Lisp) may</phrase>
-<phrase revisionflag="added">, are free to</phrase>
+objects. Users who wish to define their own encoding<phrase>,
+are free to</phrase>
 do so provided that there is
-<phrase revisionflag="deleted">an
-effective translation from this encoding to an official one
-</phrase>
-<phrase revisionflag="added">a well-defined correspondence
+<phrase>a well-defined correspondence
 between the new encoding and the abstract model defined in <xref
 linkend="cha_obj"/>. </phrase>
 </para>
@@ -503,7 +400,7 @@ corresponding internal representation used by the application.</para>
 <title>Additional Files</title> 
 <para>Several
 additional files are related to Content Dictionaries.  Signature
-<phrase revisionflag="added">Dictionaries</phrase><phrase revisionflag="deleted">files</phrase>
+<phrase>Dictionaries</phrase>
 contain the signatures of symbols defined in some &OM; Content
 Dictionary and their format is endorsed by this standard.</para>
 
@@ -588,7 +485,8 @@ the following.</para>
 </listitem>
 <listitem><para><phrase>(iii)</phrase> Character string.</para>
 
- <para>A Unicode Character string. This also corresponds to <quote>characters</quote> in
+ <para>A Unicode Character string. This also corresponds to 
+ <quote>characters</quote> in
   &exml;.</para>
 
 </listitem>
@@ -598,12 +496,8 @@ the following.</para>
 
 </listitem>
 <listitem><para><phrase>(v)</phrase> Symbol.</para>
-<para revisionflag="deleted">A Symbol
-encodes two fields of information, a <emphasis>name</emphasis> and a
-<emphasis>Content Dictionary</emphasis>. Each is a sequence of
-characters matching a regular expression, as described below.</para>
 
-    <para revisionflag="added">A Symbol encodes three fields of
+    <para>A Symbol encodes three fields of
     information, a <emphasis>symbol name</emphasis>, a <emphasis>Content
     Dictionary name</emphasis>, and (optionally) a <emphasis>Content
     Dictionary base URI</emphasis>, The name of a symbol is a sequence
@@ -626,8 +520,7 @@ characters matching a regular expression, as described below.</para>
 <listitem><para><phrase>(vi)</phrase> Variable.</para>
 
 
-<para>A Variable <phrase revisionflag="deleted">consists of</phrase>
-<phrase revisionflag="added">must have</phrase> a
+<para>A Variable <phrase>must have</phrase> a
 <emphasis>name</emphasis> which is a sequence of characters matching a
 regular expression, as described in <xref linkend="sec_names"/>.
 </para>
@@ -636,7 +529,7 @@ regular expression, as described in <xref linkend="sec_names"/>.
 </itemizedlist>
 </section>
 
-<section id="sec_derived" revisionflag="added">
+<section id="sec_derived">
 <title>Derived &OM; Objects</title>
 
 <para>Derived &OM; objects are currently used as a way by which non-&OM;
@@ -655,12 +548,12 @@ should be interpreted.</para>
 </section>
 
 <section id="sec_compound">
-<title><phrase revisionflag="deleted">Compound</phrase>&OM; Objects</title>
+<title>&OM; Objects</title>
   
 <para>&OM; objects are built recursively as follows.
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.
-(<phrase revisionflag="added">Note that derived &OM; objects are
+(<phrase>Note that derived &OM; objects are
 <emphasis>not</emphasis> &OM; objects, but are used to construct &OM;
 objects as described below.)</phrase></para>
 </listitem>
@@ -682,12 +575,7 @@ objects as described below.)</phrase></para>
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
   are &OM; symbols, and
-<phrase revisionflag="deleted">
-<math><mi>A</mi></math>,
-  <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math>, <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects, then
-</phrase>
-<phrase revisionflag="added">
+<phrase>
 <math><mi>A</mi></math> is an &OM; object, and
   <math><msub><mi>A</mi><mn>1</mn></msub></math>,
   <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; derived objects, then
@@ -703,9 +591,9 @@ objects as described below.)</phrase></para>
   </para> 
 
   <para>
-  <phrase revisionflag="deleted">and</phrase> <math><mi>A</mi></math>
+  <math><mi>A</mi></math>
   is the object <emphasis>stripped of attributions</emphasis>. <phrase
-  revisionflag="added">
+ >
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
   are referred to as <emphasis>keys</emphasis> and
@@ -713,14 +601,7 @@ objects as described below.)</phrase></para>
   <phrase>&#8230;</phrase>,
   <math><msub><mi>A</mi><mi>n</mi></msub></math> as their associated
   <emphasis>values</emphasis></phrase>.
-  <phrase revisionflag="deleted">The operation of recursively
-  applying stripping to the stripped object is called
-  <emphasis>flattening of the attribution</emphasis>.
-
-                  When the stripped object after flattening is a
-  variable, the attributed object is called <emphasis>attributed
-  variable</emphasis>.</phrase>
-  <phrase revisionflag="added">If, after  recursively
+  <phrase >If, after  recursively
   applying stripping to remove attributions, the resulting
   un-attributed object is a 
   variable, the original attributed object is called an <emphasis>attributed
@@ -747,8 +628,8 @@ is an &OM; <emphasis>binding object</emphasis>.</para>
 <phrase>&#8230;</phrase>,
 <math><msub><mi>A</mi><mi>n</mi></msub></math>
 <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
-<mn>0</mn><mo>)</mo></math> are &OM; objects <phrase revisionflag="added">or
-&OM; derived objects</phrase>, then <math
+<mn>0</mn><mo>)</mo></math> are &OM; objects 
+<phrase> or &OM; derived objects</phrase>, then <math
 display="block"><mi mathvariant="bold">error</mi>
 <mo>(</mo><mi>S</mi><mo>,</mo>
 <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
@@ -756,12 +637,12 @@ display="block"><mi mathvariant="bold">error</mi>
   is an &OM; <emphasis>error object</emphasis>.</para>
 </listitem>
 </itemizedlist>
- <phrase revisionflag="added">&OM; objects that are contstructed via rules (ii)
+ <phrase>&OM; objects that are contstructed via rules (ii)
    to (v) are jointly called <phrase role="sl">compound &OM; objects</phrase></phrase>
 </para>
 </section>
 
-<section id="sec_roles" revisionflag="added">
+<section id="sec_roles">
 <title>&OM; Symbol Roles</title>
 
 <para>
@@ -872,11 +753,7 @@ they could also contain intermediate results of calculations, or
   <para>
  are uniquely defined by the Content Dictionary in which they occur
   and by a name.
-<phrase revisionflag="deleted">In definition in <xref linkend="sec_omabs"/> we have
-  left this information implicit. However, it should be kept in mind
-  that all symbols appearing in an &OM; object are defined in a
-  Content Dictionary.
-</phrase>The form of these definitions is explained in
+  The form of these definitions is explained in
   <xref linkend="cha_cd"/>.  Each symbol has no more than one
   definition in a Content Dictionary. Many Content Dictionaries may
   define differently a symbol with the same name (e.g. the symbol
@@ -885,17 +762,6 @@ they could also contain intermediate results of calculations, or
   <systemitem>set1</systemitem> but another Content Dictionary,
   <systemitem>multiset1</systemitem> might define a symbol
   <systemitem>union</systemitem> as the union of multi-sets).
-<phrase revisionflag="deleted">The name
-  of a symbol can only contain alphanumeric characters and
-  underscores.  More precisely, a symbol name matches the following
-  regular expression:</phrase>
-<blockquote revisionflag="deleted"><para>
-  [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem>]
-  [<systemitem>A</systemitem>-<systemitem>Z</systemitem><systemitem>a</systemitem>-<systemitem>z</systemitem><systemitem>0</systemitem>-<systemitem>9</systemitem><systemitem>_</systemitem>]*
-  </para></blockquote>
-  <phrase revisionflag="deleted">Notice that these symbol names are case sensitive.  &OM;
-  <emphasis>recommends</emphasis> that symbol names should be no longer than
-  100 characters.</phrase>
 </para>
   
  
@@ -904,23 +770,19 @@ they could also contain intermediate results of calculations, or
 <varlistentry><term>Variables</term><listitem><para>are meant to
   denote parameters, variables or indeterminates (such as bound
   variables of function definitions, variables in summations and
-  integrals, independent variables of derivatives).  <phrase
-  revisionflag="deleted">Plain variable names are restricted to use a
-  subset of the printable ASCII characters.  Formally the names must
-  match the regular expression:</phrase> <blockquote   revisionflag="deleted"><para>
-  [A-Za-z0-9=+(),-./:?!#$%*;=@[]^_`{|}]+ </para></blockquote>
+  integrals, independent variables of derivatives).  
 </para>
 </listitem>
 </varlistentry>
 </variablelist> </para>
 
 
-<para revisionflag="added">Derived &OM; objects are constructed from
+<para>Derived &OM; objects are constructed from
 non-&OM; data.  They differ from bytearrays in that they can have any
 structure.  Currently there is only one way of making a derived &OM;
 object.</para>
 
-<variablelist revisionflag="added">
+<variablelist>
 <varlistentry><term>Foreign</term><listitem><para>is used to import a
 non-&OM; object into an &OM; attribution.  Examples of its use could
 be to annotate a formula with a visual or aural rendering, an
@@ -934,20 +796,19 @@ an object.
 
 
 <para>The four following constructs can be used to make compound
- &OM; objects <phrase revisionflag="added"> out of basic or derived &OM;
+ &OM; objects <phrase> out of basic or derived &OM;
 objects</phrase>.</para>
 <variablelist>
 <varlistentry><term>Application</term><listitem><para>constructs an
   &OM; object from a sequence of one or more &OM; objects. The first
-  <phrase revisionflag="deleted">argument</phrase><phrase
-  role="finaledit" revisionflag="added">child</phrase>
+  <phrase role="finaledit">child</phrase>
   of an application is referred to as its <quote>head</quote> while
   the remaining objects are called its <quote>arguments</quote>.  An &OM;
   application object can be used to convey the mathematical notion of
   application of a function to a set of arguments.  For instance,
   suppose that the &OM; symbol <math><mi>sin</mi></math> is defined in
-  a <phrase revisionflag="added">suitable</phrase> Content Dictionary,
-  <phrase revisionflag="deleted">for trigonometry</phrase> then <math><mi
+  a <phrase>suitable</phrase> Content Dictionary,
+  then <math><mi
   mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
   <mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
   corresponding to <math><mi>sin</mi> <mo>(</mo><mi>x</mi>
@@ -1018,14 +879,8 @@ width="600" depth="190"/>
   of <math><mi>v</mi></math> by <math><mi>z</mi></math>.  This
   operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
-  thus allowed to transform the object to, e.g.  <math revisionflag="deleted"
-  display="block"><mi mathvariant="bold">binding</mi>
-  <mo>(</mo><mi>lambda</mi><mo>,</mo> <mi>v</mi> <mo>,</mo> <mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>z</mi> <mo>,</mo><mi mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>z</mi>
-  <mo>,</mo><mi>z</mi><mo>)</mo><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
-  <math revisionflag="added" display="block"><mi
+  thus allowed to transform the object to, e.g. 
+  <math  display="block"><mi
   mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
   <mi>z</mi> <mo>,</mo> <mi
   mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
@@ -1060,16 +915,16 @@ width="600" depth="190"/>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
   object with a sequence of one or more pairs made up of an &OM;
-  symbol, the <quote>attribute</quote>, and an associated <phrase
-  revisionflag="deleted">&OM;</phrase> object, the <quote>value of the
+  symbol, the <quote>attribute</quote>, and an associated object, 
+  the <quote>value of the
   attribute</quote>.  The value of the attribute can be an <phrase
-  revisionflag="added">&OM;</phrase> attribution object itself. As an
+ >&OM;</phrase> attribution object itself. As an
   example of this, consider the &OM; objects representing groups,
   automorphism groups, and group dimensions. It is then possible to
   attribute an &OM; object representing a group by its automorphism
   group, itself attributed by its dimension.</para>
 
-<para revisionflag="added">
+<para>
 &OM; objects can be attributed with &OM; foreign objects, which are
 containers for non-&OM; structures.  For example a mathematical
 expression could be attributed with its spoken or visual rendering.
@@ -1116,7 +971,7 @@ expression could be attributed with its spoken or visual rendering.
   not mandate that an application preserves the attributes or their
   order.)</para>
 
-<para revisionflag="added">Attribution acts as either adornment
+<para>Attribution acts as either adornment
   annotation or as semantical annotation. When the key has role
   <emphasis>attribution</emphasis>, then replacement of the
   attributed object by the object itself is not harmful and preserves
@@ -1130,10 +985,7 @@ expression could be attributed with its spoken or visual rendering.
 
 
 <para>Objects can be decorated in a multitude of ways.
-<phrase revisionflag="deleted">In&#160;<citation>OMD132b</citation>, typing of &OM; objects is
-expressed by using an attribution.
-</phrase>
-<phrase revisionflag="added">An example of the use of an adornment attribution
+<phrase>An example of the use of an adornment attribution
 would be to indicate the colour in which an &OM; object should be
 displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
@@ -1155,19 +1007,6 @@ objects <phrase role="finaledit">whereas <math><mi>type</mi></math> is
 a symbol</phrase>.</para>
 
 
-<para revisionflag="deleted">Attribution can act as either annotation,
-  in the sense of adornment, or as modifier. In the former case,
-  replacement of the adorned object by the object itself is probably
-  not harmful (preserves the semantics). In the latter case however,
-  it may very well be.  Therefore, attribution in general should by
-  default be treated as a construct rather than as adornment. Only
-  when the CD definitions of the attributes make it clear that they
-  are adornments, can the attributed object be viewed as semantically
-  equivalent to the stripped object.</para>
-
-            
-  
-  
 </listitem>
 </varlistentry>
 <varlistentry><term>Error</term><listitem><para>is made up of an &OM;
@@ -1184,7 +1023,7 @@ a symbol</phrase>.</para>
 </variablelist> 
 </section>
 
-<section id="sec_names" revisionflag="added">
+<section id="sec_names">
 <title>Names</title>
 
 <para>The names of symbols, variables and content dictionaries must
@@ -1305,10 +1144,10 @@ So for example the URI for the symbol with cdbase
 <systemitem>transc1</systemitem> and name <systemitem>sin</systemitem>
 is:
 <blockquote>
-  <para><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
+  <para revisionflag="changed"><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
 </blockquote>
 In particular, this now allows us to refer uniquely to an &OM; symbol from a
-MathML document <citation>MathML_2003</citation>:
+MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</citation> section 4.2.3 for MathML-3):
 <literallayout>
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
                 definitionURL="http://www.openmath.org/cd/transc1#sin"&gt;
@@ -1331,7 +1170,7 @@ MathML document <citation>MathML_2003</citation>:
 <listitem> <para>&OM; compound objects are of four kinds:
   applications, bindings, errors, and attributions.</para>
 </listitem>
-<listitem revisionflag="added"> <para>&OM; objects may be attributed
+<listitem> <para>&OM; objects may be attributed
 with non-&OM; objects via the use of foreign &OM; objects.
   </para>
 </listitem>
@@ -1356,24 +1195,14 @@ that writes <math><mn>7</mn></math>.</para>
 <title>&OM; Encodings</title>
 
 
-<para>In this chapter, two encodings are defined that map between &OM;
-objects and byte streams.  These byte streams constitute a low level
+<para revisionflag="changed">In this chapter, two encodings are defined 
+that map between &OM; objects and byte streams.  These byte streams constitute a low level
 representation that can be easily exchanged between processes (via
 almost any communication method) or stored and retrieved from
-files.</para>
+files. In addition, OpenMath can be represented in Strict Content MathML, 
+as described in Section 4.1.3 of <citation>MathML_2014</citation>.</para>
 
-
-<para revisionflag="deleted">The first encoding uses ISO 646:1983
-characters&#160;<citation>iso646_83</citation> (also known as
-<acronym>ascii</acronym> characters) and is an &exml;
-application. Although the &exml; markup of the encoding uses only
-<acronym>ascii</acronym> characters, &OM; strings may use arbitrary
-Unicode/ISO 10646:1988 characters&#160;<citation>UNICODE</citation>.
-It can be used, for example, to send &OM; objects via e-mail, news,
-cut-and-paste, etc. The texts produced by this encoding can be part of
-&exml; documents.</para>
-
-<para revisionflag="added">The first encoding is a character-based
+<para revisionflag="changed">The first encoding is the innate character-based
 encoding in &exml; format.  In previous versions of the &OM; Standard
 this encoding was a restricted subset of the full legal &exml; syntax.
 In this version, however, we have removed all these restrictions so that
@@ -1387,9 +1216,10 @@ applications.</para>
 used when the compactness of the encoding is important (inter-process
 communications over a network is an example).</para>
 
-<para>Note that these two encodings are sufficiently different for
-auto-detection to be effective: an application reading the bytes can
-very easily determine which encoding is used.</para>
+<para revisionflag="changed">Note that these two encodings are sufficiently 
+different for auto-detection to be effective: an application reading the bytes can
+very easily determine which encoding is used. In the case of the MathML 
+encoding, the reading application should already be expecting MathML.</para>
 
 <section id="sec_xml">
 <title>The &exml; Encoding</title>
@@ -1406,14 +1236,10 @@ very easily determine which encoding is used.</para>
 </orderedlist> 
 </para>
 
-<section id="ssec_xml">
-<title>A <phrase
-revisionflag="deleted">Grammar</phrase><phrase>Schema</phrase> for the &exml; Encoding</title>
+<section id="ssec_xml" revisionflag="added">
+<title>A <phrase>Schema</phrase> for the &exml; Encoding</title>
 
-
-
-
-<para revisionflag="added">The &exml; encoding of an &OM; object is
+<para>The &exml; encoding of an &OM; object is
 defined by the Relax NG schema <citation>RELAX</citation> given below.
 Relax NG has a number of advantages over the older XSD Schema format
 <citation>XSD</citation>, in particular it allows for tighter control
@@ -1424,519 +1250,37 @@ linkend="app_openmath.rng"/>, normative, it is generated from the
 a limited set of &OM; symbols as described in <xref
 linkend="app_relaxrestricted"/>.  </para>
 
-<para revisionflag="added"> Standard tools exist for generating a DTD
+<para> Standard tools exist for generating a DTD
 or an XSD schema from a Relax NG Schema.  Examples of such documents
 are given in <xref linkend="app_dtd"/> and <xref linkend="app_xsd"/>,
 respectively.</para>
 
-<literallayout revisionflag="added">
+<literallayout>
 &omrnc;
 </literallayout>
-<para><phrase revisionflag="deleted">the &exml; encoding of an
-&OM; object is defined by the dtd given in Figure 4.1 below with the
-following additional rules not implied by the &exml;
-<acronym>dtd</acronym>.</phrase></para>
 
-<itemizedlist revisionflag="deleted">
-<listitem><para revisionflag="deleted" >Comments are permitted only between
-elements, not within element character data.</para>
-</listitem>
-
-<listitem><para revisionflag="deleted">Processing Instructions are
- only allowed before the <acronym>OMOBJ</acronym> element.</para>
-</listitem>
-
-<listitem><para revisionflag="deleted">The content of an
-<acronym>OMB</acronym> element, is a valid base64-encoded text.</para>
-</listitem>
-
-<listitem><para revisionflag="deleted">The character data forming
-element content and attribute values matches the regular expressions
-of <xref linkend="fig_xml"/>.</para>
-</listitem>
-</itemizedlist>
-
-
-
-<para id="fig_objdtd" revisionflag="deleted">
-    <phrase>DTD for the &OM; &exml; encoding of objects.</phrase>
-<literallayout revisionflag="deleted"><![CDATA[
-<!-- DTD for OM Objects - sb 29.10.98 -->
-<!-- sb 3.2.99 -->
-
-<!--
-     general list of embeddable elements
-      : excludes OMATP as this is only embeddable in OMATTR
-      : excludes OMBVAR as this is only embeddable in OMBIND
--->
-
-<!ENTITY % omel "OMS | OMV | OMI | OMB | OMSTR
-                                | OMF | OMA | OMBIND | OME
-                                | OMATTR | ]]><![CDATA[">
-
-
-<!-- things which can be variables -->
-
-<!ENTITY % omvar "OMV | OMATTR" >
-
-]]><![CDATA[
-
-<!-- symbol -->
-<!ELEMENT OMS EMPTY>
-
-  <!ATTLIST OMS ]]><![CDATA[
-              name CDATA #REQUIRED
-              cd CDATA #REQUIRED >
-
-<!-- variable -->
-<!ELEMENT OMV EMPTY>
-<!ATTLIST OMV  ]]><![CDATA[
-              name CDATA #REQUIRED >
-
-<!-- integer -->
-<!ELEMENT OMI (#PCDATA) >
-]]><![CDATA[
-
-<!-- byte array -->
-<!ELEMENT OMB (#PCDATA) >
-]]><![CDATA[
-
-<!-- string -->
-<!ELEMENT OMSTR (#PCDATA) >
-]]><![CDATA[
-
-<!-- floating point -->
-<!ELEMENT OMF EMPTY>
-<!ATTLIST OMF  ]]><![CDATA[
-              dec CDATA #IMPLIED
-               hex CDATA #IMPLIED>
-
-<!-- apply constructor -->
-<!ELEMENT OMA (%omel;)+ >
-]]><![CDATA[
-
-
-<!-- binding constructor & bound variables -->
-<!ELEMENT OMBIND ((%omel;), OMBVAR, (%omel;)) >
-]]><![CDATA[
-
-<!ELEMENT OMBVAR (%omvar;)+ >
-]]><![CDATA[
-
-<!-- error -->
-<!ELEMENT OME (OMS, (%omel;)* ) >
-]]><![CDATA[
-
-<!-- attribution constructor & attribute pair constructor -->
-<!ELEMENT OMATTR (OMATP, (%omel;)) >
-]]><![CDATA[
-
-<!ELEMENT OMATP (OMS, (%omel;))+ >
-]]><![CDATA[
-
-]]><![CDATA[
-
-<!-- OM object constructor -->
-<!ELEMENT OMOBJ (%omel;) >
-<!ATTLIST OMOBJ ]]><![CDATA[
-                xlmns:xlink CDATA #FIXED 'http://www.w3.org/1999/xlink'>]]>
-</literallayout>
+<para revisionflag="changed"><emphasis role="bold">Note:</emphasis> 
+In the original edition of OpenMath 2.0 as published, names are specified
+as being of the <systemitem>xsd:NCName</systemitem> type. 
+When the original edition of OpenMath 2.0 was published, 
+W3C Schema types were defined in terms of XML 1 <citation>xml_98</citation>. 
+This limited the characters allowed in a name to a
+subset of the characters available in Unicode 2.0, which was far more 
+restrictive than the definition for an &OM; name given in <xref linkend="sec_names"/>. 
+The situation has changed with the appearance of XML 1.0 5th edition, 
+and more specifically erratum NE17 in <citation>erratum_NE17</citation>, 
+and there is no known contradiction remaining.
 </para>
-
-
-<para revisionflag="deleted">In addition, if the &exml; document
-encoding the &OM; object is linearised into the &exml; concrete
-syntax, the following further constraints apply, which ensure that the
-encoding may be read by &OM; applications that may not include a full
-&exml; parser.</para> 
-
-
-
-
-<itemizedlist revisionflag="deleted" >
-<listitem>
-<para revisionflag="deleted">The document should use <acronym>utf-8</acronym> encoding.</para>
-
-</listitem>
-<listitem>
-<para revisionflag="deleted">A <systemitem>&lt;!DOCTYPE</systemitem> declaration should not be used.</para>
-
-</listitem>
-
-<listitem>
-<para  revisionflag="deleted">Character references should not be used. As
-<systemitem>&lt;!DOCTYPE</systemitem> is not used, the only entity
-references that are allowed are the five predefined entity references:
-<systemitem>&amp;apos;</systemitem> (&apos;),
-<systemitem>&amp;quot;</systemitem> (&quot;),
-<systemitem>&amp;lt;</systemitem> (&lt;),
-<systemitem>&amp;gt;</systemitem> (&gt;),
-<systemitem>&amp;amp;</systemitem> (&amp;).
-</para>
-</listitem>
-
-<listitem>
- 
-
-<para  revisionflag="deleted">The &exml; empty element form
-<systemitem>&lt;|#8230;/&gt;</systemitem> should
-always be used to encode elements such as <acronym>omf</acronym> which
-are specified in the <acronym>dtd</acronym> as being
-<acronym>empty</acronym>. It should never be used for elements that
-may sometimes be empty, such as <acronym>omstr</acronym>.</para>
-
-</listitem>
-</itemizedlist>
-
-<para revisionflag="deleted">Such a linearisation of an &exml; encoded &OM; Object would
-match the match the character based grammar given in <xref
-linkend="fig_xml"/>.</para>
-
-<para revisionflag="deleted">The notation used in this section and in
-<xref linkend="fig_xml"/> should be quite straightforward (+ meaning
-<quote>one or more</quote>, ? meaning zero or one, and | meaning
-<quote>or</quote>).  The start symbol of the grammar is
-<quote>start</quote>, <quote>space</quote> stands for the space
-character, <quote>cr</quote> for the carriage return character,
-<quote>nl</quote> for the line feed character and <quote>tab</quote>
-for the horizontal tabulation character.</para>
-
-<para revisionflag="deleted" id="fig_xml">
-<!---->
-    <phrase revisionflag="deleted">Grammar for the &exml; encoding of &OM; objects.</phrase>
-
-
-<informaltable revisionflag="deleted">
-<tgroup cols="3">
-<tbody>
-<row>
-<entry>S           </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> (space | tab | cr | nl)+  
-</entry>
-</row>
-
-<row>
-<entry>integer     </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> 
-        (<systemitem>-</systemitem> S?)? [&digits;]+ (S [&digits;]+)*  |
-        (<systemitem>-</systemitem> S?)? <systemitem>x</systemitem> S? [&exadigits;]+ (S [&exadigits;]+)* 
-</entry>
-</row>
-<row>
-<entry> 
-
-cdname      </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry>  [&lcalpha;][&lcalpha;&digits;<systemitem>_</systemitem>]*
-</entry>
-</row>
-
-<row>
-<entry>symbname    </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> [&ucalpha;&lcalpha;][&ucalpha;&lcalpha;&digits;<systemitem>_</systemitem>]*
-</entry>
-</row>
-
-<row>
-<entry>fpdec       </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry>  
-    (<systemitem>-</systemitem>?)([&digits;]+)?(<systemitem>.</systemitem>[&digits;]+)?(<systemitem>e</systemitem>(&sign;?)[&digits;]+)?
-</entry>
-</row>
-
-<row>
-<entry>fphex       </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry>  [&digits;ABCDEF]+ 
-</entry>
-</row>
-
-<row>
-<entry>varname        </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> ([&ucalpha;&lcalpha;&digits;&varnamechar;])+ 
-</entry>
-</row>
-
-<row>
-<entry>base64      </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> ([&ucalpha;&lcalpha;&digits; +/=] | S)+ 
-</entry>
-</row>
-
-<row>
-<entry>char  </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> <emphasis>&exml; Character Data</emphasis>
-</entry>
-</row>
-</tbody>
-</tgroup>
-</informaltable>
-<!---->
-
-
-
-<informaltable revisionflag="deleted">
-<tgroup cols="3">
-<tbody>
-<row>
-<entry>symbnameatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> 
-    <systemitem>name</systemitem> S? = S? (<systemitem>"</systemitem> symbname <systemitem>"</systemitem> <systemitem>|</systemitem> <systemitem>'</systemitem> symbname <systemitem>'</systemitem>) 
-</entry>
-</row>
-
-<row>
-<entry>cdnameatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> <systemitem>cd</systemitem> S? = S? (<systemitem>"</systemitem> cdname <systemitem>"</systemitem> <systemitem>|</systemitem> <systemitem>'</systemitem> cdname <systemitem>'</systemitem>) 
-</entry>
-</row>
-
-<row>
-<entry>varnameatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> <systemitem>name</systemitem> S? = S? (<systemitem>"</systemitem> varname <systemitem>"</systemitem> <systemitem>|</systemitem> <systemitem>'</systemitem> varname <systemitem>'</systemitem>) 
-</entry>
-</row>
-
-<row>
-<entry>fpdecatt</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> <systemitem>dec</systemitem> S? = S? (<systemitem>"</systemitem> fpdec <systemitem>"</systemitem> <systemitem>|</systemitem> <systemitem>'</systemitem> fpdec <systemitem>'</systemitem>) 
-</entry>
-</row>
-
-<row>
- <entry>fphexatt</entry>
- <entry> <math>&longrightarrow;</math></entry>
- <entry><systemitem>hex</systemitem> S? = S? (<systemitem>"</systemitem> fphex <systemitem>"</systemitem> <systemitem>|</systemitem> <systemitem>'</systemitem> fphex <systemitem>'</systemitem>) 
-</entry>
-</row>
-
-
-<row>
-<entry>PI </entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> &lt;<systemitem>?</systemitem> char <systemitem>?</systemitem><systemitem>&gt;</systemitem></entry>
-</row>
-
-<row>
-<entry>comment</entry>
-<entry> <math>&longrightarrow;</math></entry>
-<entry> &lt;<systemitem>!-&zsp;-</systemitem> char <systemitem>-&zsp;-</systemitem><systemitem>&gt;</systemitem>
-</entry>
-</row>
-
-<row>
-<entry>SC</entry>
-<entry><math>&longrightarrow;</math></entry>
-<entry> S+ <systemitem>|</systemitem> (comment S)+
-</entry>
-</row>
-
-<row>
-<entry>start  </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> 
- (SC <systemitem>|</systemitem> PI)* <systemitem>&lt;OMOBJ</systemitem> S?<systemitem>&gt;</systemitem> S? object S? <systemitem>&lt;/OMOBJ</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row>
-<entry>symbol</entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> 
-  <systemitem>&lt;OMS</systemitem> [[(S  symbnameatt) (S cdnameatt) ]] S? <systemitem>/&gt;</systemitem>
-</entry>
-</row>
-
-
-<row>
-<entry>variable</entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry><systemitem>&lt;OMV</systemitem>  varnameatt S? <systemitem>/&gt;</systemitem>
-</entry>
-</row>
-
-<row><entry/>
-<entry>|</entry>
-<entry> <systemitem>&lt;OMATTRx</systemitem> S?<systemitem>&gt;</systemitem> SC? omatp SC? variable SC? <systemitem>&lt;/OMATTR</systemitem> S?<systemitem>&gt;</systemitem>
-</entry>
-</row>
-
-<row>
-<entry>omatp </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry>     <systemitem>&lt;OMATP</systemitem>  S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/#1</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row>
-<entry>object </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> symbol</entry>
-</row>
-
-<row>
-<entry/>
-<entry>|</entry><entry>variable</entry>
-</row>
-
-<row><entry/>
-<entry>|</entry>
-<entry><systemitem>&lt;OMI</systemitem> S <systemitem>&gt;</systemitem> S? integer S? <systemitem>&lt;/OMI</systemitem> S?<systemitem>&gt;</systemitem>
-</entry>
-</row>
-
-<row><entry/>
-<entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fpdecatt  S?<systemitem>/&gt;</systemitem>
-</entry>
-</row>
-
-<row>
-  <entry/>
-  <entry>|</entry><entry> <systemitem>&lt;OMF</systemitem> S fphexatt  S?<systemitem>/&gt;</systemitem>
-</entry>
-</row>
-
-<row>
-  <entry/>  
-  <entry>|</entry><entry> <systemitem>&lt;OMSTR</systemitem>  S?<systemitem>&gt;</systemitem> char <systemitem>&lt;/OMSTR</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row>
-  <entry/>  
-  <entry>|</entry><entry> <systemitem>&lt;OMB</systemitem>  S?<systemitem>&gt;</systemitem> base64  <systemitem>&lt;/OMB</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> <systemitem>&lt;OMA</systemitem>  S?<systemitem>&gt;</systemitem> SC? object SC? objects SC? <systemitem>&lt;/OMA</systemitem> S?<systemitem>&gt;</systemitem>
-</entry>
-</row>
-
-<row><entry/>
-<entry>|</entry><entry> <systemitem>&lt;OMBIND</systemitem>  S?<systemitem>&gt;</systemitem> SC? object SC? 
-</entry>
-</row>
-
-<row><entry/>
-<entry/>
-<entry> <systemitem>&lt;OMBVAR</systemitem>  S?<systemitem>&gt;</systemitem> SC? variables SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row><entry/>
-<entry/>
-<entry> SC? object SC? <systemitem>&lt;/OMBIND</systemitem> S?<systemitem>&gt;</systemitem>
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> <systemitem>&lt;OME</systemitem>  S?<systemitem>&gt;</systemitem> SC? symbol SC? objects SC? <systemitem>&lt;/OME</systemitem> S?<systemitem>&gt;</systemitem> 
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> <systemitem>&lt;OMATTR</systemitem>  S?<systemitem>&gt;</systemitem> SC?  <systemitem>&lt;OMATP</systemitem> S?<systemitem>&gt;</systemitem> SC? attrs SC? <systemitem>&lt;/OMBVAR</systemitem> S?<systemitem>&gt;</systemitem>   
-</entry>
-</row>
-
-<row><entry/>
-<entry/>
-<entry>SC? object SC? <systemitem>&lt;/OMATTR</systemitem> S?<systemitem>&gt;</systemitem>  
-</entry>
-</row>
-
-<row>
-<entry>attrs</entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> symbol S? object   
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> symbol S? object S? attrs 
-</entry>
-</row>
-
-<row>
-<entry>objects </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> SC?     
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> object SC? objects  
-</entry>
-</row>
-
-<row>
-<entry>variables </entry>
-<entry> <math>&longrightarrow;</math> </entry>
-<entry> SC?   
-</entry>
-</row>
-
-<row>
-  <entry/>
-<entry>|</entry>
-<entry> variable SC? variables  
-</entry>
-</row>
-
-</tbody>
-</tgroup>
-</informaltable>
-
-
-</para>
-
-<para><emphasis role="bold">Note:</emphasis> This schema 
-specifies names as being of the <systemitem>xsd:NCName</systemitem>
-type. At the time of writing, W3C Schema types are defined in terms of
-XML 1 <citation>xml_98</citation>.  This limits the characters allowed
-in a name to a subset of the characters available in Unicode 2.0, which
-is far more restrictive than the definition for an
-&OM; name given in <xref linkend="sec_names"/>.
-It is expected that W3C Schema types will be augmented to match the
-new XML 1.1 recommendation <citation>xml_04</citation>, but for portability
-reasons applications
-should avoid  using the new XML 1.1 name characters unless they are
-absolutely required.
-The XML 1.1 specification has a useful appendix giving
-advice on good strategies to use when naming identifiers.</para>
 
 </section>
 
 <section id="sec_xml-desc">
-<title><phrase revisionflag="added">Informal</phrase> description of
-the <phrase revisionflag="deleted">Grammar</phrase><phrase
-revisionflag="added">&exml; Encoding</phrase></title>
+<title><phrase>Informal</phrase> description of
+the <phrase>&exml; Encoding</phrase></title>
 
 <para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  This 
 element can contain the elements (and integers) described above.
-<phrase revisionflag="added"> It can take an optional
+<phrase> It can take an optional
 <systemitem>version</systemitem> (&exml;) attribute which indicates to
 which version of the &OM; standard it conforms.  In previous versions of
 this standard this attribute did not exist, so any &OM; object without
@@ -1974,15 +1318,14 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 </varlistentry>
 <varlistentry><term>Symbols</term><listitem><para>are encoded using
   the <systemitem>OMS</systemitem> element. This element has
-  <phrase revisionflag="deleted">two</phrase>
-  <phrase revisionflag="added">three</phrase>
+  <phrase>three</phrase>
   (&exml;) attributes <systemitem>cd</systemitem>,
-  <systemitem>name</systemitem><phrase revisionflag="added">,  and
+  <systemitem>name</systemitem><phrase>,  and
     <systemitem>cdbase</systemitem></phrase>. The value of
   <systemitem>cd</systemitem> is the name of the Content Dictionary in
   which the symbol is defined and the value of
   <systemitem>name</systemitem> is the name of the symbol.
-  <phrase revisionflag="added">The optional <systemitem>cdbase</systemitem>
+  <phrase>The optional <systemitem>cdbase</systemitem>
     attribute is a URI that can be used to disambiguate between two  content
     dictionaries with the same name.
   If a symbol does not have an explicit <systemitem>cdbase</systemitem>
@@ -1991,31 +1334,23 @@ first ancestor in the &exml; tree with one, should such an element
 exist.  In this document we have tended to omit the
 <systemitem>cdbase</systemitem> for clarity.
   </phrase>
-<phrase revisionflag="deleted">
-  The name
-  of the Content Dictionary is compulsory, but a future revision of
-  the &OM; standard might introduce a defaulting mechanism.
-</phrase> For
-  example:
-<blockquote revisionflag="deleted"><para><systemitem>&lt;OMS
- cd="transc" name="sin"/></systemitem></para>
-</blockquote>
-<blockquote revisionflag="added"><para><systemitem>&lt;OMS
+  For example:
+<blockquote><para><systemitem>&lt;OMS
  cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/></systemitem></para>
 </blockquote>
   is the encoding of the symbol named <systemitem>sin</systemitem> in
   the Content Dictionary named <systemitem>transc1</systemitem>,
-<phrase revisionflag="added">which is part of the collection
+<phrase>which is part of the collection
 maintained by the &OM; Society</phrase>.</para>
 
-<para revisionflag="added">As described in <xref linkend="sec_names"/>,
+<para>As described in <xref linkend="sec_names"/>,
 the three attributes of the
   <systemitem>OMS</systemitem> can be used to build a URI reference for the symbol,
 for use in contexts where URI-based referencing mechanisms are used.
 For example the URI for the above symbol is
  <systemitem>http://www.openmath.org/cd/transc1#sin</systemitem>.
 </para>
-<para revisionflag="added">
+<para>
 Note that the role attribute described in <xref
 linkend="sec_roles"/> is contained in the Content Dictionary and is not
 part of the encoding of a symbol, also the <systemitem>cdbase</systemitem> attribute need not
@@ -2026,11 +1361,7 @@ from any ancestor element.</para>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
   the <systemitem>OMV</systemitem> element, with only one
   (&exml;) attribute, <systemitem>name</systemitem>, whose value is the
-  variable name. <phrase revisionflag="deleted">
-The variable name is a subset of the printable
-  <acronym>ascii</acronym> set of characters.  In particular, neither
-  spaces nor double-quote <systemitem>&quot;</systemitem> are allowed
-  in variable names.</phrase>  For instance, the encoding of the object
+  variable name. For instance, the encoding of the object
   representing the variable <math><mi>x</mi></math> is:
   <systemitem>&lt;OMV name="x"/></systemitem></para>
 
@@ -2046,26 +1377,25 @@ The variable name is a subset of the printable
   in base 10, using the common syntax:</para>
   
   <blockquote><para>
-  <systemitem revisionflag="changed">(-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
+  <systemitem>(-?)([0-9]+)?("."[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
   </para>
-  <para revisionflag="added">or one of the special values: INF, -INF or
+  <para>or one of the special values: INF, -INF or
   NaN.</para>
 </blockquote>
   <para revisionflag="changed">The value of
   <systemitem>hex</systemitem> is a base 16 representation of the 
  64 bits of the <acronym>ieee</acronym> Double.
- Thus the number represents mantissa, exponent, and sign from lowest
-  to highest bits using a  least significant byte ordering.
+ Thus the number represents mantissa, exponent, and sign in network byte order.
  This consists of a string of 16 digits <systemitem>0</systemitem>-<systemitem>9</systemitem>, <systemitem>A</systemitem>-<systemitem>F</systemitem>.
   </para>
-  <para revisionflag="changed">For example, both <systemitem>&lt;OMF
+  <para>For example, both <systemitem>&lt;OMF
     dec="1.0e-10"/&gt;</systemitem> and 
    <systemitem>&lt;OMF hex="3DDB7CDFD9D7BDBB"/&gt;</systemitem>
   are valid representations of the floating point number
   <math><mn>1</mn><mo>&#215;</mo>
 <msup><mn>10</mn><mn>-10</mn></msup></math>.</para>
  
- <para revisionflag="added"> The symbols <systemitem>INF</systemitem>,
+ <para> The symbols <systemitem>INF</systemitem>,
 <systemitem>-INF</systemitem> and <systemitem>NaN</systemitem> represent
 positive and negative infinity, and <emphasis>not a number</emphasis> as
 defined in <citation>ieee754_85</citation>.  Note that while infinities
@@ -2082,10 +1412,7 @@ hexadecimal representations of NaNs.
 </listitem>
 </varlistentry>
 <varlistentry><term>Character strings</term><listitem><para>are encoded using the <systemitem>OMSTR</systemitem> element.
-  Its content is  a Unicode text <phrase revisionflag="deleted">(The default encoding 
-  is <acronym>utf-8</acronym><citation>utf8</citation>, although &exml; encoded &OM; may be embedded
- in a containing &exml; document that specifies alternative encoding in
-  the &exml; declaration</phrase>. Note that as always in &exml; the
+  Its content is  a Unicode text. Note that as always in &exml; the
   characters <systemitem>&lt;</systemitem> and <systemitem>&amp;</systemitem>  need to be represented by the
   entity references <systemitem>&amp;lt;</systemitem> and
 <systemitem>&amp;amp;</systemitem> respectively.</para>
@@ -2095,24 +1422,20 @@ hexadecimal representations of NaNs.
 <varlistentry><term>Bytearrays</term><listitem><para>are encoded using the <systemitem>OMB</systemitem> element. Its content
   is a sequence of characters that is a base64 encoding of the data.
   The base64 encoding is defined in <acronym>rfc</acronym>
-<phrase revisionflag="deleted">1521 <citation>rfc1521</citation></phrase>
-<phrase revisionflag="added">2045 <citation>rfc2045</citation></phrase>.
+  <phrase>2045 <citation>rfc2045</citation></phrase>.
   Basically, it represents an arbitrary sequence of octets using 64
   <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
   value). Three octets are represented as four digits (the <systemitem>=</systemitem>
   character is used for padding at the end of the data). All line
   breaks and carriage return, space, form feed and horizontal
   tabulation characters are ignored. The reader is referred to
-  <citation revisionflag="deleted">rfc1521</citation>
-  <citation revisionflag="added">rfc2045</citation>
+  <citation>rfc2045</citation>
 for more detailed information.</para>
 
 </listitem>
 </varlistentry>
 </variablelist>
  
-<para revisionflag="deleted">In detail the encoding of an &OM; object is described below.</para>
-
 <variablelist>
 <varlistentry><term>Applications</term><listitem><para>are encoded using the <systemitem>OMA</systemitem> element. The
   application whose head is the &OM; object <math><msub><mi>e</mi><mn>0</mn></msub></math> and whose arguments
@@ -2183,7 +1506,7 @@ or to express the type of a variable:
 </OMATTR>]]></literallayout></para>
 
   
-<para revisionflag="added">
+<para>
 A special use of attributions is to associate non-&OM; data with an
 &OM; object.  This is done using the
 <systemitem>OMFOREIGN</systemitem> element.  The children of this
@@ -2232,7 +1555,7 @@ attribute see <xref linkend="sec_compl_omforeign"/>.
  <term>Errors</term> 
  <listitem><para>are encoded using the <systemitem>OME</systemitem> element. The error whose
   symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects
-<phrase revisionflag="added">or &OM; derived objects</phrase>
+<phrase>or &OM; derived objects</phrase>
  <math><msub><mi>e</mi><mn>1</mn></msub></math>,
   <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
   of <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
@@ -2252,7 +1575,7 @@ attribute see <xref linkend="sec_compl_omforeign"/>.
   </OMA> 
  </OME>]]></literallayout></para>
   
-<para revisionflag="added">
+<para>
 If a <systemitem>mathml</systemitem> Content Dictionary contained an
   <systemitem>unhandled_csymbol</systemitem> symbol, then an &OM; to
 MathML translator might return an error such as:
@@ -2266,7 +1589,7 @@ MathML translator might return an error such as:
   </OMFOREIGN> 
  </OME>]]></literallayout></para>
 
-<para revisionflag="added"> Note that it is possible to embed fragments
+<para> Note that it is possible to embed fragments
 of valid &OM; inside an <systemitem>OMFOREIGN</systemitem> element but that it
 cannot contain invalid &OM;.  In addition, the arguments to an
 <systemitem>OMERROR</systemitem> must be well-formed &exml;.  If an
@@ -2287,7 +1610,7 @@ an &exml; document.
 </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added">
+<varlistentry>
  <term>References</term>
  <listitem><para>
  &OM; integers, floating point numbers, character strings,
@@ -2407,7 +1730,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
 </figure>
 </section>
 
-<section id="sec_references" revisionflag="added">
+<section id="sec_references">
 <title>Some Notes on References</title>
 
 <para>We say that an &OM; element dominates all its children and all elements
@@ -2420,13 +1743,13 @@ also the second <systemitem>OMR</systemitem> dominate the
 <systemitem>OMA</systemitem> element with <systemitem>id="t11"</systemitem>.
 </para>
 
-<section id="sec_acyclicity" revisionflag="added">
+<section id="sec_acyclicity">
 <title>An Acyclicity Constraint</title>
 
-<para revisionflag="added">The occurrences of the <systemitem>OMR</systemitem> element must obey the following global
+<para>The occurrences of the <systemitem>OMR</systemitem> element must obey the following global
 <emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
 
-<para revisionflag="added">Consider for instance the following (illegal) &exml; representation
+<para>Consider for instance the following (illegal) &exml; representation
 <literallayout><![CDATA[<OMOBJ version="2.0">
   <OMA id="foo">
     <OMS cd="arith1" name="divide"/>
@@ -2441,7 +1764,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 </literallayout>
 </para>
 
-<para revisionflag="added">Here, the <systemitem>OMA</systemitem> element with
+<para>Here, the <systemitem>OMA</systemitem> element with
 <systemitem>id="foo"</systemitem> dominates its third child, which dominates the
 <systemitem>OMR</systemitem> element, which dominates its target: the element with
 <systemitem>id="foo"</systemitem>. So by transitivity, this element dominates itself, and
@@ -2467,7 +1790,7 @@ element. Even though it could be given the interpretation of the continued fract
 which is not admitted by the structure of &OM; objects described
 in <xref linkend="cha_obj"/>.</para>
 
-<para revisionflag="added">Note that the acyclicity constraints is not restricted
+<para>Note that the acyclicity constraints is not restricted
 to such simple cases, as the example in <xref linkend="fig_sharing_between"/>
 shows.</para>
 
@@ -2482,7 +1805,7 @@ shows.</para>
 </OMOBJ>                               </OMOBJ>]]>
 </literallayout></figure>
 
-<para revisionflag="added"> Here, the <systemitem>OMA</systemitem> with
+<para> Here, the <systemitem>OMA</systemitem> with
 <systemitem>id="bar"</systemitem> dominates its third child, the
 <systemitem>OMR</systemitem> with <systemitem>xref="baz"</systemitem>,
 which dominates its target <systemitem>OMA</systemitem> with
@@ -2496,7 +1819,7 @@ representation of an &OM; object.</para>
 </section>
 
 
-<section id="sec_sharing_bvars" revisionflag="added">
+<section id="sec_sharing_bvars">
 <title>Sharing and Bound Variables</title>
 
 <para>Note that the <systemitem>OMR</systemitem> element is a
@@ -2650,31 +1973,12 @@ one may wish, or need, to use other &exml; features. For example use of
 extra &exml; attributes to specify &exml; Namespaces&#160;<citation>xmlns</citation>
 or <systemitem>xml:lang</systemitem> attributes to specify the language used in
 strings&#160;<citation>xml_04</citation>. 
-<phrase revisionflag="deleted">
-Also, the encoding used in the larger document may not be
-<acronym>utf-8</acronym>.</phrase>
 </para>
-
- <para revisionflag="deleted">In particular, if &OM; is used with applications that use the
-&exml; Namespace Recommendation &#160;<citation>xmlns</citation> then they should ensure
-that &OM; elements are in the <phrase revisionflag="added">namespace
-</phrase> <phrase role="tt">http://www.openmath.org/OpenMath</phrase>.
-This is most conveniently achieved by adding the namespace declaration <literallayout>
-xmlns="http://www.openmath.org/OpenMath" </literallayout> as an attribute to each
-<systemitem>OMOBJ</systemitem> element in the document.</para>
-
-<!--
-<para revisionflag="added">
- Furthermore, for any &OM; object that contains the <systemitem>OMR</systemitem> element,
- we have to add the <systemitem>XLink</systemitem> namespace declaration
-  <phrase role="tt">xmlns:xlink="http://www.w3.org/1999/xlink"</phrase>.
-</para>
--->
 
 <para>If such &exml; features are used then the &exml; application controlling the
 document must, if passing the &OM; fragment to an &OM; application,
 remove any such extra attributes and must ensure that the
-fragment is encoded according to the <phrase revisionflag="deleted">grammar</phrase><phrase revisionflag="added">schema</phrase> specified above.</para>
+fragment is encoded according to the <phrase>schema</phrase> specified above.</para>
 </section>
 </section>
 
@@ -2703,8 +2007,8 @@ implementations).</para>
             <entry>start </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [24] object [25] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added">
+            <entry>|</entry>
+            <entry>
 	      [24+64]
 	      [<math><mi>m</mi></math>]
               [<math><mi>n</mi></math>]
@@ -2723,19 +2027,19 @@ implementations).</para>
             <entry> compound</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry>cdbase</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry>foreign</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry>reference</entry>
@@ -2781,15 +2085,15 @@ implementations).</para>
             <entry>integer </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [1] [_] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [1+64]
+            <entry>|</entry>
+            <entry> [1+64]
               [<math><mi>n</mi></math>]
               id:<math><mi>n</mi></math>
               [_]
             </entry>
           </row>
 
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry><math><mo>|</mo></math></entry>
             <entry> [1+32] [_] </entry>
@@ -2801,15 +2105,15 @@ implementations).</para>
             <entry/>
             <entry>|</entry>
             <entry> [1+128] {_} </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [1+64+128]
+            <entry>|</entry>
+            <entry> [1+64+128]
               {<math><mi>n</mi></math>}
               id:<math><mi>n</mi></math>
               {_}
             </entry>
           </row>
 
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [1+32+128] {_} </entry>
@@ -2824,8 +2128,8 @@ implementations).</para>
               [<math><mi>n</mi></math>]
               [_] digits:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [2+64]
+            <entry>|</entry>
+            <entry> [2+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [_] digits:<math><mi>n</mi></math>
@@ -2833,7 +2137,7 @@ implementations).</para>
             </entry>
           </row>
 
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [2+32]
@@ -2851,8 +2155,8 @@ implementations).</para>
               {<math><mi>n</mi></math>}
               [_] digits:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [2+64+128]
+            <entry>|</entry>
+            <entry> [2+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>n</mi></math>}
               [_]
@@ -2861,7 +2165,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [2+32+128]
@@ -2876,8 +2180,8 @@ implementations).</para>
             <entry>float </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [3] {_}{_} </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [3+64]
+            <entry>|</entry>
+            <entry> [3+64]
               [<math><mi>n</mi></math>]
               id:<math><mi>n</mi></math>
               {_}{_}</entry>
@@ -2887,8 +2191,8 @@ implementations).</para>
             <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [3+64+128]
+            <entry>|</entry>
+            <entry> [3+64+128]
               {<math><mi>n</mi></math>}
               id:<math><mi>n</mi></math>
               {_}{_}</entry>
@@ -2901,8 +2205,8 @@ implementations).</para>
               [<math><mi>n</mi></math>]
               varname:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [5+64]
+            <entry>|</entry>
+            <entry> [5+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               varname:<math><mi>n</mi></math>
@@ -2918,7 +2222,7 @@ implementations).</para>
               varname:<math><mi>n</mi></math>
             </entry>
             <entry>|</entry>
-            <entry revisionflag="added"> [5+64+128]
+            <entry> [5+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               varname:<math><mi>n</mi></math>
@@ -2935,8 +2239,8 @@ implementations).</para>
               cdname:<math><mi>n</mi></math>
               symbname:<math><mi>m</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [8+64]
+            <entry>|</entry>
+            <entry> [8+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [<math><mi>k</mi></math>]
@@ -2955,8 +2259,8 @@ implementations).</para>
               cdname:<math><mi>n</mi></math>
               symbname:<math><mi>m</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [8+64+128]
+            <entry>|</entry>
+            <entry> [8+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               {<math><mi>k</mi></math>}
@@ -2970,18 +2274,16 @@ implementations).</para>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [6]
               [<math><mi>n</mi></math>]
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [6+64]
+            <entry>|</entry>
+            <entry> [6+64]
               [<math><mi>n</mi></math>]
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mi>n</mi></math>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry><math><mo>|</mo></math></entry>
             <entry> [6+32]
@@ -2997,20 +2299,18 @@ implementations).</para>
             <entry>|</entry>
             <entry> [6+128]
               {<math><mi>n</mi></math>}
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [6+64+128]
+            <entry>|</entry>
+            <entry> [6+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mi>n</mi></math>
               id:<math><mi>m</mi></math>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [6+32+128]
@@ -3026,20 +2326,18 @@ implementations).</para>
             <entry>|</entry>
             <entry> [7]
               [<math><mi>n</mi></math>]
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
             </entry>
-            <entry  revisionflag="added">|</entry>
-            <entry revisionflag="added"> [7+64]
+            <entry>|</entry>
+            <entry> [7+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mn></mn><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mn></mn><mi>n</mi></math>
               id:<math><mi>m</mi></math>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [7+32]
@@ -3055,21 +2353,19 @@ implementations).</para>
             <entry>|</entry>
             <entry> [7+128]
               {<math><mi>n</mi></math>}
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [7+64+128]
+            <entry>|</entry>
+            <entry> [7+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
-              <phrase revisionflag="deleted">chars</phrase>
-              <phrase revisionflag="added">bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
+              <phrase>bytes</phrase>:<math><mn>2</mn><mi>n</mi></math>
               id:<math><mi>m</mi></math>
             </entry>
           </row>
           
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [7+32+128]
@@ -3087,8 +2383,8 @@ implementations).</para>
               [<math><mi>n</mi></math>]
               bytes:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [4+64]
+            <entry>|</entry>
+            <entry> [4+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               bytes:<math><mi>n</mi></math>
@@ -3096,7 +2392,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry><math><mo>|</mo></math></entry>
             <entry> [4+32]
@@ -3114,8 +2410,8 @@ implementations).</para>
               {<math><mi>n</mi></math>}
               bytes:<math><mi>n</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [4+64+128]
+            <entry>|</entry>
+            <entry> [4+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               bytes:<math><mi>n</mi></math>
@@ -3124,7 +2420,7 @@ implementations).</para>
           </row>
           
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [4+32+128]
@@ -3135,7 +2431,7 @@ implementations).</para>
             <entry/>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry>cdbase</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [9]
@@ -3145,7 +2441,7 @@ implementations).</para>
             </entry>
 	  </row>
 
-	  <row revisionflag="added">
+	  <row>
             <entry/>
             <entry>|</entry>
             <entry> [9+128]
@@ -3155,7 +2451,7 @@ implementations).</para>
             </entry>
           </row>
 
-          <row revisionflag="added">
+          <row>
             <entry>foreign</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [12]
@@ -3164,8 +2460,8 @@ implementations).</para>
               bytes:<math><mi>n</mi></math>
               bytes:<math><mi>m</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [12+64]
+            <entry>|</entry>
+            <entry> [12+64]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
               [<math><mi>k</mi></math>]
@@ -3175,7 +2471,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry><math><mo>|</mo></math></entry>
             <entry> [12+32]
@@ -3188,7 +2484,7 @@ implementations).</para>
             <entry/>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [12+128]
@@ -3197,8 +2493,8 @@ implementations).</para>
               bytes:<math><mi>n</mi></math>
               bytes:<math><mi>m</mi></math>
             </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [12+64+128]
+            <entry>|</entry>
+            <entry> [12+64+128]
               {<math><mi>n</mi></math>}
               {<math><mi>m</mi></math>}
               {<math><mi>k</mi></math>}
@@ -3208,7 +2504,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [12+32+128]
@@ -3249,8 +2545,8 @@ implementations).</para>
             <entry>application</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [16] object objects [17] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [16+64]
+            <entry>|</entry>
+            <entry> [16+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               object objects [17]
@@ -3261,8 +2557,8 @@ implementations).</para>
             <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [16+64+128]
+            <entry>|</entry>
+            <entry> [16+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               object objects [17]
@@ -3273,8 +2569,8 @@ implementations).</para>
 	    <entry>binding</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [26] object bvars object [27] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [26+64]
+            <entry>|</entry>
+            <entry> [26+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               object bvars object [27]
@@ -3285,8 +2581,8 @@ implementations).</para>
 	    <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [26+64+128]
+            <entry>|</entry>
+            <entry> [26+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               object bvars object [27]
@@ -3297,8 +2593,8 @@ implementations).</para>
 	    <entry>attribution</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [18] attrpairs object [19] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [18+64]
+            <entry>|</entry>
+            <entry> [18+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               attrpairs object [19]
@@ -3309,8 +2605,8 @@ implementations).</para>
 	    <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [18+64+128]
+            <entry>|</entry>
+            <entry> [18+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               attrpairs object [19]
@@ -3321,8 +2617,8 @@ implementations).</para>
 	    <entry>error</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [22] symbol objects [23] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [22+64]
+            <entry>|</entry>
+            <entry> [22+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               symbol objects [23]</entry>
@@ -3332,8 +2628,8 @@ implementations).</para>
 	    <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [22+64+128]
+            <entry>|</entry>
+            <entry> [22+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               symbol objects [23]</entry>
@@ -3343,8 +2639,8 @@ implementations).</para>
             <entry>attrpairs </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [20] pairs [21] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [20+64]
+            <entry>|</entry>
+            <entry> [20+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               pairs [21]
@@ -3355,8 +2651,8 @@ implementations).</para>
             <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [20+64+128]
+            <entry>|</entry>
+            <entry> [20+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               pairs [21]
@@ -3379,8 +2675,8 @@ implementations).</para>
             <entry>bvars </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [28] vars [29] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [28+64]
+            <entry>|</entry>
+            <entry> [28+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               vars [29]
@@ -3391,8 +2687,8 @@ implementations).</para>
             <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [28+64+128]
+            <entry>|</entry>
+            <entry> [28+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               vars [29]
@@ -3403,8 +2699,7 @@ implementations).</para>
             <entry>vars </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry>
-	      <phrase revisionflag="deleted" role="finaledit">attrvar</phrase>
-	      <emphasis revisionflag="added" role="finaledit">empty</emphasis>
+	      <emphasis  role="finaledit">empty</emphasis>
 	    </entry>
           </row>
           
@@ -3424,8 +2719,8 @@ implementations).</para>
             <entry/>
             <entry>|</entry>
             <entry> [18] attrpairs attrvar [19] </entry>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [18+64]
+            <entry>|</entry>
+            <entry> [18+64]
               [<math><mi>m</mi></math>]
               id:<math><mi>m</mi></math>
               attrpairs attrvar [19]
@@ -3436,8 +2731,8 @@ implementations).</para>
             <entry/>
             <entry/>
             <entry/>
-            <entry revisionflag="added">|</entry>
-            <entry revisionflag="added"> [18+64+128]
+            <entry>|</entry>
+            <entry> [18+64+128]
               {<math><mi>m</mi></math>}
               id:<math><mi>m</mi></math>
               attrpairs attrvar [19]
@@ -3447,7 +2742,7 @@ implementations).</para>
           <row>
             <entry>objects </entry>
             <entry><math>&longrightarrow;</math></entry>
-            <entry revisionflag="added"> <emphasis>empty</emphasis> </entry>
+            <entry> <emphasis>empty</emphasis> </entry>
           </row>
 
           <row>
@@ -3456,31 +2751,31 @@ implementations).</para>
             <entry> object objects</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
 	    <entry>reference</entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry>internal_reference</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry>external_reference</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry>internal_reference </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [30] [_] </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [30+128] {_}</entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry>external_reference </entry>
             <entry><math>&longrightarrow;</math></entry>
             <entry> [31]
@@ -3489,7 +2784,7 @@ implementations).</para>
             </entry>
           </row>
           
-          <row revisionflag="added">
+          <row>
             <entry/>
             <entry>|</entry>
             <entry> [31+128]
@@ -3503,7 +2798,7 @@ implementations).</para>
   </figure>
   
   <para><xref linkend="fig_bin-enc"/> gives a grammar for the binary
-    encoding <phrase revisionflag="added"> (<quote>start</quote> is the start
+    encoding <phrase> (<quote>start</quote> is the start
       symbol).</phrase>.</para>
   <para>The following conventions are used in this section:
     [<math><mi>n</mi></math>] denotes a byte whose value is the integer
@@ -3511,16 +2806,11 @@ implementations).</para>
     {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
     <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
     denotes an arbitrary sequence of four bytes.
-    <phrase role="finaledit" revisionflag="added">Finally,
+    <phrase role="finaledit">Finally,
       <emphasis>empty</emphasis> stands for the empty list of tokens.</phrase>
-    <phrase revisionflag="deleted">
-      <emphasis>name</emphasis>:<math><mi>n</mi></math> denotes a sequence of
-      <math><mi>n</mi></math> bytes named <emphasis>name</emphasis>.
-      <emphasis>name</emphasis>:2<math><mi>n</mi></math> denotes a sequence of
-      <math><mn>2</mn><mi>n</mi></math> bytes.  <quote>start</quote> is the start symbol of the
-      grammar.</phrase></para>
+  </para>
   
-  <para revisionflag="added"><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
+  <para><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
     where <emphasis>xxxx</emphasis> is one of <emphasis>symbname</emphasis>,
     <emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
     <emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
@@ -3536,11 +2826,10 @@ implementations).</para>
   <title>Description of the Grammar</title>
   
 <para>An &OM; object is encoded as a sequence of bytes starting with the begin object tag
-(<phrase revisionflag="deleted">value&#160;24</phrase>
-<phrase revisionflag="added">values 24 and 88</phrase>) and ending with the end
+(<phrase>values 24 and 88</phrase>) and ending with the end
 object tag (value&#160;25). These are similar to
 the <systemitem>&lt;OMOBJ></systemitem> and <systemitem>&lt;/OMOBJ></systemitem> tags of
-the &exml; encoding. <phrase revisionflag="added">Objects with start token [88]
+the &exml; encoding. <phrase>Objects with start token [88]
   have two additional bytes <math><mi>m</mi></math> and <math><mi>n</mi></math>
 that characterize the version
 (<math><mrow><mi>m</mi><mo>.</mo><mi>n</mi></mrow></math>) of the encoding
@@ -3549,12 +2838,9 @@ directly after the start token. This is similar to <systemitem>&lt;OMOBJ
 
 <para>The encoding of each kind of &OM; object begins with a tag that is a single byte,
 holding a <phrase role="sl">token identifier</phrase>
-<phrase revisionflag="added"> that describes the kind of object</phrase>, 
-<phrase revisionflag="deleted"> and two flags, the <phrase role="sl">long</phrase> flag and the
-<phrase	role="sl">shared</phrase> flag. </phrase><phrase revisionflag="added">two
-  flags, and a status bit.</phrase>
-The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 to
-  6). The long flag is the eighth bit </phrase><phrase revisionflag="added">five
+<phrase> that describes the kind of object</phrase>, 
+<phrase>two flags, and a status bit.</phrase>
+The identifier is stored in the first <phrase>five
   bits (1 to 5). Bit 6 is used as a 
   <phrase role="sl">status bit</phrase> which is currently only used for managing
   streaming of some basic objects. Bits 7 and 8 are the <phrase role="sl">sharing
@@ -3569,7 +2855,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
   encoded &OM; object are longer than 255 bytes or characters. </phrase>
 </para>
 
-<para revisionflag="added">The concept of structure sharing in &OM; encodings and
+<para>The concept of structure sharing in &OM; encodings and
   in particular the sharing bit in the binary encoding has been
   introduced in &OM;&#160;2 (see section <xref linkend="sec_sharing_references"/> for
   details). The binary encoding in &OM;&#160;2 leaves the tokens with sharing flag 0
@@ -3577,7 +2863,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
   the version attribute on the &OM; object
   introduced in &OM;&#160;2, the tokens with sharing flag 1 should be used.</para>
 
-<para revisionflag="added">To facilitate the streaming of &OM; objects, some basic
+<para>To facilitate the streaming of &OM; objects, some basic
   objects (integers, strings, bytearrays, and foreign objects) have variant token
   identifiers with the fifth bit set. The idea behind this is that these basic
   objects can be split into packets. If the fifth bit is not set, this packet is
@@ -3591,9 +2877,9 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 
 <variablelist>
 <varlistentry>
-  <term>Integers</term><listitem><para>are encoded depending on how large they
+  <term>Integers</term><listitem><para revisionflag="changed">are encoded depending on how large they
       are. There are four possible formats.  Integers between -128 and 127 are
-      encoded as the small integer tags (<phrase revisionflag="added">token
+      encoded as the small integer tags (<phrase>token
 	identifier</phrase> 1) followed by a single byte that is the 
       value of the integer (interpreted as a signed character). For
       example 16 is encoded as <systemitem>0x01 0x10</systemitem>.  Integers between
@@ -3614,7 +2900,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
       </math>
       (<math><mn>2147483647</mn></math>) are encoded as
       the small integer tag with the long flag set followed by the integer
-      encoded in little endian format in four bytes (network byte order:
+      encoded in four bytes (network byte order:
       the most significant byte comes first). For example, 128 is encoded
       as <systemitem>0x81</systemitem> <systemitem>0x00000080</systemitem>.  The most
       general encoding begins 
@@ -3628,32 +2914,28 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
       (<systemitem>0x2B</systemitem>) or <systemitem>-</systemitem>
       (<systemitem>0x2D</systemitem>) for the sign or-ed with the base mask bits
       that can be <systemitem>0</systemitem> for base 10 
-      or <systemitem>0x40</systemitem> for base 16 <phrase revisionflag="added">or
+      or <systemitem>0x40</systemitem> for base 16 <phrase>or
 	<systemitem>0x80</systemitem> for <quote>base 256</quote></phrase>.  It is
-      followed by the <phrase revisionflag="deleted">strings</phrase>
-      <phrase revisionflag="added">sequence</phrase> of digits (as 
-      characters <phrase revisionflag="added">for bases 10 and 16 as in the &exml;
-	encoing, and as bytes for base 256</phrase>) in their natural
-      order<phrase revisionflag="deleted"> (as in the &exml; 
-      encoding)</phrase>.  For example, <phrase revisionflag="added">the decimal
+      followed by the <phrase>sequence</phrase> of digits (as 
+      characters <phrase>for bases 10 and 16 as in the &exml;
+	encoding, and as bytes for base 256</phrase>) in their natural
+      order.  For example, <phrase>the decimal
 	number</phrase> 8589934592
       (<math><msup><mn>2</mn><mn>33</mn></msup></math>) is encoded  as
-      <systemitem revisionflag="added">0x02 
+      <systemitem>0x02 
         0x0A 0x2B 0x38 0x35 0x38 0x39 0x39 0x33 0x34 0x35 0x39 0x32</systemitem>
-      <systemitem revisionflag="deleted">0x02 
-	0x0A 0x2B 0x38353839393334353932</systemitem> and the
-      <phrase revisionflag="added">hexadecimal number</phrase>
+      and the
+      <phrase>hexadecimal number</phrase>
       <systemitem>xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1</systemitem> is 
-      encoded as <systemitem revisionflag="deleted">0x02 0x08 0x6b
-	0x6666666666666631</systemitem><systemitem revisionflag="added">0x02 0x08
+      encoded as <systemitem>0x02 0x08
 	0x6b 0x66 0x66 0x66 0x66 0x66 0x66 0x66 0x31</systemitem>
-      <phrase revisionflag="added"> in the base 16
-      character encoding and as <systemitem>0x02 0x04
-	0xFF 0xFF 0xFF 0xFI</systemitem> in the byte encoding (base 256)</phrase>.</para>
+      <phrase> in the base 16
+      character encoding and as <systemitem>0x02 0x04 0xab 
+	0xFF 0xFF 0xFF 0xF1</systemitem> in the byte encoding (base 256)</phrase>.</para>
     <para> Note that it is    
       permitted to encode a <quote>small</quote> integer in any <quote>bigger</quote>
       format.</para>
-    <para revisionflag="added">To splice sequences of integer packets into
+    <para>To splice sequences of integer packets into
       integers, we have to consider three cases: In the case of token identifiers
       1, 33, and 65 the sequence of packets is treated as a sequence of integer digits
       to the base of <math><msup><mn>2</mn><mn>7</mn></msup></math> (most
@@ -3666,7 +2948,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
       integer. The sign of this packet determines the sign of the overall
       integer.</para>
 
-    <figure id="fig_bin-enc_stream" role="finaledit" revisionflag="added">
+    <figure id="fig_bin-enc_stream" role="finaledit">
       <title>Streaming a large Integer in the Binary Encoding.</title>
 
       <informaltable>
@@ -3719,19 +3001,10 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 <varlistentry>
 <term>Symbols</term>
 <listitem><para>are encoded as the symbol tags
-    (<phrase revisionflag="added">token identifier</phrase> 8) with the long flag
+    (<phrase>token identifier</phrase> 8) with the long flag
     set if the maximum of the length <phrase
-    revisionflag="added">in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
-    or the symbol name is greater than or equal to 256<phrase revisionflag="deleted"> (note that this
-  should never be the case if the rules on symbols and Content
-  Dictionary names are applied), followed by the length of the
-  Content Dictionary name as a byte (if the long flag was not set)
-  or a four byte integer (in network byte order) followed by the
-  length of the symbol name as a byte (if the long flag was not set)
-  or a four byte integer (in network byte order), followed by the
-  characters of the Content Dictionary name, followed by the
-  characters of the symbol name.</phrase>
-<phrase revisionflag="added">. The symbol tag is  followed by the
+   >in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
+    or the symbol name is greater than or equal to 256. <phrase>The symbol tag is  followed by the
   length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name, the symbol
   name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
   (if the long flag was not set) or a four byte integer (in network byte
@@ -3744,7 +3017,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 <varlistentry>
 <term>Variables</term>
 <listitem><para>are encoded using the variable tags
-    (<phrase revisionflag="added">token identifiers</phrase> 5) with the long
+    (<phrase>token identifiers</phrase> 5) with the long
   flag set if the number of bytes in the <acronym>utf-8</acronym> encoding of the variable name is
   greater than or equal to 256.  Then, there is the number of characters
   as a byte (if the long flag was not set) or a four byte integer
@@ -3756,39 +3029,39 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 
 <varlistentry>
 <term>Floating-point number</term>
-<listitem><para>are encoded using the floating-point
-  number tags (<phrase revisionflag="added">token identifier</phrase> 3) followed by eight bytes that are the IEEE 754
-  representation&#160;<citation>ieee754_85</citation>, most significant bytes first. For
-  example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>.</para>
+<listitem><para revisionflag="changed">are encoded using the floating-point
+  number tags (<phrase>token identifier</phrase> 3) followed by eight bytes that are the IEEE 754
+  representation&#160;<citation>ieee754_85</citation>, most significant bytes first.
+For example, 
+  <math><mn>1</mn><mo>&#215;</mo>
+	  <msup><mn>10</mn><mn>-10</mn></msup></math>
+  is encoded as <systemitem>0x03 3ddb7cdfd9d7bdbb</systemitem>.
+</para>
 </listitem>
 </varlistentry>
 
 <varlistentry>
 <term>Character string</term>
 <listitem><para>are encoded in two ways depending on whether
-  <phrase revisionflag="deleted">the string contains <acronym>utf-16</acronym> characters or not. If the
-  string contains only 8 bit characters</phrase>,
-  <phrase revisionflag="added">the string is encoded in
+  <phrase>the string is encoded in
   <acronym>utf-16</acronym> or <acronym>iso-8859-1</acronym>
   (<acronym>latin-1</acronym>).
   In the case of <acronym>latin-1</acronym></phrase> it is encoded as the one
-  byte character string tags (<phrase revisionflag="added">token identifier</phrase> 6) with the long flag set if the number
+  byte character string tags (<phrase>token identifier</phrase> 6) with the long flag set if the number
   of bytes (characters) in the string is greater than or equal to 256.
   Then, there is the number of characters as a byte (if the length
   flag was not set) or a four byte integer (in network byte order),
-  followed by the characters in the string. If the string <phrase revisionflag="deleted">contains two
-  byte characters, it is encoded as the two byte</phrase><phrase revisionflag="added"> is encoded in
+  followed by the characters in the string. If the string<phrase> is encoded in
   <acronym>utf-16</acronym>, it is encoded as the <acronym>utf-16</acronym></phrase> character string
-  tags (<phrase revisionflag="added">token identifier</phrase> 7) with the long flag set if the number of characters in the
+  tags (<phrase>token identifier</phrase> 7) with the long flag set if the number of characters in the
   string is greater or equal to 256. Then, there is the number of
-  <phrase revisionflag="deleted">characters</phrase><phrase
-  revisionflag="added"><acronym>utf-16</acronym> units, which will be the
+  <phrase><acronym>utf-16</acronym> units, which will be the
   number of characters unless characters in the higher planes of
   Unicode are used,</phrase> as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
   (<acronym>utf-16</acronym> encoded  Unicode).</para>
 
-<para revisionflag="added">Sequences of string packets are assumed to have the
+<para>Sequences of string packets are assumed to have the
   same encoding for every packet. They are assembled into strings by 
       concatenating the strings in the packets in sequence order.</para>
 
@@ -3797,15 +3070,15 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 
 <varlistentry>
   <term>Bytearrays</term>
-  <listitem><para>are encoded using the bytearray tags (<phrase revisionflag="added">token identifier</phrase> 4) with the
-      long flag set if the number <phrase revisionflag="deleted">of bytes in the
-	number of </phrase> elements is
+  <listitem><para revisionflag="changed">are encoded using the bytearray 
+  tags (<phrase>token identifier</phrase> 4) with the
+      long flag set if the number of elements is
       greater than or equal to 256. Then, there is the number of elements,
       as a byte (if the long flag was not set) or a four byte integer
       (in network byte order), followed by the elements of the arrays in
       their normal order.</para>
 
-    <para revisionflag="added">Sequences of bytearray packets are assembled into
+    <para>Sequences of bytearray packets are assembled into
       byte arrays by
       concatenating the bytearrays in the packets in sequence order.
     </para>
@@ -3813,7 +3086,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
   </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added"> <term>Foreign Objects</term>
+<varlistentry> <term>Foreign Objects</term>
   <listitem>
     <para>are encoded using the foreign object tags (token identifier 12) with the
       long flag set if the number of bytes is greater than or equal to 256 and the
@@ -3836,7 +3109,7 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
   </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added">
+<varlistentry>
   <term>cdbase scopes</term>
   <listitem>
     <para>are encoded using the token identifier 9. The purpose of these
@@ -3855,40 +3128,40 @@ The identifier is stored in the first <phrase revisionflag="deleted">6 bits (1 t
 <varlistentry>
   <term>Applications</term>
   <listitem><para>are encoded using the application tags (<phrase
-revisionflag="added">token identifiers</phrase> 16 and 17). More
+>token identifiers</phrase> 16 and 17). More
   precisely, the application of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
   <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded
-  using the application tags (<phrase revisionflag="added">token
+  using the application tags (<phrase>token
     identifier</phrase> 16), the sequence of the encodings of 
   <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end application tags
-  (<phrase revisionflag="added">token identifier</phrase> 17).</para> 
+  (<phrase>token identifier</phrase> 17).</para> 
 </listitem>
 </varlistentry>
 
 <varlistentry> 
   <term>Bindings</term>
   <listitem><para>are encoded using the binding
- tags (<phrase revisionflag="added">token identifiers</phrase> 26 and 27). More precisely,
+ tags (<phrase>token identifiers</phrase> 26 and 27). More precisely,
  the binding by <math><mi>B</mi></math> of variables
  <math><msub><mi>V</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
  <math><msub><mi>V</mi><mi>n</mi></msub></math> in <math><mi>C</mi></math> is
- encoded as the binding tag (<phrase revisionflag="added">token
+ encoded as the binding tag (<phrase>token
  identifier</phrase> 26), followed by the encoding of <math><mi>B</mi></math>,
- followed by the binding variables tags (<phrase revisionflag="added">token
+ followed by the binding variables tags (<phrase>token
  identifier</phrase> 28), followed by the encodings of the variables
  <math><msub><mi>V</mi><mn>1</mn></msub></math> <phrase>&#8230;</phrase>
  <math><msub><mi>V</mi><mi>n</mi></msub></math>, followed by the end binding
- variables tags (<phrase revisionflag="added">token identifier</phrase> 29),
+ variables tags (<phrase>token identifier</phrase> 29),
  followed by the encoding of <math><mi>C</mi></math>, followed by the end binding
- tags (<phrase revisionflag="added">token identifier</phrase> 27).</para>
+ tags (<phrase>token identifier</phrase> 27).</para>
  </listitem> </varlistentry>
 
 <varlistentry>
  <term>Attributions</term>
  <listitem><para>are encoded using the attribution
-     tags (<phrase revisionflag="added">token identifiers </phrase> 18 and 19). More
+     tags (<phrase>token identifiers </phrase> 18 and 19). More
      precisely, attribution of the object <math><mi>E</mi></math> with
      (<math><msub><mi>S</mi><mn>1</mn></msub></math>,
      <math><msub><mi>E</mi><mn>1</mn></msub></math>),
@@ -3896,33 +3169,33 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
      (<math><msub><mi>S</mi><mi>n</mi></msub></math>,
      <math><msub><mi>E</mi><mi>n</mi></msub></math>) pairs (where
      <math><msub><mi>S</mi><mi>i</mi></msub></math> are the attributes) is 
-     encoded as the attributed object tag (<phrase revisionflag="added">token
+     encoded as the attributed object tag (<phrase>token
        identifier</phrase> 18), followed by the encoding 
      of the attribute pairs as the attribute pairs tags
-     (<phrase revisionflag="added">token identifier</phrase> 20), followed by 
+     (<phrase>token identifier</phrase> 20), followed by 
      the encoding of each symbol and value, followed by the end attribute
-     pairs tag (<phrase revisionflag="added">token identifier</phrase> 21),
+     pairs tag (<phrase>token identifier</phrase> 21),
      followed by the encoding of <math><mi>E</mi></math>, followed by the end 
-     attributed object tag (<phrase revisionflag="added">token identifier</phrase> 19).</para>
+     attributed object tag (<phrase>token identifier</phrase> 19).</para>
  </listitem>
 </varlistentry>
 
 <varlistentry>
   <term>Errors</term>
   <listitem><para>are encoded using the error tags
-      (<phrase revisionflag="added">token identifiers</phrase> 22 and 23). More precisely, 
+      (<phrase>token identifiers</phrase> 22 and 23). More precisely, 
   <math><msub><mi>S</mi><mn>0</mn></msub></math> applied to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
   <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tag
-  (<phrase revisionflag="added">token identifier</phrase> 22), 
+  (<phrase>token identifier</phrase> 22), 
   the encoding of <math><msub><mi>S</mi><mn>0</mn></msub></math>, the sequence of
   the encodings of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tag
-  (<phrase revisionflag="added">token identifier</phrase> 23).</para> 
+  (<phrase>token identifier</phrase> 23).</para> 
 </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added">
+<varlistentry>
 <term>Internal References</term>
 <listitem>
   <para>are encoded using the internal reference tags [30] and [30+128] (the sharing flag cannot
@@ -3935,7 +3208,7 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
 </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added">
+<varlistentry>
 <term>External References</term>
 <listitem>
   <para>are encoded using the external reference tags [31] and [31+128] (the sharing flag cannot
@@ -3957,7 +3230,7 @@ revisionflag="added">token identifiers</phrase> 16 and 17). More
 <section id="sec_bin_example">
 <title>Example of Binary Encoding</title>
 
-<para>As <phrase revisionflag="deleted">an</phrase>
+<para>As
 <phrase revisionflag="added">a simple</phrase>
 example of the binary encoding, we can consider the &OM; object
 <math display="block" revisionflag="added">
@@ -3988,23 +3261,6 @@ example of the binary encoding, we can consider the &OM; object
   </mrow>
   <mo fence="true">)</mo>
 </math>
-<phrase revisionflag="deleted">
-whose &exml; encoding is</phrase>
-<literallayout revisionflag="deleted"><![CDATA[<OMOBJ version="2.0" cdbase="http://www.openmath.org/cd">
-  <OMA>
-    <OMS name="times" cd="arith1"/>
-    <OMA>
-      <OMS name="plus" cd="arith1"/>
-      <OMV name="x"/>
-      <OMV name="y"/>
-    </OMA>
-    <OMA>
-      <OMS name="plus" cd="arith1"/>
-      <OMV name="x"/>
-      <OMV name="z"/>
-    </OMA>
-  </OMA>
-</OMOBJ>]]></literallayout> 
 It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-enc_ex"/>.</para>
 
 <figure id="fig_bin-enc_ex">
@@ -4135,18 +3391,17 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 <section id="sec_both_sharing">
   <title>Sharing</title>
   
-  <para revisionflag="added">
+  <para>
     &OM;&#160;2 introduced a new sharing mechanism, described below.  First however
     we describe the original &OM;&#160;1 mechanism.
   </para>
   
   <section id="sec_sharing">
-    <title>Sharing <phrase revisionflag="added">in Objects beginning with the identifier [24]</phrase></title>
+    <title>Sharing <phrase>in Objects beginning with the identifier [24]</phrase></title>
     
     <para>This
-      <phrase revisionflag="added">form of sharing is deprecated but included for
+      <phrase>form of sharing is deprecated but included for
 	backwards compatibility with &OM;&#160;1.  It</phrase>
-      <phrase revisionflag="deleted">binary encoding</phrase>
       supports the sharing of symbols, variables and strings
       (up to a certain length for strings) within one object. That is, sharing between
       objects is not supported.  A reference to a shared symbol, variable or string is
@@ -4162,7 +3417,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       than 256 characters can be shared (i.e. only strings up to 255 characters).</para>
   </section>
   
-  <section id="sec_sharing_references" revisionflag="added">
+  <section id="sec_sharing_references">
     <title>Sharing with References (beginning with [24+64])</title>
     
     <para>In the binary encoding specified in the last section (which we keep
@@ -4326,7 +3581,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     wrote the object chose not to share optimally).
   </para>
   
-  <para revisionflag="added">
+  <para>
     The part for the shared representations of &OM; objects uses an unbounded
     array for storing shared sub-objects. Whenever an object has the shared flag
     set, then it is read and a pointer to the generated data structure is stored at
@@ -4351,7 +3606,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 </section>
 
 
-<section id="sec_relation_OM1_binary" revisionflag="added">
+<section id="sec_relation_OM1_binary">
   <title>Relation to the &OM;&#160;1 binary encoding</title>
   <para>The &OM;&#160;2 binary encoding significantly extends the
     &OM;&#160;1 binary encoding to accommodate the new features and in particular sharing of
@@ -4456,15 +3711,13 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       same way as other (&OM;) mathematical data.</para>
     
     <para>Finally, the syntax of the
-      <phrase revisionflag="added">reference encoding for</phrase>
+      <phrase>reference encoding for</phrase>
       Content Dictionaries has been designed to be relatively easy to learn
       and to write, and also free from the need for any specialist
       software. This is because it is acknowledged that there is an enormous
       amount of mathematical information to represent, and so most 
-      <phrase revisionflag="deleted">of the</phrase>
       Content Dictionaries 
-      <phrase revisionflag="deleted">will be</phrase>
-      <phrase revisionflag="added">are</phrase> 
+      <phrase>are</phrase> 
       written by <quote>ordinary</quote>
       mathematicians, encoding their particular fields of expertise.  A
       further reason is that the mathematics conveyed by a specific Content
@@ -4489,66 +3742,13 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
   <section id="sect_func">
     <title>Abstract Content Dictionaries</title>
     
-    <para>In this section we define the <phrase revisionflag="deleted">overall</phrase><phrase revisionflag="added">abstract</phrase> structure of Content
+    <para>In this section we define the <phrase>abstract</phrase> structure of Content
       Dictionaries.</para>
     
     
-    <para revisionflag="deleted">Other than Content Dictionary comments (which have no real semantics),
-      Content Dictionaries have been designed to hold two types of
-      information: that which is pertinent to the whole Content Dictionary,
-      and that which is restricted to a particular symbol definition.
-      Specific information pertaining to the symbols like the signature and
-      the defining mathematical properties is conveyed in additional files
-      associated to Content Dictionaries.</para>
-    
-    <para revisionflag="deleted">Information that is pertinent to the whole Content Dictionary
-      includes:
-      <itemizedlist revisionflag="deleted">
-	<listitem><para>The name of the Content Dictionary.</para>
-	</listitem>
-	<listitem><para>A description of the Content Dictionary.</para>
-	</listitem>
-	<listitem><para>A date when the Content Dictionary is next planned to be reviewed.</para>
-	</listitem>
-	<listitem><para>A date on which the Content Dictionary was last edited.</para>
-	</listitem>
-	<listitem><para>The current version and revision  numbers of the Content Dictionary.</para>
-	</listitem>
-	<listitem><para>The status of the Content Dictionary.</para>
-	</listitem>
-	<listitem><para>An optional URL for this Content Dictionary.</para>
-	</listitem>
-	<listitem><para>An optional list of Content Dictionaries on which this Content
-	    Dictionary depends. That is, those named in Examples and FMPs
-	    in this Content Dictionary.</para>
-	</listitem>
-	<listitem><para>An optional comment, possibly containing the author's name.</para>
-	</listitem>
-      </itemizedlist>
-    </para>
-    
-    <para revisionflag="deleted">Information that is restricted to a particular symbol includes:
-      <itemizedlist revisionflag="deleted">
-	<listitem><para>The name of the symbol.</para>
-	</listitem>
-	<listitem><para>A description of this symbol.</para>
-	</listitem>
-	<listitem><para>An optional comment.</para>
-	</listitem>
-	<listitem><para>Optional properties that this symbol should obey.</para>
-	</listitem>
-	<listitem><para>Optional examples of the use of this symbol.</para>
-	</listitem>
-      </itemizedlist>
-    </para>
-    
-    
-    
-    
-    
-    <para revisionflag="added">A Content Dictionary consists of the
+    <para>A Content Dictionary consists of the
       following mandatory pieces of information:
-      <orderedlist revisionflag="added">
+      <orderedlist>
 	<listitem><para>A <emphasis>name</emphasis> corresponding to the rules
 	    described in <xref linkend="sec_names"/>.</para>
 	</listitem>
@@ -4587,9 +3787,9 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       </orderedlist>
     </para>
     
-    <para revisionflag="added">A symbol definition consists of the
+    <para>A symbol definition consists of the
       following pieces of information:
-      <orderedlist revisionflag="added">
+      <orderedlist>
 	<listitem><para>A mandatory <emphasis>name</emphasis> corresponding to the rules
 	    described in <xref linkend="sec_names"/>.</para>
 	</listitem>
@@ -4628,20 +3828,8 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	</listitem>
       </orderedlist>
     </para>
-    
-    <para revisionflag="deleted">As mentioned earlier, certain kinds of data pertaining to
-      symbols may be conveyed in files other than a Content Dictionary.  In
-      particular, information on signatures according to a type system may
-      be described in <emphasis>Signature Files</emphasis> whose format is
-      given in <xref linkend="sigfiles"/>. Other information such as
-      presentation forms, extra defining mathematical properties may be
-      associated with Content Dictionaries using files whose format is not
-      specified by this standard. It is expected that a common method of
-      defining the presentation for &OM; symbols is via
-      <acronym>xsl</acronym>&#160;<citation>XSLT_99</citation> stylesheets
-      giving transformations to MathML.</para>
-    
-    <para revisionflag="added">
+        
+    <para>
       Some pieces of information which might logically be thought to be part
       of a Content Dictionary, such as the types or signatures of symbols,
       are better represented externally.  This allows for new variants to be
@@ -4650,19 +3838,19 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 									  linkend="sigfiles"/>.</para>
     
     
-    <para>Content Dictionaries may be grouped into <emphasis>CD
+    <para revisionflag="changed">Content Dictionaries may be grouped into <emphasis>CD
 	Groups</emphasis>. These groups allow applications to easily refer to
       collections of Content Dictionaries. One particular CDGroup of
       interest is the <quote>MathML CDGroup</quote>. This group consists of
       the collection of core Content Dictionaries that is designed to
       have the same semantic scope as the content elements of
-      MathML&#160;2&#160;<citation>MathML_2003</citation>.  &OM; objects
+      MathML <citation>MathML_2014</citation>.  &OM; objects
       built from symbols that come from Content Dictionaries in this CDGroup
       may be expected to be easily transformed between &OM; and MathML
       encodings.  The detailed structure of a CDGroup is described in
       <xref linkend="ssec_cdgroups"/> below.</para>
     
-    <section revisionflag="added" id="sec_status">
+    <section  id="sec_status">
       <title>Content Dictionary Status</title>
       
       <para>The status of a Content Dictionary can be either
@@ -4688,7 +3876,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       </para>
     </section>
     
-    <section revisionflag="added" id="sec_version">
+    <section  id="sec_version">
       <title>Content Dictionary Version Numbers</title>
       
       <para>A version number must consist of two parts, a major version and
@@ -4724,25 +3912,11 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
   </section>
   
   <section id="sec_xml_cd">
-    <title>The <phrase
-		       revisionflag="deleted">&exml;</phrase><phrase revisionflag="added">Reference</phrase> Encoding for Content Dictionaries</title>
+    <title>The <phrase>Reference</phrase> Encoding for Content Dictionaries</title>    
     
-    
-    
-    
-    <para><phrase revisionflag="added">The reference encoding of</phrase>
+    <para><phrase>The reference encoding of</phrase>
       Content Dictionaries are as &exml; documents.  A valid Content Dictionary
-      document should 
-      <itemizedlist revisionflag="deleted">
-	<listitem><para>be valid according to the DTD given in <xref
-								     linkend="fig_cd-dtd"/>,</para>
-	</listitem>
-	<listitem><para>adhere to the extra conditions on the
-	    content of the elements given in <xref
-						   linkend="sect_pcdata"/>.</para>
-	</listitem>
-      </itemizedlist>
-      <phrase revisionflag="added">conform to the Relax NG Schema for
+      document should <phrase>conform to the Relax NG Schema for
 	Content Dictionaries given in <xref linkend="sec_cd_schema"/>.
       </phrase>
     </para>
@@ -4757,7 +3931,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       <systemitem>arith1</systemitem> Content Dictionary for basic
       arithmetic functions.</para>
     
-    <section id="sec_cd_schema" revisionflag="added">
+    <section id="sec_cd_schema">
       <title>The Relax NG Schema for Content Dictionaries</title>
       
       <literallayout>
@@ -4765,81 +3939,11 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       </literallayout>
       
     </section>
-    <section id="sec_dtd_cd" revisionflag="deleted">
-      <title>The DTD Specification of  Content Dictionaries</title>
-
-
-<figure id="fig_cd-dtd">
-    <title>DTD Specification of  Content Dictionaries</title>
-<literallayout><![CDATA[
-<!-- omcd.dtd -->
-<!-- ********************************************* -->
-<!--                                               -->
-<!-- DTD for OpenMath CD                           -->
-<!-- (c) EP24969 the ESPRIT OpenMath Consortium    -->
-<!-- date = 28.aug.1998                            -->
-<!-- author = s.buswell sb@stilo.demon.co.uk       -->
-<!--                                               -->
-<!-- edited by n.howgrave-graham 30.aug.98         -->
-<!-- edited by sb 4.sep.98                         -->
-<!-- edited by nh-g 4.sep.98                       -->
-<!-- edited by sb 1.nov.98                         -->
-<!-- edited by sb 1.nov.98                         -->
-<!-- edited by dpc 1999-04-13                      -->
-<!--                                               -->
-<!--                                               -->
-<!-- ********************************************* -->
-<!ELEMENT CDComment      (#PCDATA) >
-<!ELEMENT CDName         (#PCDATA) >
-<!ELEMENT CDURL          (#PCDATA) >
-<!ELEMENT CDUses         (CDName)*  >
-<!ENTITY % inhel        "(#PCDATA)" >
-<!ENTITY % inhel2       "(#PCDATA | OMOBJ)*" >
-<!ELEMENT CDReviewDate   %inhel; >
-<!ELEMENT CDStatus       %inhel; >
-<!ELEMENT Description    %inhel; >
-<!ELEMENT Name           %inhel; >
-<!ELEMENT Signature      %inhel; >
-<!ELEMENT Presentation   %inhel; >
-<!ELEMENT CMP            %inhel; >
-<!-- include dtd for OM objects -->
-<!ENTITY  % omobjectdtd SYSTEM "omobj.dtd" >
-%omobjectdtd;
-<!ELEMENT FMP            %inhel2; >             <!-- allow embedded OM -->
-<!ELEMENT Example        %inhel2; >
-<!ELEMENT CDDefinition    (CDComment | Name | Description |  PartOf |
-                          FunctorClass | Signature | Example | FMP |
-                          CMP | Presentation)* >
-<!ELEMENT CD             (CDComment | CDName | Description | CDReviewDate |
-                         CDStatus | CDURL | CDUses |  CDDefinition |
-Example)* >
-<!-- end of DTD for OM CD -->
-]]>
-</literallayout>
-
-
-</figure>
-
-
-<para>The &exml; DTD for Content Dictionaries is given in
-<xref linkend="fig_cd-dtd"/>. The allowed elements are further
-described in the following section.</para>
-</section>
 
 <section id="sect_pcdata">
-<title>Further <phrase revisionflag="deleted">Requirements of an &OM;
-Content Dictionary</phrase><phrase revisionflag="added">Description of
-the CD Schema</phrase></title>
+<title>Further <phrase>Description of the CD Schema</phrase></title>
 
-
-<para revisionflag="deleted">The notion of being a valid Content Dictionary is stronger than merely
-being successfully parsed by the DTD. This is because the content of
-the elements, referred to in <xref linkend="fig_cd-dtd"/> as PCDATA and
-CDATA, must actually make sense to, say, a Phrasebook designer. In
-this section we define exactly the format of the elements used in
-Content Dictionaries.</para>
-
-<para revisionflag="added">
+<para>
 We now describe the elements used in the above schema in terms of the
 abstract description of CDs in <xref linkend="sect_func"/>.  Unless
 stated otherwise information is encoded as the content of the relevant
@@ -4850,9 +3954,7 @@ element.
 
 <variablelist>
 <varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
-  text occurring in the <systemitem>CDName</systemitem> element
-  corresponds to the</phrase> name of the Content Dictionary.
+name of the Content Dictionary.
 </para>
 
 </listitem>
@@ -4867,26 +3969,13 @@ element.
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDReviewDate</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
-  text occurring in the <systemitem>CDReviewDate</systemitem> element
-  corresponds to the earliest possible
-</phrase>
 review date of the Content
-  Dictionary. <phrase revisionflag="deleted">The date formats should be ISO-compliant in the form
-  YYYY-MM-DD, e.g. 1953-09-26.</phrase></para>
+  Dictionary. </para>
   
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDDate</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
-text occurring in the <systemitem>CDDate</systemitem> element
-  corresponds to the
-</phrase>
 revision date of this version of the Content Dictionary.
-<phrase revisionflag="deleted">
-  The date formats should be ISO-compliant in the form YYYY-MM-DD,
-  e.g. 1953-09-26.
-</phrase>
 </para>
   
 </listitem>
@@ -4895,75 +3984,25 @@ revision date of this version of the Content Dictionary.
    
    
 
-<para revisionflag="added">The major version number of the CD.</para>
-   <para revisionflag="deleted">The text occurring in the <systemitem>CDVersion</systemitem> element corresponds to
-   the version number of the current version of a Content Dictionary.
-   It should be a non negative integer.</para>
-
-<para revisionflag="deleted">In CDs that do not have status <emphasis>experimental</emphasis>, CD version
-  numbering should adhere to the following. The version number should
-  be a positive integer.</para>
-
-<para revisionflag="deleted">No changes can be
-  introduced that invalidate objects built with previous versions.
-  Any change that influences phrasebook compliance, like adding a new
-  symbol to a Content Dictionary, is considered a major change.
-  and should be reflected by an increase in this version number. Other
-  changes, like adding an example or correcting a description, are
-  considered minor changes. For minor changes the version number is not
-  changed, but an increase should be made to the revision number, as
-  described below. A change such as removing a symbol should
-  not be made, instead a new CD, with a different name should be
-  produced, so as not to invalidate existing objects.</para>
-
-<para revisionflag="deleted">As detailed in chapter&#160;<xref linkend="cha_comp"/>, &OM; compliant applications
-  state which versions of which CDs they support.
-
-  <emphasis>Experimental</emphasis> CDs may expect to have changes such as adding
-  or removing symbols as they are developed, without requiring the name
-  of the CD to be changed.</para>
+<para>The major version number of the CD.</para>
 
   
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDRevision</systemitem></term><listitem>
-    <para
-revisionflag="deleted">The text
-   occurring in the <systemitem>CDRevision</systemitem> element
-   corresponds to the revision, or <quote>minor version number</quote> of the
-   current version of a Content Dictionary.  It should be a non
-   negative integer.</para>
 
-<para revisionflag="deleted">Minor changes to a CD that do not warrant the release of a CD with
-   an increased version number should be marked by increasing the
-   revision number specified in this field. When the Cd Version number
-   is increased, the Revision number is normally reset to zero.</para>
-
-<para revisionflag="added">The minor version number of the
+<para>The minor version number of the
 CD.</para>
   
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDStatus</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
-  text occurring in the <systemitem>CDStatus</systemitem> element
-  corresponds to the
-</phrase>
 status of the Content Dictionary.
-<phrase revisionflag="deleted">
-, and can be either
-  <systemitem>official</systemitem> (approved by the &OM; Society
-  according to the procedure outlined in <xref linkend="cdapprove"/>),
-  <systemitem>experimental</systemitem> (currently being tested),
-  <systemitem>private</systemitem> (used by a private group of &OM;
-  users) or <systemitem>obsolete</systemitem> (an obsolete Content
-  Dictionary kept only for archival purposes).
-</phrase>
 </para>
   
 </listitem>
 </varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDBase</systemitem></term><listitem><para>The
+<varlistentry><term><systemitem>CDBase</systemitem></term><listitem><para>The
 CD base of the CD.
 
 </para>
@@ -4985,7 +4024,7 @@ CD base of the CD.
    naming a Content Dictionary used in the
    <systemitem>Example</systemitem> and <systemitem>FMP</systemitem>s
    of the current Content Dictionary. <phrase
-revisionflag="added">This element is optional and deprecated since
+>This element is optional and deprecated since
 the information can easily be extracted automatically.</phrase></para>
    
  </listitem>
@@ -5000,27 +4039,20 @@ the information can easily be extracted automatically.</phrase></para>
    
  </listitem>
 </varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDDefinition</systemitem></term><listitem><para>The
+<varlistentry><term><systemitem>CDDefinition</systemitem></term><listitem><para>The
 element which contains the definition of an individual symbol.
 </para>
   
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>Name</systemitem></term><listitem><para>The
-<phrase revisionflag="deleted">
-  text occurring in the <systemitem>Name</systemitem> element
-  corresponds to the
-</phrase>
 name of a symbol.
-<phrase revisionflag="deleted">
-, and is specified as in <xref linkend="cha_enco"/>.
-</phrase>
 </para>
   
 </listitem>
 </varlistentry>
 
-<varlistentry revisionflag="added"><term><systemitem>Role</systemitem></term>
+<varlistentry><term><systemitem>Role</systemitem></term>
 <listitem><para>The role of a symbol: it must be one of
 <emphasis>binder</emphasis>, 
 <emphasis>attribution</emphasis>, 
@@ -5047,13 +4079,7 @@ and cannot be <quote>loose</quote> in the Content Dictionary.</para>
 <varlistentry><term><systemitem>CMP</systemitem></term>
 <listitem><para>
 
-<phrase revisionflag="deleted">
-The text occurring in the <systemitem>CMP</systemitem> element
-  corresponds to a property of the symbol. An application which says
-  it understands a Content Dictionary symbol need not understand a
-  commented property of the symbol.
-</phrase>
-<phrase revisionflag="added">
+<phrase>
 A Commented Mathematical Property.
 </phrase>
 
@@ -5063,17 +4089,7 @@ A Commented Mathematical Property.
 </varlistentry>
 <varlistentry><term><systemitem>FMP</systemitem></term><listitem><para>
 
-<phrase revisionflag="deleted">
-The
-  content of the <systemitem>FMP</systemitem> element also corresponds
-  to a property<footnote id="ftn_theory"><para>It corresponds to a
-  theorem of a theory in some formal system.</para></footnote> of the
-  symbol, however the content of this element must be a valid &OM;
-  object in the &exml; encoding.  An application which says it
-  understands a Content Dictionary symbol need not understand a formal
-  property of the symbol.
-</phrase>
-<phrase revisionflag="added">
+<phrase>
 A Formal Mathematical Property.  It may take an optional
 <systemitem>kind</systemitem> attribute.
 </phrase>
@@ -5091,23 +4107,17 @@ A Formal Mathematical Property.  It may take an optional
 
 
   <para>Content Dictionaries contain just one part of the
-information that can be associated to a symbol in order to <phrase
-revisionflag="deleted">stepwise</phrase> define its meaning and its
-functionality. &OM; Signature <phrase revisionflag="deleted">files</phrase><phrase
-revisionflag="added">dictionaries</phrase>, CDGroups, and possibly <phrase
-revisionflag="deleted">files</phrase><phrase
-revisionflag="added">collections</phrase> of extra mathematical properties, are
+information that can be associated to a symbol in order to 
+define its meaning and its
+functionality. &OM; Signature <phrase>dictionaries</phrase>, 
+CDGroups, and possibly <phrase>collections</phrase> of 
+extra mathematical properties, are
 used to convey the different aspects that as a whole make up a mathematical
 definition.</para>
 
 <section id="sigfiles">
-<title>Signature
-<phrase revisionflag="deleted">Files</phrase><phrase
-revisionflag="added">Dictionaries</phrase>
+<title>Signature <phrase>Dictionaries</phrase>
 </title>
-
-
-
 
 <para>&OM; may be used with any type system. One just needs to produce
 a Content Dictionary which gives the constructors of the type system,
@@ -5123,147 +4133,20 @@ same mechanism, <citation>OMD132b</citation> shows how pure type
 systems can also be employed to assign types to &OM; symbols.</para>
 
 
-<section id="sec_dtd_sig" revisionflag="deleted">
-<title>The  DTD Specification of Signature Files</title>
-
-<para>Signature Files are &exml; documents, hence a valid Signature
- File should
-<itemizedlist>
-<listitem><para>be valid according to the <acronym>dtd</acronym> given in
-  <xref linkend="fig_omcdsig.dtd"/>,</para>
-</listitem>
-<listitem><para>adhere to the extra conditions on the content of the elements
-  given in <xref linkend="sect_sigpcdata"/>.</para>
-</listitem>
-</itemizedlist></para>
-
-
-<para>Signature files have a header which specifies the Content
-Dictionary and determines the type system being used and the Content
-Dictionary which contains the symbols for which the signatures are
-being given. Each signature takes the form of an &exml; encoded &OM;
-object.</para>
-
-
-<figure id="fig_omcdsig.dtd">
-    <title>DTD Specification of Signature Files</title>
-<literallayout><![CDATA[
-<!-- omcdsig.dtd -->
-<!-- ********************************************* -->
-<!--                                               -->
-<!-- DTD for OpenMath CD Signatures                -->
-<!-- (c) EP24969 the ESPRIT OpenMath Consortium    -->
-<!-- David Carlisle 1999-04-13                     -->
-<!-- David Carlisle 1999-05-21                     -->
-<!-- David Carlisle 1999-06-22                     -->
-<!--                                               -->
-<!--                                               -->
-<!-- ********************************************* -->
-
-<!-- include dtd for OM objects -->
-<!ENTITY  % omobjectdtd SYSTEM "omobj.dtd" >
-%omobjectdtd;
-
-<!ELEMENT CDSComment      (#PCDATA) >
-<!ELEMENT CDSReviewDate    (#PCDATA) >
-<!ELEMENT CDSStatus    (#PCDATA) >
-
-<!ELEMENT CDSignatures   (CDComment |CDSComment | CDSReviewDate |
-                         CDSStatus | Signature )* >
-
-<!ATTLIST CDSignatures cd CDATA #REQUIRED
-                       type CDATA #REQUIRED >
-
-<!ELEMENT Signature      (OMOBJ?) >
-
-<!ATTLIST  Signature  name CDATA #REQUIRED >
-
-<!-- end of DTD for OM CD Signatures -->]]>
-</literallayout>
-</figure>
-</section>
 
 <section id="sect_sigpcdata">
-<title><phrase revisionflag="deleted">Further
-Requirements</phrase><phrase
- revisionflag="added">Abstract Specification</phrase>
+<title><phrase>Abstract Specification</phrase>
  of a Signature Dictionary</title>
 
-
-
-<para revisionflag="added">Signature dictionaries
+<para>Signature dictionaries
 have a header which specifies the
 type system being used and the Content
 Dictionary containing the symbols for which signatures are
 being given. Each signature takes the form of an &OM;
 object in an appropriate encoding.</para>
 
-<para revisionflag="deleted">The notion of being a valid Signature File is stronger than
-merely being successfully parsed by the <acronym>dtd</acronym> in
-<xref linkend="fig_omcdsig.dtd"/>.  In this section we define exactly
-the format of the elements used in Signature Files. Several of the
-requirements are the same as those on elements of Contents
-Dictionaries.</para>
 
-
-<variablelist revisionflag="deleted">
-<varlistentry><term><systemitem>CDSignatures</systemitem></term><listitem><para>The
-  outermost element of the Signature is characterized by two
-  required attributes that identify the type system and the Content
-  Dictionary whose signatures are defined. The value of the &exml;
-  attribute <systemitem>type</systemitem> is the name of the Content
-  Dictionary or of the CDGroup (see <xref linkend="ssec_cdgroups"/>)
-  that represents the type system. The value of the &exml; attribute
-  <systemitem>cd</systemitem> is the name of the Content Dictionary
-  whose symbols are assigned signatures in this Signature File. Both
-  values are of the form specified in <xref
-  linkend="cha_enco"/>.</para>
-  
-</listitem>
-</varlistentry>
-<varlistentry><term><systemitem>CDSComment</systemitem></term><listitem><para>See
-  <systemitem>CDComment</systemitem> in <xref
-  linkend="sect_pcdata"/>.</para>
-
-</listitem>
-</varlistentry>
-
-<varlistentry><term><systemitem>CDSreviewDate</systemitem></term><listitem><para>The
-  text occurring in the <systemitem>CDSReviewDate</systemitem> element
-  corresponds to the earliest possible revision date of the Signature
-  File.  The date formats should be ISO-compliant in the form
-  YYYY-MM-DD, e.g. 2000-02-29.</para>
-  </listitem>
-</varlistentry>
-
-<varlistentry><term><systemitem>CDSStatus</systemitem></term><listitem><para>The
-  text occurring in the <systemitem>CDSStatus</systemitem> element
-  corresponds to the status of the Signature File, and can be either
-  <systemitem>official</systemitem> (approved by the &OM; Society
-  according to the procedure outlined in <xref linkend="cdapprove"/>),
-  <systemitem>experimental</systemitem> (currently being tested),
-  <systemitem>private</systemitem> (used by a private group of &OM;
-  users) or <systemitem>obsolete</systemitem> (an obsolete Signature
-  File kept only for archival purposes).</para>
-  
-</listitem>
-</varlistentry>
-<varlistentry><term><systemitem>Signature</systemitem></term>
-<listitem>
-
-<para>The content of the <systemitem>Signature</systemitem> element
-  has to be a valid &OM; object in &exml; encoding as specified in
-  <xref linkend="cha_enco"/>. Additionally, the object must represent
-  a valid type in the type system identified by the &exml; attribute
-  <systemitem>type</systemitem> of the
-  <systemitem>CDSignature</systemitem> element. See <xref
-  linkend="sect_sigex"/> for examples.</para>
-
-</listitem>
-</varlistentry>
-</variablelist>
-
-<orderedlist revisionflag="added">
+<orderedlist>
 <listitem><para>
 A <emphasis>type definition</emphasis>: the
   name of the Content
@@ -5295,7 +4178,7 @@ type definition.
 </section>
 
 
-<section id="sect_sigschema" revisionflag="added">
+<section id="sect_sigschema">
 <title>A Relax NG Schema for a Signature Dictionary</title>
 
 <para>
@@ -5374,7 +4257,7 @@ CDGroup G.</para>
 <para>CDGroups are &exml; documents, hence  a valid  CDGroup
  should 
 <itemizedlist>
-<listitem><para>be valid according to the <phrase revisionflag="deleted">DTD</phrase><phrase revisionflag="added">schema</phrase> given in
+<listitem><para>be valid according to the <phrase>schema</phrase> given in
   <xref linkend="fig_cdgroup.dtd"/>,</para>
 </listitem>
 <listitem><para>adhere to the extra conditions on the content of the elements
@@ -5389,8 +4272,7 @@ CDs, identified by name and optionally version number and URL.</para>
 
 
 <figure id="fig_cdgroup.dtd">
-    <title><phrase revisionflag="deleted">DTD</phrase><phrase
-    revisionflag="added">Relax NG</phrase> Specification of CDGroups</title>
+    <title><phrase>Relax NG</phrase> Specification of CDGroups</title>
 <literallayout>
 &cdgrouprnc;
 </literallayout>
@@ -5405,7 +4287,8 @@ CDs, identified by name and optionally version number and URL.</para>
 
 
 <para>The notion of being a valid CDGroup implies that the following
-requirements on the content of the elements described by the <phrase revisionflag="deleted">DTD</phrase><phrase revisionflag="added">schema</phrase> given in
+requirements on the content of the elements described by the 
+<phrase>schema</phrase> given in
   <xref linkend="sect_sigschema"/> are also met.</para>
 
 
@@ -5425,7 +4308,7 @@ requirements on the content of the elements described by the <phrase revisionfla
   
 </listitem>
 </varlistentry>
-<varlistentry revisionflag="added"><term><systemitem>CDGroupVersion</systemitem></term>
+<varlistentry><term><systemitem>CDGroupVersion</systemitem></term>
 <term><systemitem>CDGroupRevision</systemitem></term>
 <listitem>
 <para>The text occurring in these elements contains the major and minor
@@ -5541,7 +4424,7 @@ encoding and &exml; encoding,  defined in <xref linkend="cha_enco"/>.</para>
 &OM; objects, <emphasis>must</emphasis> be capable of doing so using  the &exml; encoding.
 The ability to use other encodings is optional.</para>
 
-<section id="sec_compl_xml_encoding" revisionflag="added">
+<section id="sec_compl_xml_encoding">
 <title>The XML Encoding</title>
 
 <section id="sec_compl_xml_encoding_val">
@@ -5641,7 +4524,7 @@ For example (again using the &exml; encoding):
 </OMATTR>]]></literallayout>
 </para>
 
-<para> An exception to the above guidelines occurs when a MathML object
+<para revisionflag="changed"> An exception to the above guidelines occurs when a MathML object
 is converted to &OM;.  MathML also has an
 <systemitem>encoding</systemitem> attribute which can appear in various
 places and whose format is a string.  Only two values are predefined,
@@ -5649,7 +4532,7 @@ places and whose format is a string.  Only two values are predefined,
 <systemitem>MathML-Presentation</systemitem>, and these may appear in
 the resulting &OM; object despite the fact that they are not namespaces
 as recommended above. For example the following MathML expression:
-<literallayout><![CDATA[<semantics xmlns="xmlns="http://www.w3.org/1998/Math/MathML">
+<literallayout><![CDATA[<semantics xmlns="http://www.w3.org/1998/Math/MathML">
   <apply>
     <sin/>
     <ci>x</ci>
@@ -5723,18 +4606,12 @@ the accuracy of these representations.</para>
 
 <para>Content Dictionaries available from the official &OM; repository
 at www.openmath.org need only be referenced by name, other Content
-Dictionaries <emphasis>should</emphasis> be referenced <phrase
-revisionflag="deleted">by the URL declared in the
-<systemitem>CDURL</systemitem> field of the Dictionary. This URL may
-be used to retrieve the Content Dictionary.</phrase> <phrase
-revisionflag="added"></phrase> using the
+Dictionaries <emphasis>should</emphasis> be referenced using the
 <systemitem>CDBase</systemitem> and the
 <systemitem>CDName</systemitem>.  </para>
 
 <para>When receiving an &OM; symbol, e.g.&#160;<math><mi>s</mi></math>,
- that is not 
-<phrase revisionflag="deleted">supported from</phrase>
-<phrase revisionflag="added">defined in</phrase>
+ that is not <phrase>defined in</phrase>
 a supported Content Dictionary, a
  compliant application will act as if it had received the &OM; object
  <math display="block"><mi
@@ -5810,27 +4687,6 @@ No &OM;&#160;2 application should generate documents in this form.
 
 </chapter>
 
-<chapter id="cha_conc" revisionflag="deleted">
-<title>Conclusion</title>
-
-
-<para>The goal of this document is to define the &OM;&#160;2 standard. The issues
-  addressed by the &OM;&#160;2 standard are:
-  <itemizedlist>
-    <listitem>
-      <para>Informal and formal definition of the &OM; objects.</para>
-    </listitem>
-    <listitem>
-      <para>Informal and formal definition of the notion of Content Dictionaries.</para>
-    </listitem>
-  </itemizedlist>
-  To do this, &OM; objects are precisely defined and two encodings are described
-to represent these objects using <acronym>xml</acronym> and binary
-code. Furthermore, the Document Type Definition for validating Content
-Dictionaries and &OM; objects is given.</para>
-</chapter>
-
-
 <appendix id="app_cdfiles">
 <title>CD Files</title>
 
@@ -5887,7 +4743,7 @@ Dictionaries and &OM; objects is given.</para>
 </appendix>
 
 
-<appendix id="app_openmath.rng" revisionflag="added">
+<appendix id="app_openmath.rng">
   <title>&OM; Schema in Relax NG XML Syntax (Normative)</title>
   
   <para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
@@ -5898,7 +4754,7 @@ Dictionaries and &OM; objects is given.</para>
   </literallayout>
 </appendix>
 
-<appendix id="app_relaxrestricted" revisionflag="added">
+<appendix id="app_relaxrestricted">
   <title>Restricting the &OM; Schema (Non-Normative)</title>
   
   <para> Relax NG allows one to state constraints such as <emphasis>
@@ -5970,8 +4826,7 @@ or, using the Relax NG compact syntax:
 </para>
 
 <para> To build a schema that allows only symbols from arith1 we just
-  need to include the &OM; schema described in <xref
-                                                     linkend="ssec_xml"/>, override the attribute declarations for
+  need to include the &OM; schema described in <xref linkend="ssec_xml"/>, override the attribute declarations for
   OMS, and then include the schema for arith1.  For example:
   <literallayout>
     <![CDATA[<?xml version="1.0" encoding="UTF-8"?>
@@ -5997,7 +4852,7 @@ or, using the Relax NG compact syntax:
 
 </appendix>
 
-<appendix id="app_xsd" revisionflag="added">
+<appendix id="app_xsd">
   <title>&OM; Schema in XSD Syntax (Non-Normative)</title>
   
   <para>This is an XSD Schema generated from the Relax NG Schema described in 
@@ -6008,7 +4863,7 @@ or, using the Relax NG compact syntax:
   </literallayout>
 </appendix>
 
-<appendix id="app_dtd" revisionflag="added">
+<appendix id="app_dtd">
   <title>&OM; DTD (Non-Normative)</title>
   
   <para>This is a DTD generated from the Relax NG Schema described in 
@@ -6022,7 +4877,7 @@ or, using the Relax NG compact syntax:
   </literallayout>
 </appendix>
 
-<appendix revisionflag="added" id="app_whats_new">
+<appendix  id="app_whats_new">
   <title>Changes between &OM;&#160;1.1 and &OM;&#160;2 (Non-Normative)</title>
   
   
@@ -6183,6 +5038,49 @@ details of how this attribute is used are not mandated by the standard.
         the namespace <systemitem>http://www.openmath.org/OpenMathCD</systemitem>.</para>
       </listitem>
     </itemizedlist>
+  </section>
+  
+  
+  <section id="chgr1">
+    <title>Changes in 2.0 Revision 1</title>
+    
+    <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	    There are now explicitly two XML encodings: the previous one and 
+	    the Strict Content MathML one. This necessitated changes to the 
+	    preamble and the start of Chapter 3.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+		The description of the encoding of <systemitem>xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1</systemitem> in base 256 was corrected (the <systemitem>0xab</systemitem> (base 256/positive) byte was omitted and <systemitem>0xF1</systemitem> had been written <systemitem>0xFI</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+	  The phrase "in little endian format" was unhelpfully included in the description of the binary integer encoding, which contradicted the later "network byte order". Now removed.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+		Section 3.1.2 described the OpenMath XML value of <systemitem>hex</systemitem> as "from lowest to highest bits using a  least significant byte ordering". This wording was copied from section 4.2.1.2 of <citation>MathML_2014</citation>, but is close to meaningless.  Replaced by the current "in network byte order".
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+		The example of binary encoding of floats in 3.2.2 "For example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>" was wrong, and has been replaced by the same example as the XML encoding.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">A citation to MathML 3 was added.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">The "Note on names", which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
+        </para>
+      </listitem>
+    </itemizedlist>
     
   </section>
   
@@ -6192,25 +5090,21 @@ details of how this attribute is used are not mandated by the standard.
 <bibliography id="bibliography">
   <title>Bibliography</title>
   
-  <biblioentry id="POSIX" role="book" revisionflag="added">
-    <author revisionflag="deleted"><othername>IEEE</othername></author>
-    <author revisionflag="added"><othername>IEEE and The Open Group</othername></author>
-    <title revisionflag="deleted">Std 1003.1-2001 (Open Group Technical Standard, Issue 6),
-      Standard for Information Technology-Portable Operating System Interface (POSIX)</title>
-    <title revisionflag="added">Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6 </title>
-    <pubdate revisionflag="deleted">2001</pubdate>
-    <pubdate revisionflag="added">2003</pubdate>
-    <bibliomisc revisionflag="added">http://www.unix.org/version3/ieee_std.html</bibliomisc>
+  <biblioentry id="POSIX" role="book">
+    <author><othername>IEEE and The Open Group</othername></author>
+    <title>Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6 </title>
+    <pubdate>2003</pubdate>
+    <bibliomisc>http://www.unix.org/version3/ieee_std.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="IETF2396" role="misc" revisionflag="added">
+  <biblioentry id="IETF2396" role="misc">
     <author><othername>IETF</othername></author>
     <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
     <pubdate>August 1998</pubdate>
     <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="XSD" role="book" revisionflag="added">
+  <biblioentry id="XSD" role="book">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>XML Schema Part 1: Structures &amp; Part 2: Datatypes</title>
     <pubdate>May 2001</pubdate>
@@ -6218,13 +5112,13 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.w3.org/TR/xmlschema-2/</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="RELAX-COMPACT" role="book" revisionflag="added">
+  <biblioentry id="RELAX-COMPACT" role="book">
     <author><othername>OASIS Committee Specification</othername></author>
     <title>RELAX NG Compact Syntax</title>
     <pubdate>November 2002</pubdate>
   </biblioentry>
   
-  <biblioentry id="RELAX" role="book" revisionflag="added">
+  <biblioentry id="RELAX" role="book">
     <author><othername>OASIS Committee Specification</othername></author>
     <title>RELAX NG Specification</title>
     <pubdate>December 2001</pubdate>
@@ -6815,16 +5709,24 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
   </biblioentry>
   
-   <biblioentry id="OM_1.1" revisionflag="added" role="finaledit">
+   <biblioentry id="OM_1.1"  role="finaledit">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 1.1</title>
     <pubdate>2002</pubdate>
     <pubdate role="month">October</pubdate>
     <bibliomisc>http://www.openmath.org/standard/om11/</bibliomisc>
   </biblioentry>
+
+   <biblioentry id="OM_2.0r0"  role="finaledit">
+    <author><othername>&OM; Consortium</othername></author>
+    <title>&OM; Version 2.0</title>
+    <pubdate>2004</pubdate>
+    <pubdate role="month">June</pubdate>
+    <bibliomisc>http://www.openmath.org/standard/om20-2004-06-30/</bibliomisc>
+  </biblioentry>
   
   
-   <biblioentry id="OM_primer" revisionflag="added" role="finaledit">
+   <biblioentry id="OM_primer"  role="finaledit">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Primer</title>
     <pubdate>2004</pubdate>
@@ -6871,7 +5773,7 @@ details of how this attribute is used are not mandated by the standard.
   
   <biblioentry id="UNICODE" role="Book">
     <author><othername>Unicode Consortium</othername></author>
-    <title>The Unicode Standard: Version <phrase revisionflag="deleted">2.0</phrase><phrase revisionflag="added">4.0.0</phrase></title>
+    <title>The Unicode Standard: Version <phrase>4.0.0</phrase></title>
     <publisher><publishername>Addison-Wesley</publishername></publisher>
     <pubdate>2003</pubdate>
     <isbn>ISBN 0-321-18578-1</isbn>
@@ -6883,7 +5785,7 @@ details of how this attribute is used are not mandated by the standard.
     <title>IEEE Standard for binary Floating-Point Arithmetic</title>
     <subtitle>ANSI/IEEE Standard 754</subtitle>
     <pubdate>1985</pubdate>
-    <bibliomisc revisionflag="added">http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html</bibliomisc>
+    <bibliomisc>http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html</bibliomisc>
   </biblioentry>
   
   <biblioentry id="rfc1642" role="Misc">
@@ -6895,17 +5797,17 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1994</pubdate>
   </biblioentry>
   
-  <biblioentry id="rfc2045" role="Misc" revisionflag="added">
+  <biblioentry id="rfc2045" role="Misc">
     <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
     <author><firstname>N.</firstname> <surname>Freed</surname></author>
     <title>MIME (Multipurpose Internet Mail Extensions) Part One: Format of Internet Message Bodies</title>
     <bibliomisc>RFC: 2045</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc revisionflag="changed" role="finaledit">http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
+    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="rfc2046" role="Misc" revisionflag="added">
+  <biblioentry id="rfc2046" role="Misc">
     <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
     <author><firstname>N.</firstname> <surname>Freed</surname></author>
     <title>MIME (Multipurpose Internet Mail Extensions) Part Two: Media
@@ -6913,20 +5815,9 @@ Types</title>
     <bibliomisc>RFC: 2046</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc revisionflag="changed" role="finaledit">http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
+    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="rfc1521" role="Misc" revisionflag="deleted">
-    <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
-    <author><firstname>N.</firstname> <surname>Freed</surname></author>
-    <title>MIME (Multipurpose Internet Mail Extensions) Part One: Mechanism for Specifying and Describing the Format of Internet Message Bodies</title>
-    <seriesvolnums>RFC: 1521</seriesvolnums>
-    <pubdate role="month">September</pubdate>
-    <pubdate>1993</pubdate>
-    <bibliomisc>http://www.math-inf.uni-greifswald.de/~teumer/mime/1521/rfc1521ToC.html</bibliomisc>
-  </biblioentry>
-  
-
   <biblioentry id="iso646_83" role="Misc">
     <bibliomisc role="key">iso 646</bibliomisc>
     <title>ISO 7-bit coded character set for information interchange</title>
@@ -6978,7 +5869,7 @@ Types</title>
     <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</title>
     <bibliomisc>ISO 9660</bibliomisc>
     <pubdate>1988</pubdate>
-    <bibliomisc revisionflag="added">http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505</bibliomisc>
+    <bibliomisc>http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505</bibliomisc>
   </biblioentry>
   
   <biblioentry id="OM_D122" role="Misc">
@@ -7001,6 +5892,14 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
+  <biblioentry id="erratum_NE17" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Namespaces in XML 1.0 (Second Edition) Errata</title>
+    <pubdate role="month">November</pubdate>
+    <pubdate>2008</pubdate>
+    <bibliomisc>https://www.w3.org/XML/2006/xml-names-errata</bibliomisc>
+  </biblioentry>
+
   <biblioentry id="xml_04" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Markup Language (XML) 1.1.</title>
@@ -7025,8 +5924,7 @@ Types</title>
     <bibliomisc>&OM; Deliverable 1.3.2b</bibliomisc>
     <pubdate role="month">April</pubdate>
     <pubdate>1999</pubdate>
-    <bibliomisc revisionflag="deleted">http://www.nag.co.uk/projects/OpenMath/omstd/</bibliomisc>
-    <bibliomisc revisionflag="added">http://www.openmath.org/standard/sts.pdf</bibliomisc>
+    <bibliomisc>http://www.openmath.org/standard/sts.pdf</bibliomisc>
   </biblioentry>
   
   
@@ -7048,8 +5946,7 @@ Types</title>
     <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
     <pubdate>1999</pubdate>
     <seriesvolnums>1.3.2b</seriesvolnums>
-    <bibliomisc revisionflag="deleted">http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-    <bibliomisc revisionflag="added">http://www.openmath.org/standard/ecc.pdf</bibliomisc>
+    <bibliomisc>http://www.openmath.org/standard/ecc.pdf</bibliomisc>
     <pubdate role="month">February</pubdate>
   </biblioentry>
   
@@ -7154,7 +6051,7 @@ Types</title>
   </biblioentry>
   
   
-  <biblioentry id="MathML_2000" role="Misc" revisionflag="added">
+  <biblioentry id="MathML_2000" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 2.0 Specification</title>
     <pubdate role="month">February</pubdate>
@@ -7163,13 +6060,22 @@ Types</title>
   </biblioentry>
   
 
-  <biblioentry id="MathML_2003" role="Misc" revisionflag="added">
+  <biblioentry id="MathML_2003" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 2.0 Specification
     (Second Edition)</title>
     <pubdate role="month">October</pubdate>
     <pubdate>2003</pubdate>
     <bibliomisc>http://www.w3.org/TR/MathML2/</bibliomisc>
+  </biblioentry>
+   
+  <biblioentry id="MathML_2014" role="Misc" revisionflag="added">
+    <author><othername>World Wide Web Consortium</othername></author>
+    <title>Mathematical Markup Language (MathML) 3.0 Specification
+    2nd Edition</title>
+    <pubdate role="month">April</pubdate>
+    <pubdate>2014</pubdate>
+    <bibliomisc>http://www.w3.org/TR/MathML3/</bibliomisc>
   </biblioentry>
 
   <biblioentry id="CTCOQMATH" role="Manual">
@@ -7381,7 +6287,7 @@ Types</title>
   
   
   
-  <biblioentry id="owl" role="Misc" revisionflag="added">
+  <biblioentry id="owl" role="Misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title> OWL Web Ontology Language Overview </title>
     <pubdate role="month">February</pubdate>
@@ -7389,7 +6295,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/2004/REC-owl-features-20040210/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="rdf" role="Misc" revisionflag="added">
+  <biblioentry id="rdf" role="Misc">  
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Resource Description Framework (RDF): Concepts and Abstract Syntax</title>
     <pubdate role="month">February</pubdate>
@@ -7422,8 +6328,6 @@ Types</title>
     <pubdate role="month">June</pubdate>
     <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop</bibliomisc>
   </biblioentry>
-  
-  
   
   <biblioentry id="Cohen_Kohlhase_99om" role="Misc">
     <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>

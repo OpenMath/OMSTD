@@ -1,11 +1,23 @@
 #!/usr/bin/bash
+ 
 
-# http://surfnet.dl.sourceforge.net/project/saxon/Saxon-HE/9.5/SaxonHE9-5-1-1J.zip
+# http://saxon.sourceforge.net/
 export XSLT="java -jar saxon9he.jar -versionmsg:off "
 
-# https://code.google.com/p/jing-trang/downloads/detail?name=trang-20091111.zip&can=2&q=
+
+
+# https://code.google.com/archive/p/jing-trang/downloads
 export TRANG="java -jar trang.jar "
 
+
+if [ "$1" == "final" ]
+then
+    DRAFT=no
+else
+    DRAFT=yes
+fi
+
+DATE =`date --iso`
 
 echo RNC/xml
 for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
@@ -111,24 +123,32 @@ $TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
 # done
 
 
-echo validate
-rxp -sxV omstd20.xml
-
-
-echo html
-$XSLT  -o:omstd20html.xml omstd20.xml omstd20.xsl
-echo chunked html
-$XSLT   omstd20.xml omstd20.xsl chunk="true"
-echo html-diff
-$XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
 
 echo single page html5
-$XSLT omstd20.xml omstd20.xsl html5=yes prefix=omstd20 
+$XSLT  -dtd:on  omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
+
+echo html diff version
+$XSLT omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE
+
+
+
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html
+# $XSLT -dtd:on  -o:omstd20html.xml omstd20.xml omstd20.xsl
+
+# currently doesn't work and probably not required
+# echo chunked html
+# $XSLT   omstd20.xml omstd20.xsl chunk="true"
+
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html-diff
+# $XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
+
 
 echo tex
-$XSLT  -o:omstd20.tex omstd20.xml omstd20tex.xsl 
+$XSLT  -o:omstd20.tex omstd20.xml omstd20tex.xsl  draft=$DRAFT date=$DATE
 echo tex-diff
-$XSLT  -o:omstd20-diff.tex omstd20.xml omstd20tex.xsl showdiffs=true
+$XSLT  -o:omstd20-diff.tex omstd20.xml omstd20tex.xsl showdiffs=true draft=$DRAFT date=$DATE
 
 echo pdf
 pdflatex \\batchmode \\input omstd20.tex
@@ -163,4 +183,14 @@ fi
 
 echo zip
 rm tmp.*
-zip -q om20.zip o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
+
+if [ -d "../OpenMath.github.io/standard/om20-editors-draft" ]
+   then
+       echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
+       cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
+	  ../OpenMath.github.io/standard/om20-editors-draft
+else
+    echo skipping copying to website
+fi
+

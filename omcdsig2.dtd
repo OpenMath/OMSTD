@@ -22,8 +22,8 @@ Relax NG Schema for OpenMath CD Signatures
 <!ATTLIST CDSStatus
   xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
 
-<!ELEMENT CDSignatures (CDSComment,(CDSReviewDate?|CDSStatus),
-                            (CDSComment|Signature)*)>
+<!ELEMENT CDSignatures (CDSComment*,(CDSReviewDate?,CDSStatus,CDSComment*)?,
+                            (Signature,CDSComment*)*)>
 <!ATTLIST CDSignatures
   xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDS'>
 

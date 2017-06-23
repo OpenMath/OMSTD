@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="iso-8859-1"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0"
+                version="2.0"
                 xmlns="http://www.w3.org/1999/xhtml">
 
 <xsl:import href="verb.xsl"/>
@@ -55,6 +55,7 @@
 %hyperref
 }
 \definecolor{green}{rgb}{0,0.3,0}
+\AtBeginDocument{
 \let\cellsep&amp;
 \catcode`\&amp;=12
 \catcode`\_=12
@@ -63,6 +64,7 @@
 \catcode`\$=12
 \catcode`\£=1
 \catcode`\ß=2
+}
 
 \begin{document}
 \catcode`\%=12
@@ -98,6 +100,8 @@ relative to the OpenMath 1.0 document\ldots
 \item New text is marked in green.
 \color£redß
 \item Deleted text is marked in red.
+\color£blueß
+\item Changed paragraphs of text (especially for r1) are marked in blue.
 \end£itemizeß
 
 \subsubsection*£Sections with modified textß
@@ -433,6 +437,20 @@ changelog entry here
 \end£tabularßß<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
+<xsl:template match="id('fig_bin-enc_ex')/informaltable">
+\footnotesize\tabcolsep2pt
+\noindent£\begin£tabularß£lll lll lllß
+<xsl:apply-templates select="tgroup/*"/>
+\end£tabularßß<xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="id('fig_bin-enc2')/informaltable">
+\footnotesize\tabcolsep2pt
+\noindent£\begin£tabularß£lll lll lllß
+<xsl:apply-templates select="tgroup/*"/>
+\end£tabularßß<xsl:text>&#10;</xsl:text>
+</xsl:template>
+
 
 <xsl:template match="tbody|thead">
 <xsl:apply-templates/>
@@ -441,7 +459,7 @@ changelog entry here
 <xsl:template match="row">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:apply-templates/>
-<xsl:if test="parent::head or position() &lt; last()">\\
+<xsl:if test="parent::thead or position() &lt; last()">\\
 </xsl:if>
 </xsl:if>
 </xsl:template>

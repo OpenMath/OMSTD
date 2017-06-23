@@ -6,7 +6,7 @@
   
   *********************************************
 -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMathCD" xmlns:openmath="http://www.openmath.org/OpenMath" xmlns:openmathcd="http://www.openmath.org/OpenMathCD">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://www.openmath.org/OpenMathCD" xmlns:openmathcd="http://www.openmath.org/OpenMathCD" xmlns:openmath="http://www.openmath.org/OpenMath">
   <xs:import namespace="http://www.openmath.org/OpenMath" schemaLocation="openmath2.xsd"/>
   <xs:element name="CDComment" type="xs:string"/>
   <xs:element name="CDName" type="xs:NCName"/>

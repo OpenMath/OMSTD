@@ -1,20 +1,23 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0"
+                version="2.0"
                 xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:saxon="http://icl.com/saxon"
-                extension-element-prefixes="saxon"
->
+                xmlns:h="http://www.w3.org/1999/xhtml"
+		xmlns:m="http://www.w3.org/1998/Math/MathML"
+		xmlns:xs="http://www.w3.org/2001/XMLSchema"
+		exclude-result-prefixes="m h xs">
 
 <xsl:import href="verb.xsl"/>
 <xsl:param name="changelog">no</xsl:param>
 <xsl:param name="showdiffs" select="false()"/>
 <xsl:param name="chunk" select="false()"/>
+<xsl:param name="html5" select="'no'"/>
+
 <xsl:output method="xml" encoding="iso-8859-1"/>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
-<xsl:variable name="prefix" select="'omstd20html-'"/>
+<xsl:param name="prefix" select="'omstd20html-'"/>
 
 <xsl:variable name="chapterlevel">
  <xsl:choose>
@@ -108,7 +111,7 @@ text-decoration: line-through;
 color: green;
 }
 .chg {
-color: blue;
+color: purple;
 }
 .changetoc {
 border-style: solid;
@@ -183,10 +186,11 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
 <h3>Change-marked edition notes</h3>
 <p>
 This edition contains colour coded change markings
-relative to the OpenMath 1.0 document...</p>
+relative to the OpenMath 2.0 document...</p>
 <ul>
 <li class="new">New text is marked with css class "new" (green).</li>
 <li class="del">Deleted text is marked with css class "del" (red).</li>
+<li class="chg">Changed text is marked with css class "chg" (purple).</li>
 </ul>
 
 <p>Sections with modified text</p>
@@ -213,7 +217,7 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <saxon:output method="xml" encoding="iso-8859-1" href="{$prefix}0.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}0.xml">
 <xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
@@ -226,7 +230,13 @@ relative to the OpenMath 1.0 document...</p>
   <xsl:copy-of select="$book"/>
 </body>
 </html>
-  </saxon:output>
+  </xsl:result-document>
+</xsl:when>
+<xsl:when test="$html5='yes'">
+<xsl:result-document method="xhtml" encoding="utf-8" href="{$prefix}.html" omit-xml-declaration="yes">
+ <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html>&#10;</xsl:text>
+<xsl:apply-templates mode="html5" select="$book"/>
+</xsl:result-document>
 </xsl:when>
 <xsl:otherwise>
   <xsl:copy-of select="$book"/>
@@ -308,7 +318,7 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <saxon:output method="xml" encoding="iso-8859-1" href="{$prefix}{$n}.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{$n}.xml">
 <xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
@@ -324,7 +334,7 @@ relative to the OpenMath 1.0 document...</p>
   </xsl:call-template>
 </body>
 </html>
-  </saxon:output>
+  </xsl:result-document>
 </xsl:when>
 <xsl:otherwise>
   <xsl:copy-of select="$chap"/>
@@ -386,7 +396,7 @@ relative to the OpenMath 1.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <saxon:output method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
 <xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
@@ -403,7 +413,7 @@ relative to the OpenMath 1.0 document...</p>
   </xsl:call-template>
 </body>
 </html>
-   </saxon:output>
+   </xsl:result-document>
 </xsl:when>
 <xsl:otherwise>
   <xsl:copy-of select="$app"/>
@@ -840,7 +850,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <saxon:output method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
 <xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
@@ -857,7 +867,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
   </xsl:call-template>
 </body>
 </html>
-   </saxon:output>
+   </xsl:result-document>
 </xsl:when>
 <xsl:otherwise>
   <xsl:copy-of select="$app"/>
@@ -1030,6 +1040,93 @@ select="substring-before(.,':')"/>:</a>
 
 
 
+<xsl:template match="@*|node()" mode="html5">
+ <xsl:copy copy-namespaces="no">
+  <xsl:apply-templates select="@*,node()" mode="html5"/>
+ </xsl:copy>
+</xsl:template>
+
+<xsl:template match="/processing-instruction()|@xml:space|@revisionflag" mode="html5" priority="2"/>
+
+<xsl:template match="m:*" mode="html5">
+ <xsl:element name="{local-name()}" namespace="{namespace-uri()}">
+  <xsl:apply-templates select="@*,node()" mode="html5"/>
+ </xsl:element>
+</xsl:template>
+
+<xsl:template match="h:acronym" mode="html5">
+ <abbr>
+  <xsl:apply-templates select="@*,node()" mode="html5"/>
+ </abbr>
+</xsl:template>
+
+<xsl:template match="h:a[@name]" mode="html5">
+ <span id="{@name}">
+  <xsl:apply-templates mode="html5"/>
+ </span>
+</xsl:template>
+
+<xsl:template match="*[@id]/@name" mode="html5"/>
+
+<xsl:template match="*[not(@id)]/node()[1][self::h:a[@id]]" priority="22" mode="html5">
+  <xsl:copy-of select="@id"/>
+</xsl:template>
+
+<xsl:template match="h:a//h:a" mode="html5" priority="2">
+  <xsl:apply-templates mode="html5"/>
+</xsl:template>
+
+
+<xsl:template match="h:p[h:ul|h:ol|h:dl|h:blockquote|h:div|h:pre]" mode="html5" priority="3">
+<xsl:for-each-group select="node()" group-adjacent="boolean(self::h:ul|self::h:ol|self::h:dl|self::h:blockquote|self::h:div|self::h:pre)">
+<xsl:choose>
+ <xsl:when test="self::h:ul|self::h:ol|self::h:dl|self::h:blockquote|self::h:div|self::h:pre">
+  <xsl:apply-templates select="current-group()" mode="html5"/>
+ </xsl:when>
+ <xsl:otherwise>
+  <xsl:variable name="g">
+     <xsl:apply-templates select="current-group()" mode="html5"/>
+  </xsl:variable>
+  <xsl:if test="normalize-space($g)">
+   <p><xsl:copy-of select="$g"/></p>
+  </xsl:if>
+ </xsl:otherwise>
+</xsl:choose>
+</xsl:for-each-group>
+</xsl:template>
+
+<xsl:template match="h:table[h:tr]" mode="html5">
+ <table>
+  <tbody>
+   <xsl:variable name="c" select="max(h:tr/(count(h:td)+sum(h:td/@colspan/(. - 1))))"/>
+   <xsl:for-each select="h:tr">
+    <tr>
+     <xsl:apply-templates select="h:td" mode="html5"/>
+     <xsl:for-each select="1 to (xs:integer($c - count(h:td)))">
+      <td><xsl:text> </xsl:text></td>
+     </xsl:for-each>
+    </tr>
+   </xsl:for-each>
+  </tbody>
+ </table>
+</xsl:template>
+
+<xsl:template match="h:head" mode="html5">
+ <head>
+  <xsl:apply-templates mode="html5"/>
+  <xsl:text>&#10;</xsl:text>
+  <style>
+   body { max-width:80em;}
+  </style>
+  <xsl:text>&#10;</xsl:text>
+  <script>
+   if (! navigator.userAgent.match(/Gecko\//)) {
+   var scr=document.createElement("script");
+   scr.setAttribute("src","http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=MML_HTMLorMML");
+   document.getElementsByTagName("head")[0].appendChild(scr);
+   }
+  </script>
+ </head>
+</xsl:template>
 
 </xsl:stylesheet>
-
