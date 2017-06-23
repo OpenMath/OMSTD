@@ -445,7 +445,7 @@ changelog entry here
 <xsl:template match="row">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:apply-templates/>
-<xsl:if test="parent::head or position() &lt; last()">\\
+<xsl:if test="parent::thead or position() &lt; last()">\\
 </xsl:if>
 </xsl:if>
 </xsl:template>
