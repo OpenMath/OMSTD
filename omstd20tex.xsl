@@ -437,6 +437,20 @@ changelog entry here
 \end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
+<xsl:template match="id('fig_bin-enc_ex')/informaltable">
+\footnotesize\tabcolsep2pt
+\noindent£\begin£tabularﬂ£lll lll lllﬂ
+<xsl:apply-templates select="tgroup/*"/>
+\end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
+</xsl:template>
+
+<xsl:template match="id('fig_bin-enc2')/informaltable">
+\footnotesize\tabcolsep2pt
+\noindent£\begin£tabularﬂ£lll lll lllﬂ
+<xsl:apply-templates select="tgroup/*"/>
+\end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
+</xsl:template>
+
 
 <xsl:template match="tbody|thead">
 <xsl:apply-templates/>
