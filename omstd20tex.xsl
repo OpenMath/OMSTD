@@ -7,6 +7,9 @@
 
 <xsl:param name="changelog">no</xsl:param>
 <xsl:param name="showdiffs" select="false()"/>
+<xsl:param name="draft" select="no"/>
+<xsl:param name="date" select="''"/>
+
 <xsl:output method="text" encoding="iso-8859-1"/>
 
 <xsl:strip-space elements="math msub msup mfrac mrow mfenced"/>
@@ -53,9 +56,17 @@
 \usepackage[latin1]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{longtable}
-\usepackage{amsfonts,amssymb,url,graphics,color,pslatex,
-%hyperref
+\usepackage{amsfonts,amssymb,url,graphics,color,pslatex}
+\usepackage[colorlinks]{hyperref}
+
+<xsl:if test="$draft='yes'">
+\def\speclinks{
+  Source Repository: \url{https://github.com/OpenMath/OMSTD}\\
+  This Version: \url{https://openmath.github.io/standard/om20-editors-draft}\\
+  Normative version: \url{https://openmath.github.io/standard/om20-2004-06-30}
 }
+</xsl:if>
+
 \definecolor{green}{rgb}{0,0.3,0}
 \AtBeginDocument{
 \let\cellsep&amp;
@@ -87,11 +98,34 @@
 
 \date£<xsl:value-of select="bookinfo/date"/>ﬂ
 
+<xsl:if test="$draft='yes'">
+ \begin£quoteﬂ
+  \textbf£Editors' Draft:ﬂ Built <xsl:value-of select="$date"/>\\
+  Source Repository: \url£https://github.com/OpenMath/OMSTDﬂ\\
+  This Version: \url£https://openmath.github.io/standard/om20-editors-draftﬂ\\
+  Normative version: \url£https://openmath.github.io/standard/om20-2004-06-30ﬂ
+\end£quoteﬂ
+</xsl:if>
+
 \begin£abstractﬂ
 <xsl:apply-templates select="bookinfo/abstract/*"/>
 \end£abstractﬂ
 
+<xsl:if test="$draft='yes'">
+ £
+\def\vfill£
+ \begin£quoteﬂ
+  \textbf£Editors' Draft:ﬂ Built  <xsl:value-of select="$date"/>\par
+  \normalsize
+   \speclinks
+\end£quoteﬂ
+\vspace£\fillﬂ
+ﬂ
+</xsl:if>
 \maketitle
+<xsl:if test="$draft='yes'">
+ﬂ
+</xsl:if>
 
 <xsl:if test="$showdiffs">
 \subsection*£Change-marked edition notesﬂ
@@ -192,6 +226,7 @@ relative to the OpenMath 1.0 document\ldots
 </xsl:template>
 
 <xsl:template match="chapter">
+\hypersetup£pageanchor=trueﬂ
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:text>£</xsl:text><xsl:apply-templates select="@revisionflag"/>
 <xsl:text>&#10;&#10;</xsl:text>
@@ -498,6 +533,7 @@ changelog entry here
 \catcode`\}=2
 \catcode`\^=7
 \parskip0pt
+\hypersetup{pageanchor=false}
 \tableofcontents
 \par
 \endgroup
@@ -509,6 +545,7 @@ changelog entry here
 \catcode`\}=2
 \catcode`\^=7
 \parskip0pt
+\hypersetup{pageanchor=false}
 \listoffigures
 \par
 \endgroup
