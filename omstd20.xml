@@ -1152,7 +1152,7 @@ MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</c
 &lt;mathml:csymbol xmlns:mathml="http://www.w3.org/1998/Math/MathML/"
                 definitionURL="http://www.openmath.org/cd/transc1#sin"&gt;
   &lt;mo&gt; sin &lt;/mo&gt; 
-&lt;/csymbol&gt;
+&lt;/mathml:csymbol&gt;
 </literallayout>
 </para>
 </formalpara>
