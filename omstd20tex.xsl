@@ -58,6 +58,7 @@
 \usepackage{longtable}
 \usepackage{amsfonts,amssymb,url,graphics,color,pslatex}
 \usepackage[colorlinks]{hyperref}
+\def\omurl#1{\url{#1}}
 
 <xsl:if test="$draft='yes'">
 \def\speclinks{
@@ -376,7 +377,7 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
 <xsl:choose>
 <xsl:when test="starts-with(.,'http')">
-<xsl:text/>\url|<xsl:apply-templates select="@revisionflag|node()"/>|<xsl:text/>
+<xsl:text/>\omurl£<xsl:apply-templates select="@revisionflag|node()"/>ß<xsl:text/>
 </xsl:when>
 <xsl:otherwise>
 <xsl:text/>\texttt£<xsl:apply-templates select="@revisionflag|node()"/>ß<xsl:text/>
