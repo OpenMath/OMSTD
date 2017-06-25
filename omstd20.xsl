@@ -643,6 +643,10 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 </xsl:if>
 </xsl:template>
 
+<xsl:template match="literallayout/node()[1][self::text()][not(normalize-space())]"/>
+<xsl:template match="literallayout/node()[last()][self::text()][not(normalize-space())]"/>
+
+
 <xsl:template match="sidebar">
 <xsl:if test="$changelog='yes'">
 changelog entry here
