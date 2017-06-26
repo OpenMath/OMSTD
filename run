@@ -1,14 +1,22 @@
 #!/usr/bin/bash
  
+set -e
 
 # http://saxon.sourceforge.net/
+if [ -f saxon9he.jar ]; then
 export XSLT="java -jar saxon9he.jar -versionmsg:off "
+else
+export XSLT="java -jar /tmp/jars/saxon9he.jar -versionmsg:off "
+fi
 
 
 
 # https://code.google.com/archive/p/jing-trang/downloads
+if [ -f saxon9he.jar ]; then
 export TRANG="java -jar trang.jar "
-
+else
+    export TRANG="java -jar /tmp/jars/trang.jar "
+fi
 
 if [ "$1" == "final" ]
 then
@@ -154,8 +162,10 @@ export SOURCE_DATE_EPOCH_TEX_PRIMITIVES=1 # old version
 $XSLT -strip:none -o:omstd20.tex omstd20.xml omstd20tex.xsl  draft=$DRAFT date=$DATE
 echo tex-diff
 $XSLT -strip:none -o:omstd20-diff.tex omstd20.xml omstd20tex.xsl showdiffs=true draft=$DRAFT date=$DATE
+export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
 
 echo pdf
+
 pdflatex \\batchmode \\input omstd20.tex
 if (grep -i rerun omstd20.log)
   then
@@ -196,6 +206,22 @@ if [ -d "../OpenMath.github.io/standard/om20-editors-draft" ]
        cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
 	  ../OpenMath.github.io/standard/om20-editors-draft
 else
-    echo skipping copying to website
+
+    if [ -d "/tmp/texlive" ]; then
+	echo "travis job push to om website"
+	rm -rf OpenMath.github.io.git
+echo clone
+git config --global user.email "dpcarlisle@gmail.com"
+git config --global user.name "Travis CI"
+git clone https://$ghauth@github.com/OpenMath/OpenMath.github.io.git
+       cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
+	  OpenMath.github.io/standard/om20-editors-draft
+cd OpenMath.github.io
+git commit -a -m "from travis ci" || echo no changes
+git push
+
+    else
+	echo skipping copying to website
+    fi
 fi
 

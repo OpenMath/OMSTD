@@ -1,0 +1,38 @@
+#!/bin/bash
+
+set -e
+
+
+BUILD=$PWD
+
+if [ ! -d out ]; then
+mkdir out
+fi
+
+if [ ! -d /tmp/jars ]; then
+mkdir /tmp/jars
+fi
+
+cd /tmp/jars
+
+if [ ! -f saxon9he.jar ]; then
+    wget http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.8.0-2/Saxon-HE-9.8.0-2.jar
+    mv Saxon-HE-9.8.0-2.jar saxon9he.jar
+fi
+
+if [ ! -f trang.jar ]; then
+    wget http://central.maven.org/maven2/com/thaiopensource/trang/20091111/trang-20091111.jar
+    mv trang-20091111.jar trang.jar
+fi
+
+cd $BUILD
+
+echo texlive
+
+. ./support/texlive.sh
+
+cd $BUILD
+
+
+
+

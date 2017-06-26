@@ -1,0 +1,13 @@
+
+ 
+install:
+ - ./install-jars
+
+cache:
+  directories:
+    - /tmp/jars
+    - /tmp/texlive
+
+script:
+ - ./run
+
