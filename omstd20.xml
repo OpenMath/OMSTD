@@ -249,7 +249,7 @@ aware) so include subset of the DTD inline below.
 <!ENTITY arith1sts SYSTEM "arith1.sts">
 <!ENTITY errorcd SYSTEM "error.ocd">
 ]>
-<blook xml:space="preserve">
+<book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
 <releaseinfo>2.0r1</releaseinfo>
