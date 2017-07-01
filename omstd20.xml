@@ -282,7 +282,7 @@ allows the <emphasis>meaning</emphasis> of an object to be encoded
 rather than just a visual representation.  It is designed to allow the
 free exchange of mathematical objects between software systems and human
 beings.  On the worldwide web it is designed to allow mathematical
-expressions embedded in web pages to be manipulated and computed with in
+expressions embedded in web pages to be manipulated and used in computations in
 a meaningful and correct way.  It is designed to be machine-generatable
 and machine-readable, rather than written by hand.
 </para>
