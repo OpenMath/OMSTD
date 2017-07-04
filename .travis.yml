@@ -2,10 +2,10 @@
 notifications:
   email:
     recipients:
-      - m.kohlhase@jacobs-university.de
-      - ion@ams.org
-      - J.H.Davenport@bath.ac.uk
-      - d.p.carlisle@gmail.com
+      - secure: $mkemail
+      - secure: $piemail
+      - secure: $jdemail
+      - secure: $dcemail
       
 install:
  - ./install-jars
