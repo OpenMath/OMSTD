@@ -9,7 +9,7 @@ It has been updated with a draft version which had been prepared as dropbox om-2
 
 ## The Editor's Draft
 
-The DocBook and PDF versions of the standard are automatically built (by travis) upon commit to this repository. They are available as an "[editor's draft](https://openmath.github.io/standard/om20-editors-draft/)" on the [OpenMath Web Site](http://openmath.github.io). 
+The HTML and PDF versions of the standard are automatically built (by travis) from the  DocBook source upon commit to this repository. They are available as an "[editor's draft](https://openmath.github.io/standard/om20-editors-draft/)" on the [OpenMath Web Site](http://openmath.github.io). 
 
 ## Building locally 
 
