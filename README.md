@@ -18,6 +18,11 @@ If you want to commit without forcing Travis to rebuild, add `[ci skip]` to your
 To build it, just run `source ./run` on top-level. If you have `trang.jar` and
 `saxon9he.jar` installed, this should build the standard for you.
 
+To make a final draft use `./run final` rather than `./run`  . 
+This could be done locally or edit `.travis.yml` to use `run final` and allow travis to build the spec
+then move the final versions in git at https://openmath.github.io from the editors draft location to
+whetever the agreed location for the final updated revised standard is.
+
 * `saxon9he` is available from [sourcefourge](http://saxon.sourceforge.net/)
  * `trang` is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
 
