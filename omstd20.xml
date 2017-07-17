@@ -348,6 +348,7 @@ representation of &OM; objects.</para>
 This standard does not describe the mechanisms by which software systems may offer, or make use of, computational services. The currently-suggested mechanism is the 
 Symbolic Computation Software Composability Protocol (SCSCP) 
 <citation>SCSCP13</citation>.
+</para>
 </section>
 
 <section id="sec_intro-obj">
