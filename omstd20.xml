@@ -344,6 +344,10 @@ a stream of bytes. An application dependent program manipulates the
 mathematical objects using its internal representation, it can convert
 them to &OM; objects and communicate them by using the byte stream
 representation of &OM; objects.</para>
+<para revisionflag="added">
+This standard does not describe the mechanisms by which software systems may offer, or make use of, computational services. The currently-suggested mechanism is the 
+Symbolic Computation Software Composability Protocol (SCSCP) 
+<citation>SCSCP13</citation>.
 </section>
 
 <section id="sec_intro-obj">
@@ -839,7 +843,8 @@ width="600" depth="190"/>
   the <quote>binder</quote> object. Arguments 2 to
   <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables to
   be bound in the <quote>body</quote> which is the
-  <math><msup><mi>n</mi><mi>th</mi></msup></math> argument object. It
+  <math><msup><mi>n</mi><mi>th</mi></msup></math>
+  <phrase revisionflag="added">(last) </phrase> argument object. It
   is allowed to have no bound variables, but the binder object and the
   body should be present. Binding can be used to express functions or
   logical statements.  The function <math><mi>&#955;</mi>
@@ -981,7 +986,7 @@ expression could be attributed with its spoken or visual rendering.
   </para>
 
 
-<para>Objects can be decorated in a multitude of ways.
+<para revisionflag="changed">Objects can be decorated in a multitude of ways.
 <phrase>An example of the use of an adornment attribution
 would be to indicate the colour in which an &OM; object should be
 displayed, for example <math><mi
@@ -989,7 +994,7 @@ mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
 Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are
 <phrase role="finaledit">arbitary</phrase> &OM;
-objects <phrase role="finaledit">whereas <math><mi>color</mi></math> is
+objects <phrase role="finaledit">whereas <math><mi>colour</mi></math> is
 a symbol</phrase>.
 An example of the use of a semantic attribution would be to indicate the
 type of an object.  For example</phrase>
@@ -5092,6 +5097,15 @@ details of how this attribute is used are not mandated by the standard.
     <title>Std 1003.1, 2003 Edition, The Open Group Base Specifications Issue 6 </title>
     <pubdate>2003</pubdate>
     <bibliomisc>http://www.unix.org/version3/ieee_std.html</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry id="SCSCP13" role="misc">
+    <author><othername>
+S. Freundt, P. Horn, A. Konovalov, S. Linton, D. Roozemond
+</othername></author>
+<title>Symbolic Computation Software Composability Protocol SCSCP Specification 1.3, </title>
+    <pubdate>March 22, 2009</pubdate>
+    <bibliomisc>https://github.com/OpenMath/scscp/blob/master/revisions/SCSCP_1_3.pdf</bibliomisc>
   </biblioentry>
   
   <biblioentry id="IETF2396" role="misc">
