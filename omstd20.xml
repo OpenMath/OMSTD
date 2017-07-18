@@ -1126,6 +1126,13 @@ subset of the above grammar which is a legal POSIX
 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
 </entry>
 </row>
+<row revisionflag="added">
+<entry>Digit</entry>
+<entry> <math>&longrightarrow;</math> </entry>
+<entry> 
+'0' | '1' | ... | '9' 
+</entry>
+</row>
 </tbody>
 </tgroup>
 </informaltable>
