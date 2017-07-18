@@ -431,7 +431,7 @@ from these Content Dictionaries to/from the internal mathematical
 objects of the application.
 </para>
 
- <para>&OM; objects do not
+ <para revisionflag="changed">&OM; objects do not
 specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
@@ -443,7 +443,10 @@ it.  &OM; is not a query or programming language. Because of this,
 the same object <math><mn>2</mn><mo>+</mo><mn>3</mn></math> could be
 transformed to <math><mn>5</mn></math> by a computer algebra system,
 or displayed as <math><mn>2</mn><mo>+</mo><mn>3</mn></math> by a
-typesetting tool.</para>
+typesetting tool. For such a query/programming language, the OpenMath Society recommends
+the Symbolic Computation Software Composability Protocol (SCSCP) 
+<citation>SCSCP13</citation>.
+</para>
 </section>
 </chapter>
 
