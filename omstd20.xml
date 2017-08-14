@@ -5093,6 +5093,10 @@ details of how this attribute is used are not mandated by the standard.
 	<para revisionflag="added">The "Note on names", which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
         </para>
       </listitem>
+      <listitem>
+	<para revisionflag="added">Various included example files (such as arith1.ocd) have been updated to match the versions on the OpenMath web site.
+        </para>
+      </listitem>
     </itemizedlist>
     
   </section>
