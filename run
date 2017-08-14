@@ -21,9 +21,22 @@ fi
 if [ "$1" == "final" ]
 then
     DRAFT=no
+    TARGET=om20-2017-07-22
 else
     DRAFT=yes
+    TARGET=om20-editors-draft
 fi
+
+
+case "$TRAVIS_COMMIT_MESSAGE" in 
+\[ci\ final\]*)
+    DRAFT=no
+    TARGET=om20-2017-07-22
+esac
+
+
+echo TARGET=$TARGET
+
 
 DATE=`date --iso`
 
@@ -200,11 +213,11 @@ echo zip
 rm tmp.*
 zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
 
-if [ -d "../OpenMath.github.io/standard/om20-editors-draft" ]
+if [ -d "../OpenMath.github.io/standard/$TARGET" ]
    then
        echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
        cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
-	  ../OpenMath.github.io/standard/om20-editors-draft
+	  ../OpenMath.github.io/standard/$TARGET
 else
 
 if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
@@ -217,7 +230,7 @@ if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
 
 	git clone https://$ghauth@github.com/OpenMath/OpenMath.github.io.git
 	cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
-	   OpenMath.github.io/standard/om20-editors-draft
+	   OpenMath.github.io/standard/$TARGET
 	cd OpenMath.github.io
 	git commit -a -m "from travis ci: $TRAVIS_COMMIT_MESSAGE" || echo no changes
 	git push
