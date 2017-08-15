@@ -25,10 +25,14 @@ To build it, just run `source ./run` on top-level. If you have `trang.jar` and
 
 To make a final draft use `./run final` rather than `./run`  . 
 
-----
-
 * `saxon9he` is available from [sourcefourge](http://saxon.sourceforge.net/)
- * `trang` is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
+* `trang` is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
+
+
+
+<hr/>
+
+
 
 ## Contributing to the Standard Development 
 
