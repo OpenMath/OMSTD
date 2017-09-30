@@ -48,7 +48,6 @@ echo "dont make buld"
 fi
 
 cp rnc2dbk omstd20.xml *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
-cp omcdsig2.dtd build # this should be made?
 cp openmath.cls build
 cp -r docbook build
 cd build
@@ -131,30 +130,29 @@ echo DTD
 echo omcdgroup2.rnc
 $TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
 
+for i in  omcdsig2.rnc
+do
+echo DTD
+ echo $i
+ sed -e  "s/| OMOBJ//" \
+     -e "s/OMOBJ/text/" \
+     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
+     -e "s/(CDSReviewDate[?] & CDSStatus)/((CDSReviewDate,CDSStatus)|(CDSStatus,CDSReviewDate?))/g" \
+         $i >tmp.rnc
 
-# for i in  omcdsig2.rnc
-# do
-# echo DTD
-# echo $i
-# sed -e  "s/| OMOBJ//" \
-#     -e "s/OMOBJ/text/" \
-#     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
-#     -e "s/ &/ |/g" \
-#         $i >tmp.rnc
-# 
-# $TRANG  tmp.rnc tmp.dtd  2>> trang.txt
-#  
-# 
-#  sed -e "s/Signature ..#PCDATA..../Signature (OMOBJ)/" \
-#      -e "s/CDSignatures .CDSComment./CDSignatures (CDSComment/" \
-#      -e "s/:ns1//g" \
-#      -e "s/ns1://g" \
-#      -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
-#         tmp.dtd > ${i%%rnc}dtd
-#  sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
-# 
-# 
-# done
+
+ $TRANG  tmp.rnc tmp.dtd  2>> trang.txt
+
+
+ sed -e "s/Signature ..#PCDATA..../Signature (OMOBJ)/" \
+     -e "s/:ns1//g" \
+     -e "s/ns1://g" \
+     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
+        tmp.dtd > ${i%%rnc}dtd
+ sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+
+
+done
 
 
 
