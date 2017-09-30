@@ -5115,10 +5115,12 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   <biblioentry id="SCSCP13" role="misc">
-    <author><othername>
-S. Freundt, P. Horn, A. Konovalov, S. Linton, D. Roozemond
-</othername></author>
-<title>Symbolic Computation Software Composability Protocol SCSCP Specification 1.3</title>
+   <author><firstname>S.</firstname> <surname>Freundt</surname></author>
+   <author><firstname>P.</firstname> <surname>Horn</surname></author>
+   <author><firstname>A.</firstname> <surname>Konovalov</surname></author>
+   <author><firstname>S.</firstname> <surname>Linton</surname></author>
+   <author><firstname>D.</firstname> <surname>Roozemond</surname></author>
+   <title>Symbolic Computation Software Composability Protocol SCSCP Specification 1.3</title>
     <pubdate>March 22, 2009</pubdate>
     <bibliomisc>https://github.com/OpenMath/scscp/blob/master/revisions/SCSCP_1_3.pdf</bibliomisc>
   </biblioentry>
