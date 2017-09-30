@@ -129,12 +129,6 @@ list-style-type: lower-roman;
 </style>
 </xsl:variable>
 
-<xsl:variable name="xsl">
-<xsl:text>&#10;</xsl:text>
-<xsl:processing-instruction name="xml-stylesheet"
-> type="text/xsl" href="pmathml.xsl"</xsl:processing-instruction>
-<xsl:text>&#10;</xsl:text>
-</xsl:variable>
 
 <xsl:template match="*">
 <xsl:message>[<xsl:value-of select="local-name()"/>]</xsl:message>
@@ -143,7 +137,6 @@ list-style-type: lower-roman;
 
 <xsl:template match="book">
 <xsl:variable name="book">
-<xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -229,7 +222,6 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:choose>
 <xsl:when test="$chunk">
   <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}0.xml">
-<xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -330,7 +322,6 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:choose>
 <xsl:when test="$chunk">
   <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{$n}.xml">
-<xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -408,7 +399,6 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:choose>
 <xsl:when test="$chunk">
   <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
-<xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -870,7 +860,6 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:choose>
 <xsl:when test="$chunk">
   <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
-<xsl:copy-of select="$xsl"/>
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
