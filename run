@@ -47,9 +47,8 @@ else
 echo "dont make buld"
 fi
 
-cp rnc2dbk omstd20.xml *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+cp rnc2dbk  *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
 cp openmath.cls build
-cp -r docbook build
 cd build
 
 echo RNC/xml
@@ -157,24 +156,24 @@ done
 
 
 echo single page html5
-$XSLT  -strip:none  -dtd:on  omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
+$XSLT  -strip:none  -dtd:on  ../omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
 
 echo html diff version
-$XSLT -strip:none omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE
+$XSLT -strip:none ../omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE
 
 
 
 # old pmathml.xsl rendering doesn't work in current browsers
 # echo html
-# $XSLT -dtd:on  -o:omstd20html.xml omstd20.xml omstd20.xsl
+# $XSLT -dtd:on  -o:omstd20html.xml ../omstd20.xml omstd20.xsl
 
 # currently doesn't work and probably not required
 # echo chunked html
-# $XSLT   omstd20.xml omstd20.xsl chunk="true"
+# $XSLT   ../omstd20.xml omstd20.xsl chunk="true"
 
 # old pmathml.xsl rendering doesn't work in current browsers
 # echo html-diff
-# $XSLT  -o:omstd20html-diff.xml omstd20.xml omstd20.xsl showdiffs=true
+# $XSLT  -o:omstd20html-diff.xml ../omstd20.xml omstd20.xsl showdiffs=true
 
 
 echo tex
@@ -182,9 +181,9 @@ export SOURCE_DATE_EPOCH=1498228223 # 2017/06/23  date +'%s'
 export FORCE_SOURCE_DATE=1
 export SOURCE_DATE_EPOCH_TEX_PRIMITIVES=1 # old version
 
-$XSLT -strip:none -o:omstd20.tex omstd20.xml omstd20tex.xsl  draft=$DRAFT date=$DATE
+$XSLT -strip:none -o:omstd20.tex ../omstd20.xml omstd20tex.xsl  draft=$DRAFT date=$DATE
 echo tex-diff
-$XSLT -strip:none -o:omstd20-diff.tex omstd20.xml omstd20tex.xsl showdiffs=true draft=$DRAFT date=$DATE
+$XSLT -strip:none -o:omstd20-diff.tex ../omstd20.xml omstd20tex.xsl showdiffs=true draft=$DRAFT date=$DATE
 export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
 
 echo pdf

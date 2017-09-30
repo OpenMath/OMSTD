@@ -202,24 +202,24 @@ SYSTEM "docbook/docbookx.dtd"
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
-<!ENTITY omrnc SYSTEM "openmath2rnc.xml">
-<!ENTITY cdrnc SYSTEM "omcd2rnc.xml">
-<!ENTITY sigrnc SYSTEM "omcdsig2rnc.xml">
-<!ENTITY cdgrouprnc SYSTEM "omcdgroup2rnc.xml">
-<!ENTITY mathmlcdg SYSTEM "mathml.cdg">
+<!ENTITY omrnc SYSTEM "build/openmath2rnc.xml">
+<!ENTITY cdrnc SYSTEM "build/omcd2rnc.xml">
+<!ENTITY sigrnc SYSTEM "build/omcdsig2rnc.xml">
+<!ENTITY cdgrouprnc SYSTEM "build/omcdgroup2rnc.xml">
+<!ENTITY mathmlcdg SYSTEM "build/mathml.cdg">
 
-<!ENTITY omxsd SYSTEM "openmath2.xsd">
-<!ENTITY omdtd SYSTEM "openmath2dtd.xml">
-<!ENTITY omrng SYSTEM "openmath2.rng">
-<!ENTITY cdrng SYSTEM "omcd2.rng">
-<!ENTITY sigrng SYSTEM "omcdsig2.rng">
+<!ENTITY omxsd SYSTEM "build/openmath2.xsd">
+<!ENTITY omdtd SYSTEM "build/openmath2dtd.xml">
+<!ENTITY omrng SYSTEM "build/openmath2.rng">
+<!ENTITY cdrng SYSTEM "build/omcd2.rng">
+<!ENTITY sigrng SYSTEM "build/omcdsig2.rng">
 
-<!ENTITY % openmath2 SYSTEM "openmath2.dtd">
+<!ENTITY % openmath2 SYSTEM "build/openmath2.dtd">
 %openmath2;
 <!ENTITY % omdtd "">
-<!ENTITY % omcd2 SYSTEM "omcd2.dtd">
+<!ENTITY % omcd2 SYSTEM "build/omcd2.dtd">
 %omcd2;
-<!ENTITY % omcdsig2 SYSTEM "omcdsig2.dtd">
+<!ENTITY % omcdsig2 SYSTEM "build/omcdsig2.dtd">
 %omcdsig2;
 
 <!--
