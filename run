@@ -50,6 +50,7 @@ fi
 cp rnc2dbk omstd20.xml *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
 cp omcdsig2.dtd build # this should be made?
 cp openmath.cls build
+cp -r docbook build
 cd build
 
 echo RNC/xml
