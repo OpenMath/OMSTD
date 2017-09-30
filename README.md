@@ -33,7 +33,8 @@ We use the GitHub functionalities to openly and transparently develop the OpenMa
 
 ### Issue Discussions
 
-We use the [GitHub Issue Tracker](http://github.com/OpenMath/OMSTD/issues) to discuss open issues with the standard. This ensures that all concerns are dealt with properly and the current state of the discussion is documented. 
+We use the [GitHub Issue Tracker](issues) to discuss open issues with the standard. This ensures that all concerns are dealt with properly and the current state of the discussion is documented.  Note that there are a lot of issues left over from [a  previous discussion](OpenMath/OM3/issues), which may still be relevant.  
+
 
 ### Making a Pull Request
 
