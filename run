@@ -231,7 +231,7 @@ if [ -d "../../OpenMath.github.io/standard/$TARGET" ]
 	  ../../OpenMath.github.io/standard/$TARGET
 else
 
-if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
+if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_BRANCH" = "master" ]; then
    echo "travis job push to om website"
    	rm -rf OpenMath.github.io
 	echo clone
