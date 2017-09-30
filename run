@@ -4,7 +4,7 @@ set -e
 
 # http://saxon.sourceforge.net/
 if [ -f saxon9he.jar ]; then
-export XSLT="java -jar saxon9he.jar -versionmsg:off "
+export XSLT="java -jar ../saxon9he.jar -versionmsg:off "
 else
 export XSLT="java -jar /tmp/jars/saxon9he.jar -versionmsg:off "
 fi
@@ -13,7 +13,7 @@ fi
 
 # https://code.google.com/archive/p/jing-trang/downloads
 if [ -f saxon9he.jar ]; then
-export TRANG="java -jar trang.jar "
+export TRANG="java -jar ../trang.jar "
 else
     export TRANG="java -jar /tmp/jars/trang.jar "
 fi
@@ -40,6 +40,17 @@ echo TARGET=$TARGET
 
 DATE=`date "+%Y-%m-%d"`
 
+if [ ! -d build ] ; then
+echo "make buld"
+mkdir build 2> /dev/null
+else
+echo "dont make buld"
+fi
+
+cp rnc2dbk omstd20.xml *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+cp omcdsig2.dtd build # this should be made?
+cp openmath.cls build
+cd build
 
 echo RNC/xml
 for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
@@ -213,16 +224,16 @@ echo zip
 rm tmp.*
 zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
 
-if [ -d "../OpenMath.github.io/standard/$TARGET" ]
+if [ -d "../../OpenMath.github.io/standard/$TARGET" ]
    then
        echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
        cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
-	  ../OpenMath.github.io/standard/$TARGET
+	  ../../OpenMath.github.io/standard/$TARGET
 else
 
 if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
    echo "travis job push to om website"
-   	rm -rf OpenMath.github.io.git
+   	rm -rf OpenMath.github.io
 	echo clone
 	git config --global user.email "dpcarlisle@gmail.com"
 	git config --global user.name "Travis CI"
