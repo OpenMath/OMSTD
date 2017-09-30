@@ -38,7 +38,7 @@ esac
 echo TARGET=$TARGET
 
 
-DATE=`date --iso`
+DATE=`date "+%Y-%m-%d"`
 
 
 echo RNC/xml
