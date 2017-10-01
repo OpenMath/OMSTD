@@ -1,9 +1,8 @@
-
 <!DOCTYPE book SYSTEM "docbook/om-docbookx.dtd">
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0r1</releaseinfo>
+<releaseinfo>2.0r2</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 <editor><firstname>S.</firstname><surname>Buswell</surname></editor>
@@ -14,7 +13,7 @@
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
 <editor><firstname>J.</firstname><othername>H.</othername><surname>Davenport (revision 1)</surname></editor>
 <editor><firstname>P.</firstname><othername>D.F.</othername><surname>Ion (revision 1)</surname></editor>
-<date>June 2017</date>
+<date>September 2017</date>
 
 <copyright>
 <year>2000&#8211;2017</year>
