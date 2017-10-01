@@ -5166,7 +5166,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.maplesoft.com/home.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="LIE" role="Book">
+  <biblioentry id="LIE" role="book">
     <author><firstname>M.</firstname> <othername>A.</othername> <surname>A. van Leeuwen</surname></author>
     <author><firstname>A.M.</firstname> <surname>Cohen</surname></author>
     <author><firstname>B.</firstname> <surname>Lisser</surname></author>
@@ -5188,7 +5188,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc role="keywords">MuPAD, Help Pages, Language Structure, Parallelism</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="NuPRL" role="Book">
+  <biblioentry id="NuPRL" role="book">
     <author><firstname>R.</firstname> <othername>L.</othername> <surname>Constable</surname></author>
     <author><firstname>S.</firstname> <othername>F.</othername> <surname>Allen</surname></author>
     <author><firstname>H.</firstname> <othername>M.</othername> <surname>Bromley</surname></author>
@@ -5212,7 +5212,7 @@ details of how this attribute is used are not mandated by the standard.
   <biblioentry id="Kent-PDFbook" role="book">
     <author><othername>Kent, Gordon</othername></author>
     <title>Internet Publishing With Acrobat</title>
-    <bibliomisc role="year">1996</bibliomisc>
+    <pubdate>1996</pubdate>
     <publisher><publishername>Adobe Press</publishername></publisher>
   </biblioentry>
   
@@ -5240,8 +5240,8 @@ details of how this attribute is used are not mandated by the standard.
   
   
   <biblioentry id="COQ" role="Manual">
-    <title>The Coq Proof Assistant: The standard library</title>
     <author><othername>Projet Coq</othername></author>
+    <title>The Coq Proof Assistant: The standard library</title>
     <edition>version 6.1</edition>
     <bibliomisc>http://www.ens-lyon.fr/LIP/groupes/coq</bibliomisc>
     
@@ -5275,7 +5275,7 @@ details of how this attribute is used are not mandated by the standard.
   
   
   
-  <biblioentry id="PVM" role="Book">
+  <biblioentry id="PVM" role="book">
     <author><firstname>A.</firstname> <surname>Geist</surname></author>
     <author><firstname>A.</firstname> <surname>Beguelin</surname></author>
     <author><firstname>J.</firstname> <surname>Dongarra</surname></author>
@@ -5289,7 +5289,7 @@ details of how this attribute is used are not mandated by the standard.
     <editor><othername>Janusz Kowalik</othername></editor>
   </biblioentry>
   
-  <biblioentry id="Abbott_98" role="Misc">
+  <biblioentry id="Abbott_98" role="misc">
     <author><firstname>J.</firstname> <surname>Abbott</surname></author>
     <title>Univariate factorization over the integers</title>
     <pubdate>1998</pubdate>
@@ -5300,10 +5300,10 @@ details of how this attribute is used are not mandated by the standard.
   
   
   <biblioentry id="COCOA" role="Manual">
-    <title>CoCoA, a system for doing Computations in Commutative Algebra</title>
     <author><firstname>A.</firstname> <surname>Capani</surname></author>
     <author><firstname>G.</firstname> <surname>Niesi</surname></author>
     <author><firstname>L.</firstname> <surname>Robbiano</surname></author>
+    <title>CoCoA, a system for doing Computations in Commutative Algebra</title>
     <pubdate>1995</pubdate>
     <bibliomisc>ftp://cocoa.dima.unige.it</bibliomisc>
   </biblioentry>
@@ -5329,7 +5329,7 @@ details of how this attribute is used are not mandated by the standard.
     <address>Berlin</address>
   </biblioentry>
   
-  <biblioentry id="Dreyfuss" role="Misc">
+  <biblioentry id="Dreyfuss" role="misc">
     <author><firstname>Paul</firstname> <surname>Dreyfuss</surname></author>
     <title>CORBA: THEORY AND PRACTICE </title>
     <bibliomisc>View Source Magazine</bibliomisc>
@@ -5337,7 +5337,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-  <biblioentry id="CORBA" role="Misc">
+  <biblioentry id="CORBA" role="misc">
     <author><othername>Visigenic</othername></author>
     <title>Distributed Object Computing in the Internet Age </title>
     <bibliomisc>White Paper</bibliomisc>
@@ -5345,7 +5345,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-  <biblioentry id="Li-Ron_97" role="Misc">
+  <biblioentry id="Li-Ron_97" role="misc">
     <author><firstname>Yael</firstname> <surname>Li-Ron</surname></author>
     <title>Communicator 4.0 vs. Internet Explorer 4.0: And the Winner Is ...</title>
     <bibliomisc>PC World</bibliomisc>
@@ -5355,7 +5355,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-  <biblioentry id="cme" role="Misc">
+  <biblioentry id="cme" role="misc">
     <author><firstname>P.</firstname> <surname>Chew</surname></author>
     <author><firstname>R.</firstname> <othername>L.</othername> <surname>Constable</surname></author>
     <author><firstname>K.</firstname> <surname>Pingali</surname></author>
@@ -5365,7 +5365,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>Project Summary</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="intro_hol" role="Book">
+  <biblioentry id="intro_hol" role="book">
     <author><firstname>M.J.C.</firstname> <surname>Gordon</surname></author>
     <author><firstname>T.F.</firstname> <surname>Melham</surname></author>
     <title>Introduction to HOL: A theorem proving environment
@@ -5374,7 +5374,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1993</pubdate>
   </biblioentry>
 
-  <biblioentry id="harrison-fais" role="INPROCEEDINGS">
+  <biblioentry id="harrison-fais" role="InProceedings">
     <author><firstname>John</firstname> <surname>Harrison</surname></author>
     <title>Pure Mathematics in a Mechanized Logic</title>
     <title role="book">Proceedings of the Finnish Artificial Intelligence
@@ -5388,7 +5388,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1996</pubdate>
     <bibliomisc role="pages">153&#8211;169</bibliomisc></biblioentry>
   
-  <biblioentry id="harrison-thesis" role="TECHREPORT">
+  <biblioentry id="harrison-thesis" role="TechReport">
     <author><firstname>John</firstname> <surname>Robert Harrison</surname></author>
     <title>Theorem Proving with the Real Numbers</title>
     <publisher><publishername>University of Cambridge Computer Laboratory</publishername></publisher>
@@ -5406,13 +5406,13 @@ details of how this attribute is used are not mandated by the standard.
     <author><firstname>L.</firstname> <surname>Th&#233;ry</surname></author>
     <title>Extending the HOL Theorem Prover with a
       Computer Algebra System to Reason About the Reals</title>
+    <title role="book">Higher
+      Order Logic Theorem Proving and its Applications: 6th
+      International Workshop, HUG'93</title>
     <editor><othername>J. J. Joyce and C.-J. H. Seger</othername></editor>
     <bibliomisc role="volume">780</bibliomisc>
     <bibliomisc role="series">Lecture Bibliomiscs in Computer Science</bibliomisc>
     <bibliomisc role="pages">174-184</bibliomisc>
-    <title role="book">Higher
-      Order Logic Theorem Proving and its Applications: 6th
-      International Workshop, HUG'93</title>
     <pubdate>1993</pubdate>
     <publisher><publishername>Springer-Verlag</publishername></publisher>
     <address>Vancouver, B.C.</address>
@@ -5425,12 +5425,12 @@ details of how this attribute is used are not mandated by the standard.
     <author><firstname>L.</firstname> <surname>Th&#233;ry</surname></author>
     <title>Reasoning About the Reals: the marriage of HOL and
       Maple</title> 
+    <title role="book">Logic Programming and Automated
+      Reasoning: 4th International Conference</title>
     <editor><othername>A. Voronkov</othername></editor>
     <bibliomisc role="volume">698</bibliomisc>
     <bibliomisc role="series">Lecture Bibliomiscs in Artificial Intelligence</bibliomisc>
     <bibliomisc role="pages">351-353</bibliomisc>
-    <title role="book">Logic Programming and Automated
-      Reasoning: 4th International Conference</title>
     <pubdate>1993</pubdate>
     <publisher><publishername>Springer-Verlag</publishername></publisher>
     <address>St. Petersburg</address></biblioentry>
@@ -5443,10 +5443,10 @@ details of how this attribute is used are not mandated by the standard.
     <author><firstname>J.</firstname> <surname>Calmet</surname></author>
     <title>Theorems and Algorithms: An Interface between
       Isabelle and Maple.</title> 
-    <editor><othername>A.H.M. Levelt </othername></editor>
-    <bibliomisc role="pages">150-157</bibliomisc>
     <title role="book">Proceedings of International
       Symposium on Symbolic and Algebraic Computation (ISSAC'95)</title>
+    <editor><othername>A.H.M. Levelt </othername></editor>
+    <bibliomisc role="pages">150-157</bibliomisc>
     <pubdate>1995</pubdate>
     <publisher><publishername>ACM Press</publishername></publisher>
   </biblioentry>
@@ -5458,15 +5458,15 @@ details of how this attribute is used are not mandated by the standard.
     <title>Classification of Communication and Cooperation
       Mechanisms for Logical and Symbolic Computation
       Systems</title> 
-    <editor><othername>Franz Baader and Klaus U. Schulz</othername></editor>
-    <bibliomisc role="series">Applied Logic</bibliomisc>
     <title role="book">Proceedings of First International Workshop
       "Frontiers of Combining Systems" (FroCoS'96)</title> 
+    <editor><othername>Franz Baader and Klaus U. Schulz</othername></editor>
+    <bibliomisc role="series">Applied Logic</bibliomisc>
     <pubdate>1996</pubdate>
     <publisher><publishername>Kluwer</publishername></publisher>
   </biblioentry>
   
-  <biblioentry id="OM1.2" role="Misc">
+  <biblioentry id="OM1.2" role="misc">
     <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
     <author><firstname>Stephane</firstname> <surname>Dalmas</surname></author>
     <author><firstname>James</firstname> <surname>Davenport</surname></author>
@@ -5497,11 +5497,11 @@ details of how this attribute is used are not mandated by the standard.
   <biblioentry id="Robbiano_98" role="InProceedings">
     <author><firstname>L.</firstname> <surname>Robbiano</surname></author>
     <title>Gr&#246;bner Bases and Statistics</title>
+    <title role="book">Gr&#246;bner Bases and Applications</title>
     <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
     <bibliomisc role="volume">251</bibliomisc>
     <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
     <bibliomisc role="pages">179&#8211;204</bibliomisc>
-    <title role="book">Gr&#246;bner Bases and Applications</title>
     <pubdate>1998</pubdate>
     <publisher><publishername>Cambridge University Press</publishername></publisher>
   </biblioentry>
@@ -5509,11 +5509,11 @@ details of how this attribute is used are not mandated by the standard.
   <biblioentry id="Moller_98" role="InProceedings">
     <author><firstname>H.M.</firstname> <surname>M&#246;ller</surname></author>
     <title>Gr&#246;bner Bases and Numerical Analysis</title>
+    <title role="book">Gr&#246;bner Bases and Applications</title>
     <editor><othername>Bruno Buchberger and Franz Winkler</othername></editor>
     <bibliomisc role="volume">251</bibliomisc>
     <bibliomisc role="series">London Mathematical Society Lecture Bibliomisc Series</bibliomisc>
     <bibliomisc role="pages">159&#8211;179</bibliomisc>
-    <title role="book">Gr&#246;bner Bases and Applications</title>
     <pubdate>1998</pubdate>
     <publisher><publishername>Cambridge University Press</publishername></publisher>
   </biblioentry>
@@ -5553,7 +5553,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc role="number">162</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96" role="Misc">
+  <biblioentry id="Abbott_Dalmas_Dewar_Diaz_Gray_Sheridan_Strotmann_Vorkoetter_96" role="misc">
     <author><firstname>J.</firstname> <surname>Abbott</surname></author>
     <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
     <author><firstname>M.</firstname> <surname>Dewar</surname></author>
@@ -5567,7 +5567,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate role="month">13 November</pubdate>
   </biblioentry>
   
-  <biblioentry id="LEGOmanual" role="manual">
+  <biblioentry id="LEGOmanual" role="Manual">
     <author><firstname>Z.</firstname> <surname>Luo</surname></author>
     <author><firstname>R.</firstname> <surname>Pollack</surname></author>
     <title>LEGO Proof Development System: User's Manual</title>
@@ -5595,14 +5595,14 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www-theory.dcs.st-and.ac.uk/~ddshand/Papers/pub.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Barendregt_Barendsen_97" role="Misc">
+  <biblioentry id="Barendregt_Barendsen_97" role="misc">
     <author><firstname>H.</firstname> <surname>Barendregt</surname></author>
     <author><firstname>E.</firstname> <surname>Barendsen</surname></author>
     <title>Efficient Computations in Formal Proofs</title>
     <bibliomisc>To Appear.</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="CA_industry_93" role="Book">
+  <biblioentry id="CA_industry_93" role="book">
     <title>Computer Algebra in Industry,</title>
     <publisher><publishername>Wiley Chichester</publishername></publisher>
     <pubdate>1993</pubdate>
@@ -5638,7 +5638,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate role="month">November</pubdate>
   </biblioentry>
   
-  <biblioentry id="harrison-form" role="TECHREPORT">
+  <biblioentry id="harrison-form" role="TechReport">
     <author><firstname>John</firstname> <surname>Harrison</surname></author>
     <title>Formalized Mathematics</title>
     <publisher><publishername>Turku Centre for Computer Science (TUCS)</publishername></publisher>
@@ -5688,7 +5688,7 @@ details of how this attribute is used are not mandated by the standard.
     <publisher><publishername>Springer Verlag</publishername></publisher>
   </biblioentry>
   
-  <biblioentry id="PolyMath_JAVA" role="Misc">
+  <biblioentry id="PolyMath_JAVA" role="misc">
     <author><othername>PolyMath &OM; Development Team</othername></author>
     <title>Java &OM; Library: Version 0.7c</title>
     <bibliomisc>http://pdg.cecm.sfu.ca/openmath/</bibliomisc>
@@ -5696,7 +5696,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1999</pubdate>
   </biblioentry>
   
-  <biblioentry id="STARS" role="Misc">
+  <biblioentry id="STARS" role="misc">
     <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
     <title>STARS</title>
     <bibliomisc>Available from Stilo Technologies</bibliomisc>
@@ -5706,7 +5706,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-  <biblioentry id="OMurl" role="Misc">
+  <biblioentry id="OMurl" role="misc">
     <author><othername>&OM; Society Website</othername></author>
     <title>www.openmath.org</title>
   </biblioentry>
@@ -5722,7 +5722,7 @@ details of how this attribute is used are not mandated by the standard.
     <publisher><publishername>ACM Press</publishername></publisher>
   </biblioentry>
   
-  <biblioentry id="OM_96" role="Misc">
+  <biblioentry id="OM_96" role="misc">
     <author><othername>&OM; Steering Committee</othername></author>
     <title>&OM; Version 1.0 released</title>
     <pubdate>1996</pubdate>
@@ -5730,7 +5730,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.openmath.org</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="OM_98" role="Misc">
+  <biblioentry id="OM_98" role="misc">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 1 - Draft</title>
     <pubdate>1998</pubdate>
@@ -5766,7 +5766,7 @@ details of how this attribute is used are not mandated by the standard.
   
   
   
-  <biblioentry id="Gonnet_Seppala_Watt_96" role="Misc">
+  <biblioentry id="Gonnet_Seppala_Watt_96" role="misc">
     <author><firstname>G.</firstname> <surname>Gonnet</surname></author>
     <author><firstname>M.</firstname> <surname>Seppala</surname></author>
     <author><firstname>S.</firstname> <surname>Watt</surname></author>
@@ -5777,7 +5777,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.inf.ethz.ch/personal/gonnet/ContDict.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Constable_98" role="Misc">
+  <biblioentry id="Constable_98" role="misc">
     <author><firstname>Robert</firstname> <surname>Constable</surname></author>
     <bibliomisc>Personal Communication</bibliomisc>
     <pubdate>1998</pubdate>
@@ -5788,7 +5788,7 @@ details of how this attribute is used are not mandated by the standard.
   
   
   
-  <biblioentry id="Caprotti_Cohen_Elbers_Geuvers_98" role="Misc">
+  <biblioentry id="Caprotti_Cohen_Elbers_Geuvers_98" role="misc">
     <author><firstname>O.</firstname> <surname>Caprotti</surname></author>
     <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
     <author><firstname>H.</firstname> <surname>Elbers</surname></author>
@@ -5800,7 +5800,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-  <biblioentry id="UNICODE" role="Book">
+  <biblioentry id="UNICODE" role="book">
     <author><othername>Unicode Consortium</othername></author>
     <title>The Unicode Standard: Version <phrase>4.0.0</phrase></title>
     <publisher><publishername>Addison-Wesley</publishername></publisher>
@@ -5809,15 +5809,15 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>Online edition available from http://www.unicode.org/versions/Unicode4.0.0</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="ieee754_85" role="Misc">
-    <bibliomisc role="key">ieee</bibliomisc>
+  <biblioentry id="ieee754_85" role="misc">
     <title>IEEE Standard for binary Floating-Point Arithmetic</title>
     <subtitle>ANSI/IEEE Standard 754</subtitle>
+    <bibliomisc role="key">ieee</bibliomisc>
     <pubdate>1985</pubdate>
     <bibliomisc>http://standards.ieee.org/reading/ieee/std_public/description/busarch/754-1985_desc.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="rfc1642" role="Misc">
+  <biblioentry id="rfc1642" role="misc">
     <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
     <author><firstname>M.</firstname> <surname>Davis</surname></author>
     <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
@@ -5826,7 +5826,7 @@ details of how this attribute is used are not mandated by the standard.
     <pubdate>1994</pubdate>
   </biblioentry>
   
-  <biblioentry id="rfc2045" role="Misc">
+  <biblioentry id="rfc2045" role="misc">
     <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
     <author><firstname>N.</firstname> <surname>Freed</surname></author>
     <title>MIME (Multipurpose Internet Mail Extensions) Part One: Format of Internet Message Bodies</title>
@@ -5836,7 +5836,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="rfc2046" role="Misc">
+  <biblioentry id="rfc2046" role="misc">
     <author><firstname>N.</firstname> <surname>Borenstein</surname></author>
     <author><firstname>N.</firstname> <surname>Freed</surname></author>
     <title>MIME (Multipurpose Internet Mail Extensions) Part Two: Media
@@ -5847,14 +5847,14 @@ Types</title>
     <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="iso646_83" role="Misc">
-    <bibliomisc role="key">iso 646</bibliomisc>
+  <biblioentry id="iso646_83" role="misc">
     <title>ISO 7-bit coded character set for information interchange</title>
+    <bibliomisc role="key">iso 646</bibliomisc>
     <bibliomisc>ISO 646:1983</bibliomisc>
     <pubdate>1983</pubdate>
   </biblioentry>
   
-  <biblioentry id="rfc2152" role="Misc">
+  <biblioentry id="rfc2152" role="misc">
     <author><firstname>D.</firstname> <surname>Goldsmith</surname></author>
     <author><firstname>M.</firstname> <surname>Davis</surname></author>
     <title>UTF-7: A Mail Safe Transformation Format of Unicode</title>
@@ -5866,7 +5866,7 @@ Types</title>
   
   
   
-  <biblioentry id="xmlns" role="Misc">
+  <biblioentry id="xmlns" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Namespaces in XML</title>
     <pubdate role="month">January</pubdate>
@@ -5874,7 +5874,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/REC-xml-names/</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="xml-stylesheet" role="Misc">
+  <biblioentry id="xml-stylesheet" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Associating Style Sheets with XML documents Version 1.0</title>
     <bibliomisc>W3C Recommendation</bibliomisc>
@@ -5884,7 +5884,7 @@ Types</title>
   </biblioentry>
   
   
-  <biblioentry id="utf8" role="Misc">
+  <biblioentry id="utf8" role="misc">
     <author><firstname>F.</firstname> <surname>Yergeau</surname></author>
     <title>UTF-8, a transformation format of ISO 10646</title>
     <bibliomisc>RFC 2279</bibliomisc>
@@ -5893,7 +5893,7 @@ Types</title>
     <bibliomisc>Alis Technologies</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="iso9660" role="Misc">
+  <biblioentry id="iso9660" role="misc">
     <author><othername>Technical committee / subcommittee: JTC 1</othername></author>
     <title>ISO 9660:1988 Information processing &#8211; Volume and File Structure of CDROM for Information Interchange</title>
     <bibliomisc>ISO 9660</bibliomisc>
@@ -5901,7 +5901,7 @@ Types</title>
     <bibliomisc>http://www.iso.org/iso/en/CatalogueDetailPage.CatalogueDetail?CSNUMBER=17505</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="OM_D122" role="Misc">
+  <biblioentry id="OM_D122" role="misc">
     <author><firstname>S.</firstname> <surname>Buswell</surname></author>
     <author><firstname>S.</firstname> <surname>Dalmas</surname></author>
     <author><firstname>J.</firstname> <surname>Davenport</surname></author>
@@ -5912,7 +5912,7 @@ Types</title>
     <bibliomisc>Confidential</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="xml_98" role="Misc">
+  <biblioentry id="xml_98" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Markup Language (XML) 1.0.</title>
     <bibliomisc>W3C Recommendation REC-xml-19980210</bibliomisc>
@@ -5921,7 +5921,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="erratum_NE17" role="Misc" revisionflag="added">
+  <biblioentry id="erratum_NE17" role="misc" revisionflag="added">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Namespaces in XML 1.0 (Second Edition) Errata</title>
     <pubdate role="month">November</pubdate>
@@ -5929,7 +5929,7 @@ Types</title>
     <bibliomisc>https://www.w3.org/XML/2006/xml-names-errata</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="xml_04" role="Misc">
+  <biblioentry id="xml_04" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Markup Language (XML) 1.1.</title>
     <subtitle>W3C Recommendation REC-xml11-20040204</subtitle>
@@ -5938,7 +5938,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/2004/REC-xml11-20040204/</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="OM_D131a" role="Misc">
+  <biblioentry id="OM_D131a" role="misc">
     <author><othername>&OM; Consortium</othername></author>
     <title>The &OM; Standard</title>
     <bibliomisc>&OM; Deliverable 1.3.1a</bibliomisc>
@@ -5947,7 +5947,7 @@ Types</title>
     <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="OM_D132c" role="Misc">
+  <biblioentry id="OM_D132c" role="misc">
     <author><firstname>J.</firstname> <surname>Davenport</surname></author>
     <title>A Small &OM; Type System</title>
     <bibliomisc>&OM; Deliverable 1.3.2b</bibliomisc>
@@ -5985,13 +5985,13 @@ Types</title>
     <title>Development of Strong &OM;</title>
     <publisher><publishername>&OM; Esprit Consortium</publishername></publisher>
     <pubdate>1999</pubdate>
+    <pubdate role="month">October</pubdate>
     <seriesvolnums>1.3.3b</seriesvolnums>
     <bibliomisc>http://www.nag.co.uk/projects/OpenMath.html</bibliomisc>
-    <pubdate>October</pubdate>
   </biblioentry>
   
   
-  <biblioentry id="ida" role="Book">
+  <biblioentry id="ida" role="book">
     <author><firstname>A.</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
     <author><firstname></firstname> <othername>H.</othername> <surname>Cuypers</surname></author>
     <author><firstname>H.</firstname> <surname>Sterk</surname></author>
@@ -6001,7 +6001,7 @@ Types</title>
     <isbn>ISBN 3-540-65368-6</isbn>
   </biblioentry>
   
-  <biblioentry id="CaprottiCohen99" role="Misc">
+  <biblioentry id="CaprottiCohen99" role="misc">
     <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
     <author><firstname>Arjeh</firstname> <othername>M.</othername> <surname>Cohen</surname></author>
     <title>Integrating Computational and Deduction Systems Using &OM;</title>
@@ -6042,7 +6042,7 @@ Types</title>
   
   
   
-  <biblioentry id="MathML_98" role="Misc">
+  <biblioentry id="MathML_98" role="misc">
     <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
     <author><firstname>Stan</firstname> <surname>Devitt</surname></author>
     <author><firstname>Angel</firstname> <surname>Diaz</surname></author>
@@ -6061,7 +6061,7 @@ Types</title>
   
   
   
-  <biblioentry id="MathML_99" role="Misc">
+  <biblioentry id="MathML_99" role="misc">
     <author><firstname>Patrick</firstname> <surname>Ion</surname></author>
     <author><firstname>Robert</firstname> <surname>Miner</surname></author>
     <author><firstname>Stephen</firstname> <surname>Buswell</surname></author>
@@ -6080,7 +6080,7 @@ Types</title>
   </biblioentry>
   
   
-  <biblioentry id="MathML_2000" role="Misc">
+  <biblioentry id="MathML_2000" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 2.0 Specification</title>
     <pubdate role="month">February</pubdate>
@@ -6089,7 +6089,7 @@ Types</title>
   </biblioentry>
   
 
-  <biblioentry id="MathML_2003" role="Misc">
+  <biblioentry id="MathML_2003" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 2.0 Specification
     (Second Edition)</title>
@@ -6098,7 +6098,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/MathML2/</bibliomisc>
   </biblioentry>
    
-  <biblioentry id="MathML_2014" role="Misc" revisionflag="added">
+  <biblioentry id="MathML_2014" role="misc" revisionflag="added">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 3.0 Specification
     2nd Edition</title>
@@ -6143,7 +6143,7 @@ Types</title>
   
   
   
-  <biblioentry id="OMRS" role="Misc">
+  <biblioentry id="OMRS" role="misc">
     <author><othername>Open Mechanized Reasoning System Project</othername></author>
     <bibliomisc>http://www.mrg.dist.unige.it/omrs</bibliomisc>
   </biblioentry>
@@ -6184,7 +6184,7 @@ Types</title>
   
   
   
-  <biblioentry id="FIPA" role="Misc">
+  <biblioentry id="FIPA" role="misc">
     <author><othername>Foundation for Intelligent Physical Agents</othername></author>
     <bibliomisc>http://www.fipa.org</bibliomisc>
   </biblioentry>
@@ -6256,13 +6256,13 @@ Types</title>
     <address>Cambridge</address>
   </biblioentry>
   
-  <biblioentry id="FIPA_99" role="Misc">
+  <biblioentry id="FIPA_99" role="misc">
     <author><othername>Foundation for Intelligent Physical Agents</othername></author>
     <title>The FIPA '99 Baselines</title>
     <bibliomisc>http://www.fipa.org/spec/fipa99.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Linton_Solomon_99" role="Misc">
+  <biblioentry id="Linton_Solomon_99" role="misc">
     <author><firstname>Steve</firstname> <surname>Linton</surname></author>
     <author><firstname>Andrew</firstname> <surname>Solomon</surname></author>
     <title>GAP, &OM;, and MCP</title>
@@ -6306,7 +6306,7 @@ Types</title>
   
   
   
-  <biblioentry id="DOM_98" role="Misc">
+  <biblioentry id="DOM_98" role="misc">
     <title>Document Object Model (DOM) Level 1 Specification</title>
     <subtitle>W3C Recommendation REC-DOM-Level-1-19981001</subtitle>
     <pubdate role="month">October</pubdate>
@@ -6316,7 +6316,7 @@ Types</title>
   
   
   
-  <biblioentry id="owl" role="Misc">
+  <biblioentry id="owl" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title> OWL Web Ontology Language Overview </title>
     <pubdate role="month">February</pubdate>
@@ -6324,7 +6324,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/2004/REC-owl-features-20040210/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="rdf" role="Misc">  
+  <biblioentry id="rdf" role="misc">  
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Resource Description Framework (RDF): Concepts and Abstract Syntax</title>
     <pubdate role="month">February</pubdate>
@@ -6332,7 +6332,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/2004/REC-rdf-concepts-20040210/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="XSL_2001" role="Misc">
+  <biblioentry id="XSL_2001" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Extensible Stylesheet Language (XSL) Specification</title>
     <pubdate role="month">October</pubdate>
@@ -6340,7 +6340,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/xsl/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="XSLT_99" role="Misc">
+  <biblioentry id="XSLT_99" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>XSL Transformations (XSLT)</title>
     <pubdate role="month">November</pubdate>
@@ -6358,7 +6358,7 @@ Types</title>
     <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Cohen_Kohlhase_99om" role="Misc">
+  <biblioentry id="Cohen_Kohlhase_99om" role="misc">
     <author><firstname>Arjeh</firstname> <surname>Cohen</surname></author>
     <author><firstname>Michael</firstname> <surname>Kohlhase</surname></author>
     <title>Proposal of an Extension to &OM; by Defining
@@ -6370,7 +6370,7 @@ Types</title>
   </biblioentry>
   
   
-  <biblioentry id="Caprotti_99CFCa" role="Misc">
+  <biblioentry id="Caprotti_99CFCa" role="misc">
     <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
     <title>&OM;: Accessing and Using Mathematical Information Electronically</title>
     <bibliomisc>CFC meeting talk</bibliomisc>
@@ -6379,7 +6379,7 @@ Types</title>
     <bibliomisc>Slide presentation available at http://www.riaca.win.tue.nl/~olga/om/CFCom.ps</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Caprotti_99CFCb" role="Misc">
+  <biblioentry id="Caprotti_99CFCb" role="misc">
     <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
     <title>&OM; and COQ: Communicating Certified Mathematical Content</title>
     <bibliomisc>CFC meeting talk</bibliomisc>
@@ -6388,7 +6388,7 @@ Types</title>
     <bibliomisc>http://www.riaca.win.tue.nl/~olga/om/cfcCOCOM.ps</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="Caprotti_99imacs" role="Misc">
+  <biblioentry id="Caprotti_99imacs" role="misc">
     <author><firstname>Olga</firstname> <surname>Caprotti</surname></author>
     <title>Interfacing CA and Proof Checkers with &OM;</title>
     <bibliomisc>IMACA-ACA 99</bibliomisc>
@@ -6428,14 +6428,14 @@ Types</title>
     <bibliomisc>http://symbolicnet.mcs.kent.edu/icm/research/iamc99proceedings.html</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="url_OMsem99" role="Misc">
+  <biblioentry id="url_OMsem99" role="misc">
     <title>Seminar on &OM; for Industry</title>
     <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/convention.html</bibliomisc>
     <pubdate role="month">June</pubdate>
     <pubdate>1999</pubdate>
   </biblioentry>
   
-  <biblioentry id="url_OMworkshop12" role="Misc">
+  <biblioentry id="url_OMworkshop12" role="misc">
     <title>12th  &OM; Workshop</title>
     <bibliomisc>http://www.riaca.win.tue.nl/projects/OpenMath/workshop/</bibliomisc>
     <pubdate role="month">June 15&#8211;16</pubdate>

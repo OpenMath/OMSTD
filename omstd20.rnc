@@ -1,0 +1,262 @@
+start = book
+
+book =element book{
+attribute xml:space{"preserve"}?,
+title,
+bookinfo,
+toc,
+lot,
+chapter*,
+appendix*,
+bibliography?
+}
+
+title = element title {(text|phrase|xref|filename|math)*}
+bookinfo = element bookinfo {
+releaseinfo,
+author*,
+editor*,
+date,
+copyright,
+abstract
+}
+
+releaseinfo= element releaseinfo {text}
+date = element date {text}
+copyright = element copyright{year,holder}
+year = element year {text}
+holder = element holder {text}
+
+abstract = element abstract {
+para+
+}
+
+toc =  element toc{title?}
+lot = element lot{title?}
+
+chapter = element chapter{
+id,
+attribute revisionflag{"added"|"changed"}?,
+title,
+(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+}
+
+appendix = element appendix{
+id,
+attribute revisionflag{"added"|"changed"}?,
+title,
+(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+}
+
+section = element section{
+id,
+attribute revisionflag{"added"|"changed"}?,
+title,
+(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+}
+
+formalpara = element formalpara {
+id?,
+title,
+para+
+}
+
+blockquote = element blockquote {
+(para|informaltable)+
+}
+
+bibliography = element bibliography {
+id,
+title,
+biblioentry*
+}
+
+biblioentry = element biblioentry {
+id,
+attribute revisionflag{"added"|"changed"}?,
+attribute role {"finaledit"|
+                "book"|"Article"|"misc"|"Manual"|"InProceedings"|"InCollection"|"TechReport"|"PhdThesis"|
+                "unpublished"}?,
+author*,
+b-title*,
+b-subtitle?,
+(pubdate*&publisher?&edition?&isbn?&
+editor?&
+biblioset*&
+pagenums?&seriesvolnums?&bibliomisc*&address?)
+}
+
+b-title = element title {
+attribute role {"book"}?,
+(text|phrase)*
+}
+
+b-subtitle = element subtitle {
+text}
+publisher = element publisher {publishername}
+publishername = element publishername {text}
+edition = element edition {text}
+address = element address{text}
+seriesvolnums = element seriesvolnums {text}
+pagenums = element pagenums {text}
+
+author = element author {
+(firstname|othername|surname)*
+}
+editor = element editor {
+(firstname|othername|surname)*
+}
+othername = element othername {text}
+firstname = element firstname {text}
+surname = element surname {
+attribute role{"finaledit"}?,
+text}
+
+pubdate = element pubdate {
+attribute role {"month"}?,
+text}
+bibliomisc = element bibliomisc {
+attribute role {"finaledit"|
+                "keywords"|"year"|"volume"|"series"|"number"|"pages"|"key"|
+                "organization"|"school"|"journal"|"booktitle"}?,
+text}
+isbn = element isbn {text}
+biblioset = element biblioset {
+attribute relation{"series"|"article"},
+(b-title&
+volumenum?&
+pagenums?&
+pubdate?)
+}
+volumenum = element volumenum {text}
+
+literallayout= element literallayout{
+text
+}
+
+id = attribute id {text}
+
+phrasetext = (text|xref|ulink|citation|varname|filename|acronym|systemitem|quote|phrase|emphasis|math)*
+
+para = element para {
+id?,
+attribute revisionflag{"added"|"changed"}?,
+(phrasetext|orderedlist|variablelist|itemizedlist|literallayout|blockquote|footnote)*
+}
+
+footnote = element footnote {
+id,
+para+
+}
+phrase = element phrase {
+attribute role{"sl"|"finaledit"}?,
+attribute revisionflag{"added"|"changed"}?,
+phrasetext
+}
+
+xref = element xref {
+attribute linkend {text}
+}
+
+varname = element varname {text}
+filename = element filename {text}
+citation = element citation {text}
+acronym = element acronym{text}
+systemitem = element systemitem {text}
+ulink = element ulink {
+attribute url {text},
+text}
+quote = element quote {(text|math|phrase)*}
+
+emphasis = element emphasis {
+attribute role{"bold"|"finaledit"}?,
+(text|math|phrase)*}
+
+figure = element figure{
+id,
+attribute role {"finaledit"}?,
+title,
+(graphic|informaltable|literallayout)
+}
+
+graphic = element graphic {
+attribute fileref{text},
+attribute depth {text}?,
+attribute width {text}?
+}
+
+itemizedlist = element itemizedlist{listitem*}
+orderedlist = element orderedlist{
+attribute numeration {"lowerroman"}?,
+listitem*
+}
+listitem = element listitem {(para|figure|blockquote)+}
+
+variablelist = element variablelist{varlistentry*}
+varlistentry = element varlistentry{
+(term+,listitem)*
+}
+
+term = element term {
+phrasetext
+}
+
+
+informaltable = element informaltable{
+attribute role{"finaledit"}?,
+tgroup
+}
+
+tgroup = element tgroup {
+attribute cols {text},
+thead?,
+tbody
+}
+
+thead = element thead{
+row+
+}
+tbody = element tbody{
+row+
+}
+
+row = element row {
+attribute revisionflag{"added"|"changed"}?,
+entry+
+}
+
+entry = element entry{
+attribute revisionflag{"added"|"changed"}?,
+phrasetext
+}
+
+mel = mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac
+
+math = element math {
+id?,
+attribute display {"block"}?,
+attribute revisionflag{"added"|"changed"}?,
+(mel)*
+}
+mrow = element mrow {
+(mel)*
+}
+mfenced = element mfenced {
+(mel)*
+}
+mspace = element mspace {
+attribute width {text}
+}
+mtext = element mtext {text}
+mn = element mn {text}
+mo = element mo {
+attribute fence {"true"}?,
+attribute separator {"true"}?,
+text}
+mi = element mi {
+attribute mathvariant{"bold"}?,
+attribute mathcolor{text}?,
+text}
+msub = element msub {mel,mel}
+msup = element msup {mel,mel}
+mfrac = element mfrac {mel,mel}
