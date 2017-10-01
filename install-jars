@@ -27,9 +27,12 @@ fi
 
 cd $BUILD
 
+if [ "$TRAVIS" = "true" ]; then
 echo texlive
 
 . ./support/texlive.sh
+
+fi
 
 cd $BUILD
 
