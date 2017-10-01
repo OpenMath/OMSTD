@@ -345,7 +345,7 @@ mathematical objects using its internal representation, it can convert
 them to &OM; objects and communicate them by using the byte stream
 representation of &OM; objects.</para>
 <para revisionflag="added">
-This standard does not describe the mechanisms by which software systems may offer, or make use of, computational services. The currently-suggested mechanism is the 
+This standard does not describe the mechanisms by which software systems may offerTEST, or make use of, computational services. The currently-suggested mechanism is the 
 Symbolic Computation Software Composability Protocol (SCSCP) 
 <citation>SCSCP13</citation>.
 </para>
