@@ -1750,7 +1750,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
 <para>We say that an &OM; element dominates all its children and all elements
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
 i.e. the element that carries the <systemitem>id</systemitem> attribute pointed to
-by the <systemitem>xref</systemitem> attribute. For instance in the representation
+by the <systemitem>href</systemitem> attribute. For instance in the representation
 in <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
@@ -1771,7 +1771,7 @@ also the second <systemitem>OMR</systemitem> dominate the
     <OMA>
        <OMS cd="arith1" name="plus"/>
        <OMI>1</OMI>
-       <OMR xref="foo"/>
+       <OMR href="#foo"/>
     </OMA> 
   </OMA>
 </OMOBJ>]]>
@@ -1814,18 +1814,18 @@ shows.</para>
   <OMA id="bar">                         <OMA id="baz">
     <OMS cd="arith1" name="plus"/>         <OMS cd="arith1" name="plus"/>
     <OMI>1</OMI>                           <OMI>1</OMI>
-    <OMR xref="baz"/>                      <OMR xref="bar"/>
+    <OMR href="#baz"/>                     <OMR href="#bar"/>
   </OMA>                                 </OMA>
 </OMOBJ>                               </OMOBJ>]]>
 </literallayout></figure>
 
 <para> Here, the <systemitem>OMA</systemitem> with
 <systemitem>id="bar"</systemitem> dominates its third child, the
-<systemitem>OMR</systemitem> with <systemitem>xref="baz"</systemitem>,
+<systemitem>OMR</systemitem> with <systemitem>href="#baz"</systemitem>,
 which dominates its target <systemitem>OMA</systemitem> with
 <systemitem>id="baz"</systemitem>, which in turn dominates its third
 child, the <systemitem>OMR</systemitem> with
-<systemitem>xref="bar"</systemitem>, this finally dominates its
+<systemitem>href="#bar"</systemitem>, this finally dominates its
 target, the original <systemitem>OMA</systemitem> element with
 <systemitem>id="bar"</systemitem>. So this pair of &OM; objects
 violates the acyclicity constraint and is not the &exml;
