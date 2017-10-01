@@ -17,15 +17,20 @@ If a commit with message starting with `[ci final]` is pushed, then a non-editor
 
 If you want to commit without forcing Travis to rebuild, add `[ci skip]` to your commit message.
 
-## Building locally 
+## Building locally
+
+The repository is organized as follows:
+
+* `omstd20.xml` is the main text file of the standard it is in docbook xml
+* `*.ocd`, `*.cdg`, `*.sts` examples of CDs, CD groups, and signatures used in the standard
+* `*.rnc`, the normative RelaxNG schemata shown in the standard
+* `png`, images in the standard
+* `.travis.yml`, `install-jars`, `run`, `rnc2dbk`, `support`, `openmath.cls`, and `xsl`, the build system. 
 
 To build it, just run `source ./run` on top-level. If you have `trang.jar` and
-`saxon9he.jar` installed, this should build the standard for you.
+`saxon9he.jar` installed (`install-jars` does that for you), this should build the standard for you.
 
 To make a final draft use `./run final` rather than `./run`  . 
-
-* `saxon9he` is available from [sourcefourge](http://saxon.sourceforge.net/)
-* `trang` is available from [google code archive](https://code.google.com/archive/p/jing-trang/downloads)
 
 ## Contributing to the Standard Development 
 
@@ -40,7 +45,7 @@ We use the [GitHub Issue Tracker](issues) to discuss open issues with the standa
 
 The best way of proposing changes to the standard development is by making a [pull request](https://gist.github.com/Chaser324/ce0505fbed06b947d962). In a nutshell 
 * fork this repository to your personal namespace (using the "Fork" button on the top left [the repository page](https://github.com/OpenMath/OMSTD/)
-* Make any changes in your local fork, test them by building locally, commit them to your fork, and make a new pull request via the "New pull request" button under the magentar bar (second from left). Make sure that you explain your proposed changes. 
+* Make any changes in your local fork, test them by building locally, commit them to your fork, and make a new pull request via the "New pull request" button under the magenta bar (second from left). Make sure that you explain your proposed changes. 
 * discuss (and possibly augment) the pull request from [the interface in the OpenMath/OMSTD repository](https://github.com/OpenMath/OMSTD/pulls).
 
 ## Version History
