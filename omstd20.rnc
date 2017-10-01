@@ -96,6 +96,7 @@ blockquote = element blockquote {
 
 
 literallayout= element literallayout{
+attribute revisionflag{"added"|"changed"}?,
 text
 }
 
@@ -203,7 +204,9 @@ varname = element varname {text}
 filename = element filename {text}
 citation = element citation {text}
 acronym = element acronym{text}
-systemitem = element systemitem {text}
+systemitem = element systemitem {
+attribute revisionflag{"added"|"changed"}?,
+text}
 ulink = element ulink {
 attribute url {text},
 text}
