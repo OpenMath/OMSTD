@@ -21,7 +21,7 @@ fi
 if [ "$1" == "final" ]
 then
     DRAFT=no
-    TARGET=om20-2017-07-22
+    TARGET=om20-2017-12-01
 else
     DRAFT=yes
     TARGET=om20-editors-draft
@@ -31,7 +31,7 @@ fi
 case "$TRAVIS_COMMIT_MESSAGE" in 
 \[ci\ final\]*)
     DRAFT=no
-    TARGET=om20-2017-07-22
+    TARGET=om20-2017-12-01
 esac
 
 
