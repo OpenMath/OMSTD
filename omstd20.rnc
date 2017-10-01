@@ -1,3 +1,22 @@
+# Custom Relax NG schem for omstd20.xml
+
+# The markup is docbook+MathML but constrained
+# to validate just the markup used here and supported by
+# the conversions to TeX and HTML in the stylesheets in this
+# repository.
+#
+# If additional markup is required and the document is DTD-valid
+# (which uses the full docbook DTD) and the conversions to html
+# and TeX work, feel free to extend this schema as needed.
+
+# The current schema is intentionally over-restrictive to limit the
+# choices when editing the document in nxml-mode or other schema aware
+# editing environments.
+
+
+# David Carlisle September 2017
+
+
 start = book
 
 book =element book{
@@ -10,6 +29,8 @@ chapter*,
 appendix*,
 bibliography?
 }
+
+# frontmatter
 
 title = element title {(text|phrase|xref|filename|math)*}
 bookinfo = element bookinfo {
@@ -34,26 +55,34 @@ para+
 toc =  element toc{title?}
 lot = element lot{title?}
 
+
+# sectional elements
+
 chapter = element chapter{
 id,
 attribute revisionflag{"added"|"changed"}?,
 title,
-(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+(blocks)*
 }
 
 appendix = element appendix{
 id,
 attribute revisionflag{"added"|"changed"}?,
 title,
-(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+(blocks)*
 }
 
 section = element section{
 id,
 attribute revisionflag{"added"|"changed"}?,
 title,
-(para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)*
+(blocks)*
 }
+
+
+# block level elements
+
+blocks = (para|formalpara|figure|section|literallayout|variablelist|itemizedlist|orderedlist|blockquote)
 
 formalpara = element formalpara {
 id?,
@@ -65,6 +94,14 @@ blockquote = element blockquote {
 (para|informaltable)+
 }
 
+
+literallayout= element literallayout{
+text
+}
+
+
+
+# bibliographic elements
 bibliography = element bibliography {
 id,
 title,
@@ -130,9 +167,9 @@ pubdate?)
 }
 volumenum = element volumenum {text}
 
-literallayout= element literallayout{
-text
-}
+# end of bibliographic elements
+
+
 
 id = attribute id {text}
 
@@ -148,6 +185,10 @@ footnote = element footnote {
 id,
 para+
 }
+
+
+# inline text elements
+
 phrase = element phrase {
 attribute role{"sl"|"finaledit"}?,
 attribute revisionflag{"added"|"changed"}?,
@@ -171,6 +212,10 @@ quote = element quote {(text|math|phrase)*}
 emphasis = element emphasis {
 attribute role{"bold"|"finaledit"}?,
 (text|math|phrase)*}
+
+
+
+# docbook figures
 
 figure = element figure{
 id,
@@ -202,6 +247,9 @@ phrasetext
 }
 
 
+
+# docbook tables
+
 informaltable = element informaltable{
 attribute role{"finaledit"}?,
 tgroup
@@ -229,6 +277,10 @@ entry = element entry{
 attribute revisionflag{"added"|"changed"}?,
 phrasetext
 }
+
+
+
+# MathML (somewhat simplified)
 
 mel = mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac
 
