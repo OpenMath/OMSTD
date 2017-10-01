@@ -8,7 +8,7 @@ notifications:
       - d.p.carlisle@gmail.com
       
 install:
- - ./install-jars
+ - ./support/install-jars
 
 cache:
   directories:

@@ -47,7 +47,7 @@ else
 echo "dont make build"
 fi
 
-cp rnc2dbk  *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+cp support/rnc2dbk  *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
 cp openmath.cls build
 
 cd build
