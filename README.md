@@ -25,10 +25,10 @@ The repository is organized as follows:
 * `*.ocd`, `*.cdg`, `*.sts` examples of CDs, CD groups, and signatures used in the standard
 * `*.rnc`, the normative RelaxNG schemata shown in the standard
 * `png`, images in the standard
-* `.travis.yml`, `install-jars`, `run`, `rnc2dbk`, `support`, `openmath.cls`, and `xsl`, the build system. 
+* `.travis.yml`, `run`, `support`, `openmath.cls`, and `xsl`, the build system. 
 
 To build it, just run `source ./run` on top-level. If you have `trang.jar` and
-`saxon9he.jar` installed (`install-jars` does that for you), this should build the standard for you.
+`saxon9he.jar` installed (`support/install-jars` does that for you), this should build the standard for you.
 
 To make a final draft use `./run final` rather than `./run`  . 
 
