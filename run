@@ -95,7 +95,7 @@ $TRANG  tmp.rnc tmp.dtd 2>> trang.txt
      -e "s/:*ns1:*//g" \
      -e "s/\# OMDTD/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
- sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 done
 
 for i in omcd2.rnc 
@@ -120,7 +120,7 @@ $TRANG  tmp.rnc tmp.dtd  2>> trang.txt
      -e "s/ns1://g" \
      -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
- sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 
 
 done
@@ -148,7 +148,7 @@ echo DTD
      -e "s/ns1://g" \
      -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
         tmp.dtd > ${i%%rnc}dtd
- sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
+# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
 
 
 done
