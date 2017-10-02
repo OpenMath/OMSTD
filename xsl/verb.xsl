@@ -3,7 +3,9 @@
 <xsl:stylesheet 
   version="2.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-xmlns="http://www.w3.org/1999/xhtml"
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:om="http://www.openmath.org/OpenMath"
+  exclude-result-prefixes="om"
   >
 
 <!--
@@ -85,7 +87,7 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
 <!-- text elements
      need to replace & and < by entity references-->
 <xsl:template mode="verb" match="text()" priority="2">
-  <a name="{generate-id(.)}"/>
+  <a name="{om:id(.)}"/>
   <xsl:call-template name="string-replace">
     <xsl:with-param name="to" select="'&amp;gt;'"/>
     <xsl:with-param name="from" select="'&gt;'"/> 
@@ -129,6 +131,12 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
     </xsl:otherwise>
   </xsl:choose>
 </xsl:template>
+
+<xsl:function name="om:id">
+ <xsl:param name="n"/>
+ <xsl:variable name="i" select="$n/ancestor::*[@id][1]"/>
+ <xsl:sequence select="concat('id.',$i/@id,count($n/preceding::*)-count($i/preceding::*))"/>
+</xsl:function>
 
 </xsl:stylesheet>
 

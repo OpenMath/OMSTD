@@ -11,6 +11,7 @@
 <!ENTITY % local.common.attrib "style CDATA #IMPLIED">
 -->
 
+
 <!ENTITY % local.para.char.mix "|xs:schema|comment|string|grammar|CD|CDSignatures|CDGroup">
 <!ENTITY % inlineobj.char.class "math">
 <!ATTLIST book xml:space (default|preserve) #IMPLIED >
@@ -245,3 +246,5 @@ aware) so include subset of the DTD inline below.
 
 <!ENTITY % dbdtd SYSTEM "docbookx.dtd">
 %dbdtd;
+
+<!ATTLIST literallayout file CDATA #IMPLIED>

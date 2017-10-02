@@ -636,6 +636,40 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 <xsl:template match="literallayout/node()[1][self::text()][not(normalize-space())]"/>
 <xsl:template match="literallayout/node()[last()][self::text()][not(normalize-space())]"/>
 
+<xsl:template match="literallayout[@file][@role='rnc']">
+ <xsl:variable name="l">
+  <section xmlns="">
+   <xsl:copy-of select="ancestor::section[@id][1]/@id"/>
+   <literallayout>
+   <xsl:copy-of select="@revisionflag"/>
+   <xsl:analyze-string select="replace(unparsed-text(concat('../',@file)),'\s+$','')" regex="(#.*)">
+    <xsl:matching-substring>
+     <comment><xsl:value-of select="."/></comment>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+     <xsl:analyze-string select="." regex="&quot;[^&quot;]*&quot;">
+      <xsl:matching-substring>
+       <string><xsl:value-of select="."/></string>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+       <xsl:analyze-string select="." regex="[a-zA-Z][a-zA-Z0-9\.:\-]*">
+	<xsl:matching-substring>
+	 <token><xsl:value-of select="."/></token>
+	</xsl:matching-substring>
+	<xsl:non-matching-substring>
+	 <xsl:value-of select="."/>
+	</xsl:non-matching-substring>
+       </xsl:analyze-string>
+      </xsl:non-matching-substring>
+     </xsl:analyze-string>
+    </xsl:non-matching-substring>
+   </xsl:analyze-string>
+   <xsl:text>&#10;</xsl:text>
+  </literallayout>
+  </section>
+ </xsl:variable>
+ <xsl:apply-templates select="$l/section/*"/>
+</xsl:template>
 
 <xsl:template match="sidebar">
 <xsl:if test="$changelog='yes'">

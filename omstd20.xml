@@ -1022,9 +1022,7 @@ or an XSD schema from a Relax NG Schema.  Examples of such documents
 are given in <xref linkend="app_dtd"/> and <xref linkend="app_xsd"/>,
 respectively.</para>
 
-<literallayout>
-&omrnc;
-</literallayout>
+<literallayout role="rnc" file="openmath2.rnc"/>
 
 <para revisionflag="changed"><emphasis role="bold">Note:</emphasis> 
 In the original edition of OpenMath 2.0 as published, names are specified
@@ -3701,9 +3699,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <section id="sec_cd_schema">
       <title>The Relax NG Schema for Content Dictionaries</title>
       
-      <literallayout>
-	&cdrnc;
-      </literallayout>
+      <literallayout role="rnc" file="omcd2.rnc"/>
       
     </section>
 
@@ -3953,9 +3949,7 @@ The following is a reference encoding of a signature dictionary,
 designed to be used with Content Dictionaries in the &exml; encoding.
 </para>
 
-<literallayout>
-&sigrnc;
-</literallayout>
+<literallayout role="rnc" file="omcdsig2.rnc"/>
 
 </section>
 
@@ -4040,9 +4034,7 @@ CDs, identified by name and optionally version number and URL.</para>
 
 <figure id="fig_cdgroup.dtd">
     <title><phrase>Relax NG</phrase> Specification of CDGroups</title>
-<literallayout>
-&cdgrouprnc;
-</literallayout>
+<literallayout role="rnc" file="omcdgroup2.rnc"/>
 
 </figure>
 </section>

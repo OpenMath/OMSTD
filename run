@@ -45,17 +45,18 @@ else
 echo "dont make build"
 fi
 
-cp support/rnc2dbk  *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+cp *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+# cp support/rnc2dbk build
 cp openmath.cls build
 
 cd build
 
-echo RNC/xml
-for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
-do
-echo $i
-perl rnc2dbk $i > ${i%%.rnc}rnc.xml
-done
+# echo RNC/xml
+# for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
+# do
+# echo $i
+# perl rnc2dbk $i > ${i%%.rnc}rnc.xml
+# done
 
 
 # openmath2.rnc has to be last

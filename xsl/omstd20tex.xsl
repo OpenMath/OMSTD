@@ -445,10 +445,46 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:when test="@role='small'">£\footnotesize</xsl:when>
 <xsl:otherwise>£\small</xsl:otherwise>
 </xsl:choose>
-\begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}\par\vspace£-10ptﬂﬂ<xsl:text/>
+\begin£verbatimﬂ<xsl:apply-templates/>\end{verbatim}&#10;\par\vspace£-10ptﬂﬂ<xsl:text/>
 <xsl:text>&#10;</xsl:text>
 <xsl:text>ﬂ</xsl:text>
 </xsl:if>
+</xsl:template>
+
+<xsl:template match="literallayout[@file][@role='rnc']">
+ <xsl:variable name="l">
+  <section xmlns="">
+   <xsl:copy-of select="ancestor::section[@id][1]/@id"/>
+   <literallayout>
+   <xsl:copy-of select="@revisionflag"/>
+   <xsl:text>&#10;</xsl:text>
+   <xsl:analyze-string select="replace(unparsed-text(concat('../',@file)),'(\s+$|^\s+)','')" regex="(#.*)">
+    <xsl:matching-substring>
+     <comment><xsl:value-of select="."/></comment>
+    </xsl:matching-substring>
+    <xsl:non-matching-substring>
+     <xsl:analyze-string select="." regex="&quot;[^&quot;]*&quot;">
+      <xsl:matching-substring>
+       <string><xsl:value-of select="."/></string>
+      </xsl:matching-substring>
+      <xsl:non-matching-substring>
+       <xsl:analyze-string select="." regex="[a-zA-Z][a-zA-Z0-9\.:\-]*">
+	<xsl:matching-substring>
+	 <token><xsl:value-of select="."/></token>
+	</xsl:matching-substring>
+	<xsl:non-matching-substring>
+	 <xsl:value-of select="."/>
+	</xsl:non-matching-substring>
+       </xsl:analyze-string>
+      </xsl:non-matching-substring>
+     </xsl:analyze-string>
+    </xsl:non-matching-substring>
+   </xsl:analyze-string>
+   <xsl:text>&#10;</xsl:text>
+  </literallayout>
+  </section>
+ </xsl:variable>
+ <xsl:apply-templates select="$l/section/*"/>
 </xsl:template>
 
 <xsl:template match="sidebar">
