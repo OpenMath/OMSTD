@@ -199,8 +199,6 @@
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
-<!ENTITY omdtd SYSTEM "../build/openmath2dtd.xml">
-
 
 
 <!ENTITY % dbdtd SYSTEM "docbookx.dtd">

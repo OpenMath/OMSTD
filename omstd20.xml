@@ -4617,9 +4617,7 @@ or, using the Relax NG compact syntax:
     contain any well-formed XML, so we have simply restricted it to
     contain any XML defined in the DTD.
   </para>
-  <literallayout>
-    &omdtd;
-  </literallayout>
+  <literallayout role="dtd" file="openmath2.dtd"/>
 </appendix>
 
 <appendix  id="app_whats_new">

@@ -487,6 +487,22 @@ relative to the OpenMath 1.0 document\ldots
  <xsl:apply-templates select="$l/section/*"/>
 </xsl:template>
 
+
+<xsl:template match="literallayout[@file][@role=('dtd')]">
+ <xsl:variable name="l">
+  <section xmlns="">
+   <xsl:copy-of select="ancestor::section[@id][1]/@id"/>
+   <literallayout>
+    <xsl:copy-of select="@revisionflag"/>
+    <xsl:text>&#10;</xsl:text>
+    <xsl:copy-of select="replace(unparsed-text(concat('../build/',@file)),'(\s+$|^\s+)','')"/>
+    <xsl:text>&#10;</xsl:text>
+   </literallayout>
+  </section>
+ </xsl:variable>
+ <xsl:apply-templates select="$l/section/*"/>
+</xsl:template>
+
 <xsl:template match="literallayout[@file][@role=('xml','rng','xsd')]">
  <xsl:variable name="l">
   <section xmlns="">
