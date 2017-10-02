@@ -17,6 +17,7 @@
 # David Carlisle September 2017
 
 
+
 start = book
 
 book =element book{
@@ -32,7 +33,7 @@ bibliography?
 
 # frontmatter
 
-title = element title {(text|phrase|xref|filename|math)*}
+title = element title {(text|phrase|xref|filename|math|emphasis|acronym)*}
 bookinfo = element bookinfo {
 releaseinfo,
 author*,
@@ -95,12 +96,21 @@ blockquote = element blockquote {
 }
 
 
+
 literallayout= element literallayout{
 attribute revisionflag{"added"|"changed"}?,
-text
+anywf*
 }
 
+anywf = (text |element * {
+attribute * {text}*,
+(anywf|text)*
+}
+)
 
+comment = element comment {(text|comment|\token|\string)*}
+\token = element token {text}
+\string = element string {(\token|text)*}
 
 # bibliographic elements
 bibliography = element bibliography {
@@ -126,15 +136,22 @@ pagenums?&seriesvolnums?&bibliomisc*&address?)
 
 b-title = element title {
 attribute role {"book"}?,
-(text|phrase)*
+(text|phrase|emphasis)*
 }
 
 b-subtitle = element subtitle {
-text}
+(text|phrase|emphasis)*
+}
 publisher = element publisher {publishername}
-publishername = element publishername {text}
-edition = element edition {text}
-address = element address{text}
+publishername = element publishername {
+(text|phrase|emphasis)*
+}
+edition = element edition {
+(text|phrase|emphasis)*
+}
+address = element address{
+(text|phrase|emphasis)*
+}
 seriesvolnums = element seriesvolnums {text}
 pagenums = element pagenums {text}
 
@@ -144,11 +161,12 @@ author = element author {
 editor = element editor {
 (firstname|othername|surname)*
 }
-othername = element othername {text}
-firstname = element firstname {text}
+othername = element othername {(text|emphasis)*}
+firstname = element firstname {(text|emphasis)*}
 surname = element surname {
 attribute role{"finaledit"}?,
-text}
+(text|emphasis)*
+}
 
 pubdate = element pubdate {
 attribute role {"month"}?,
@@ -157,7 +175,8 @@ bibliomisc = element bibliomisc {
 attribute role {"finaledit"|
                 "keywords"|"year"|"volume"|"series"|"number"|"pages"|"key"|
                 "organization"|"school"|"journal"|"booktitle"}?,
-text}
+(text|emphasis)*
+}
 isbn = element isbn {text}
 biblioset = element biblioset {
 attribute relation{"series"|"article"},
