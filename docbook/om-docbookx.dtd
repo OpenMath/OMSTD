@@ -199,49 +199,8 @@
 
 <!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
 
-<!ENTITY omrnc SYSTEM "../build/openmath2rnc.xml">
-<!ENTITY cdrnc SYSTEM "../build/omcd2rnc.xml">
-<!ENTITY sigrnc SYSTEM "../build/omcdsig2rnc.xml">
-<!ENTITY cdgrouprnc SYSTEM "../build/omcdgroup2rnc.xml">
-<!ENTITY mathmlcdg SYSTEM "../build/mathml.cdg">
-
-<!ENTITY omxsd SYSTEM "../build/openmath2.xsd">
 <!ENTITY omdtd SYSTEM "../build/openmath2dtd.xml">
-<!ENTITY omrng SYSTEM "../build/openmath2.rng">
-<!ENTITY cdrng SYSTEM "../build/omcd2.rng">
-<!ENTITY sigrng SYSTEM "../build/omcdsig2.rng">
 
-<!ENTITY % openmath2 SYSTEM "../build/openmath2.dtd">
-%openmath2;
-<!ENTITY % omdtd "">
-<!ENTITY % omcd2 SYSTEM "../build/omcd2.dtd">
-%omcd2;
-<!ENTITY % omcdsig2 SYSTEM "../build/omcdsig2.dtd">
-%omcdsig2;
-
-<!--
-Can't include this as name clashes with CD dtd (as DTD not namespace
-aware) so include subset of the DTD inline below.
-<!ENTITY % omcdgroup2 SYSTEM "omcdgroup2.dtd">
-%omcdgroup2;
--->
-<!ELEMENT CDGroupName (#PCDATA)>
-<!ELEMENT CDGroupVersion (#PCDATA)>
-<!ELEMENT CDGroupRevision (#PCDATA)>
-<!ELEMENT CDGroupURL (#PCDATA)>
-<!ELEMENT CDGroupDescription (#PCDATA)>
-<!ELEMENT CDGroupMember (CDComment?,CDName,CDVersion?,CDURL?)>
-<!ELEMENT CDGroup (CDGroupName,CDGroupVersion,CDGroupRevision?,
-                   CDGroupURL,CDGroupDescription,
-                   (CDGroupMember|CDComment)*)>
-<!ATTLIST CDGroup
-  xmlns CDATA #FIXED 'http://www.openmath.org/OpenMathCDG'>
-
-
-<!ENTITY metacd SYSTEM "../meta.ocd">
-<!ENTITY arith1cd SYSTEM "../arith1.ocd">
-<!ENTITY arith1sts SYSTEM "../arith1.sts">
-<!ENTITY errorcd SYSTEM "../error.ocd">
 
 
 <!ENTITY % dbdtd SYSTEM "docbookx.dtd">

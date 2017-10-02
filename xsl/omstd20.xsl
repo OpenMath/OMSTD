@@ -14,6 +14,8 @@
 <xsl:param name="draft" select="no"/>
 <xsl:param name="date" select="''"/>
 
+<xsl:preserve-space elements="*"/>
+
 <xsl:output method="xml" encoding="iso-8859-1"/>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
@@ -666,6 +668,22 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
    </xsl:analyze-string>
    <xsl:text>&#10;</xsl:text>
   </literallayout>
+  </section>
+ </xsl:variable>
+ <xsl:apply-templates select="$l/section/*"/>
+</xsl:template>
+
+
+<xsl:template match="literallayout[@file][@role=('xml','rng','xsd')]">
+ <xsl:variable name="l">
+  <section xmlns="">
+   <xsl:copy-of select="ancestor::section[@id][1]/@id"/>
+   <literallayout>
+   <xsl:copy-of select="@revisionflag"/>
+   <xsl:text>&#10;</xsl:text>
+   <xsl:copy-of select="doc(concat('../',if(@role=('rng','xsd')) then 'build/' else '',@file))" />
+   <xsl:text>&#10;</xsl:text>
+   </literallayout>
   </section>
  </xsl:variable>
  <xsl:apply-templates select="$l/section/*"/>

@@ -4452,18 +4452,14 @@ No &OM;&#160;2 application should generate documents in this form.
 <section id="app_cdcd">
 <title>The <filename>meta</filename> Content Dictionary</title>
 
-<literallayout>
-&metacd;
-</literallayout>
+<literallayout role="xml" file="meta.ocd"/>
 </section>
 
 <section id="arith1.ocd">
   <title>The  <filename>arith1</filename> Content Dictionary File</title>
   
   
-<literallayout>
-&arith1cd;
-</literallayout>
+<literallayout role="xml" file="arith1.ocd"/>
 
 </section>
 
@@ -4472,9 +4468,7 @@ No &OM;&#160;2 application should generate documents in this form.
   
   
   
-<literallayout>
-&arith1sts;
-</literallayout>
+<literallayout role="xml" file="arith1.sts"/>
 
 </section>
 
@@ -4482,9 +4476,7 @@ No &OM;&#160;2 application should generate documents in this form.
   <title>The  <filename>MathML</filename> CDGroup</title>
   
   
-<literallayout>
-&mathmlcdg;
-</literallayout>
+<literallayout role="xml" file="mathml.cdg"/>
 
 
 
@@ -4493,9 +4485,7 @@ No &OM;&#160;2 application should generate documents in this form.
 <section id="errorcd">
   <title>The <filename>error</filename> Content Dictionary</title>
   
-<literallayout>
-&errorcd;
-</literallayout>
+<literallayout role="xml" file="error.ocd"/>
 
 </section>
 
@@ -4508,9 +4498,7 @@ No &OM;&#160;2 application should generate documents in this form.
   <para>This is the Relax NG Schema described in <xref linkend="sec_xml"/>
     expressed according to the Relax NG XML Syntax.
   </para>
-  <literallayout>
-    &omrng;
-  </literallayout>
+  <literallayout role="rng" file="openmath2.rng"/>
 </appendix>
 
 <appendix id="app_relaxrestricted">
@@ -4617,9 +4605,7 @@ or, using the Relax NG compact syntax:
   <para>This is an XSD Schema generated from the Relax NG Schema described in 
     <xref linkend="sec_xml"/>.
   </para>
-  <literallayout>
-    &omxsd;
-  </literallayout>
+  <literallayout role="xsd" file="openmath2.xsd"/>
 </appendix>
 
 <appendix id="app_dtd">

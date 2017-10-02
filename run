@@ -156,7 +156,7 @@ done
 
 
 echo single page html5
-$XSLT  -strip:none  -dtd:on  ../omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
+$XSLT  -strip:none  ../omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
 
 echo html diff version
 $XSLT -strip:none ../omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE

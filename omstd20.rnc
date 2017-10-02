@@ -99,7 +99,7 @@ blockquote = element blockquote {
 
 literallayout= element literallayout{
 attribute revisionflag{"added"|"changed"}?,
-((attribute role {"rnc"}, attribute file {text}) | anywf*)
+((attribute role {"rnc"|"rng"|"xsd"|"xml"}, attribute file {text}) | anywf*)
 }
 
 anywf = (text |element * {
