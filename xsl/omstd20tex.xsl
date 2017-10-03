@@ -744,8 +744,10 @@ changelog entry here
 <xsl:text/>\mathtt£<xsl:value-of select="."/>ß<xsl:text/>
 </xsl:template>
 
-<xsl:template match="mo[.='&#8594;']">\longrightarrow </xsl:template>
-<xsl:template match="mo[.='&#8594;']" mode="number">\longrightarrow </xsl:template>
+<xsl:template match="mo[.='&#8594;']">\rightarrow </xsl:template>
+<xsl:template match="mo[.='&#8594;']" mode="number">\rightarrow </xsl:template>
+<xsl:template match="mo[.='&#10230;']">\longrightarrow </xsl:template>
+<xsl:template match="mo[.='&#10230;']" mode="number">\longrightarrow </xsl:template>
 <xsl:template match="mi[.='&#937;']">\Omega </xsl:template>
 <xsl:template match="mo[.='&#955;']">\lambda </xsl:template>
 <xsl:template match="mi[.='&#955;']">\lambda </xsl:template>

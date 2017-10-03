@@ -14,15 +14,10 @@ edited by hand to add back entity definitions and other changes
 <!ENTITY exml "<acronym>xml</acronym>">
 
 
-<!ENTITY digits "0-9">
-<!ENTITY exadigits "0-9A-F">
-<!ENTITY lcalpha "a-z">
-<!ENTITY ucalpha "A-Z">
-<!ENTITY sign "[+-]"><!-- dpc: Correct regxp for + or - -->
 <!ENTITY zsp "">
-<!ENTITY longrightarrow "<mo>&#8594;</mo>"><!--dpc: short, actually -->
+<!ENTITY longrightarrow "&#x27F6;">
 
-<!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
+
 
 
 

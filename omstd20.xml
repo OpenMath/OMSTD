@@ -815,12 +815,12 @@ characters) were not allowed in names.
 <tbody>
 <row>
 <entry>Name </entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> NameStartChar (NameChar)* </entry>
 </row>
 <row>
 <entry>NameStartChar</entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry>  ":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] |</entry></row>
 <row><entry/><entry/><entry>[#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] |</entry></row>
 <row><entry/><entry/><entry>[#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] |</entry></row>
@@ -830,7 +830,7 @@ characters) were not allowed in names.
 </row>
 <row>
 <entry>NameChar</entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry>  NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] |</entry></row>
 <row><entry/><entry/><entry>[#x203F-#x2040] </entry>
 </row>
@@ -866,26 +866,26 @@ subset of the above grammar which is a legal POSIX
 <tbody>
 <row>
 <entry>Name </entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> (PosixLetter | '_') (Char)*
 </entry>
 </row>
 <row>
 <entry>Char</entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> PosixLetter | Digit | '.' | '-' | '_' 
 </entry>
 </row>
 <row>
 <entry>PosixLetter</entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> 
 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
 </entry>
 </row>
 <row revisionflag="added">
 <entry>Digit</entry>
-<entry> <math>&longrightarrow;</math> </entry>
+<entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> 
 '0' | '1' | ... | '9' 
 </entry>
@@ -1770,7 +1770,7 @@ implementations).</para>
         <tbody>
           <row>
             <entry>start </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [24] object [25] </entry>
             <entry>|</entry>
             <entry>
@@ -1782,7 +1782,7 @@ implementations).</para>
           
           <row>
             <entry>object </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> basic </entry>
           </row>
           
@@ -1812,7 +1812,7 @@ implementations).</para>
           
           <row>
             <entry>basic</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> integer </entry>
           </row>
           
@@ -1848,7 +1848,7 @@ implementations).</para>
           
           <row>
             <entry>integer </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [1] [_] </entry>
             <entry>|</entry>
             <entry> [1+64]
@@ -1943,7 +1943,7 @@ implementations).</para>
           
           <row>
             <entry>float </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [3] {_}{_} </entry>
             <entry>|</entry>
             <entry> [3+64]
@@ -1965,7 +1965,7 @@ implementations).</para>
           
           <row>
             <entry>variable </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [5]
               [<math><mi>n</mi></math>]
               varname:<math><mi>n</mi></math>
@@ -1997,7 +1997,7 @@ implementations).</para>
           
           <row>
             <entry>symbol</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [8]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
@@ -2036,7 +2036,7 @@ implementations).</para>
           
           <row>
             <entry>string </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [6]
               [<math><mi>n</mi></math>]
               <phrase>bytes</phrase>:<math><mi>n</mi></math>
@@ -2143,7 +2143,7 @@ implementations).</para>
           
           <row>
             <entry>bytearray </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [4]
               [<math><mi>n</mi></math>]
               bytes:<math><mi>n</mi></math>
@@ -2198,7 +2198,7 @@ implementations).</para>
           
           <row>
             <entry>cdbase</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [9]
               [<math><mi>n</mi></math>]
               uri:<math><mi>n</mi></math>
@@ -2218,7 +2218,7 @@ implementations).</para>
 
           <row>
             <entry>foreign</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [12]
               [<math><mi>n</mi></math>]
               [<math><mi>m</mi></math>]
@@ -2284,7 +2284,7 @@ implementations).</para>
           
           <row>
             <entry>compound</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry>application</entry>
           </row>
           
@@ -2308,7 +2308,7 @@ implementations).</para>
           
           <row>
             <entry>application</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [16] object objects [17] </entry>
             <entry>|</entry>
             <entry> [16+64]
@@ -2332,7 +2332,7 @@ implementations).</para>
           
           <row>
 	    <entry>binding</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [26] object bvars object [27] </entry>
             <entry>|</entry>
             <entry> [26+64]
@@ -2356,7 +2356,7 @@ implementations).</para>
           
           <row>
 	    <entry>attribution</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [18] attrpairs object [19] </entry>
             <entry>|</entry>
             <entry> [18+64]
@@ -2380,7 +2380,7 @@ implementations).</para>
           
           <row>
 	    <entry>error</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [22] symbol objects [23] </entry>
             <entry>|</entry>
             <entry> [22+64]
@@ -2402,7 +2402,7 @@ implementations).</para>
           
           <row>
             <entry>attrpairs </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [20] pairs [21] </entry>
             <entry>|</entry>
             <entry> [20+64]
@@ -2426,7 +2426,7 @@ implementations).</para>
           
           <row>
             <entry>pairs </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> symbol object</entry>
           </row>
           
@@ -2438,7 +2438,7 @@ implementations).</para>
           
           <row>
             <entry>bvars </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [28] vars [29] </entry>
             <entry>|</entry>
             <entry> [28+64]
@@ -2462,7 +2462,7 @@ implementations).</para>
           
           <row>
             <entry>vars </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry>
 	      <emphasis  role="finaledit">empty</emphasis>
 	    </entry>
@@ -2476,7 +2476,7 @@ implementations).</para>
           
           <row>
             <entry>attrvar </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> variable</entry>
           </row>
           
@@ -2506,7 +2506,7 @@ implementations).</para>
           
           <row>
             <entry>objects </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> <emphasis>empty</emphasis> </entry>
           </row>
 
@@ -2518,7 +2518,7 @@ implementations).</para>
           
           <row>
 	    <entry>reference</entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry>internal_reference</entry>
           </row>
           
@@ -2530,7 +2530,7 @@ implementations).</para>
           
           <row>
             <entry>internal_reference </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [30] [_] </entry>
           </row>
           
@@ -2542,7 +2542,7 @@ implementations).</para>
           
           <row>
             <entry>external_reference </entry>
-            <entry><math>&longrightarrow;</math></entry>
+            <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry> [31]
               [<math><mi>n</mi></math>]
               uri:<math><mi>n</mi></math>
