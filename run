@@ -65,6 +65,9 @@ for i in omcd2.rnc omcdsig2.rnc  omcdgroup2.rnc openmath2.rnc
 do
 echo $i
 $TRANG  $i ${i%%rnc}rng
+# dos2unix
+tr -d '\r' < ${i%%rnc}rng > ${i%%rnc}rng-
+mv ${i%%rnc}rng- ${i%%rnc}rng
 done
 
 # openmath2.rnc has to be last
@@ -73,6 +76,9 @@ for i in omcd2.rnc omcdsig2.rnc omcdgroup2.rnc  openmath2.rnc
 do
 echo $i
 $TRANG  $i ${i%%rnc}xsd
+# dos2unix
+tr -d '\r' < ${i%%rnc}xsd > ${i%%rnc}xsd-
+mv ${i%%rnc}xsd- ${i%%rnc}xsd
 done
 
 >trang.txt
@@ -153,6 +159,12 @@ echo DTD
 
 done
 
+for i in omcd2.rnc omcdsig2.rnc omcdgroup2.rnc  openmath2.rnc
+do
+# dos2unix
+tr -d '\r' < ${i%%rnc}dtd > ${i%%rnc}dtd-
+mv ${i%%rnc}dtd- ${i%%rnc}dtd
+done
 
 
 echo single page html5
@@ -225,6 +237,8 @@ if [ -d "../../OpenMath.github.io/standard/$TARGET" ]
        echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
        cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
 	  ../../OpenMath.github.io/standard/$TARGET
+       cp {omcd2,omcdsig2,omcdgroup2,openmath2}.{rnc,rng,xsd,dtd} \
+	   ../../OpenMath.github.io/standard/$TARGET
 else
 
 if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_BRANCH" = "master" ]; then
@@ -237,6 +251,8 @@ if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS
 
 	git clone https://$ghauth@github.com/OpenMath/OpenMath.github.io.git
 	cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
+	   OpenMath.github.io/standard/$TARGET
+	cp {omcd2,omcdsig2,omcdgroup2,openmath2}.{rnc,rng,xsd,dtd} \
 	   OpenMath.github.io/standard/$TARGET
 	cd OpenMath.github.io
 	git commit -a -m "from travis ci: $TRAVIS_COMMIT_MESSAGE" || echo no changes
