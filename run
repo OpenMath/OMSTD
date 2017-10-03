@@ -218,7 +218,7 @@ fi
 
 echo zip
 rm tmp.*
-zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run docbook
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run 
 
 if [ -d "../../OpenMath.github.io/standard/$TARGET" ]
    then
