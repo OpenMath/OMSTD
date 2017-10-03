@@ -255,7 +255,8 @@ if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS
 	cp {omcd2,omcdsig2,omcdgroup2,openmath2}.{rnc,rng,xsd,dtd} \
 	   OpenMath.github.io/standard/$TARGET
 	cd OpenMath.github.io
-	git commit -a -m "from travis ci: $TRAVIS_COMMIT_MESSAGE" || echo no changes
+	NEW_MSG=`echo $TRAVIS_COMMIT_MESSAGE | sed -e 's/#/iss./g'`
+	git commit -a -m "from travis ci: $NEW_MSG" || echo no changes
 	git push
 	
 else
