@@ -1,0 +1,318 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+DTD generated from simplified omstd20.rnc via trang then
+edited by hand to add back entity definitions and other changes
+  -->
+
+
+
+<!--
+  Abbreviations used in this document
+-->
+<!ENTITY OM "<emphasis>OpenMath</emphasis>">
+<!ENTITY exml "<acronym>xml</acronym>">
+
+
+<!ENTITY digits "0-9">
+<!ENTITY exadigits "0-9A-F">
+<!ENTITY lcalpha "a-z">
+<!ENTITY ucalpha "A-Z">
+<!ENTITY sign "[+-]"><!-- dpc: Correct regxp for + or - -->
+<!ENTITY zsp "">
+<!ENTITY longrightarrow "<mo>&#8594;</mo>"><!--dpc: short, actually -->
+
+<!ENTITY varnamechar "+=(),-./:?!#$&#37;*;@[]^_`{|}"><!-- dpc: remove `TeX error?  -->
+
+
+
+
+<!-- trang from here -->
+
+
+
+<!-- Custom Relax NG schem for omstd20.xml -->
+
+<!--
+The markup is docbook+MathML but constrained
+to validate just the markup used here and supported by
+the conversions to TeX and HTML in the stylesheets in this
+repository.
+
+If additional markup is required and the document is DTD-valid
+(which uses the full docbook DTD) and the conversions to html
+and TeX work, feel free to extend this schema as needed.
+-->
+
+<!--
+The current schema is intentionally over-restrictive to limit the
+choices when editing the document in nxml-mode or other schema aware
+editing environments.
+-->
+
+<!-- David Carlisle September 2017 -->
+
+<!ELEMENT book (title,bookinfo,toc,lot,chapter*,appendix*,
+                bibliography?)>
+<!ATTLIST book
+  xml:space (preserve) #IMPLIED>
+
+<!-- frontmatter -->
+
+<!ELEMENT title (#PCDATA|phrase|xref|filename|math|emphasis|acronym)*>
+<!ATTLIST title role CDATA #IMPLIED>
+
+<!ELEMENT bookinfo (releaseinfo,author*,editor*,date,copyright,
+                    abstract)>
+
+<!ELEMENT releaseinfo (#PCDATA)>
+
+<!ELEMENT date (#PCDATA)>
+
+<!ELEMENT copyright (year,holder)>
+
+<!ELEMENT year (#PCDATA)>
+
+<!ELEMENT holder (#PCDATA)>
+
+<!ELEMENT abstract (para)+>
+
+<!ELEMENT toc (title)?>
+
+<!ELEMENT lot (title)?>
+
+<!-- end of bibliographic elements -->
+
+<!ENTITY % id "
+  id CDATA #REQUIRED">
+
+<!-- block level elements -->
+
+<!ENTITY % blocks "para|formalpara|figure|section|literallayout
+                   |variablelist|itemizedlist|orderedlist|blockquote">
+
+<!-- sectional elements -->
+
+<!ELEMENT chapter (title,(%blocks;)*)>
+<!ATTLIST chapter
+  %id;
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT appendix (title,(%blocks;)*)>
+<!ATTLIST appendix
+  %id;
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT section (title,(%blocks;)*)>
+<!ATTLIST section
+  %id;
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT formalpara (title,para+)>
+<!ATTLIST formalpara
+  id CDATA #IMPLIED>
+
+<!ELEMENT blockquote (para|informaltable)+>
+
+<!ELEMENT literallayout (#PCDATA)>
+<!ATTLIST literallayout
+  revisionflag (added|changed) #IMPLIED
+  role (rnc|dtd|rng|xsd|xml) #IMPLIED
+  file CDATA #IMPLIED>
+
+<!ELEMENT comment (#PCDATA|comment|token|string)*>
+
+<!ELEMENT token (#PCDATA)>
+
+<!ELEMENT string (#PCDATA|token)*>
+
+<!-- bibliographic elements -->
+
+<!ELEMENT bibliography (title,biblioentry*)>
+<!ATTLIST bibliography
+  %id;>
+
+<!ELEMENT biblioentry (author|title|subtitle|pubdate|publisher|edition|
+                       isbn|editor|biblioset|pagenums|seriesvolnums|
+                       bibliomisc|address)*>
+<!ATTLIST biblioentry
+  %id;
+  revisionflag (added|changed) #IMPLIED
+  role (finaledit|book|Article|misc|Manual|InProceedings|InCollection
+        |TechReport|PhdThesis|unpublished) #IMPLIED>
+
+<!ELEMENT subtitle (#PCDATA|phrase|emphasis)*>
+
+<!ELEMENT publisher (publishername)>
+
+<!ELEMENT publishername (#PCDATA|phrase|emphasis)*>
+
+<!ELEMENT edition (#PCDATA|phrase|emphasis)*>
+
+<!ELEMENT address (#PCDATA|phrase|emphasis)*>
+
+<!ELEMENT seriesvolnums (#PCDATA)>
+
+<!ELEMENT pagenums (#PCDATA)>
+
+<!ELEMENT author (firstname|othername|surname)*>
+
+<!ELEMENT editor (firstname|othername|surname)*>
+
+<!ELEMENT othername (#PCDATA|emphasis)*>
+
+<!ELEMENT firstname (#PCDATA|emphasis)*>
+
+<!ELEMENT surname (#PCDATA|emphasis)*>
+<!ATTLIST surname
+  role (finaledit) #IMPLIED>
+
+<!ELEMENT pubdate (#PCDATA)>
+<!ATTLIST pubdate
+  role (month) #IMPLIED>
+
+<!ELEMENT bibliomisc (#PCDATA|emphasis)*>
+<!ATTLIST bibliomisc
+  role (finaledit|keywords|year|volume|series|number|pages|key
+        |organization|school|journal|booktitle) #IMPLIED>
+
+<!ELEMENT isbn (#PCDATA)>
+
+<!ELEMENT biblioset (title|volumenum|pagenums|pubdate)*>
+<!ATTLIST biblioset
+  relation (series|article) #REQUIRED>
+
+<!ELEMENT volumenum (#PCDATA)>
+
+<!ENTITY % phrasetext "#PCDATA|xref|ulink|citation|varname|filename
+                       |acronym|systemitem|quote|phrase|emphasis|math">
+
+<!ELEMENT para (%phrasetext;|orderedlist|variablelist|itemizedlist
+                |literallayout|blockquote|footnote)*>
+<!ATTLIST para
+  id CDATA #IMPLIED
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT footnote (para)+>
+<!ATTLIST footnote
+  %id;>
+
+<!-- inline text elements -->
+
+<!ELEMENT phrase (%phrasetext;)*>
+<!ATTLIST phrase
+  role (sl|finaledit) #IMPLIED
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT xref EMPTY>
+<!ATTLIST xref
+  linkend CDATA #REQUIRED>
+
+<!ELEMENT varname (#PCDATA)>
+
+<!ELEMENT filename (#PCDATA)>
+
+<!ELEMENT citation (#PCDATA)>
+
+<!ELEMENT acronym (#PCDATA)>
+
+<!ELEMENT systemitem (#PCDATA)>
+<!ATTLIST systemitem
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT ulink (#PCDATA)>
+<!ATTLIST ulink
+  url CDATA #REQUIRED>
+
+<!ELEMENT quote (#PCDATA|math|phrase)*>
+
+<!ELEMENT emphasis (#PCDATA|math|phrase)*>
+<!ATTLIST emphasis
+  role (bold|finaledit) #IMPLIED>
+
+<!-- docbook figures -->
+
+<!ELEMENT figure (title,(graphic|informaltable|literallayout))>
+<!ATTLIST figure
+  %id;
+  role (finaledit) #IMPLIED>
+
+<!ELEMENT graphic EMPTY>
+<!ATTLIST graphic
+  fileref CDATA #REQUIRED
+  depth CDATA #IMPLIED
+  width CDATA #IMPLIED>
+
+<!ELEMENT itemizedlist (listitem)*>
+
+<!ELEMENT orderedlist (listitem)*>
+<!ATTLIST orderedlist
+  numeration (lowerroman) #IMPLIED>
+
+<!ELEMENT listitem (para|figure|blockquote)+>
+
+<!ELEMENT variablelist (varlistentry)*>
+
+<!ELEMENT varlistentry (term+,listitem)*>
+
+<!ELEMENT term (%phrasetext;)*>
+
+<!-- docbook tables -->
+
+<!ELEMENT informaltable (tgroup)>
+<!ATTLIST informaltable
+  role (finaledit) #IMPLIED>
+
+<!ELEMENT tgroup (thead?,tbody)>
+<!ATTLIST tgroup
+  cols CDATA #REQUIRED>
+
+<!ELEMENT thead (row)+>
+
+<!ELEMENT tbody (row)+>
+
+<!ELEMENT row (entry)+>
+<!ATTLIST row
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT entry (%phrasetext;)*>
+<!ATTLIST entry
+  revisionflag (added|changed) #IMPLIED>
+
+<!-- MathML (somewhat simplified) -->
+
+<!ENTITY % mel "mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac">
+
+<!ELEMENT math (%mel;)*>
+<!ATTLIST math
+  id CDATA #IMPLIED
+  display (block) #IMPLIED
+  revisionflag (added|changed) #IMPLIED>
+
+<!ELEMENT mrow (%mel;)*>
+
+<!ELEMENT mfenced (%mel;)*>
+
+<!ELEMENT mspace EMPTY>
+<!ATTLIST mspace
+  width CDATA #REQUIRED>
+
+<!ELEMENT mtext (#PCDATA)>
+
+<!ELEMENT mn (#PCDATA)>
+
+<!ELEMENT mo (#PCDATA)>
+<!ATTLIST mo
+  fence (true) #IMPLIED
+  separator (true) #IMPLIED>
+
+<!ELEMENT mi (#PCDATA)>
+<!ATTLIST mi
+  mathvariant (bold) #IMPLIED
+  mathcolor CDATA #IMPLIED>
+
+<!ELEMENT msub ((%mel;),(%mel;))>
+
+<!ELEMENT msup ((%mel;),(%mel;))>
+
+<!ELEMENT mfrac ((%mel;),(%mel;))>
