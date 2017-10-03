@@ -26,7 +26,7 @@ edited by hand to add back entity definitions and other changes
 
 
 
-<!-- Custom Relax NG schem for omstd20.xml -->
+<!-- Custom Relax NG schema for omstd20.xml -->
 
 <!--
 The markup is docbook+MathML but constrained
@@ -91,17 +91,17 @@ editing environments.
 <!ELEMENT chapter (title,(%blocks;)*)>
 <!ATTLIST chapter
   %id;
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT appendix (title,(%blocks;)*)>
 <!ATTLIST appendix
   %id;
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT section (title,(%blocks;)*)>
 <!ATTLIST section
   %id;
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT formalpara (title,para+)>
 <!ATTLIST formalpara
@@ -111,7 +111,7 @@ editing environments.
 
 <!ELEMENT literallayout (#PCDATA)>
 <!ATTLIST literallayout
-  revisionflag (added|changed) #IMPLIED
+  revisionflag (added|changed|deleted) #IMPLIED
   role (rnc|dtd|rng|xsd|xml) #IMPLIED
   file CDATA #IMPLIED>
 
@@ -132,7 +132,7 @@ editing environments.
                        bibliomisc|address)*>
 <!ATTLIST biblioentry
   %id;
-  revisionflag (added|changed) #IMPLIED
+  revisionflag (added|changed|deleted) #IMPLIED
   role (finaledit|book|Article|misc|Manual|InProceedings|InCollection
         |TechReport|PhdThesis|unpublished) #IMPLIED>
 
@@ -186,7 +186,7 @@ editing environments.
                 |literallayout|blockquote|footnote)*>
 <!ATTLIST para
   id CDATA #IMPLIED
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT footnote (para)+>
 <!ATTLIST footnote
@@ -197,7 +197,7 @@ editing environments.
 <!ELEMENT phrase (%phrasetext;)*>
 <!ATTLIST phrase
   role (sl|finaledit) #IMPLIED
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT xref EMPTY>
 <!ATTLIST xref
@@ -213,7 +213,7 @@ editing environments.
 
 <!ELEMENT systemitem (#PCDATA)>
 <!ATTLIST systemitem
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT ulink (#PCDATA)>
 <!ATTLIST ulink
@@ -268,11 +268,11 @@ editing environments.
 
 <!ELEMENT row (entry)+>
 <!ATTLIST row
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT entry (%phrasetext;)*>
 <!ATTLIST entry
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!-- MathML (somewhat simplified) -->
 
@@ -282,7 +282,7 @@ editing environments.
 <!ATTLIST math
   id CDATA #IMPLIED
   display (block) #IMPLIED
-  revisionflag (added|changed) #IMPLIED>
+  revisionflag (added|changed|deleted) #IMPLIED>
 
 <!ELEMENT mrow (%mel;)*>
 

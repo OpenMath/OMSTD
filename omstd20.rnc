@@ -1,4 +1,4 @@
-# Custom Relax NG schem for omstd20.xml
+# Custom Relax NG schems for omstd20.xml
 
 # The markup is docbook+MathML but constrained
 # to validate just the markup used here and supported by
@@ -61,21 +61,21 @@ lot = element lot{title?}
 
 chapter = element chapter{
 id,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 title,
 (blocks)*
 }
 
 appendix = element appendix{
 id,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 title,
 (blocks)*
 }
 
 section = element section{
 id,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 title,
 (blocks)*
 }
@@ -98,7 +98,7 @@ blockquote = element blockquote {
 
 
 literallayout= element literallayout{
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 ((attribute role {"rnc"|"dtd"|"rng"|"xsd"|"xml"}, attribute file {text}) | anywf*)
 }
 
@@ -121,7 +121,7 @@ biblioentry*
 
 biblioentry = element biblioentry {
 id,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 attribute role {"finaledit"|
                 "book"|"Article"|"misc"|"Manual"|"InProceedings"|"InCollection"|"TechReport"|"PhdThesis"|
                 "unpublished"}?,
@@ -197,7 +197,7 @@ phrasetext = (text|xref|ulink|citation|varname|filename|acronym|systemitem|quote
 
 para = element para {
 id?,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 (phrasetext|orderedlist|variablelist|itemizedlist|literallayout|blockquote|footnote)*
 }
 
@@ -211,7 +211,7 @@ para+
 
 phrase = element phrase {
 attribute role{"sl"|"finaledit"}?,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 phrasetext
 }
 
@@ -224,7 +224,7 @@ filename = element filename {text}
 citation = element citation {text}
 acronym = element acronym{text}
 systemitem = element systemitem {
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 text}
 ulink = element ulink {
 attribute url {text},
@@ -291,12 +291,12 @@ row+
 }
 
 row = element row {
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 entry+
 }
 
 entry = element entry{
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 phrasetext
 }
 
@@ -309,7 +309,7 @@ mel = mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac
 math = element math {
 id?,
 attribute display {"block"}?,
-attribute revisionflag{"added"|"changed"}?,
+attribute revisionflag{"added"|"changed"|"deleted"}?,
 (mel)*
 }
 mrow = element mrow {
