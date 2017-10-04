@@ -842,12 +842,8 @@ characters) were not allowed in names.
 
 <formalpara><title>CD Base</title>
 
-<para>A cdbase must conform to the grammar for URIs described in
-<citation>IETF2396</citation>.  Note that if non-ASCII characters are
-used in a CD or symbol name then when a URI for that symbol is
-constructed it will be necessary to map the non-ASCII characters to a
-sequence of octets.  The precise mechanism for doing this depends on
-the URI scheme.</para>
+<para revisionflag="changed">A cdbase is interpreted as an IRI
+<citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.</para>
 
 
 </formalpara>
@@ -2583,8 +2579,8 @@ implementations).</para>
     that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
     instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
     <emphasis>cdname</emphasis> this is the regular expression described in
-    <xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
-    URIs in <citation>IETF2396</citation>.</para>
+    <xref linkend="sec_names"/>, <phrase revisionflag="changed">for <emphasis>uri</emphasis> it is the grammar for
+    IRIs in <citation>IETF3987</citation></phrase>.</para>
 </section>
 
 <section id="sec_bin-desc">
@@ -4784,7 +4780,23 @@ details of how this attribute is used are not mandated by the standard.
   </section>
   
   
-  <section id="chgr1">
+  <section id="chgr2">
+    <title>Changes in 2.0 Revision 2</title>
+    
+    <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
+	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
+	 Due to differences in the interpretation of <systemitem>xsd:anyURI</systemitem>
+	 in different releases of <citation>XSD</citation>, the CD schema now uses <systemitem>xsd:string</systemitem>
+	 for these terms. (The value spaces of  <systemitem>xsd:anyURI</systemitem> and <systemitem>xsd:string</systemitem>
+	 are the same in current versions of <citation>XSD</citation>.)
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+    <section id="chgr1">
     <title>Changes in 2.0 Revision 1</title>
     
     <itemizedlist>
@@ -4860,6 +4872,13 @@ details of how this attribute is used are not mandated by the standard.
     <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
     <pubdate>August 1998</pubdate>
     <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry revisionflag="changed" id="IETF3987" role="misc">
+    <author><othername>IETF</othername></author>
+    <title>RFC 3987 - Internationalized Resource Identifiers (IRIs)</title>
+    <pubdate>January 2005</pubdate>
+    <bibliomisc>http://www.ietf.org/rfc/rfc3987.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="XSD" role="book">
