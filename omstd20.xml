@@ -599,11 +599,15 @@ width="600" depth="190"/>
   constructed from an &OM; object, and from a sequence of zero or more
   variables followed by another &OM; object.  The first &OM; object is
   the <quote>binder</quote> object. Arguments 2 to
-  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables to
-  be bound in the <quote>body</quote> which is the
+  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables <phrase
+  revisionflag="added">or attributed variables</phrase> to
+  be <quote>bound</quote> in the <quote>body</quote> which is the
   <math><msup><mi>n</mi><mi>th</mi></msup></math>
-  <phrase revisionflag="added">(last) </phrase> argument object. It
-  is allowed to have no bound variables, but the binder object and the
+  <phrase revisionflag="added">(last)</phrase> argument object <phrase
+  revisionflag="added">or in the attributions of the other bound variables</phrase>.
+  <phrase
+  revisionflag="changed">Binding objects are</phrase>
+  allowed to have no bound variables, but the binder object and the
   body should be present. Binding can be used to express functions or
   logical statements.  The function <math><mi>&#955;</mi>
   <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo><mn>2</mn></math>, in which
@@ -616,10 +620,6 @@ width="600" depth="190"/>
   mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
   <mi>x</mi> <mo>,</mo>
   <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math></para>
-  
-  
-  
-
 
 <para>Phrasebooks are allowed to use <math><mi>&#945;</mi></math>
   conversion in order to avoid clashes of variable names. Suppose an
