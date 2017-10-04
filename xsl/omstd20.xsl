@@ -458,7 +458,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:template>
 
 <xsl:template match="quote">
-<span>&#x201c;<xsl:apply-templates/>&#x201d;</span>
+ <span>&#x201c;<xsl:apply-templates/>&#x201d;</span>
 </xsl:template>
 
 

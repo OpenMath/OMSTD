@@ -59,11 +59,7 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
   </xsl:if>
   <xsl:value-of select="concat(' ',name(.),'=')"/>
   <xsl:text>"</xsl:text>
-  <xsl:call-template name="string-replace">
-    <xsl:with-param name="from" select="'&quot;'"/>
-    <xsl:with-param name="to" select="'&amp;quot;'"/> 
-    <xsl:with-param name="string" select="."/>
-  </xsl:call-template>
+  <xsl:sequence select="replace(.,'&quot;','&amp;quot;')"/>
   <xsl:text>"</xsl:text>
 </xsl:template>
 
@@ -87,50 +83,12 @@ match="*[*]|*[text()]|*[comment()]|*[processing-instruction()]" priority="2">
 <!-- text elements
      need to replace & and < by entity references-->
 <xsl:template mode="verb" match="text()" priority="2">
-  <a name="{om:id(.)}"/>
-  <xsl:call-template name="string-replace">
-    <xsl:with-param name="to" select="'&amp;gt;'"/>
-    <xsl:with-param name="from" select="'&gt;'"/> 
-    <xsl:with-param name="string">
-      <xsl:call-template name="string-replace">
-        <xsl:with-param name="to" select="'&amp;lt;'"/>
-        <xsl:with-param name="from" select="'&lt;'"/> 
-        <xsl:with-param name="string">
-          <xsl:call-template name="string-replace">
-            <xsl:with-param name="to" select="'&amp;amp;'"/>
-            <xsl:with-param name="from" select="'&amp;'"/> 
-            <xsl:with-param name="string" select="."/>
-          </xsl:call-template>
-        </xsl:with-param>
-      </xsl:call-template>
-    </xsl:with-param>
-  </xsl:call-template>
+ <xsl:value-of select="replace(replace(replace(.,'&amp;','&amp;amp;'),'&gt;','&amp;gt;'),'&lt;','&amp;lt;')"/>
 </xsl:template>
 
 
 <!-- end  verb mode -->
 
-<!-- replace all occurences of the character(s) `from'
-     by the string `to' in the string `string'.-->
-<xsl:template name="string-replace" >
-  <xsl:param name="string"/>
-  <xsl:param name="from"/>
-  <xsl:param name="to"/>
-  <xsl:choose>
-    <xsl:when test="contains($string,$from)">
-      <xsl:value-of select="substring-before($string,$from)"/>
-      <xsl:value-of select="$to"/>
-      <xsl:call-template name="string-replace">
-      <xsl:with-param name="string" select="substring-after($string,$from)"/>
-      <xsl:with-param name="from" select="$from"/>
-      <xsl:with-param name="to" select="$to"/>
-      </xsl:call-template>
-    </xsl:when>
-    <xsl:otherwise>
-      <xsl:value-of select="$string"/>
-    </xsl:otherwise>
-  </xsl:choose>
-</xsl:template>
 
 <xsl:function name="om:id">
  <xsl:param name="n"/>
