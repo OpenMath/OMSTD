@@ -4780,18 +4780,6 @@ details of how this attribute is used are not mandated by the standard.
   </section>
   
   
-  <section id="chgr2">
-    <title>Changes in 2.0 Revision 2</title>
-    
-    <itemizedlist>
-      <listitem>
-	<para revisionflag="added">
-	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
-	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
-        </para>
-      </listitem>
-    </itemizedlist>
-  </section>
     <section id="chgr1">
     <title>Changes in 2.0 Revision 1</title>
     
@@ -4837,7 +4825,27 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
     </itemizedlist>
     
+    </section>
+
+      <section id="chgr2">
+    <title>Changes in 2.0 Revision 2</title>
+    
+    <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
+	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
+        </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+	 The RelaxNG schema has been corrected to allow hexadecimal representaion of integers to match 
+	 <xref linkend="sec_xml-desc"/>.
+        </para>
+      </listitem>
+    </itemizedlist>
   </section>
+
   
 </appendix>
 
