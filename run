@@ -35,14 +35,16 @@ esac
 
 echo TARGET=$TARGET
 
+# check validity
+xmllint --noout  --loaddtd --valid omstd20.xml 
 
 DATE=`date "+%Y-%m-%d"`
 
 if [ ! -d build ] ; then
-echo "make build"
+echo "make build directory"
 mkdir build 2> /dev/null
 else
-echo "dont make build"
+echo "dont make build directory"
 fi
 
 cp *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
