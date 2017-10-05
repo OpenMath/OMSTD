@@ -5000,7 +5000,23 @@ details of how this attribute is used are not mandated by the standard.
     </itemizedlist>
     
   </section>
-  
+
+    <section id="chgr2">
+    <title>Changes in 2.0 Revision 2</title>
+    <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	  The notion of the head of an attribution has been introduced to clarify the
+	  notion of an attributed variable.
+	</para>
+	<para revisionflag="added">
+	  The notion of alphabetic renaming has been clarified. It now specifies what
+	  should happen in the presence of attributed bound variables: the variables in
+	  the attribute values need to be renamed as well.  
+	</para>
+      </listitem>
+    </itemizedlist>
+    </section>
 </appendix>
 
 
