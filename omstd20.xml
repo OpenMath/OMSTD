@@ -624,19 +624,186 @@ width="600" depth="190"/>
 <para>Phrasebooks are allowed to use <math><mi>&#945;</mi></math>
   conversion in order to avoid clashes of variable names. Suppose an
   object <math><mi>&#937;</mi></math> contains an occurrence of the
-  object <math><mi mathvariant="bold">binding</mi>
-  <mo>(</mo><mi>B</mi> <mo>,</mo> <mi>v</mi> <mo>,</mo> <mi>C</mi>
-  <mo>)</mo></math>.  This object <math><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi> <mo>,</mo>
-  <mi>v</mi> <mo>,</mo> <mi>C</mi> <mo>)</mo></math> can be replaced
-  in <math><mi>&#937;</mi></math> by <math><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi> <mo>,</mo>
-  <mi>z</mi> <mo>,</mo> <mi>C'</mi><mo>)</mo></math> where
-  <math><mi>z</mi></math> is a variable not occurring free in
-  <math><mi>C</mi></math> and <math><mi>C'</mi></math> is obtained
-  from <math><mi>C</mi></math> by replacing each free (i.e., not bound
-  by any intermediate <varname>binding</varname> construct) occurrence
-  of <math><mi>v</mi></math> by <math><mi>z</mi></math>.  This
+  object
+  <math revisionflag="changed">
+    <mi mathvariant="bold">binding</mi>
+    <mo>(</mo>
+    <mi>B</mi>
+    <mo>,</mo>
+    <mover align="center">
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>x</mi>
+    <mo>,</mo>
+    <mover align="center">
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>C</mi>
+    <mo>)</mo>
+  </math>
+  <phrase revisionflag="added">where
+  <math>
+    <mover align="center">
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  and 
+  <math>
+    <mover align="center">
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  are (possibly empty)
+  sequences of bound, possibly attributed variables and <math><mi>x</mi></math> is a
+  variable</phrase>. 
+  This object
+  <math revisionflag="changed">
+    <mi mathvariant="bold">binding</mi>
+    <mo>(</mo>
+    <mi>B</mi>
+    <mo>,</mo>
+    <mover align="center">
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>x</mi>
+    <mo>,</mo>
+    <mover align="center">
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>C</mi>
+    <mo>)</mo>
+  </math>
+can be replaced
+in <math><mi>&#937;</mi></math> by
+<math revisionflag="changed">
+  <mi  mathvariant="bold">binding</mi>
+  <mo>(</mo>
+  <mi>B</mi>
+  <mo>,</mo>
+    <mover align="center">
+      <mi>w'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  <mo>,</mo>
+  <mi>y</mi>
+  <mo>,</mo>
+    <mover align="center">
+      <mi>w'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+  <mi>C'</mi>
+  <mo>)</mo>
+</math>
+where <math><mi>y</mi></math> is a variable not occurring <quote>free</quote> (i.e., not
+bound by any intermediate <varname>binding</varname> construct) in <math><mi>C</mi></math>
+<phrase revisionflag="added">or the attribute values in
+  <math>
+    <mover align="center">
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>,
+  <math>
+    <mover align="center">
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    </math>,
+    or <math><mi>x</mi></math>
+</phrase>
+and
+<math><mi>C'</mi></math>,
+  <phrase revisionflag="added"> 
+  <math>
+    <mover align="center">
+      <mi>v'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>, and 
+  <math>
+    <mover align="center">
+      <mi>w'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  are
+  </phrase> obtained
+  from <math><mi>C</mi></math>,
+  <phrase revisionflag="added">
+  <math>
+    <mover align="center">
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>, and 
+  <math>
+    <mover align="center">
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  </phrase>
+  by replacing each free occurrence
+  of <math><mi>x</mi></math> by <math><mi>y</mi></math>. <phrase revisionflag="added">If
+  instead of 
+  <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>  we have an attributed variable
+  <math>
+    <mi mathvariant="bold">attribution</mi>
+    <mo>(</mo>
+    <mi>x</mi>
+    <mo>,</mo>
+    <mover align="center">
+      <mi>a</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>)</mo>
+    </math>, where
+    <math>
+      <mover align="center">
+      <mi>a</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    </math>
+    is a sequence of attribute-value pairs, then instead of <math><mi>y</mi></math> we
+    must have
+    <math>
+      <mi mathvariant="bold">attribution</mi>
+      <mo>(</mo>
+      <mi>y</mi>
+      <mo>,</mo>
+      <mover align="center">
+	<mi>a'</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>)</mo>
+      </math>, where
+      <math>
+	<mover align="center">
+	  <mi>a'</mi>
+	  <mo>&#x2192;</mo>
+	</mover>
+      </math>
+      is obtained from 
+      <math>
+	<mover align="center">
+	  <mi>a</mi>
+	  <mo>&#x2192;</mo>
+	</mover>
+      </math>
+      by replacing all occurrences of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
+    </phrase>
+  This
   operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
   thus allowed to transform the object to, e.g. 

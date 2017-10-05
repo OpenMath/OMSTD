@@ -304,7 +304,7 @@ phrasetext
 
 # MathML (somewhat simplified)
 
-mel = mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac
+mel = mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac|mover
 
 math = element math {
 id?,
@@ -334,3 +334,4 @@ text}
 msub = element msub {mel,mel}
 msup = element msup {mel,mel}
 mfrac = element mfrac {mel,mel}
+mover = element mover {attribute align {text},mel,mel}
