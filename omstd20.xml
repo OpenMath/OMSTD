@@ -843,7 +843,8 @@ characters) were not allowed in names.
 <formalpara><title>CD Base</title>
 
 <para revisionflag="changed">A cdbase is interpreted as an IRI
-<citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.</para>
+<citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.
+Applications should ignore any white space surrounding the URL.</para>
 
 
 </formalpara>
@@ -2763,8 +2764,7 @@ The identifier is stored in the first <phrase>five
 <term>Symbols</term>
 <listitem><para>are encoded as the symbol tags
     (<phrase>token identifier</phrase> 8) with the long flag
-    set if the maximum of the length <phrase
-   >in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
+    set if the maximum of the length <phrase>in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
     or the symbol name is greater than or equal to 256. <phrase>The symbol tag is  followed by the
   length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name, the symbol
   name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
@@ -3432,8 +3432,8 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     
     <para>A <emphasis> Content Dictionary</emphasis> holds the meanings of
       (various) mathematical <quote>words</quote>. These words are &OM;
-      basic objects referred to as <emphasis>symbols</emphasis> in <xref
-									 linkend="sec_omabs"/>.</para>
+      basic objects referred to as <emphasis>symbols</emphasis> in
+      <xref linkend="sec_omabs"/>.</para>
     
     <para>With a set of symbol definitions (perhaps from several Content
       Dictionaries), <math><mi>A</mi></math> and <math><mi>B</mi></math> can
@@ -4788,10 +4788,6 @@ details of how this attribute is used are not mandated by the standard.
 	<para revisionflag="added">
 	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
 	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
-	 Due to differences in the interpretation of <systemitem>xsd:anyURI</systemitem>
-	 in different releases of <citation>XSD</citation>, the CD schema now uses <systemitem>xsd:string</systemitem>
-	 for these terms. (The value spaces of  <systemitem>xsd:anyURI</systemitem> and <systemitem>xsd:string</systemitem>
-	 are the same in current versions of <citation>XSD</citation>.)
         </para>
       </listitem>
     </itemizedlist>
@@ -4836,7 +4832,7 @@ details of how this attribute is used are not mandated by the standard.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">Various included example files (such as arith1.ocd) have been updated to match the versions on the OpenMath web site.
+	<para revisionflag="added">Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
         </para>
       </listitem>
     </itemizedlist>
