@@ -10,6 +10,8 @@
 <xsl:param name="draft" select="no"/>
 <xsl:param name="date" select="''"/>
 
+<xsl:key name="id" match="*[@id]" use="@id"/>
+
 <xsl:output method="text" encoding="iso-8859-1"/>
 
 <xsl:strip-space elements="math msub msup mfrac mrow mfenced"/>
@@ -535,21 +537,21 @@ changelog entry here
 </xsl:if>
 </xsl:template>
 
-<xsl:template match="id('fig_bin-enc')/informaltable">
+<xsl:template match="key('id','fig_bin-enc')/informaltable">
 \tiny
 \noindent£\begin£tabularﬂ£llp£5cmﬂlp£5cmﬂlﬂ
 <xsl:apply-templates select="tgroup/*"/>
 \end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="id('fig_bin-enc_ex')/informaltable">
+<xsl:template match="key('id','fig_bin-enc_ex')/informaltable">
 \footnotesize\tabcolsep2pt
 \noindent£\begin£tabularﬂ£lll lll lllﬂ
 <xsl:apply-templates select="tgroup/*"/>
 \end£tabularﬂﬂ<xsl:text>&#10;</xsl:text>
 </xsl:template>
 
-<xsl:template match="id('fig_bin-enc2')/informaltable">
+<xsl:template match="key('id','fig_bin-enc2')/informaltable">
 \footnotesize\tabcolsep2pt
 \noindent£\begin£tabularﬂ£lll lll lllﬂ
 <xsl:apply-templates select="tgroup/*"/>
@@ -719,7 +721,7 @@ changelog entry here
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')"
 >\protect\[<xsl:apply-templates select="*"/>\protect\]</xsl:if></xsl:template>
 
-<xsl:template match="id('nestedap')" priority="3">
+<xsl:template match="key('id','nestedap')" priority="3">
 \begin£centerﬂ\(\displaystyle
 \def\\£\hfill\break\hfillﬂ
 \mathbf£applicationﬂ(f,\mathbf£applicationﬂ(f,\mathbf£applicationﬂ(f,a,a),\mathbf£applicationﬂ(f,a,a)),\mathbf£applicationﬂ(f,\\
@@ -744,8 +746,10 @@ changelog entry here
 <xsl:text/>\mathtt£<xsl:value-of select="."/>ﬂ<xsl:text/>
 </xsl:template>
 
-<xsl:template match="mo[.='&#8594;']">\longrightarrow </xsl:template>
-<xsl:template match="mo[.='&#8594;']" mode="number">\longrightarrow </xsl:template>
+<xsl:template match="mo[.='&#8594;']">\rightarrow </xsl:template>
+<xsl:template match="mo[.='&#8594;']" mode="number">\rightarrow </xsl:template>
+<xsl:template match="mo[.='&#10230;']">\longrightarrow </xsl:template>
+<xsl:template match="mo[.='&#10230;']" mode="number">\longrightarrow </xsl:template>
 <xsl:template match="mi[.='&#937;']">\Omega </xsl:template>
 <xsl:template match="mo[.='&#955;']">\lambda </xsl:template>
 <xsl:template match="mi[.='&#955;']">\lambda </xsl:template>
