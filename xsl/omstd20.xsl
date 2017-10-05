@@ -136,8 +136,10 @@ text-decoration: line-through;
 }
 .new {
 color: green;
+background-color:#FFFFF0;
 }
 .chg {
+background-color:#FFFFF0;
 color: purple;
 }
 .changetoc {
