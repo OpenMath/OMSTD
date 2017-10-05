@@ -4953,18 +4953,6 @@ details of how this attribute is used are not mandated by the standard.
   </section>
   
   
-  <section id="chgr2">
-    <title>Changes in 2.0 Revision 2</title>
-    
-    <itemizedlist>
-      <listitem>
-	<para revisionflag="added">
-	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
-	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
-        </para>
-      </listitem>
-    </itemizedlist>
-  </section>
     <section id="chgr1">
     <title>Changes in 2.0 Revision 1</title>
     
@@ -5015,6 +5003,12 @@ details of how this attribute is used are not mandated by the standard.
     <section id="chgr2">
     <title>Changes in 2.0 Revision 2</title>
     <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
+	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
+        </para>
+      </listitem>
       <listitem>
 	<para revisionflag="added">
 	  The notion of the head of an attribution has been introduced to clarify the
