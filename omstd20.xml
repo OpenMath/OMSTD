@@ -842,12 +842,9 @@ characters) were not allowed in names.
 
 <formalpara><title>CD Base</title>
 
-<para>A cdbase must conform to the grammar for URIs described in
-<citation>IETF2396</citation>.  Note that if non-ASCII characters are
-used in a CD or symbol name then when a URI for that symbol is
-constructed it will be necessary to map the non-ASCII characters to a
-sequence of octets.  The precise mechanism for doing this depends on
-the URI scheme.</para>
+<para revisionflag="changed">A cdbase is interpreted as an IRI
+<citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.
+Applications should ignore any white space surrounding the URL.</para>
 
 
 </formalpara>
@@ -2583,8 +2580,8 @@ implementations).</para>
     that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
     instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
     <emphasis>cdname</emphasis> this is the regular expression described in
-    <xref linkend="sec_names"/>, for <emphasis>uri</emphasis> it is the grammar for
-    URIs in <citation>IETF2396</citation>.</para>
+    <xref linkend="sec_names"/>, <phrase revisionflag="changed">for <emphasis>uri</emphasis> it is the grammar for
+    IRIs in <citation>IETF3987</citation></phrase>.</para>
 </section>
 
 <section id="sec_bin-desc">
@@ -2767,8 +2764,7 @@ The identifier is stored in the first <phrase>five
 <term>Symbols</term>
 <listitem><para>are encoded as the symbol tags
     (<phrase>token identifier</phrase> 8) with the long flag
-    set if the maximum of the length <phrase
-   >in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
+    set if the maximum of the length <phrase>in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
     or the symbol name is greater than or equal to 256. <phrase>The symbol tag is  followed by the
   length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name, the symbol
   name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
@@ -3436,8 +3432,8 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     
     <para>A <emphasis> Content Dictionary</emphasis> holds the meanings of
       (various) mathematical <quote>words</quote>. These words are &OM;
-      basic objects referred to as <emphasis>symbols</emphasis> in <xref
-									 linkend="sec_omabs"/>.</para>
+      basic objects referred to as <emphasis>symbols</emphasis> in
+      <xref linkend="sec_omabs"/>.</para>
     
     <para>With a set of symbol definitions (perhaps from several Content
       Dictionaries), <math><mi>A</mi></math> and <math><mi>B</mi></math> can
@@ -4784,7 +4780,19 @@ details of how this attribute is used are not mandated by the standard.
   </section>
   
   
-  <section id="chgr1">
+  <section id="chgr2">
+    <title>Changes in 2.0 Revision 2</title>
+    
+    <itemizedlist>
+      <listitem>
+	<para revisionflag="added">
+	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
+	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+    <section id="chgr1">
     <title>Changes in 2.0 Revision 1</title>
     
     <itemizedlist>
@@ -4824,7 +4832,7 @@ details of how this attribute is used are not mandated by the standard.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">Various included example files (such as arith1.ocd) have been updated to match the versions on the OpenMath web site.
+	<para revisionflag="added">Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
         </para>
       </listitem>
     </itemizedlist>
@@ -4860,6 +4868,13 @@ details of how this attribute is used are not mandated by the standard.
     <title>RFC 2396 - Uniform Resource Identifiers (URI): Generic Syntax</title>
     <pubdate>August 1998</pubdate>
     <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
+  </biblioentry>
+  
+  <biblioentry revisionflag="changed" id="IETF3987" role="misc">
+    <author><othername>IETF</othername></author>
+    <title>RFC 3987 - Internationalized Resource Identifiers (IRIs)</title>
+    <pubdate>January 2005</pubdate>
+    <bibliomisc>http://www.ietf.org/rfc/rfc3987.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="XSD" role="book">
