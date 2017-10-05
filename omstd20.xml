@@ -600,7 +600,7 @@ width="600" depth="190"/>
   variables followed by another &OM; object.  The first &OM; object is
   the <quote>binder</quote> object. Arguments 2 to
   <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables <phrase
-  revisionflag="added">or attributed variables</phrase> to
+  revisionflag="added">or <quote>attributed variables</quote>, i.e. attributions whose head is a variable,</phrase> to
   be <quote>bound</quote> in the <quote>body</quote> which is the
   <math><msup><mi>n</mi><mi>th</mi></msup></math>
   <phrase revisionflag="added">(last)</phrase> argument object <phrase
@@ -833,7 +833,7 @@ and
   <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> so that the
   resulting function is actually a constant in its first argument
   (<math><msup><mi>v</mi><mo>'</mo></msup></math> does not occur free
-  in the body <math><mi mathvariant="bold">application</mi>
+  In the body <math><mi mathvariant="bold">application</mi>
   <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
   <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math>).</para>
 
@@ -841,7 +841,7 @@ and
 </listitem>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
-  object with a sequence of one or more pairs made up of an &OM;
+  object <phrase revisionflag="added">(called the <quote>syntactic head</quote> of the attribution)</phrase> with a sequence of one or more pairs made up of an &OM;
   symbol, the <quote>attribute</quote>, and an associated object, 
   the <quote>value of the
   attribute</quote>.  The value of the attribute can be an <phrase
@@ -884,7 +884,10 @@ expression could be attributed with its spoken or visual rendering.
   width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo><mtext>.</mtext></math>
   The operation that produces an object with a single layer of
-  attribution is called <emphasis>flattening</emphasis>.</para>
+  attribution is called <emphasis>flattening</emphasis>. <phrase revisionflag="added">The
+  <quote>head</quote> of an attribution is the syntactic head of the fully (recursively)
+  flattened version.</phrase>
+</para>
 
 <para>Multiple attributes with the same name are allowed.  While the
   order of the given attributes does not imply any notion of priority,
