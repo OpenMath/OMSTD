@@ -396,7 +396,7 @@ display="block"><mi mathvariant="bold">error</mi>
   is an &OM; <emphasis>error object</emphasis>.</para>
 </listitem>
 </itemizedlist>
- <phrase>&OM; objects that are contstructed via rules (ii)
+ <phrase>&OM; objects that are constructed via rules (ii)
    to (v) are jointly called <phrase role="sl">compound &OM; objects</phrase></phrase>
 </para>
 </section>
@@ -604,7 +604,10 @@ width="600" depth="190"/>
   be <quote>bound</quote> in the <quote>body</quote> which is the
   <math><msup><mi>n</mi><mi>th</mi></msup></math>
   <phrase revisionflag="added">(last)</phrase> argument object <phrase
-  revisionflag="added">or in the attributions of the other bound variables</phrase>.
+  revisionflag="added">or in the attributions of the other bound variables. Together body
+  and attribute values comprise the <quote>scope</quote> of the bound variables. Note that
+  the binder itself is not part of the scope, in particular the binder object does not
+  contain bound variables (of its own binding object).</phrase>.
   <phrase
   revisionflag="changed">Binding objects are</phrase>
   allowed to have no bound variables, but the binder object and the
@@ -921,7 +924,7 @@ displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
 Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are
-<phrase role="finaledit">arbitary</phrase> &OM;
+<phrase role="finaledit">arbitrary</phrase> &OM;
 objects <phrase role="finaledit">whereas <math><mi>colour</mi></math> is
 a symbol</phrase>.
 An example of the use of a semantic attribution would be to indicate the
@@ -932,7 +935,7 @@ mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 represents the judgment stating that object <math><mi>A</mi></math>
 has type <math><mi>t</mi></math>. Note that both
 <math><mi>A</mi></math> and <math><mi>t</mi></math> are <phrase
-role="finaledit">arbitary</phrase> &OM;
+role="finaledit">arbitrary</phrase> &OM;
 objects <phrase role="finaledit">whereas <math><mi>type</mi></math> is
 a symbol</phrase>.</para>
 
@@ -1558,7 +1561,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
  <systemitem>href</systemitem> attribute. Note that this copy
  is <emphasis>structurally equal</emphasis>, but not identical
  to the element referenced. <phrase role="finaledit">These URI
- refererences will often be relative, in which case they are resolved using
+ references will often be relative, in which case they are resolved using
  the base URI of the document containing the &OM;.</phrase></para>
 
  <para>For instance, the &OM; object
@@ -3051,7 +3054,7 @@ For example,
       scoping devices is to associate a <systemitem>cdbase</systemitem> with an
       object. The start token [9] (or [137] if the long flag is set) is followed
       by a single-byte (or 4-byte- if the long flag is set) number
-      <math><mi>n</mi></math> and then by a seqence of <math><mi>n</mi></math>
+      <math><mi>n</mi></math> and then by a sequence of <math><mi>n</mi></math>
       bytes that represent the value of the <systemitem>cdbase</systemitem>
       attribute (a URI) in <acronym>utf-8</acronym> encoding. This is then followed by the binary
       encoding of a single object: the object over which this
@@ -6362,3 +6365,34 @@ Types</title>
 </book>
 
 
+
+<!--  LocalWords:  Buswell Caprotti machine-generatable summarizes recognize bignums th
+-->
+<!--  LocalWords:  cdbase bytearray bytearrays indeterminates rdf transc1 mathml:csymbol
+-->
+<!--  LocalWords:  xmlns:mathml xsd:NCName rfc aritherror mathml unhandled_csymbol xmlns
+-->
+<!--  LocalWords:  Acyclicity varname cdname symbname bvars attrpairs attrvar xf 160;the
+-->
+<!--  LocalWords:  characterize arith1:plus arith1 documentclass maketitle regexp-based
+-->
+<!--  LocalWords:  openmath.rnc attlist.OMS arith1.rnc arith1.ocd Freundt Roozemond Nuprl
+-->
+<!--  LocalWords:  Gonnet Fuchssteiner Cleaveland Mendler Panangaden TeXbook Ppml Spivak
+-->
+<!--  LocalWords:  Beguelin Dongarra Manchek Sunderam factorization Capani Niesi Robbiano
+-->
+<!--  LocalWords:  Giovini Bibliomiscs Visigenic Pingali Vavasis Zippel Melham Mechanized
+-->
+<!--  LocalWords:  Gefwert Orponen Voronkov Ballarin Calmet Levelt Howgrave-Graham Andr
+-->
+<!--  LocalWords:  Strotmann bner Bibliomisc ller Manocha Multipolynomial Waldspurger
+-->
+<!--  LocalWords:  Sausse Vorkoetter Shand Marrin Formalized Lemmink isenkatu Seppala
+-->
+<!--  LocalWords:  Geuvers Calculemus Borenstein Yergeau Arjeh Jebelean Kriftner Tomuta
+-->
+<!--  LocalWords:  Vasaru Analytica Devitt Soiffer Sutor CtCoqmath Pecchiari Talcott
+-->
+<!--  LocalWords:  Bertot Well-formedness Labrou phane Huchet Limongelli
+-->
