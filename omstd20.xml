@@ -633,14 +633,14 @@ width="600" depth="190"/>
     <mo>(</mo>
     <mi>B</mi>
     <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
     <mo>,</mo>
     <mi>x</mi>
     <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -650,14 +650,14 @@ width="600" depth="190"/>
   </math>
   <phrase revisionflag="added">where
   <math>
-    <mover align="center">
+    <mover>
       <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
   </math>
   and 
   <math>
-    <mover align="center">
+    <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -671,14 +671,14 @@ width="600" depth="190"/>
     <mo>(</mo>
     <mi>B</mi>
     <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
     <mo>,</mo>
     <mi>x</mi>
     <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -693,14 +693,14 @@ in <math><mi>&#937;</mi></math> by
   <mo>(</mo>
   <mi>B</mi>
   <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>w'</mi>
       <mo>&#x2192;</mo>
     </mover>
   <mo>,</mo>
   <mi>y</mi>
   <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>w'</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -712,13 +712,13 @@ where <math><mi>y</mi></math> is a variable not occurring <quote>free</quote> (i
 bound by any intermediate <varname>binding</varname> construct) in <math><mi>C</mi></math>
 <phrase revisionflag="added">or the attribute values in
   <math>
-    <mover align="center">
+    <mover>
       <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
   </math>,
   <math>
-    <mover align="center">
+    <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -729,13 +729,13 @@ and
 <math><mi>C'</mi></math>,
   <phrase revisionflag="added"> 
   <math>
-    <mover align="center">
+    <mover>
       <mi>v'</mi>
       <mo>&#x2192;</mo>
     </mover>
   </math>, and 
   <math>
-    <mover align="center">
+    <mover>
       <mi>w'</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -745,13 +745,13 @@ and
   from <math><mi>C</mi></math>,
   <phrase revisionflag="added">
   <math>
-    <mover align="center">
+    <mover>
       <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
   </math>, and 
   <math>
-    <mover align="center">
+    <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -766,14 +766,14 @@ and
     <mo>(</mo>
     <mi>x</mi>
     <mo>,</mo>
-    <mover align="center">
+    <mover>
       <mi>a</mi>
       <mo>&#x2192;</mo>
     </mover>
     <mo>)</mo>
     </math>, where
     <math>
-      <mover align="center">
+      <mover>
       <mi>a</mi>
       <mo>&#x2192;</mo>
     </mover>
@@ -785,21 +785,21 @@ and
       <mo>(</mo>
       <mi>y</mi>
       <mo>,</mo>
-      <mover align="center">
+      <mover>
 	<mi>a'</mi>
 	<mo>&#x2192;</mo>
       </mover>
       <mo>)</mo>
       </math>, where
       <math>
-	<mover align="center">
+	<mover>
 	  <mi>a'</mi>
 	  <mo>&#x2192;</mo>
 	</mover>
       </math>
       is obtained from 
       <math>
-	<mover align="center">
+	<mover>
 	  <mi>a</mi>
 	  <mo>&#x2192;</mo>
 	</mover>
