@@ -334,4 +334,4 @@ text}
 msub = element msub {mel,mel}
 msup = element msup {mel,mel}
 mfrac = element mfrac {mel,mel}
-mover = element mover {attribute align {text},mel,mel}
+mover = element mover {mel,element mo {"\x{2192}"}}

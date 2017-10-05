@@ -276,7 +276,7 @@ editing environments.
 
 <!-- MathML (somewhat simplified) -->
 
-<!ENTITY % mel "mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac">
+<!ENTITY % mel "mspace|mn|mo|mi|mtext|mrow|mfenced|msub|msup|mfrac|mover">
 
 <!ELEMENT math (%mel;)*>
 <!ATTLIST math
@@ -311,3 +311,5 @@ editing environments.
 <!ELEMENT msup ((%mel;),(%mel;))>
 
 <!ELEMENT mfrac ((%mel;),(%mel;))>
+
+<!ELEMENT mover ((%mel;),mo)>

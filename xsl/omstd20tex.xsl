@@ -21,7 +21,8 @@
 <xsl:key name="ids" match="*[@id]" use="@id"/>
 
 <xsl:template match="*">
-\xxxxxx\textcolor£redﬂ[[[<xsl:value-of select="name()"/>]]]}
+\PackageError£omstdﬂ£Unknown element <xsl:value-of select="name()"/>ﬂ£transform produced bad TeXﬂ
+\textcolor£redﬂ£[[[<xsl:value-of select="name()"/>]]]ﬂ
 </xsl:template>
 
 <xsl:template match="book">
@@ -182,7 +183,8 @@ relative to the OpenMath 1.0 document\ldots
 
 <xsl:template match="para">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-£<xsl:apply-templates select="@revisionflag|node()"/>ﬂ
+£<xsl:apply-templates select="@revisionflag|node()"/>\ifhmode\unskip\fiﬂ
+ 
 </xsl:if>
 </xsl:template>
 
@@ -788,6 +790,12 @@ changelog entry here
 <xsl:apply-templates select="*[1]"/>
 <xsl:text>ﬂ£</xsl:text>
 <xsl:apply-templates select="*[2]"/>
+<xsl:text>ﬂ</xsl:text>
+</xsl:template>
+
+<xsl:template match="mover[*[2]='&#x2192;']">
+<xsl:text>\vec£</xsl:text>
+<xsl:apply-templates select="*[1]"/>
 <xsl:text>ﬂ</xsl:text>
 </xsl:template>
 
