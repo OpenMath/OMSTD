@@ -238,7 +238,7 @@ relative to the OpenMath 2.0 document...</p>
   </xsl:result-document>
 </xsl:when>
 <xsl:when test="$html5='yes'">
-<xsl:result-document method="xhtml" encoding="utf-8" href="{$prefix}.html" omit-xml-declaration="yes">
+<xsl:result-document method="xhtml" indent="no" encoding="utf-8" href="{$prefix}.html" omit-xml-declaration="yes">
  <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html>&#10;</xsl:text>
 <xsl:apply-templates mode="html5" select="$book"/>
 </xsl:result-document>
