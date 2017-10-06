@@ -64,7 +64,7 @@ OMBIND = element OMBIND { compound.attributes, omel, OMBVAR, omel }
 OMBVAR = element OMBVAR { common.attributes, omvar+ }
 
 # error constructor
-OME = element OME { common.attributes, OMS, (omel|OMFOREIGN)* }
+OME = element OME { compound.attributes, OMS, (omel|OMFOREIGN)* }
 
 # attribution constructor and attribute pair constructor
 OMATTR = element OMATTR { compound.attributes, OMATP, omel }
