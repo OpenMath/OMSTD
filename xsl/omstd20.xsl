@@ -323,8 +323,7 @@ relative to the OpenMath 2.0 document...</p>
 
 <xsl:template match="acronym">
 <acronym>
-<xsl:value-of select=
-"translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+<xsl:value-of select="upper-case(.)"/>
 </acronym>
 </xsl:template>
 
@@ -383,7 +382,7 @@ relative to the OpenMath 2.0 document...</p>
  <a href="{$prefix}0.xml#toc">Table of Contents</a><br/><br/>
  <xsl:for-each  select="(preceding-sibling::chapter|preceding-sibling::appendix|preceding-sibling::bibliography)[not(@revisionflag='deleted')][last()]">
  <xsl:variable name="next"><xsl:apply-templates mode="number" select="."/></xsl:variable>
-  <a href="{$prefix}{translate($next,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">Previous: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
+  <a href="{$prefix}{lower-case($next)}.xml">Previous: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
  <xsl:apply-templates select="title/node()"/></a><br/>
 </xsl:for-each>
   <a href="#{@id}">This: <xsl:value-of select="$n"/><xsl:text> </xsl:text>
@@ -392,7 +391,7 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:apply-templates mode="toc" select="section"/>
 </xsl:if> <xsl:for-each  select="(following-sibling::chapter|following-sibling::appendix|following-sibling::bibliography)[not(@revisionflag='deleted')][1]">
  <xsl:variable name="next"><xsl:apply-templates mode="number" select="."/></xsl:variable>
-  <a href="{$prefix}{translate($next,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">Next: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
+  <a href="{$prefix}{lower-case($next)}.xml">Next: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
  <xsl:apply-templates select="title/node()"/></a><br/>
 </xsl:for-each>
   </div>
@@ -425,7 +424,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -624,7 +623,7 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{@linkend}">
+<a href="{lower-case($c)}#{@linkend}">
 <xsl:choose>
 <xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
 <xsl:otherwise>
@@ -841,7 +840,7 @@ No id on <xsl:value-of select="title"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{@id}">
+<a href="{lower-case($c)}#{@id}">
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a><br/>
@@ -963,7 +962,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -1007,7 +1006,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{.}">[<xsl:for-each select="$bib">
+<a href="{lower-case($c)}#{.}">[<xsl:for-each select="$bib">
 <xsl:sort select="@revisionflag='deleted'"/>
 <xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>
