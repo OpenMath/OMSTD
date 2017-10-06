@@ -32,11 +32,34 @@
 
 <xsl:variable name="css">
 <style>
-
 body {
-margin-left: 1em;
-margin-right: 1em;
+  max-width:60em;
+  margin-left: 1em;
+
 }
+
+@media screen and (min-width: 80em) {
+  body {
+    max-width: 60em;
+    margin-left: 21em;
+  }
+
+  .toc {
+  background-color:#EEE;
+  width:20em;
+  position:fixed;
+  height:100%;
+  top:0;
+  left:0;
+}
+
+.toc2 {
+margin-left:.1em;
+height:100%;
+overflow-y:auto;
+  }
+
+  }
 
 div.mdata {
 margin-top: .5em;
@@ -113,8 +136,10 @@ text-decoration: line-through;
 }
 .new {
 color: green;
+background-color:#FFFFF0;
 }
 .chg {
+background-color:#FFFFF0;
 color: purple;
 }
 .changetoc {
@@ -799,7 +824,9 @@ changelog entry here
 <!-- toc -->
 
 <xsl:template match="toc">
-<h2><a name="toc" id="toc"/>Contents</h2>
+ <div class="toc">
+ <div class="toc2">
+  <h2><a name="toc" id="toc"/>Contents</h2>
 <xsl:for-each
 select="(/book/chapter|/book/bibliography|/book/appendix)[$showdiffs or not(@revisionflag='deleted')]">
 <xsl:if test="not(@id)">
@@ -820,6 +847,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a><br/>
 <xsl:apply-templates select="section" mode="toc"/>
 </xsl:for-each>
+
+<xsl:apply-templates select="../lot">
+<xsl:with-param name="include" select="1"/>
+</xsl:apply-templates>
+ </div>
+ </div>
 </xsl:template>
 
 
@@ -843,6 +876,8 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 
 
 <xsl:template match="lot">
+ <xsl:param name="include" select="0"/>
+ <xsl:if test="$include=1">
 <h2><xsl:apply-templates select="title/node()"/></h2>
 <xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
 <xsl:variable name="c">
@@ -858,6 +893,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a><br/>
 </xsl:for-each>
+ </xsl:if>
 </xsl:template>
 
 <!-- bibliography -->
@@ -1190,10 +1226,6 @@ select="substring-before(.,':')"/>:</a>
 <xsl:template match="h:head" mode="html5">
  <head>
   <xsl:apply-templates mode="html5"/>
-  <xsl:text>&#10;</xsl:text>
-  <style>
-   body { max-width:80em;}
-  </style>
   <xsl:text>&#10;</xsl:text>
   <script>
    if (! navigator.userAgent.match(/Gecko\//)) {

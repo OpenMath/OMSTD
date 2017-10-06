@@ -5019,8 +5019,14 @@ details of how this attribute is used are not mandated by the standard.
 	  the attribute values need to be renamed as well.  
 	</para>
       </listitem>
+      <listitem>
+	<para revisionflag="added">
+	 The RelaxNG schema has been corrected to allow hexadecimal representaion of integers to match 
+	 <xref linkend="sec_xml-desc"/>.
+        </para>
+      </listitem>
     </itemizedlist>
-    </section>
+  </section>
 </appendix>
 
 
