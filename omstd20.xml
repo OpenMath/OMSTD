@@ -836,7 +836,7 @@ and
   <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> so that the
   resulting function is actually a constant in its first argument
   (<math><msup><mi>v</mi><mo>'</mo></msup></math> does not occur free
-  In the body <math><mi mathvariant="bold">application</mi>
+  in the body <math><mi mathvariant="bold">application</mi>
   <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
   <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math>).</para>
 
