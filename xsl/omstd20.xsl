@@ -239,7 +239,7 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
   <b>Editors' Draft:</b> Built <xsl:value-of select="$date"/><br/>
   Source Repository: <a href="https://github.com/OpenMath/OMSTD/">https://github.com/OpenMath/OMSTD</a><br/>
   This Version: <a href="https://openmath.github.io/standard/om20-editors-draft/">https://openmath.github.io/standard/om20-editors-draft</a><br/>
-  Normative version: <a href="https://openmath.github.io/standard/om20-2004-06-30/">https://openmath.github.io/standard/om20-2004-06-30</a>
+  Normative version: <a href="https://openmath.github.io/standard/om20-2017-07-22/">https://openmath.github.io/standard/om20-2017-07-22/</a>
  </div>
 </xsl:if>
 

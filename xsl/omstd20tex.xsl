@@ -67,7 +67,7 @@
 \def\speclinks{
   Source Repository: \url{https://github.com/OpenMath/OMSTD}\\
   This Version: \url{https://openmath.github.io/standard/om20-editors-draft}\\
-  Normative version: \url{https://openmath.github.io/standard/om20-2004-06-30}
+  Normative version: \url{https://openmath.github.io/standard/om20-2017-07-22/}
 }
 </xsl:if>
 
@@ -107,7 +107,7 @@
   \textbf£Editors' Draft:ﬂ Built <xsl:value-of select="$date"/>\\
   Source Repository: \url£https://github.com/OpenMath/OMSTDﬂ\\
   This Version: \url£https://openmath.github.io/standard/om20-editors-draftﬂ\\
-  Normative version: \url£https://openmath.github.io/standard/om20-2004-06-30ﬂ
+  Normative version: \url£https://openmath.github.io/standard/om20-2017-07-22/ﬂ
 \end£quoteﬂ
 </xsl:if>
 
