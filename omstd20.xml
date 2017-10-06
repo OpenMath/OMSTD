@@ -4803,12 +4803,12 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
       <listitem>
 	<para revisionflag="added">
-		Section 3.1.2 described the OpenMath XML value of <systemitem>hex</systemitem> as <quote>from lowest to highest bits using a  least significant byte ordering</quote>. This wording was copied from section 4.2.1.2 of <citation>MathML_2014</citation>, but is close to meaningless.  Replaced by the current <quote>in network byte order</quote>.
+		<xref linkend="sec_xml-desc"/> described the OpenMath XML value of <systemitem>hex</systemitem> as <quote>from lowest to highest bits using a  least significant byte ordering</quote>.  Replaced by the current <quote>in network byte order</quote>.
         </para>
       </listitem>
       <listitem>
 	<para revisionflag="added">
-		The example of binary encoding of floats in 3.2.2 "For example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>" was wrong, and has been replaced by the same example as the XML encoding.
+		The example of binary encoding of floats in <xref linkend="sec_bin-desc"/> For example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>" was wrong, and has been replaced by the same example as the XML encoding.
         </para>
       </listitem>
       <listitem>
