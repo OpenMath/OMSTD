@@ -1375,8 +1375,8 @@ an &exml; document.
 <varlistentry>
  <term>References</term>
  <listitem><para>
- &OM; integers, floating point numbers, character strings,
- bytearrays, applications, binding, attributions can also be encoded
+ &OM; integers, <phrase revisionflag="added">symbols, variables, floating point numbers, character strings,
+ bytearrays, applications, binding, attributions, error, and foreign objects can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
  attribute whose value is the value of a URI referencing an id
  attribute of an &OM; object of that type.
