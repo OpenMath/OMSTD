@@ -16,7 +16,11 @@
 
 <xsl:preserve-space elements="*"/>
 
-<xsl:output method="xml" encoding="iso-8859-1"/>
+<xsl:output method="xml" encoding="UTF-8"/>
+
+<xsl:character-map name="gt">
+ <xsl:output-character character="" string="&gt;"/>
+</xsl:character-map>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
@@ -31,13 +35,17 @@
 </xsl:variable>
 
 <xsl:variable name="css">
-<style>
+ <style>
+ 
 body {
   max-width:60em;
   margin-left: 1em;
 
 }
 
+.tockey {
+display:none;
+}
 @media screen and (min-width: 80em) {
   body {
     max-width: 60em;
@@ -57,9 +65,40 @@ body {
 margin-left:.1em;
 height:100%;
 overflow-y:auto;
-  }
+}
+
+.tockey {
+display:block;
+text-align:center;
+margin-top:1em;
+}
 
   }
+
+.toc2 ul li {
+list-style:none;
+margin-top: .5em;
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+.toc2 ul li li {
+list-style:none;
+margin-left: 0pt;
+padding-left: 10pt;
+}
+
+.toc2 ul {
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+
+
+.toc2  ul  li  a {font-weight:bold;}
+
+.toc2 a {text-decoration:none;}
+.toc2 a:hover {text-decoration:underline}
 
 div.mdata {
 margin-top: .5em;
@@ -248,7 +287,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}0.xml">
+  <xsl:result-document method="xhtml" encoding="UTF-8" href="{$prefix}0.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -263,7 +302,11 @@ relative to the OpenMath 2.0 document...</p>
   </xsl:result-document>
 </xsl:when>
 <xsl:when test="$html5='yes'">
-<xsl:result-document method="xhtml" indent="no" encoding="utf-8" href="{$prefix}.html" omit-xml-declaration="yes">
+ <xsl:result-document method="xhtml" indent="no"
+		      use-character-maps="gt"
+		      encoding="utf-8"
+		      href="{$prefix}.html"
+		      omit-xml-declaration="yes">
  <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html>&#10;</xsl:text>
 <xsl:apply-templates mode="html5" select="$book"/>
 </xsl:result-document>
@@ -347,7 +390,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{$n}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{$n}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -424,7 +467,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{lower-case($n)}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -824,9 +867,11 @@ changelog entry here
 
 <xsl:template match="toc">
  <div class="toc">
- <div class="toc2">
+  <div class="toc2">
+   <div class="tockey"><a href="/"><img width="50%" src="keylogo.png" alt="OM logo"/></a></div>
   <h2><a name="toc" id="toc"/>Contents</h2>
-<xsl:for-each
+  <ul>
+   <xsl:for-each
 select="(/book/chapter|/book/bibliography|/book/appendix)[$showdiffs or not(@revisionflag='deleted')]">
 <xsl:if test="not(@id)">
 <xsl:message>
@@ -840,13 +885,13 @@ No id on <xsl:value-of select="title"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{lower-case($c)}#{@id}">
+<li><a href="{lower-case($c)}#{@id}">
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-<xsl:apply-templates select="section" mode="toc"/>
+</a>
+<xsl:apply-templates select="section" mode="toc"/></li>
 </xsl:for-each>
-
+  </ul>
 <xsl:apply-templates select="../lot">
 <xsl:with-param name="include" select="1"/>
 </xsl:apply-templates>
@@ -856,8 +901,8 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 
 
 <xsl:template match="section" mode="toc">
-<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-&#160;&#160;&#160;&#160;<xsl:for-each select="ancestor::section">&#160;&#160;&#160;&#160;</xsl:for-each>
+ <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+  <ul>
 <xsl:variable name="c">
 <xsl:if test="$chunk">
 <xsl:value-of select="$prefix"/>
@@ -865,11 +910,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{$c}#{@id}">
+<li><a href="{$c}#{@id}">
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates select="." mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-<xsl:apply-templates select="section" mode="toc"/>
+</a>
+<xsl:apply-templates select="section" mode="toc"/></li>
+  </ul>
 </xsl:if>
 </xsl:template>
 
@@ -878,7 +924,8 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:param name="include" select="0"/>
  <xsl:if test="$include=1">
 <h2><xsl:apply-templates select="title/node()"/></h2>
-<xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
+<ul>
+ <xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
 <xsl:variable name="c">
 <xsl:if test="$chunk">
 <xsl:value-of select="$prefix"/>
@@ -886,12 +933,13 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{$c}#{@id}">
+<li><a href="{$c}#{@id}">
 <xsl:apply-templates select="../@revisionflag"/>
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-</xsl:for-each>
+</a></li>
+ </xsl:for-each>
+</ul>
  </xsl:if>
 </xsl:template>
 
@@ -962,7 +1010,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{lower-case($n)}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
