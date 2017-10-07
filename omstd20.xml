@@ -4881,9 +4881,16 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
       <listitem>
 	<para revisionflag="added">
-	  The uniqueness conditions in CD groups have been clarified, and an inclusion
-	  mechanism has been introduced to make the <systemitem>cdgroup</systemitem>
-	  catalog mechanism in MathML more realistic and manageable.
+	  The meaning of <systemitem>CDGroup/CDGroupMember/CDName</systemitem> has been
+	  clarified in terms of uniqueness conditions and correspondence to name of the
+	  referenced CD.
+	</para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+	  An inclusion mechanism has been introduced to make the
+	  <systemitem>cdgroup</systemitem> catalog mechanism in MathML more realistic and
+	  manageable.
 	</para>
       </listitem>
     </itemizedlist>
