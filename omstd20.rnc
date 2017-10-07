@@ -193,7 +193,7 @@ volumenum = element volumenum {text}
 
 id = attribute id {text}
 
-phrasetext = (text|xref|ulink|citation|varname|filename|acronym|systemitem|quote|phrase|emphasis|math)*
+phrasetext = (text|xref|term|ulink|citation|varname|filename|acronym|systemitem|quote|phrase|emphasis|math)*
 
 para = element para {
 id?,
@@ -265,6 +265,7 @@ varlistentry = element varlistentry{
 }
 
 term = element term {
+id?,
 phrasetext
 }
 

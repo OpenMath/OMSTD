@@ -16,7 +16,11 @@
 
 <xsl:preserve-space elements="*"/>
 
-<xsl:output method="xml" encoding="iso-8859-1"/>
+<xsl:output method="xml" encoding="UTF-8"/>
+
+<xsl:character-map name="gt">
+ <xsl:output-character character="" string="&gt;"/>
+</xsl:character-map>
 
 <xsl:key name="new"  match="*[@revisionflag='added']" use="ancestor-or-self::section[1]/@id"/>
 <xsl:key name="ids" match="*[@id]" use="@id"/>
@@ -31,13 +35,17 @@
 </xsl:variable>
 
 <xsl:variable name="css">
-<style>
+ <style>
+ 
 body {
   max-width:60em;
   margin-left: 1em;
 
 }
 
+.tockey {
+display:none;
+}
 @media screen and (min-width: 80em) {
   body {
     max-width: 60em;
@@ -57,9 +65,46 @@ body {
 margin-left:.1em;
 height:100%;
 overflow-y:auto;
-  }
+}
+
+.tockey {
+display:block;
+text-align:center;
+margin-top:1em;
+}
 
   }
+
+li.tocchap {
+list-style:none;
+margin-top: .5em;
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+li.lof {
+list-style:none;
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+.toc2 ul li li {
+list-style:none;
+margin-left: 0pt;
+padding-left: 10pt;
+}
+
+.toc2 ul {
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+
+
+li.tocchap  a {font-weight:bold;}
+
+.toc2 a {text-decoration:none;}
+.toc2 a:hover {text-decoration:underline}
 
 div.mdata {
 margin-top: .5em;
@@ -200,7 +245,7 @@ Version: <xsl:apply-templates select="bookinfo/releaseinfo"/>
   <b>Editors' Draft:</b> Built <xsl:value-of select="$date"/><br/>
   Source Repository: <a href="https://github.com/OpenMath/OMSTD/">https://github.com/OpenMath/OMSTD</a><br/>
   This Version: <a href="https://openmath.github.io/standard/om20-editors-draft/">https://openmath.github.io/standard/om20-editors-draft</a><br/>
-  Normative version: <a href="https://openmath.github.io/standard/om20-2004-06-30/">https://openmath.github.io/standard/om20-2004-06-30</a>
+  Normative version: <a href="https://openmath.github.io/standard/om20-2017-07-22/">https://openmath.github.io/standard/om20-2017-07-22/</a>
  </div>
 </xsl:if>
 
@@ -248,7 +293,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}0.xml">
+  <xsl:result-document method="xhtml" encoding="UTF-8" href="{$prefix}0.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -263,7 +308,11 @@ relative to the OpenMath 2.0 document...</p>
   </xsl:result-document>
 </xsl:when>
 <xsl:when test="$html5='yes'">
-<xsl:result-document method="xhtml" indent="no" encoding="utf-8" href="{$prefix}.html" omit-xml-declaration="yes">
+ <xsl:result-document method="xhtml" indent="no"
+		      use-character-maps="gt"
+		      encoding="utf-8"
+		      href="{$prefix}.html"
+		      omit-xml-declaration="yes">
  <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html>&#10;</xsl:text>
 <xsl:apply-templates mode="html5" select="$book"/>
 </xsl:result-document>
@@ -293,11 +342,9 @@ relative to the OpenMath 2.0 document...</p>
 
 <xsl:template match="para">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<p>
+ <p>
+<xsl:copy-of select="@id"/>
 <xsl:apply-templates select="@revisionflag"/>
-<xsl:if test="@id">
-<a name="{@id}" id="{@id}"/>
-</xsl:if>
 <xsl:apply-templates select="node()"/>
 </p>
 </xsl:if>
@@ -323,8 +370,7 @@ relative to the OpenMath 2.0 document...</p>
 
 <xsl:template match="acronym">
 <acronym>
-<xsl:value-of select=
-"translate(.,'abcdefghijklmnopqrstuvwxyz','ABCDEFGHIJKLMNOPQRSTUVWXYZ')"/>
+<xsl:value-of select="upper-case(.)"/>
 </acronym>
 </xsl:template>
 
@@ -348,7 +394,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{$n}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{$n}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -383,7 +429,7 @@ relative to the OpenMath 2.0 document...</p>
  <a href="{$prefix}0.xml#toc">Table of Contents</a><br/><br/>
  <xsl:for-each  select="(preceding-sibling::chapter|preceding-sibling::appendix|preceding-sibling::bibliography)[not(@revisionflag='deleted')][last()]">
  <xsl:variable name="next"><xsl:apply-templates mode="number" select="."/></xsl:variable>
-  <a href="{$prefix}{translate($next,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">Previous: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
+  <a href="{$prefix}{lower-case($next)}.xml">Previous: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
  <xsl:apply-templates select="title/node()"/></a><br/>
 </xsl:for-each>
   <a href="#{@id}">This: <xsl:value-of select="$n"/><xsl:text> </xsl:text>
@@ -392,7 +438,7 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:apply-templates mode="toc" select="section"/>
 </xsl:if> <xsl:for-each  select="(following-sibling::chapter|following-sibling::appendix|following-sibling::bibliography)[not(@revisionflag='deleted')][1]">
  <xsl:variable name="next"><xsl:apply-templates mode="number" select="."/></xsl:variable>
-  <a href="{$prefix}{translate($next,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">Next: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
+  <a href="{$prefix}{lower-case($next)}.xml">Next: <xsl:value-of select="$next"/><xsl:text> </xsl:text>
  <xsl:apply-templates select="title/node()"/></a><br/>
 </xsl:for-each>
   </div>
@@ -425,7 +471,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -555,10 +601,14 @@ relative to the OpenMath 2.0 document...</p>
 </dd>
 </xsl:template>
 
-<xsl:template match="varlistentry/term">
+<xsl:template match="varlistentry/term" priority="2">
 <dt>
-<xsl:apply-templates select="../@*|node()"/>
+<xsl:apply-templates select="../@*,@*,node()"/>
 </dt>
+</xsl:template>
+
+<xsl:template match="term[@id]" priority="1">
+ <span id="{@id}"><xsl:apply-templates/></span>
 </xsl:template>
 
 <xsl:template match="varname">
@@ -588,8 +638,8 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:template match="figure">
 <xsl:if test="$showdiffs or  not(ancestor-or-self::*/@revisionflag='deleted')">
 <div class="figure">
+ <xsl:copy-of select="@id"/>
 <xsl:apply-templates select="(ancestor-or-self::*/@revisionflag)[last()]"/>
-<a name="{@id}" id="{@id}"/>
 <xsl:apply-templates/>
 <div class="caption">
   Figure <xsl:apply-templates mode="number" select="."/>&#160;<xsl:apply-templates select="title/node()"/>
@@ -624,16 +674,24 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{@linkend}">
-<xsl:choose>
-<xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
-<xsl:otherwise>
-<xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
-<xsl:value-of select="substring(name($n),2)"/>
-</xsl:otherwise>
-</xsl:choose>
-<xsl:text>&#160;</xsl:text>
-<xsl:apply-templates mode="number" select="$n"/>
+<a href="{lower-case($c)}#{@linkend}">
+ <xsl:choose>
+  <xsl:when test="$n/self::term">
+   <xsl:attribute name="class" select="'termref'"/>
+   <xsl:apply-templates select="$n/node()"/>
+  </xsl:when>
+  <xsl:when test="$n/ancestor::appendix">
+   <xsl:text>Appendix</xsl:text>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:apply-templates mode="number" select="$n"/>
+  </xsl:when>
+  <xsl:otherwise>
+   <xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
+   <xsl:value-of select="substring(name($n),2)"/>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:apply-templates mode="number" select="$n"/>
+  </xsl:otherwise>
+ </xsl:choose>
 </a>
 </xsl:template>
 
@@ -782,6 +840,12 @@ changelog entry here
 </xsl:if>
 </xsl:template>
 
+<xsl:template match="@id">
+ <xsl:copy-of select="."/>
+</xsl:template>
+
+
+ 
 
 
 <xsl:template match="entry">
@@ -818,16 +882,18 @@ changelog entry here
 <xsl:template match="para[.//footnote]">
 <p><xsl:apply-templates select="@revisionflag|node()"/></p>
 <xsl:for-each select=".//footnote[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
-<p class="footnote"><a name="{@id}" id="{@id}"/><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
+<p class="footnote" id="{@id}"><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
 </xsl:for-each>
 </xsl:template>
 <!-- toc -->
 
 <xsl:template match="toc">
  <div class="toc">
- <div class="toc2">
+  <div class="toc2">
+   <div class="tockey"><a href="/"><img width="50%" src="keylogo.png" alt="OM logo"/></a></div>
   <h2><a name="toc" id="toc"/>Contents</h2>
-<xsl:for-each
+  <ul>
+   <xsl:for-each
 select="(/book/chapter|/book/bibliography|/book/appendix)[$showdiffs or not(@revisionflag='deleted')]">
 <xsl:if test="not(@id)">
 <xsl:message>
@@ -841,13 +907,13 @@ No id on <xsl:value-of select="title"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{@id}">
+<li class="tocchap"><a href="{lower-case($c)}#{@id}">
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-<xsl:apply-templates select="section" mode="toc"/>
+</a>
+<xsl:apply-templates select="section" mode="toc"/></li>
 </xsl:for-each>
-
+  </ul>
 <xsl:apply-templates select="../lot">
 <xsl:with-param name="include" select="1"/>
 </xsl:apply-templates>
@@ -857,8 +923,8 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 
 
 <xsl:template match="section" mode="toc">
-<xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-&#160;&#160;&#160;&#160;<xsl:for-each select="ancestor::section">&#160;&#160;&#160;&#160;</xsl:for-each>
+ <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
+  <ul>
 <xsl:variable name="c">
 <xsl:if test="$chunk">
 <xsl:value-of select="$prefix"/>
@@ -866,11 +932,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{$c}#{@id}">
+<li><a href="{$c}#{@id}">
 <xsl:apply-templates select="@revisionflag"/>
 <xsl:apply-templates select="." mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-<xsl:apply-templates select="section" mode="toc"/>
+</a>
+<xsl:apply-templates select="section" mode="toc"/></li>
+  </ul>
 </xsl:if>
 </xsl:template>
 
@@ -879,7 +946,8 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
  <xsl:param name="include" select="0"/>
  <xsl:if test="$include=1">
 <h2><xsl:apply-templates select="title/node()"/></h2>
-<xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
+<ul>
+ <xsl:for-each select="//figure[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
 <xsl:variable name="c">
 <xsl:if test="$chunk">
 <xsl:value-of select="$prefix"/>
@@ -887,12 +955,13 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{$c}#{@id}">
+<li class="lot"><a href="{$c}#{@id}">
 <xsl:apply-templates select="../@revisionflag"/>
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
-</a><br/>
-</xsl:for-each>
+</a></li>
+ </xsl:for-each>
+</ul>
  </xsl:if>
 </xsl:template>
 
@@ -914,11 +983,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[$showdiffs or not(@revisionflag='deleted')][1]/surname|author[$showdiffs or not(@revisionflag='deleted')][1]/othername|bibliomisc[$showdiffs or not(@revisionflag='deleted')][@role='key'])[1]"/>
 <p>
+<xsl:copy-of select="@id"/>
 <xsl:if test="$showdiffs and not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])">
  <xsl:attribute name="class">del</xsl:attribute>
 </xsl:if>
 <xsl:apply-templates select="@revisionflag"/>
-<a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
+<b>[<xsl:value-of select="position()"/>]</b>
 <xsl:text>&#160;&#160;</xsl:text>
 <xsl:for-each select="author[$showdiffs or not(@revisionflag='deleted')]">
  <xsl:choose>
@@ -963,7 +1033,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </xsl:variable>
 <xsl:choose>
 <xsl:when test="$chunk">
-  <xsl:result-document method="xml" encoding="iso-8859-1" href="{$prefix}{translate($n,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}.xml">
+  <xsl:result-document method="xml" encoding="UTF-8" href="{$prefix}{lower-case($n)}.xml">
 <html  xml:space="preserve" xmlns:m="http://www.w3.org/1998/Math/MathML">
 <xsl:text>&#10;</xsl:text>
 <head>
@@ -1007,7 +1077,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<a href="{translate($c,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz')}#{.}">[<xsl:for-each select="$bib">
+<a href="{lower-case($c)}#{.}">[<xsl:for-each select="$bib">
 <xsl:sort select="@revisionflag='deleted'"/>
 <xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[1]/surname|author[1]/othername|bibliomisc[@role='key'])[1]"/>

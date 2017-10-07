@@ -67,7 +67,7 @@
 \def\speclinks{
   Source Repository: \url{https://github.com/OpenMath/OMSTD}\\
   This Version: \url{https://openmath.github.io/standard/om20-editors-draft}\\
-  Normative version: \url{https://openmath.github.io/standard/om20-2004-06-30}
+  Normative version: \url{https://openmath.github.io/standard/om20-2017-07-22/}
 }
 </xsl:if>
 
@@ -107,7 +107,7 @@
   \textbf£Editors' Draft:ﬂ Built <xsl:value-of select="$date"/>\\
   Source Repository: \url£https://github.com/OpenMath/OMSTDﬂ\\
   This Version: \url£https://openmath.github.io/standard/om20-editors-draftﬂ\\
-  Normative version: \url£https://openmath.github.io/standard/om20-2004-06-30ﬂ
+  Normative version: \url£https://openmath.github.io/standard/om20-2017-07-22/ﬂ
 \end£quoteﬂ
 </xsl:if>
 
@@ -363,9 +363,14 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:apply-templates select="../@*|node()"/>
 </xsl:template>
 
-<xsl:template match="varlistentry/term">
-\item[<xsl:apply-templates select="../@*|node()"/>]
+<xsl:template match="varlistentry/term" priority="2">
+\item[<xsl:apply-templates select="../@*,@*,node()"/>]
 </xsl:template>
+
+<xsl:template match="term[@id]" priority="1">
+ <xsl:apply-templates/>
+</xsl:template>
+
 
 <xsl:template match="varname">
 <xsl:text/>\textbf£<xsl:apply-templates/>ﬂ<xsl:text/>
@@ -430,15 +435,21 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:template match="xref">
 <xsl:variable name="n" select="key('ids',@linkend)"/>
 <xsl:choose>
-<xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
-<xsl:otherwise>
-<xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
-<xsl:value-of select="substring(name($n),2)"/>
-</xsl:otherwise>
+ <xsl:when test="$n/self::term">
+  <xsl:apply-templates select="$n/node()"/>
+ </xsl:when>
+  <xsl:when test="$n/ancestor::appendix">
+   <xsl:text>Appendix</xsl:text>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:text/>\ref£<xsl:value-of select="@linkend"/>ﬂ<xsl:text/>
+  </xsl:when>
+  <xsl:otherwise>
+   <xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
+   <xsl:value-of select="substring(name($n),2)"/>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:text/>\ref£<xsl:value-of select="@linkend"/>ﬂ<xsl:text/>
+  </xsl:otherwise>
 </xsl:choose>
-<xsl:text>&#160;</xsl:text>
-<!--<xsl:apply-templates mode="number" select="$n"/>-->
-<xsl:text/>\ref£<xsl:value-of select="@linkend"/>ﬂ<xsl:text/>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
