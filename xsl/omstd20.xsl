@@ -336,11 +336,9 @@ relative to the OpenMath 2.0 document...</p>
 
 <xsl:template match="para">
 <xsl:if test="$showdiffs or not(@revisionflag='deleted')">
-<p>
+ <p>
+<xsl:copy-of select="@id"/>
 <xsl:apply-templates select="@revisionflag"/>
-<xsl:if test="@id">
-<a name="{@id}" id="{@id}"/>
-</xsl:if>
 <xsl:apply-templates select="node()"/>
 </p>
 </xsl:if>
@@ -630,8 +628,8 @@ relative to the OpenMath 2.0 document...</p>
 <xsl:template match="figure">
 <xsl:if test="$showdiffs or  not(ancestor-or-self::*/@revisionflag='deleted')">
 <div class="figure">
+ <xsl:copy-of select="@id"/>
 <xsl:apply-templates select="(ancestor-or-self::*/@revisionflag)[last()]"/>
-<a name="{@id}" id="{@id}"/>
 <xsl:apply-templates/>
 <div class="caption">
   Figure <xsl:apply-templates mode="number" select="."/>&#160;<xsl:apply-templates select="title/node()"/>
@@ -860,7 +858,7 @@ changelog entry here
 <xsl:template match="para[.//footnote]">
 <p><xsl:apply-templates select="@revisionflag|node()"/></p>
 <xsl:for-each select=".//footnote[$showdiffs or not(ancestor-or-self::*/@revisionflag='deleted')]">
-<p class="footnote"><a name="{@id}" id="{@id}"/><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
+<p class="footnote" id="{@id}"><sup>*<xsl:number level="any"/></sup> <xsl:apply-templates select="para/node()"/></p>
 </xsl:for-each>
 </xsl:template>
 <!-- toc -->
@@ -961,11 +959,12 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:sort select="not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])"/>
 <xsl:sort select="(author[$showdiffs or not(@revisionflag='deleted')][1]/surname|author[$showdiffs or not(@revisionflag='deleted')][1]/othername|bibliomisc[$showdiffs or not(@revisionflag='deleted')][@role='key'])[1]"/>
 <p>
+<xsl:copy-of select="@id"/>
 <xsl:if test="$showdiffs and not(key('cite',@id)[not(ancestor-or-self::*[@revisionflag='deleted'])])">
  <xsl:attribute name="class">del</xsl:attribute>
 </xsl:if>
 <xsl:apply-templates select="@revisionflag"/>
-<a name="{@id}" id="{@id}"/><b>[<xsl:value-of select="position()"/>]</b>
+<b>[<xsl:value-of select="position()"/>]</b>
 <xsl:text>&#160;&#160;</xsl:text>
 <xsl:for-each select="author[$showdiffs or not(@revisionflag='deleted')]">
  <xsl:choose>
