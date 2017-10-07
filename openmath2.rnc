@@ -8,7 +8,7 @@ start = OMOBJ
 # OpenMath object constructor
 OMOBJ = element OMOBJ { compound.attributes,
                         attribute version { xsd:string }?,
-			attribute cdgroup { xsd::anyURI}?,
+			attribute cdgroup { xsd:anyURI}?,
                         omel }
 
 
