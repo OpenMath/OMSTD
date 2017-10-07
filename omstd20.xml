@@ -1042,14 +1042,18 @@ the <phrase>&exml; Encoding</phrase></title>
 
 <para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.  This 
 element can contain the elements (and integers) described above.
-<phrase> It can take an optional
+It can take an optional
 <systemitem>version</systemitem> (&exml;) attribute which indicates to
 which version of the &OM; standard it conforms.  In previous versions of
 this standard this attribute did not exist, so any &OM; object without
 such an attribute must conform to version 1 (or equivalently 1.1) of the
 &OM; standard.  Objects which conform to the description given in this
 document should have <systemitem>version="2.0"</systemitem>.
-</phrase></para>
+The <systemitem>OMOBJ</systemitem> element can also take an optional
+<systemitem>cdgroup</systemitem> attribute, which specifies a CD group file that acts as a
+catalogue of CD bases for locating OpenMath content dictionaries of
+<systemitem>OMS</systemitem> elements in this <systemitem>OMOBJ</systemitem> element. When no <systemitem>cdgroup</systemitem> attribute is explicitly specified, the document format embedding this <systemitem>OMOBJ</systemitem> element may provide a method for determining CD bases. Otherwise the system must determine a CD base; in the absence of specific information <ulink url="http://www.openmath.org">http://www.openmath.org</ulink> is assumed as the CD base for all <systemitem>OMS</systemitem> elements. 
+</para>
 
 <para>We briefly discuss the &exml; encoding for each type of &OM; object
 starting from the basic objects.</para>
