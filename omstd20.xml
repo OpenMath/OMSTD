@@ -3987,16 +3987,19 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 
 
 
-  <para>The CD
-Group mechanism is a convenience mechanism for identifying collections
-of CDs.  A CD Group file is an &exml; document used in the (static or
-dynamic) negotiation phase where communicating applications declare
-and agree on the Content Dictionaries which they process.  It is a
-complement, or an alternative, to the individual declaration of
-Content Dictionaries understood by an application.  Note that CD
-Groups do <emphasis>not</emphasis> affect the &OM; objects themselves.
-Symbols in an object always refer to content dictionaries, not
-groups.</para>
+
+
+<para>
+  The CD Group mechanism is a convenience mechanism for identifying collections of CDs
+  <phrase revisionflag="added">and specifying their location by in URI</phrase>.  A CD
+  Group file is an &exml; document used in the (static or dynamic) negotiation phase where
+  communicating applications declare and agree on the Content Dictionaries which they
+  process.  It is a complement, or an alternative, to the individual declaration of
+  Content Dictionaries understood by an application.  <phrase
+  revisionflag="added">Additionally, a CD Group file can also be used as a catalog for
+  defaulting the CD bases of &OM; symbols.</phrase> Note that CD Groups do
+  <emphasis>not</emphasis> affect the &OM; objects themselves.  Symbols in an object
+  always refer to content dictionaries, not groups.</para>
 
  <para>For an application to declare that
 it <quote>understands CDGroup G</quote> is exactly equivalent to, and
@@ -4078,7 +4081,9 @@ version numbers of the CDGroup.
 <varlistentry><term><systemitem>CDGroupURL</systemitem></term>
 <listitem><para>The text occurring in the <systemitem>CDGroupURL</systemitem>
   element identifies the location of the CDGroup file, not necessarily
-  of the member Content Dictionaries. For the syntactical
+  of the member Content Dictionaries. <phrase revisionflag="added">If the
+  <systemitem>CDGroupURL</systemitem> element is missing, it defaults to the base URL of
+  the current CD group file.</phrase> For the syntactical
   requirements, see <systemitem>CDURL</systemitem> in <xref linkend="sect_pcdata"/>.</para>
   
 </listitem>
@@ -4857,7 +4862,6 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
     </itemizedlist>
   </section>
-
   
 </appendix>
 
