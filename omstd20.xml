@@ -4103,7 +4103,8 @@ mathematical area of the CDGroup.</para>
 </varlistentry>
 <varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
   text occurring in the <systemitem>CDName</systemitem> element
-  corresponds to the name of a Content Dictionary in the CDGroup. For
+  corresponds to the name of a Content Dictionary in the CDGroup, <phrase
+  revisionflag="added">it must be unique in the CD group</phrase>. For
   the syntactical requirements, see <systemitem>CDName</systemitem> in
   <xref linkend="sect_pcdata"/>.</para>
   
