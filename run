@@ -20,6 +20,7 @@ if [ "$1" == "final" ]
 then
     DRAFT=no
     TARGET=om20-2017-12-01
+    shift
 else
     DRAFT=yes
     TARGET=om20-editors-draft
@@ -235,7 +236,7 @@ echo zip
 rm tmp.*
 zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run 
 
-if [ -d "../../OpenMath.github.io/standard/$TARGET" ]
+if [ "$1" = "copy" ] && [ -d "../../OpenMath.github.io/standard/$TARGET" ]
    then
        echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
        cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
