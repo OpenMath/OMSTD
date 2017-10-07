@@ -103,8 +103,17 @@ padding-left: 0pt;
 
 li.tocchap  a {font-weight:bold;}
 
-.toc2 a {text-decoration:none;}
-.toc2 a:hover {text-decoration:underline}
+.toc2 a {
+text-decoration:none;
+color:#0000AA;
+}
+.toc2 a:hover {
+text-decoration:underline;
+}
+.toc2 a:visited{
+color:#0000AA;
+}
+
 
 h1{font-size:2em;}
 h2{font-size:1.5em;}
