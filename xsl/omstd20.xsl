@@ -106,6 +106,12 @@ li.tocchap  a {font-weight:bold;}
 .toc2 a {text-decoration:none;}
 .toc2 a:hover {text-decoration:underline}
 
+h1{font-size:2em;}
+h2{font-size:1.5em;}
+h4{font-size:1.25em;}
+h4{font-size:1em;}
+h5{font-size:1em;}
+
 div.mdata {
 margin-top: .5em;
 margin-bottom: .5em;
