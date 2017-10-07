@@ -75,9 +75,15 @@ margin-top:1em;
 
   }
 
-.toc2 ul li {
+li.tocchap {
 list-style:none;
 margin-top: .5em;
+margin-left: 0pt;
+padding-left: 0pt;
+}
+
+li.lof {
+list-style:none;
 margin-left: 0pt;
 padding-left: 0pt;
 }
@@ -95,7 +101,7 @@ padding-left: 0pt;
 
 
 
-.toc2  ul  li  a {font-weight:bold;}
+li.tocchap  a {font-weight:bold;}
 
 .toc2 a {text-decoration:none;}
 .toc2 a:hover {text-decoration:underline}
@@ -901,7 +907,7 @@ No id on <xsl:value-of select="title"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<li><a href="{lower-case($c)}#{@id}">
+<li class="tocchap"><a href="{lower-case($c)}#{@id}">
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 </a>
@@ -949,7 +955,7 @@ mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
 <xsl:text>.xml</xsl:text>
 </xsl:if>
 </xsl:variable>
-<li><a href="{$c}#{@id}">
+<li class="lot"><a href="{$c}#{@id}">
 <xsl:apply-templates select="../@revisionflag"/>
 <xsl:apply-templates select="."
 mode="number"/>&#160;<xsl:apply-templates select="title/node()"/>
