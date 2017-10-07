@@ -4876,7 +4876,7 @@ details of how this attribute is used are not mandated by the standard.
 	  For a better alignment with MathML3, the <systemitem>OMOBJ</systemitem> element
 	  has been extended by a <systemitem>cdgroup</systemitem> attribute that specifies
 	  a CDGroup file that acts as a catalog for the CD bases of
-	  <systemitem>OMS</systemitem> elements in that <systemitem>OMOBJ</systemitem>.
+	  <systemitem>OMS</systemitem> elements in that <systemitem>OMOBJ</systemitem>. See sections 3.1.2 and 4.4.2.
 	</para>
       </listitem>
       <listitem>
