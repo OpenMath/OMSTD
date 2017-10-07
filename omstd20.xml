@@ -4082,7 +4082,7 @@ version numbers of the CDGroup.
 <listitem><para>The text occurring in the <systemitem>CDGroupURL</systemitem>
   element identifies the location of the CDGroup file, not necessarily
   of the member Content Dictionaries. <phrase revisionflag="added">If the
-  <systemitem>CDGroupURL</systemitem> element is missing, it defaults to the base URL of
+  <systemitem>CDGroupURL</systemitem> element is missing, it defaults to the URL of
   the current CD group file.</phrase> For the syntactical
   requirements, see <systemitem>CDURL</systemitem> in <xref linkend="sect_pcdata"/>.</para>
   
@@ -4099,6 +4099,21 @@ mathematical area of the CDGroup.</para>
 <listitem><para>The &exml; element <systemitem>CDGroupMember</systemitem>
   encloses the data identifying each member of the CDGroup.</para>
   
+</listitem>
+</varlistentry>
+<varlistentry><term><systemitem>CDGroupInclude</systemitem></term>
+<listitem><para revisionflag="added">The text content of the
+<systemitem>CDGroupInclude</systemitem> identifies an external CD group file whose CDGroup
+members are to be included into the current one. Technically: the set of CDs of CD group
+given by a CD group file with <systemitem>CDGroupInclude</systemitem> elements is
+determined by recursive flattening: The cd group has all the CDs given directly by the
+<systemitem>CDGroupMember</systemitem> elements together with those CDs from CD groups
+referenced in the <systemitem>CDGroupInclude</systemitem> elements. If this leads to
+duplicate <systemitem>CDName</systemitem>s, then directly specified CDs are prioritized,
+for duplications between referenced CD groups, the latter one is prioritized.
+For the syntactical
+  requirements, see <systemitem>CDURL</systemitem> in <xref
+  linkend="sect_pcdata"/>.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
@@ -4859,6 +4874,13 @@ details of how this attribute is used are not mandated by the standard.
 	  has been extended by a <systemitem>cdgroup</systemitem> attribute that specifies
 	  a CDGroup file hat acts as a catalog for the CD bases of
 	  <systemitem>OMS</systemitem> elements in that <systemitem>OMOBJ</systemitem>.
+	</para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+	  The uniqueness conditions in CD groups have been clarified, and an inclusion
+	  mechanism has been introduced to make the <systemitem>cdgroup</systemitem>
+	  catalog mechanism in MathML more realistic and manageable.
 	</para>
       </listitem>
     </itemizedlist>
