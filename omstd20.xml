@@ -4116,13 +4116,16 @@ For the syntactical
   linkend="sect_pcdata"/>.</para>
 </listitem>
 </varlistentry>
-<varlistentry><term><systemitem>CDName</systemitem></term><listitem><para>The
-  text occurring in the <systemitem>CDName</systemitem> element
-  corresponds to the name of a Content Dictionary in the CDGroup, <phrase
-  revisionflag="added">it must be unique in the CD group</phrase>. For
-  the syntactical requirements, see <systemitem>CDName</systemitem> in
-  <xref linkend="sect_pcdata"/>.</para>
-  
+<varlistentry><term><systemitem>CDName</systemitem></term>
+<listitem>
+  <para><phrase revisionflag="changed">The text occurring in the
+  <systemitem>CDName</systemitem> element names the referenced Content Dictionary (see
+  <systemitem>CDURL</systemitem> below) in this CD group,</phrase> <phrase
+  revisionflag="added">it must be unique in the CD group. In particular,
+  <systemitem>OMS</systemitem> elements in an <systemitem>OMOBJ</systemitem> whose
+  <systemitem>cdgroup</systemitem> attribute references the current CD group derive their CD base
+  via this <systemitem>CDName</systemitem>.</phrase> For the syntactical requirements, see
+  <systemitem>CDName</systemitem> in <xref linkend="sect_pcdata"/>.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDVersion</systemitem></term><listitem><para>The
