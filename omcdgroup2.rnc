@@ -28,7 +28,7 @@ CDGroup =
     CDGroupRevision?,
     CDGroupURL,
     CDGroupDescription,
-    (CDGroupMember | CDComment)*
+    (CDGroupMember | CDComment | CDGroupInclude)*
   }
 start = CDGroup
 
