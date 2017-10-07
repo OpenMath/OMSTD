@@ -179,7 +179,7 @@ editing environments.
 
 <!ELEMENT volumenum (#PCDATA)>
 
-<!ENTITY % phrasetext "#PCDATA|xref|ulink|citation|varname|filename
+<!ENTITY % phrasetext "#PCDATA|xref|term|ulink|citation|varname|filename
                        |acronym|systemitem|quote|phrase|emphasis|math">
 
 <!ELEMENT para (%phrasetext;|orderedlist|variablelist|itemizedlist
@@ -251,6 +251,7 @@ editing environments.
 <!ELEMENT varlistentry (term+,listitem)*>
 
 <!ELEMENT term (%phrasetext;)*>
+<!ATTLIST term id CDATA #IMPLIED>
 
 <!-- docbook tables -->
 

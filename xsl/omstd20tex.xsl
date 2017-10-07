@@ -363,9 +363,14 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:apply-templates select="../@*|node()"/>
 </xsl:template>
 
-<xsl:template match="varlistentry/term">
-\item[<xsl:apply-templates select="../@*|node()"/>]
+<xsl:template match="varlistentry/term" priority="2">
+\item[<xsl:apply-templates select="../@*,@*,node()"/>]
 </xsl:template>
+
+<xsl:template match="term[@id]" priority="1">
+ <xsl:apply-templates/>
+</xsl:template>
+
 
 <xsl:template match="varname">
 <xsl:text/>\textbf£<xsl:apply-templates/>ß<xsl:text/>
@@ -430,15 +435,21 @@ relative to the OpenMath 1.0 document\ldots
 <xsl:template match="xref">
 <xsl:variable name="n" select="key('ids',@linkend)"/>
 <xsl:choose>
-<xsl:when test="$n/ancestor::appendix">Appendix</xsl:when>
-<xsl:otherwise>
-<xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
-<xsl:value-of select="substring(name($n),2)"/>
-</xsl:otherwise>
+ <xsl:when test="$n/self::term">
+  <xsl:apply-templates select="$n/node()"/>
+ </xsl:when>
+  <xsl:when test="$n/ancestor::appendix">
+   <xsl:text>Appendix</xsl:text>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:text/>\ref£<xsl:value-of select="@linkend"/>ß<xsl:text/>
+  </xsl:when>
+  <xsl:otherwise>
+   <xsl:value-of select="translate(substring(name($n),1,1),'acfs','ACFS')"/>
+   <xsl:value-of select="substring(name($n),2)"/>
+   <xsl:text>&#160;</xsl:text>
+   <xsl:text/>\ref£<xsl:value-of select="@linkend"/>ß<xsl:text/>
+  </xsl:otherwise>
 </xsl:choose>
-<xsl:text>&#160;</xsl:text>
-<!--<xsl:apply-templates mode="number" select="$n"/>-->
-<xsl:text/>\ref£<xsl:value-of select="@linkend"/>ß<xsl:text/>
 </xsl:template>
 
 <xsl:template match="programlisting|literallayout">
