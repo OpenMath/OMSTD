@@ -3991,7 +3991,7 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 
 <para>
   The CD Group mechanism is a convenience mechanism for identifying collections of CDs
-  <phrase revisionflag="added">and specifying their location by in URI</phrase>.  A CD
+  <phrase revisionflag="added">and specifying their location by an URI</phrase>.  A CD
   Group file is an &exml; document used in the (static or dynamic) negotiation phase where
   communicating applications declare and agree on the Content Dictionaries which they
   process.  It is a complement, or an alternative, to the individual declaration of
