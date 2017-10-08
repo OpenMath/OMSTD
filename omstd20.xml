@@ -459,17 +459,11 @@ If no role is indicated then the symbol can be used anywhere.  Note
 that this is not the same as saying that the symbol's role is
 <emphasis>constant</emphasis>.
 </para>
-
-
+</section>
 </section>
 
-</section>
 <section id="sec_omin">
 <title>Further Description of &OM; Objects</title>
-
-
-
-  
 
 <para>Informally, an &OM; <phrase role="sl">object</phrase> can be
 viewed as a tree and is also referred to as a term.  The objects at
@@ -1084,46 +1078,45 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
 </para>
 </listitem>
 </varlistentry>
-<varlistentry><term>Symbols</term><listitem><para>are encoded using
-  the <systemitem>OMS</systemitem> element. This element has
-  <phrase>three</phrase>
-  (&exml;) attributes <systemitem>cd</systemitem>,
-  <systemitem>name</systemitem><phrase>,  and
-    <systemitem>cdbase</systemitem></phrase>. The value of
-  <systemitem>cd</systemitem> is the name of the Content Dictionary in
-  which the symbol is defined and the value of
-  <systemitem>name</systemitem> is the name of the symbol.
-  <phrase>The optional <systemitem>cdbase</systemitem>
-    attribute is a URI that can be used to disambiguate between two  content
-    dictionaries with the same name.
-  If a symbol does not have an explicit <systemitem>cdbase</systemitem>
-attribute, then it inherits its <systemitem>cdbase</systemitem> from the
-first ancestor in the &exml; tree with one, should such an element
-exist.  In this document we have tended to omit the
-<systemitem>cdbase</systemitem> for clarity.
-  </phrase>
-  For example:
-<blockquote><para><systemitem>&lt;OMS
- cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/></systemitem></para>
+<varlistentry>
+  <term>Symbols</term><listitem>
+  <para>are encoded using the <systemitem>OMS</systemitem> element. This element has three
+  (&exml;) attributes <systemitem>cd</systemitem>, <systemitem>name</systemitem>, and
+  <systemitem>cdbase</systemitem>. The value of <systemitem>cd</systemitem> is the name of
+  the Content Dictionary in which the symbol is defined and the value of
+  <systemitem>name</systemitem> is the name of the symbol.  The optional
+  <systemitem>cdbase</systemitem> attribute is a URI that can be used to disambiguate
+  between two content dictionaries with the same name.  If a symbol does not have an
+  explicit <systemitem>cdbase</systemitem> attribute, then it inherits its
+  <systemitem>cdbase</systemitem> from the first ancestor in the &exml; tree with one,
+  should such an element exist. <phrase revisionflag="added">If no CD base can be
+  determined in this way, then it is determined by the catalog induced by the CD group
+  determined for the <systemitem>OMOBJ</systemitem>. Should this be impossible, the CD
+  base defaults to <systemitem>http://www.openmath.org/cd</systemitem>.</phrase> In this
+  document we have tended to omit the <systemitem>cdbase</systemitem> for clarity.  For
+  example:
+  <blockquote>
+    <para>
+      <systemitem>&lt;OMS cdbase="http://www.openmath.org/cd" cd="transc1" name="sin"/></systemitem>
+    </para>
 </blockquote>
-  is the encoding of the symbol named <systemitem>sin</systemitem> in
-  the Content Dictionary named <systemitem>transc1</systemitem>,
-<phrase>which is part of the collection
-maintained by the &OM; Society</phrase>.</para>
+  is the encoding of the symbol named <systemitem>sin</systemitem> in the Content
+  Dictionary named <systemitem>transc1</systemitem>, which is part of the collection
+  maintained by the &OM; Society.</para>
 
-<para>As described in <xref linkend="sec_names"/>,
-the three attributes of the
-  <systemitem>OMS</systemitem> can be used to build a URI reference for the symbol,
-for use in contexts where URI-based referencing mechanisms are used.
-For example the URI for the above symbol is
- <systemitem>http://www.openmath.org/cd/transc1#sin</systemitem>.
+  <para>
+    As described in <xref linkend="sec_names"/>, the three attributes of the
+    <systemitem>OMS</systemitem> can be used to build a URI reference for the symbol,
+    for use in contexts where URI-based referencing mechanisms are used.
+    For example the URI for the above symbol is
+    <systemitem>http://www.openmath.org/cd/transc1#sin</systemitem>.
 </para>
+
 <para>
-Note that the role attribute described in <xref
-linkend="sec_roles"/> is contained in the Content Dictionary and is not
-part of the encoding of a symbol, also the <systemitem>cdbase</systemitem> attribute need not
-be explicit on each <systemitem>OMS</systemitem> as it is inherited
-from any ancestor element.</para>
+  Note that the role attribute described in <xref linkend="sec_roles"/> is contained in
+  the Content Dictionary and is not part of the encoding of a symbol, also the
+  <systemitem>cdbase</systemitem> attribute need not be explicit on each
+  <systemitem>OMS</systemitem> as it is inherited from any ancestor element.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Variables</term><listitem><para>are encoded using
@@ -3698,14 +3691,11 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     
     <section id="sec_cd_schema">
       <title>The Relax NG Schema for Content Dictionaries</title>
-      
       <literallayout role="rnc" file="omcd2.rnc"/>
-      
     </section>
 
-<section id="sect_pcdata">
+    <section id="sect_pcdata">
 <title>Further <phrase>Description of the CD Schema</phrase></title>
-
 <para>
   We now describe the elements used in the above schema in terms of the abstract
   description of CDs in <xref linkend="sect_func"/>.  Unless stated otherwise information
@@ -3921,32 +3911,34 @@ to assign types to &OM; symbols.</para>
 
 
 <orderedlist>
-<listitem><para>
-A <emphasis>type definition</emphasis>: the
-  name of the Content
-  Dictionary or of the CDGroup (cfg. <xref linkend="ssec_cdgroups"/>)
-  that represents the type system being used.
-
-</para></listitem>
-<listitem><para>
-A <emphasis>CD name</emphasis>: the name of the CD for which
-signatures are being defined.
-
-</para></listitem>
-<listitem><para>
-A <emphasis>review date</emphasis>
-as defined in <xref linkend="sect_func"/>.
-</para></listitem>
-<listitem><para>
-A <emphasis>status</emphasis>:
-as defined in <xref linkend="sect_func"/>.
-</para></listitem>
-<listitem><para>
-A series of <emphasis>signatures</emphasis> which are &OM; objects in
-some encoding.  The objects must represent types as defined by the
-type definition.
-</para>
-</listitem>
+  <listitem>
+    <para>
+      A <emphasis>type definition</emphasis>: the name of the Content Dictionary or of the
+      CDGroup (cfg. <xref linkend="ssec_cdgroups"/>) that represents the type system being
+      used.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      A <emphasis>CD name</emphasis>: the name of the CD for which signatures are being defined.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      A <emphasis>review date</emphasis> as defined in <xref linkend="sect_func"/>.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      A <emphasis>status</emphasis>: as defined in <xref linkend="sect_func"/>.
+    </para>
+  </listitem>
+  <listitem>
+    <para>
+      A series of <emphasis>signatures</emphasis> which are &OM; objects in some encoding.
+      The objects must represent types as defined by the type definition.
+    </para>
+  </listitem>
 </orderedlist>
 
 </section>
@@ -3963,18 +3955,31 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 <literallayout role="rnc" file="omcdsig2.rnc"/>
 
   <para revisionflag="added">
-    The <systemitem>CDSignatures</systemitem> element can take an optional
-    <systemitem>version</systemitem> (&exml;) attribute which indicates to which version
-    of the &OM; standard it conforms. In previous versions of this standard this attribute
-    did not exist, so any &OM; object without such an attribute must conform to version 1
-    (or equivalently 1.1) of the &OM; standard.  Objects which conform to the description
+    The <systemitem>CDSignatures</systemitem> element specifies which CD the
+    <systemitem>Signature</systemitem> elements contained pertain to via the
+    <systemitem>cd</systemitem> attribute. The optional <systemitem>cdurl</systemitem> can
+    be used to specify the canonical URI of that CD if it is not identifiable by other
+    means. The <systemitem>CDSignatures</systemitem> element can take an optional
+    <systemitem>version</systemitem> attribute which indicates to which version of the
+    &OM; standard it conforms. In previous versions of this standard this attribute did
+    not exist, so any &OM; object without such an attribute must conform to version 1 (or
+    equivalently 1.1) of the &OM; standard.  Objects which conform to the description
     given in this document should have <systemitem>version="2.0"</systemitem>. The value
     of the <systemitem>version</systemitem> attribute on the
     <systemitem>CDSignatures</systemitem> element determines the default value for all
     contained <systemitem>OMOBJ</systemitem> elements.  Similarly, the value of the
     optional <systemitem>cdgroup</systemitem> attribute determines the default of
     <systemitem>cdgroup</systemitem> contined <systemitem>OMOBJ</systemitem> elements.
-   </para>
+  </para>
+
+  <para revisionflag="added">
+    The contents of the <systemitem>CDSignatures</systemitem> element are made up of
+    <systemitem>CDSComment</systemitem>, <systemitem>CDSReviewDate</systemitem>, and
+    <systemitem>CDSStatus</systemitem>, which are completely analogous to their CD
+    counterparts (see <xref linkend="sect_pcdata"/>) and
+    <systemitem>Signature</systemitem> elements, which we will describe by way of an
+    example next.
+  </para>
 </section>
 
 
@@ -3999,6 +4004,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 </OMOBJ>
 </Signature>
 ]]></literallayout>
+<phrase revisionflag="added">Conceptually, it associates the symbol
+<systemitem>plus</systemitem> with an &OM;-encoded type; here an n-ary function from an
+Abelian Semigroup to itself.</phrase>  
 </para>
 </section>
 </section>
@@ -4214,11 +4222,11 @@ Dictionary may change as a result of this review process.</para>
 <chapter id="cha_comp">
 <title>&OM; Compliance</title>
 
-
-<para>Applications that meet the requirements specified in this chapter may
-label themselves as <emphasis>OpenMath compliant</emphasis>. &OM; compliance is
-defined so as to maximize the potential for interoperability amongst
-&OM; applications.</para>
+<para>
+  Applications that meet the requirements specified in this chapter may label themselves
+  as <emphasis>OpenMath compliant</emphasis>. &OM; compliance is defined so as to maximize
+  the potential for interoperability amongst &OM; applications.
+</para>
 
 <section id="sec_compl_encoding">
 <title>Encodings</title>
@@ -4236,10 +4244,8 @@ The ability to use other encodings is optional.</para>
 <title>Generating Valid XML</title>
 
 <para>
-
-All &OM; objects generated by a compliant &OM; application must validate
-against the Relax NG Schema given in <xref linkend="app_openmath.rng"/>.
-
+  All &OM; objects generated by a compliant &OM; application must validate against the
+  Relax NG Schema given in <xref linkend="app_openmath.rng"/>.
 </para>
 
 </section>
@@ -4369,17 +4375,16 @@ effect optional (its default value is the empty string), a convertor
 program may not in fact be able to provide a value for the &OM;
 <systemitem>encoding</systemitem> attribute.  This is unfortunate but
 unavoidable.
-
 </para>
-
 </section>
 
 <section id="sec_compl_cd">
 <title>Content Dictionaries</title>
 
-<para>An &OM; compliant application <emphasis>must</emphasis> be able
-to support the error Content Dictionary defined in <xref
-linkend="errorcd"/>.</para>
+<para>
+  An &OM; compliant application <emphasis>must</emphasis> be able to support the error
+  Content Dictionary defined in <xref linkend="errorcd"/>.
+</para>
 
 <para>A compliant application must declare the names and version numbers of
 the Content Dictionaries that it supports. Equivalently it may declare
@@ -4410,7 +4415,7 @@ the accuracy of these representations.</para>
 
 
 <para>Content Dictionaries available from the official &OM; repository
-at www.openmath.org need only be referenced by name, other Content
+at  <systemitem>http://www.openmath.org</systemitem> need only be referenced by name, other Content
 Dictionaries <emphasis>should</emphasis> be referenced using the
 <systemitem>CDBase</systemitem> and the
 <systemitem>CDName</systemitem>.  </para>
@@ -4898,7 +4903,9 @@ details of how this attribute is used are not mandated by the standard.
 	  For a better alignment with MathML3, the <systemitem>OMOBJ</systemitem> element
 	  has been extended by a <systemitem>cdgroup</systemitem> attribute that specifies
 	  a CDGroup file that acts as a catalog for the CD bases of
-	  <systemitem>OMS</systemitem> elements in that <systemitem>OMOBJ</systemitem>. See sections 3.1.2 and 4.4.2.
+	  <systemitem>OMS</systemitem> elements in that
+	  <systemitem>OMOBJ</systemitem>.  The inheritance for CD bases of OMS has been
+	  clarified. See sections 3.1.2 and 4.4.2.
 	</para>
       </listitem>
       <listitem>
