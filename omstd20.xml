@@ -4414,11 +4414,14 @@ application domain. However &OM; compliance does
 the accuracy of these representations.</para>
 
 
-<para>Content Dictionaries available from the official &OM; repository
-at  <systemitem>http://www.openmath.org</systemitem> need only be referenced by name, other Content
-Dictionaries <emphasis>should</emphasis> be referenced using the
-<systemitem>CDBase</systemitem> and the
-<systemitem>CDName</systemitem>.  </para>
+<para>
+  <phrase revisionflag="added">Given the inheritance mechanism for CD bases &OM;
+  symbols,</phrase> Content Dictionaries available from the official &OM; repository at
+  <systemitem>http://www.openmath.org</systemitem> need only be referenced by name, other
+  Content Dictionaries <emphasis>should</emphasis> be referenced using the
+  <systemitem>CDBase</systemitem> and the <systemitem>CDName</systemitem> <phrase
+  revisionflag="added"> or via the CD Group-based CD base inheritance mechanism</phrase>.
+</para>
 
 <para>When receiving an &OM; symbol, e.g.&#160;<math><mi>s</mi></math>,
  that is not <phrase>defined in</phrase>
