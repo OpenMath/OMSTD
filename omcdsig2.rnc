@@ -15,6 +15,7 @@ CDSStatus = element CDSStatus {
    "experimental" |
    "private" |
    "obsolete"}
+   
 CDSignatures =
   element CDSignatures {
     attlist.CDSignatures,
@@ -22,13 +23,14 @@ CDSignatures =
     (CDSReviewDate? & CDSStatus),
     (CDSComment | Signature)*
   }
+
 attlist.CDSignatures =
-  attribute cd { xsd:NCName }, 
+  attribute cd { xsd:NCName },
   attribute type { xsd:NCName }?,
-  attribute cdgroup { xsd:anyURI }?, 
-  attribute cdurl { xsd:anyURI }?, 
+  attribute cdgroup { xsd:anyURI }?,
+  attribute cdurl { xsd:anyURI }?,
   attribute version { xsd:string }?
   
- Signature = element Signature { attlist.Signature, OMOBJ? }
+Signature = element Signature { attlist.Signature, OMOBJ? }
 attlist.Signature = attribute name { text }
 
