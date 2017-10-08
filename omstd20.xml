@@ -810,37 +810,102 @@ and
   operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
   thus allowed to transform the object to, e.g. 
-  <math  display="block"><mi
-  mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>z</mi> <mo>,</mo> <mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
-  <mi>z</mi> <mo>,</mo>
-  <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
+  <math  display="block">
+    <mi mathvariant="bold">binding</mi>
+    <mo>(</mo>
+    <mi>lambda</mi>
+    <mo>,</mo>
+    <mi>z</mi>
+    <mo>,</mo>
+    <mi mathvariant="bold">application</mi>
+    <mo>(</mo>
+    <mi>plus</mi>
+    <mo>,</mo>
+    <mi>z</mi>
+    <mo>,</mo>
+    <mn>2</mn>
+    <mo>)</mo>
+    <mo>)</mo>
+    <mtext>.</mtext>
+  </math>
 </para>
-<para>Repeated occurrences of the same variable in a binding operator
-  are allowed. An &OM; application should treat a binding with
-  multiple occurrences of the same variable as equivalent to the
-  binding in which all but the last occurrence of each variable is
-  replaced by a new variable which does not occur free in the body of
-  the binding.  <math display="block"><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>v</mi> <mo>,</mo> <mi>v</mi> <mo>,</mo><mi
-  mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> is semantically
-  equivalent to: <math display="block"><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi> <mo>,</mo>
-  <msup><mi>v</mi><mo>'</mo></msup> <mo>,</mo> <mi>v</mi>
-  <mo>,</mo><mi mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> so that the
-  resulting function is actually a constant in its first argument
-  (<math><msup><mi>v</mi><mo>'</mo></msup></math> does not occur free
-  in the body <math><mi mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math>).</para>
-
+<para>
+  Repeated occurrences of the same variable in a binding operator are allowed, <phrase
+  revisionflag="added">but deprecated as they make no sense semantically.</phrase>
   
+  <phrase revisionflag="changed">For backwards compatibility, an &OM; application should
+  treat a binding with multiple occurrences of the same variable as equivalent to the
+  binding in which all but the last occurrence of each variable is replaced by a new
+  variable. Concretely, the following replacement is carried out until there are no more
+  bound variable duplications:
+  <math display="block">
+    <mrow>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>u</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>y</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </mrow>
+    <mo>&#x27F6;</mo>
+    <mrow>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>u</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x'</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>y</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </mrow>
+  </math>
+  where <math><mi>x</mi></math> and <math><mi>y</mi></math> are (possibly attributed)
+  variables with the same head <math><mi>z</mi></math>, the heads of bound (attributed
+  variables) in <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math> are all different
+  from <math><mi>z</mi></math>, and <math><mi>x'</mi></math> is obtained from
+  <math><mi>x</mi></math> by replacing <math><mi>z</mi></math> with a variable
+  <math><mi>z'</mi></math> that does not occur in <math><mi>x</mi></math>,
+  <math><mi>y</mi></math>, <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math>,
+  <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>,
+  <math><mover><mi>w</mi><mo>&#x2192;</mo></mover></math>, and <math><mi>C</mi></math>.
+  </phrase>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
@@ -5046,10 +5111,15 @@ details of how this attribute is used are not mandated by the standard.
 	  should happen in the presence of attributed bound variables: the variables in
 	  the attribute values need to be renamed as well.  
 	</para>
+	<para revisionflag="added">
+	  Duplicate bound variables in binders have been deprecated, since they make no
+	  sense. The fallback semantics of duplicate variables been clarified for the case
+	  of attributed bound variables.
+	</para>
       </listitem>
       <listitem>
 	<para revisionflag="added">
-	 The RelaxNG schema has been corrected to allow hexadecimal representaion of integers to match 
+	 The RelaxNG schema has been corrected to allow hexadecimal representation of integers to match 
 	 <xref linkend="sec_xml-desc"/>.
         </para>
       </listitem>
@@ -6458,5 +6528,7 @@ Types</title>
 -->
 <!--  LocalWords:  Vasaru Analytica Devitt Soiffer Sutor CtCoqmath Pecchiari Talcott
 -->
-<!--  LocalWords:  Bertot Well-formedness Labrou phane Huchet Limongelli
+<!--  LocalWords:  Bertot Well-formedness Labrou phane Huchet Limongelli cdgroup 160;the
+-->
+<!--  LocalWords:  prioritized Internationalized
 -->
