@@ -23,8 +23,10 @@ CDSignatures =
     (CDSComment | Signature)*
   }
 attlist.CDSignatures =
-  attribute cd { xsd:NCName },
+  attribute cd { xsd:NCName }, 
   attribute type { xsd:NCName }
-Signature = element Signature { attlist.Signature, OMOBJ? }
+  attribute cdgroup { xsd:anyURI }?, 
+  attribute version { xsd:string }?,
+ Signature = element Signature { attlist.Signature, OMOBJ? }
 attlist.Signature = attribute name { text }
 

@@ -47,6 +47,8 @@ CDDefinition =
   }
 CD =
   element CD {
+    attribute version { xsd:string }?, 
+    attribute cdgroup { xsd:anyURI }?, 
     (CDComment* & Description? &
      CDName & CDURL? & CDBase? &
      CDReviewDate? & CDDate & CDStatus & 

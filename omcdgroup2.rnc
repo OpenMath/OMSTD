@@ -23,6 +23,7 @@ CDURL = element CDURL { text }
 # structure of the group
 CDGroup =
   element CDGroup {
+    attribute version { xsd:string }?,
     CDGroupName,
     CDGroupVersion,
     CDGroupRevision?,
