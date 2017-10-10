@@ -203,7 +203,7 @@ export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
 echo pdf
 
 pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log; false)
-if (grep -i ' rerun ' omstd20.log;false)
+if (grep -i ' rerun ' omstd20.log)
   then
   pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
   if (grep -i ' rerun ' omstd20.log)
