@@ -1,0 +1,4 @@
+cp  ../CDs/cd/Official/{arith1,error,meta}.ocd .
+cp  ../CDs/sts/arith1.sts .
+cp  ../CDs/cdgroups/mathml.cdg .
+
