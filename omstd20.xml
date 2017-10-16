@@ -1723,7 +1723,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
         <OMV name="a"/>
       </OMA>
     </OMA>
-  </OMA>
+  </OMA>                        </OMA>
 </OMOBJ>                     </OMOBJ>]]>
 </literallayout>
 </figure>
