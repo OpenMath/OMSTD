@@ -203,28 +203,30 @@ export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
 echo pdf
 
 pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log; false)
-if (grep -i rerun omstd20.log;false)
+if (grep -i ' rerun ' omstd20.log)
   then
   pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
-  if (grep -i rerun omstd20.log)
+  if (grep -i ' rerun ' omstd20.log)
     then 
     pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
-    if (grep -i rerun omstd20.log)
+    if (grep -i ' rerun ' omstd20.log)
       then
       pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
     fi
   fi
 fi
 
+cat omstd20.log
+
 echo pdf-diff
 pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
-if (grep -i rerun omstd20-diff.log)
+if (grep -i ' rerun ' omstd20-diff.log)
   then
   pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
-  if (grep -i rerun omstd20-diff.log)
+  if (grep -i ' rerun ' omstd20-diff.log)
     then 
     pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
-    if (grep -i rerun omstd20-diff.log)
+    if (grep -i ' rerun ' omstd20-diff.log)
       then
       pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
     fi
