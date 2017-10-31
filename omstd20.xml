@@ -365,7 +365,9 @@ objects as described below.)</phrase></para>
   </para>
 </listitem>
 
-<listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and
+<listitem>
+  <para>
+    <phrase>(iv)</phrase> If <math><mi>B</mi></math> and
   <math><mi>C</mi></math> are &OM; objects, and
   <math><msub><mi>v</mi><mn>1</mn></msub></math>,
   <math><mi>&#8230;</mi></math>,
@@ -376,7 +378,16 @@ objects as described below.)</phrase></para>
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
-is an &OM; <emphasis>binding object</emphasis>.</para>
+  is an &OM; <emphasis>binding object</emphasis>.
+  <phrase revisionflag="added">
+    The (possibly attributed) variables
+    <math><msub><mi>v</mi><mn>1</mn></msub></math>,
+    <math><mi>&#8230;</mi></math>,
+    <math><msub><mi>v</mi><mi>n</mi></msub></math>
+    are called <emphasis>variable bindings</emphasis>,
+    any other variable object is called a <emphasis>variable reference</emphasis>.
+  </phrase>
+</para>
 
 </listitem>
 <listitem><para><phrase>(v)</phrase> If <math><mi>S</mi></math> is an
@@ -582,20 +593,25 @@ objects</phrase>.</para>
 <mn>2</mn></math> in tree-like notation.</title>  <graphic fileref="lambda"
 width="600" depth="190"/>
 </figure>
-
-  
 </listitem>
 </varlistentry>
+
 <varlistentry><term>Binding</term><listitem><para>objects are
   constructed from an &OM; object, and from a sequence of zero or more
   variables followed by another &OM; object.  The first &OM; object is
   the <quote>binder</quote> object. Arguments 2 to
-  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables <phrase
-  revisionflag="added">or <quote>attributed variables</quote>, i.e. attributions whose head is a variable,</phrase> to
+  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables
+  <phrase  revisionflag="added">or <quote>attributed variables</quote>,
+  i.e. attributions whose head is a variable,</phrase> to
   be <quote>bound</quote> in the <quote>body</quote> which is the
   <math><msup><mi>n</mi><mi>th</mi></msup></math>
   <phrase revisionflag="added">(last)</phrase> argument object <phrase
-  revisionflag="added">or in the attributions of the other bound variables. Together body
+  revisionflag="added">or in the attributions of the subsequent bound variables.
+  A variable reference <math><mi>R</mi></math> is <quote>bound</quote> by the variable
+  binding <math><mi>B</mi></math>, if <math><mi>R</mi></math> is the
+  closest variable binding for the same name that governs <math><mi>B</mi></math>.
+  A variable reference that is not bound by any variable binding is called a <quote>free
+  variable</quote>.  Together, body
   and attribute values comprise the <quote>scope</quote> of the bound variables. Note that
   the binder itself is not part of the scope, in particular the binder object does not
   contain bound variables (of its own binding object).</phrase>.
