@@ -374,18 +374,20 @@ objects as described below.)</phrase></para>
   <math><msub><mi>v</mi><mi>n</mi></msub></math>
   <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
   <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed
-  variables, then
+  variables, then 
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
   is an &OM; <emphasis>binding object</emphasis>.
   <phrase revisionflag="added">
-    The (possibly attributed) variables
+    <math><mi>B</mi></math> is called the <emphasis>binder</emphasis>,  
     <math><msub><mi>v</mi><mn>1</mn></msub></math>,
     <math><mi>&#8230;</mi></math>,
     <math><msub><mi>v</mi><mi>n</mi></msub></math>
     are called <emphasis>variable bindings</emphasis>,
-    any other variable object is called a <emphasis>variable reference</emphasis>.
+    any other variable object is called a <emphasis>variable
+    reference</emphasis>, and <math><mi>C</mi></math> is called the
+    <emphasis>body</emphasis> of the binding object above. 
   </phrase>
 </para>
 
@@ -596,76 +598,113 @@ width="600" depth="190"/>
 </listitem>
 </varlistentry>
 
-<varlistentry><term>Binding</term><listitem><para>objects are
-  constructed from an &OM; object, and from a sequence of zero or more
-  variables followed by another &OM; object.  The first &OM; object is
-  the <quote>binder</quote> object. Arguments 2 to
-  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables
-  <phrase  revisionflag="added">or <quote>attributed variables</quote>,
-  i.e. attributions whose head is a variable,</phrase> to
-  be <quote>bound</quote> in the <quote>body</quote> which is the
-  <math><msup><mi>n</mi><mi>th</mi></msup></math>
-  <phrase revisionflag="added">(last)</phrase> argument object <phrase
-  revisionflag="added">or in the attributions of the subsequent bound variables.
-  A variable reference <math><mi>R</mi></math> is <quote>bound</quote> by the variable
-  binding <math><mi>B</mi></math>, if <math><mi>R</mi></math> is the
-  closest variable binding for the same name that governs <math><mi>B</mi></math>.
-  A variable reference that is not bound by any variable binding is called a <quote>free
-  variable</quote>.  Together, body
-  and subsequent attribute values comprise the <quote>scope</quote> of the variable
-  binding. Note that the binder itself is not part of the scope. In particular, no 
-  variable references in the binder object <math><mi>O</mi></math> of a binding
-  <math><mi>B</mi></math> can be bound by the variable bindings in
-  <math><mi>B</mi></math>.</phrase>. 
-  <phrase
-  revisionflag="changed">Binding objects are</phrase>
-  allowed to have no bound variables, but the binder object and the
-  body should be present. Binding can be used to express functions or
-  logical statements.  The function <math><mi>&#955;</mi>
-  <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo><mn>2</mn></math>, in which
-  the variable <math><mi>x</mi></math> is bound by
-  <math><mi>&#955;</mi></math>, corresponds to a binding object having
-  as binder the &OM; symbol <math><mi>lambda</mi></math>: <math
-  display="block"><mi
-  mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>x</mi> <mo>,</mo> <mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
-  <mi>x</mi> <mo>,</mo>
-  <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math></para>
+<varlistentry>
+  <term>Binding</term>
+  <listitem>
+    <para revisionflag="changed">objects are of the form
+    <math>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <msub><mi>v</mi><mn>1</mn></msub>
+      <mo>,</mo>
+      <mi>&#8230;</mi>
+      <mo>,</mo>
+      <msub><mi>v</mi><mi>n</mi></msub>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+      <mtext>.</mtext>
+    </math>
+    The <emphasis>scope</emphasis> of a variable binding
+    <math><msub><mi>v</mi><mi>i</mi></msub></math>
+    (<math><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>n</mi></math>)
+    is constituted by the body
+    <math><mi>C</mi></math> together with the attribute values of subsequent variable
+    bindings <math><msub><mi>v</mi><mi>j</mi></msub></math> with
+    <math><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></math>.
+    A variable reference <math><mi>R</mi></math> is <quote>bound</quote> by the variable
+    binding <math><mi>B</mi></math>, if <math><mi>R</mi></math> is the
+    closest variable binding <math><mi>B</mi></math> for the same name that has
+    <math><mi>R</mi></math> in its scope. A variable reference that is not bound by any
+    variable binding is called a <quote>free variable</quote>. Note that the binder itself
+    is not part of the scope of any of its bound variables. In particular, no 
+    variable references in the binder object <math><mi>O</mi></math> of a binding
+    <math><mi>B</mi></math> can be bound by the variable bindings in
+    <math><mi>B</mi></math>.
+    Binding objects are allowed to have no bound variables, but the binder object and the
+    body should be present.
+    </para>
+    <para> Binding can be used to express functions or
+    logical statements.  The function
+    <math>
+      <mi>&#955;</mi>
+      <mi>x</mi>
+      <mo>.</mo>
+      <mi>x</mi>
+      <mo>+</mo>
+      <mn>2</mn>
+      </math>, in which
+      the variable <math><mi>x</mi></math> is bound by
+      <math><mi>&#955;</mi></math>, corresponds to a binding object having
+      as binder the &OM; symbol <math><mi>lambda</mi></math>:
+      <math display="block">
+	<mi mathvariant="bold">binding</mi>
+	<mo>(</mo>
+	<mi>lambda</mi>
+	<mo>,</mo>
+	<mi>x</mi>
+	<mo>,</mo>
+	<mi mathvariant="bold">application</mi>
+	<mo>(</mo>
+	<mi>plus</mi>
+	<mo>,</mo>
+	<mi>x</mi>
+	<mo>,</mo>
+	<mn>2</mn>
+	<mo>)</mo>
+	<mo>)</mo>
+	<mtext>.</mtext>
+      </math>
+    </para>
 
-<para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>
-conversion</emphasis>
-<phrase revisionflag="added">(also called <emphasis>alphabetic
-renaming</emphasis></phrase>
-in order to avoid clashes of variable names. Suppose an
-  object <math><mi>&#937;</mi></math> contains an occurrence of the
-  object
-  <math revisionflag="changed">
-    <mi mathvariant="bold">binding</mi>
-    <mo>(</mo>
-    <mi>B</mi>
-    <mo>,</mo>
-    <mover>
-      <mi>v</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-    <mo>,</mo>
-    <mi>x</mi>
-    <mo>,</mo>
-    <mover>
-      <mi>w</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-    <mo>,</mo>
-    <mi>C</mi>
-    <mo>)</mo>
-  </math>
-  <phrase revisionflag="added">where
-  <math>
-    <mover>
-      <mi>v</mi>
-      <mo>&#x2192;</mo>
-    </mover>
+    <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>
+    conversion</emphasis>
+    <phrase revisionflag="added">(also called <emphasis>alphabetic
+    renaming</emphasis>)</phrase>
+    in order to avoid clashes of variable names: <phrase revisionflag="added"> a variable
+    binding in an &OM; object <math><mi>&#937;</mi></math> can be replaced by a
+    <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in
+    <math><mi>&#937;</mi></math>, if all variables it binds are replaced accordingly:</phrase> 
+    Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
+    object
+    <math revisionflag="changed">
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </math>
+    <phrase revisionflag="added">where
+    <math>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
   </math>
   and 
   <math>
@@ -706,7 +745,7 @@ in <math><mi>&#937;</mi></math> by
   <mi>B</mi>
   <mo>,</mo>
     <mover>
-      <mi>w'</mi>
+      <mi>v</mi>
       <mo>&#x2192;</mo>
     </mover>
   <mo>,</mo>
@@ -720,32 +759,9 @@ in <math><mi>&#937;</mi></math> by
   <mi>C'</mi>
   <mo>)</mo>
 </math>
-where <math><mi>y</mi></math> is a variable not occurring <quote>free</quote> (i.e., not
-bound by any intermediate <varname>binding</varname> construct) in <math><mi>C</mi></math>
-<phrase revisionflag="added">or the attribute values in
-  <math>
-    <mover>
-      <mi>v</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-  </math>,
-  <math>
-    <mover>
-      <mi>w</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-    </math>,
-    or <math><mi>x</mi></math>
-</phrase>
-and
-<math><mi>C'</mi></math>,
+where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mi>&#937;</mi></math>
   <phrase revisionflag="added"> 
-  <math>
-    <mover>
-      <mi>v'</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-  </math>, and 
+    and 
   <math>
     <mover>
       <mi>w'</mi>
@@ -756,12 +772,7 @@ and
   </phrase> obtained
   from <math><mi>C</mi></math>,
   <phrase revisionflag="added">
-  <math>
-    <mover>
-      <mi>v</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-  </math>, and 
+    and 
   <math>
     <mover>
       <mi>w</mi>
@@ -770,9 +781,11 @@ and
   </math>
   </phrase>
   by replacing each free occurrence
-  of <math><mi>x</mi></math> by <math><mi>y</mi></math>. <phrase revisionflag="added">If
-  instead of 
-  <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>  we have an attributed variable
+  of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
+  <phrase revisionflag="added">
+    If instead of 
+    <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>  we have an attributed
+    variable 
   <math>
     <mi mathvariant="bold">attribution</mi>
     <mo>(</mo>
@@ -783,14 +796,7 @@ and
       <mo>&#x2192;</mo>
     </mover>
     <mo>)</mo>
-    </math>, where
-    <math>
-      <mover>
-      <mi>a</mi>
-      <mo>&#x2192;</mo>
-    </mover>
-    </math>
-    is a sequence of attribute-value pairs, then instead of <math><mi>y</mi></math> we
+    </math>, then instead of <math><mi>y</mi></math> we
     must have
     <math>
       <mi mathvariant="bold">attribution</mi>
@@ -798,28 +804,13 @@ and
       <mi>y</mi>
       <mo>,</mo>
       <mover>
-	<mi>a'</mi>
+	<mi>a</mi>
 	<mo>&#x2192;</mo>
       </mover>
       <mo>)</mo>
-      </math>, where
-      <math>
-	<mover>
-	  <mi>a'</mi>
-	  <mo>&#x2192;</mo>
-	</mover>
-      </math>
-      is obtained from 
-      <math>
-	<mover>
-	  <mi>a</mi>
-	  <mo>&#x2192;</mo>
-	</mover>
-      </math>
-      by replacing all occurrences of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
-    </phrase>
-  This
-  operation preserves the semantics of the object
+    </math>
+  </phrase>
+  This operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
   thus allowed to transform the object to, e.g. 
   <math  display="block">
