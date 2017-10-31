@@ -612,9 +612,11 @@ width="600" depth="190"/>
   closest variable binding for the same name that governs <math><mi>B</mi></math>.
   A variable reference that is not bound by any variable binding is called a <quote>free
   variable</quote>.  Together, body
-  and attribute values comprise the <quote>scope</quote> of the bound variables. Note that
-  the binder itself is not part of the scope, in particular the binder object does not
-  contain bound variables (of its own binding object).</phrase>.
+  and subsequent attribute values comprise the <quote>scope</quote> of the variable
+  binding. Note that the binder itself is not part of the scope. In particular, no 
+  variable references in the binder object <math><mi>O</mi></math> of a binding
+  <math><mi>B</mi></math> can be bound by the variable bindings in
+  <math><mi>B</mi></math>.</phrase>. 
   <phrase
   revisionflag="changed">Binding objects are</phrase>
   allowed to have no bound variables, but the binder object and the
@@ -631,8 +633,11 @@ width="600" depth="190"/>
   <mi>x</mi> <mo>,</mo>
   <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math></para>
 
-<para>Phrasebooks are allowed to use <math><mi>&#945;</mi></math>
-  conversion in order to avoid clashes of variable names. Suppose an
+<para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>
+conversion</emphasis>
+<phrase revisionflag="added">(also called <emphasis>alphabetic
+renaming</emphasis></phrase>
+in order to avoid clashes of variable names. Suppose an
   object <math><mi>&#937;</mi></math> contains an occurrence of the
   object
   <math revisionflag="changed">
