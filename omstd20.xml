@@ -385,13 +385,13 @@ objects as described below.)</phrase></para>
     <math><mi>&#8230;</mi></math>,
     <math><msub><mi>v</mi><mi>n</mi></msub></math>
     are called <emphasis>variable bindings</emphasis>,
-    any other variable object is called a <emphasis>variable
-    reference</emphasis>, and <math><mi>C</mi></math> is called the
-    <emphasis>body</emphasis> of the binding object above. 
+    and <math><mi>C</mi></math> is called the
+    <emphasis>body</emphasis> of the binding object above.   To distinguish the two different ways how variable objects are used, any variable object
+  that is not a variable binding is called a <emphasis>variable reference</emphasis>.
   </phrase>
 </para>
-
 </listitem>
+
 <listitem><para><phrase>(v)</phrase> If <math><mi>S</mi></math> is an
 &OM; symbol and <math><msub><mi>A</mi><mn>1</mn></msub></math>,
 <phrase>&#8230;</phrase>,
@@ -630,9 +630,7 @@ width="600" depth="190"/>
     <math><mi>R</mi></math> in its scope. A variable reference that is not bound by any
     variable binding is called a <quote>free variable</quote>. Note that the binder itself
     is not part of the scope of any of its bound variables. In particular, no 
-    variable references in the binder object <math><mi>O</mi></math> of a binding
-    <math><mi>B</mi></math> can be bound by the variable bindings in
-    <math><mi>B</mi></math>.
+    variable references in <math><mi>B</mi></math> can be bound by any of the variable bindings <math><msub><mi>v</mi><mi>i</mi></msub></math>.
     Binding objects are allowed to have no bound variables, but the binder object and the
     body should be present.
     </para>
@@ -669,14 +667,13 @@ width="600" depth="190"/>
       </math>
     </para>
 
-    <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>
-    conversion</emphasis>
+    <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>-conversion</emphasis>
     <phrase revisionflag="added">(also called <emphasis>alphabetic
     renaming</emphasis>)</phrase>
-    in order to avoid clashes of variable names: <phrase revisionflag="added"> a variable
-    binding in an &OM; object <math><mi>&#937;</mi></math> can be replaced by a
+    in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
+    can be replaced by a
     <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in
-    <math><mi>&#937;</mi></math>, if all variables it binds are replaced accordingly:</phrase> 
+    the scope of the binding, if all variable references it binds are replaced accordingly:</phrase> 
     Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
     object
     <math revisionflag="changed">
@@ -759,7 +756,8 @@ in <math><mi>&#937;</mi></math> by
   <mi>C'</mi>
   <mo>)</mo>
 </math>
-where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mi>&#937;</mi></math>
+where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
+</math> or <math><mi>C</mi></math>
   <phrase revisionflag="added"> 
     and 
   <math>
@@ -768,23 +766,26 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
       <mo>&#x2192;</mo>
     </mover>
   </math>
+  and
+  <math><mi>C</mi></math>
   are
   </phrase> obtained
-  from <math><mi>C</mi></math>,
+  from
   <phrase revisionflag="added">
-    and 
   <math>
     <mover>
       <mi>w</mi>
       <mo>&#x2192;</mo>
     </mover>
   </math>
+  and 
   </phrase>
+  <math><mi>C</mi></math>,
   by replacing each free occurrence
   of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
   <phrase revisionflag="added">
     If instead of 
-    <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>  we have an attributed
+    <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>,  we have an attributed
     variable 
   <math>
     <mi mathvariant="bold">attribution</mi>
@@ -833,14 +834,13 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
   </math>
 </para>
 <para>
-  Repeated occurrences of the same variable in a binding operator are allowed, <phrase
-  revisionflag="added">but deprecated as they make no sense semantically.</phrase>
-  
-  <phrase revisionflag="changed">For backwards compatibility, an &OM; application should
-  treat a binding with multiple occurrences of the same variable as equivalent to the
-  binding in which all but the last occurrence of each variable is replaced by a new
-  variable. Concretely, the following replacement is carried out until there are no more
-  bound variable duplications:
+  <phrase revisionflag="changed"> Note that repeated variable bindings of the same
+  variable in a binding object are allowed, but make little sense semantically and are
+  therefore discouraged: the first binding binds only references in the subsequent
+  bindings up to and including the next binding for the same name. 
+  Therefore, an &OM; application may choose to <math><mi>&#945;</mi></math>-convert all
+  but the last binding to new variables. Concretely, the following replacement is carried
+  out until there are no more  bound variable duplications:
   <math display="block">
     <mrow>
       <mi mathvariant="bold">binding</mi>
@@ -3969,7 +3969,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       element determines the default value for all contained
       <systemitem>OMOBJ</systemitem> elements.  Similarly, the value of the optional
       <systemitem>cdgroup</systemitem> attribute determines the default of
-      <systemitem>cdgroup</systemitem> contined <systemitem>OMOBJ</systemitem> elements.
+      <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
     </para>
   </listitem>
   </varlistentry>
@@ -4219,7 +4219,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
     <systemitem>CDSignatures</systemitem> element determines the default value for all
     contained <systemitem>OMOBJ</systemitem> elements.  Similarly, the value of the
     optional <systemitem>cdgroup</systemitem> attribute determines the default of
-    <systemitem>cdgroup</systemitem> contined <systemitem>OMOBJ</systemitem> elements.
+    <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
   </para>
 
   <para revisionflag="added">
@@ -6582,5 +6582,5 @@ Types</title>
 -->
 <!--  LocalWords:  Bertot Well-formedness Labrou phane Huchet Limongelli cdgroup 160;the
 -->
-<!--  LocalWords:  prioritized Internationalized
+<!--  LocalWords:  prioritized Internationalized 160;the cdurl n-ary
 -->
