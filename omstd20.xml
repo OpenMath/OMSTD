@@ -883,11 +883,11 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
       <mi>x'</mi>
       <mo>,</mo>
       <mover>
-	<mi>v</mi>
+	<mi>v'</mi>
 	<mo>&#x2192;</mo>
       </mover>
       <mo>,</mo>
-      <mi>y</mi>
+      <mi>y'</mi>
       <mo>,</mo>
       <mover>
 	<mi>w</mi>
@@ -899,10 +899,14 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
     </mrow>
   </math>
   where <math><mi>x</mi></math> and <math><mi>y</mi></math> are (possibly attributed)
-  variables with the same head <math><mi>z</mi></math>, the heads of bound (attributed
-  variables) in <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math> are all different
-  from <math><mi>z</mi></math>, and <math><mi>x'</mi></math> is obtained from
-  <math><mi>x</mi></math> by replacing <math><mi>z</mi></math> with a variable
+  variables with the same head <math><mi>z</mi></math>, the heads of bound (attributed)
+  variables in <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math> are all different
+  from <math><mi>z</mi></math>, and <math><mi>x'</mi></math>,
+  <math><mi>y'</mi></math>, and 
+  <math><mover><mi>v'</mi><mo>&#x2192;</mo></mover></math> are obtained from
+  <math><mi>x</mi></math>,   <math><mi>y</mi></math>, and 
+  <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>
+  by replacing <math><mi>z</mi></math> with a variable
   <math><mi>z'</mi></math> that does not occur in <math><mi>x</mi></math>,
   <math><mi>y</mi></math>, <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math>,
   <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>,
