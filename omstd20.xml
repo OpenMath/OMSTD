@@ -625,8 +625,8 @@ width="600" depth="190"/>
     bindings <math><msub><mi>v</mi><mi>j</mi></msub></math> with
     <math><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></math>.
     A variable reference <math><mi>R</mi></math> is <quote>bound</quote> by the variable
-    binding <math><mi>B</mi></math>, if <math><mi>R</mi></math> is the
-    closest variable binding <math><mi>B</mi></math> for the same name that has
+    binding <math><mi>B</mi></math>, if <math><mi>B</mi></math> is the
+    closest variable binding for the same name that has
     <math><mi>R</mi></math> in its scope. A variable reference that is not bound by any
     variable binding is called a <quote>free variable</quote>. Note that the binder itself
     is not part of the scope of any of its bound variables. In particular, no 
@@ -767,7 +767,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
     </mover>
   </math>
   and
-  <math><mi>C</mi></math>
+  <math><mi>C'</mi></math>
   are
   </phrase> obtained
   from
