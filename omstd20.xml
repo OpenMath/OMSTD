@@ -1464,9 +1464,8 @@ for more detailed information.</para>
   <OMV name="x"/>  
 </OMA>]]></literallayout>
   provided that the symbol <systemitem>sin</systemitem> is defined to be a function
-  symbol in a Content Dictionary named <systemitem>transc1</systemitem>.</para>
-
-  
+  symbol in a Content Dictionary named <systemitem>transc1</systemitem>.
+</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Binding</term><listitem><para>is encoded using the <systemitem>OMBIND</systemitem> element.  The binding
@@ -1518,9 +1517,12 @@ or to express the type of a variable:
     <OMS cd="ecc" name="real" />
   </OMATP> 
   <OMV name="x" />
-</OMATTR>]]></literallayout></para>
+</OMATTR>]]></literallayout>
+</para>
 
-  
+</listitem>
+</varlistentry>
+<varlistentry><term>Foreign Objects</term><listitem>
 <para>
 A special use of attributions is to associate non-&OM; data with an
 &OM; object.  This is done using the
