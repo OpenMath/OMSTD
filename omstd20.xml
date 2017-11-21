@@ -365,20 +365,33 @@ objects as described below.)</phrase></para>
   </para>
 </listitem>
 
-<listitem><para><phrase>(iv)</phrase> If <math><mi>B</mi></math> and
+<listitem>
+  <para>
+    <phrase>(iv)</phrase> If <math><mi>B</mi></math> and
   <math><mi>C</mi></math> are &OM; objects, and
   <math><msub><mi>v</mi><mn>1</mn></msub></math>,
   <math><mi>&#8230;</mi></math>,
   <math><msub><mi>v</mi><mi>n</mi></msub></math>
   <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
   <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed
-  variables, then
+  variables, then 
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
-is an &OM; <emphasis>binding object</emphasis>.</para>
-
+  is an &OM; <emphasis>binding object</emphasis>.
+  <phrase revisionflag="added">
+    <math><mi>B</mi></math> is called the <emphasis>binder</emphasis>,  
+    <math><msub><mi>v</mi><mn>1</mn></msub></math>,
+    <math><mi>&#8230;</mi></math>,
+    <math><msub><mi>v</mi><mi>n</mi></msub></math>
+    are called <emphasis>variable bindings</emphasis>,
+    and <math><mi>C</mi></math> is called the
+    <emphasis>body</emphasis> of the binding object above.   To distinguish the two different ways how variable objects are used, any variable object
+  that is not a variable binding is called a <emphasis>variable reference</emphasis>.
+  </phrase>
+</para>
 </listitem>
+
 <listitem><para><phrase>(v)</phrase> If <math><mi>S</mi></math> is an
 &OM; symbol and <math><msub><mi>A</mi><mn>1</mn></msub></math>,
 <phrase>&#8230;</phrase>,
@@ -393,7 +406,7 @@ display="block"><mi mathvariant="bold">error</mi>
   is an &OM; <emphasis>error object</emphasis>.</para>
 </listitem>
 </itemizedlist>
- <phrase>&OM; objects that are contstructed via rules (ii)
+ <phrase>&OM; objects that are constructed via rules (ii)
    to (v) are jointly called <phrase role="sl">compound &OM; objects</phrase></phrase>
 </para>
 </section>
@@ -582,90 +595,328 @@ objects</phrase>.</para>
 <mn>2</mn></math> in tree-like notation.</title>  <graphic fileref="lambda"
 width="600" depth="190"/>
 </figure>
-
-  
 </listitem>
 </varlistentry>
-<varlistentry><term>Binding</term><listitem><para>objects are
-  constructed from an &OM; object, and from a sequence of zero or more
-  variables followed by another &OM; object.  The first &OM; object is
-  the <quote>binder</quote> object. Arguments 2 to
-  <math><mi>n</mi><mo>-</mo><mn>1</mn></math> are always variables to
-  be bound in the <quote>body</quote> which is the
-  <math><msup><mi>n</mi><mi>th</mi></msup></math>
-  <phrase revisionflag="added">(last) </phrase> argument object. It
-  is allowed to have no bound variables, but the binder object and the
-  body should be present. Binding can be used to express functions or
-  logical statements.  The function <math><mi>&#955;</mi>
-  <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo><mn>2</mn></math>, in which
-  the variable <math><mi>x</mi></math> is bound by
-  <math><mi>&#955;</mi></math>, corresponds to a binding object having
-  as binder the &OM; symbol <math><mi>lambda</mi></math>: <math
-  display="block"><mi
-  mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>x</mi> <mo>,</mo> <mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
-  <mi>x</mi> <mo>,</mo>
-  <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math></para>
-  
-  
-  
 
+<varlistentry>
+  <term>Binding</term>
+  <listitem>
+    <para revisionflag="changed">objects are of the form
+    <math>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <msub><mi>v</mi><mn>1</mn></msub>
+      <mo>,</mo>
+      <mi>&#8230;</mi>
+      <mo>,</mo>
+      <msub><mi>v</mi><mi>n</mi></msub>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+      <mtext>.</mtext>
+    </math>
+    The <emphasis>scope</emphasis> of a variable binding
+    <math><msub><mi>v</mi><mi>i</mi></msub></math>
+    (<math><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>n</mi></math>)
+    is constituted by the body
+    <math><mi>C</mi></math> together with the attribute values of subsequent variable
+    bindings <math><msub><mi>v</mi><mi>j</mi></msub></math> with
+    <math><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></math>.
+    A variable reference <math><mi>R</mi></math> is <quote>bound</quote> by the variable
+    binding <math><mi>B</mi></math>, if <math><mi>B</mi></math> is the
+    closest variable binding for the same name that has
+    <math><mi>R</mi></math> in its scope. A variable reference that is not bound by any
+    variable binding is called a <quote>free variable</quote>. Note that the binder itself
+    is not part of the scope of any of its bound variables. In particular, no 
+    variable references in <math><mi>B</mi></math> can be bound by any of the variable bindings <math><msub><mi>v</mi><mi>i</mi></msub></math>.
+    Binding objects are allowed to have no bound variables, but the binder object and the
+    body should be present.
+    </para>
+    <para> Binding can be used to express functions or
+    logical statements.  The function
+    <math>
+      <mi>&#955;</mi>
+      <mi>x</mi>
+      <mo>.</mo>
+      <mi>x</mi>
+      <mo>+</mo>
+      <mn>2</mn>
+      </math>, in which
+      the variable <math><mi>x</mi></math> is bound by
+      <math><mi>&#955;</mi></math>, corresponds to a binding object having
+      as binder the &OM; symbol <math><mi>lambda</mi></math>:
+      <math display="block">
+	<mi mathvariant="bold">binding</mi>
+	<mo>(</mo>
+	<mi>lambda</mi>
+	<mo>,</mo>
+	<mi>x</mi>
+	<mo>,</mo>
+	<mi mathvariant="bold">application</mi>
+	<mo>(</mo>
+	<mi>plus</mi>
+	<mo>,</mo>
+	<mi>x</mi>
+	<mo>,</mo>
+	<mn>2</mn>
+	<mo>)</mo>
+	<mo>)</mo>
+	<mtext>.</mtext>
+      </math>
+    </para>
 
-<para>Phrasebooks are allowed to use <math><mi>&#945;</mi></math>
-  conversion in order to avoid clashes of variable names. Suppose an
-  object <math><mi>&#937;</mi></math> contains an occurrence of the
-  object <math><mi mathvariant="bold">binding</mi>
-  <mo>(</mo><mi>B</mi> <mo>,</mo> <mi>v</mi> <mo>,</mo> <mi>C</mi>
-  <mo>)</mo></math>.  This object <math><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi> <mo>,</mo>
-  <mi>v</mi> <mo>,</mo> <mi>C</mi> <mo>)</mo></math> can be replaced
-  in <math><mi>&#937;</mi></math> by <math><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi> <mo>,</mo>
-  <mi>z</mi> <mo>,</mo> <mi>C'</mi><mo>)</mo></math> where
-  <math><mi>z</mi></math> is a variable not occurring free in
-  <math><mi>C</mi></math> and <math><mi>C'</mi></math> is obtained
-  from <math><mi>C</mi></math> by replacing each free (i.e., not bound
-  by any intermediate <varname>binding</varname> construct) occurrence
-  of <math><mi>v</mi></math> by <math><mi>z</mi></math>.  This
-  operation preserves the semantics of the object
+    <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>-conversion</emphasis>
+    <phrase revisionflag="added">(also called <emphasis>alphabetic
+    renaming</emphasis>)</phrase>
+    in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
+    can be replaced by a
+    <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in
+    the scope of the binding, if all variable references it binds are replaced accordingly:</phrase> 
+    Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
+    object
+    <math revisionflag="changed">
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </math>
+    <phrase revisionflag="added">where
+    <math>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+  </math>
+  and 
+  <math>
+    <mover>
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  are (possibly empty)
+  sequences of bound, possibly attributed variables and <math><mi>x</mi></math> is a
+  variable</phrase>. 
+  This object
+  <math revisionflag="changed">
+    <mi mathvariant="bold">binding</mi>
+    <mo>(</mo>
+    <mi>B</mi>
+    <mo>,</mo>
+    <mover>
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>x</mi>
+    <mo>,</mo>
+    <mover>
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+    <mi>C</mi>
+    <mo>)</mo>
+  </math>
+can be replaced
+in <math><mi>&#937;</mi></math> by
+<math revisionflag="changed">
+  <mi  mathvariant="bold">binding</mi>
+  <mo>(</mo>
+  <mi>B</mi>
+  <mo>,</mo>
+    <mover>
+      <mi>v</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  <mo>,</mo>
+  <mi>y</mi>
+  <mo>,</mo>
+    <mover>
+      <mi>w'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>,</mo>
+  <mi>C'</mi>
+  <mo>)</mo>
+</math>
+where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
+</math> or <math><mi>C</mi></math>
+  <phrase revisionflag="added"> 
+    and 
+  <math>
+    <mover>
+      <mi>w'</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  and
+  <math><mi>C'</mi></math>
+  are
+  </phrase> obtained
+  from
+  <phrase revisionflag="added">
+  <math>
+    <mover>
+      <mi>w</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+  </math>
+  and 
+  </phrase>
+  <math><mi>C</mi></math>,
+  by replacing each free occurrence
+  of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
+  <phrase revisionflag="added">
+    If instead of 
+    <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>,  we have an attributed
+    variable 
+  <math>
+    <mi mathvariant="bold">attribution</mi>
+    <mo>(</mo>
+    <mi>x</mi>
+    <mo>,</mo>
+    <mover>
+      <mi>a</mi>
+      <mo>&#x2192;</mo>
+    </mover>
+    <mo>)</mo>
+    </math>, then instead of <math><mi>y</mi></math> we
+    must have
+    <math>
+      <mi mathvariant="bold">attribution</mi>
+      <mo>(</mo>
+      <mi>y</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>a</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>)</mo>
+    </math>
+  </phrase>
+  This operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
   thus allowed to transform the object to, e.g. 
-  <math  display="block"><mi
-  mathvariant="bold">binding</mi><mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>z</mi> <mo>,</mo> <mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>plus</mi><mo>,</mo>
-  <mi>z</mi> <mo>,</mo>
-  <mn>2</mn><mo>)</mo><mo>)</mo><mtext>.</mtext></math>
+  <math  display="block">
+    <mi mathvariant="bold">binding</mi>
+    <mo>(</mo>
+    <mi>lambda</mi>
+    <mo>,</mo>
+    <mi>z</mi>
+    <mo>,</mo>
+    <mi mathvariant="bold">application</mi>
+    <mo>(</mo>
+    <mi>plus</mi>
+    <mo>,</mo>
+    <mi>z</mi>
+    <mo>,</mo>
+    <mn>2</mn>
+    <mo>)</mo>
+    <mo>)</mo>
+    <mtext>.</mtext>
+  </math>
 </para>
-<para>Repeated occurrences of the same variable in a binding operator
-  are allowed. An &OM; application should treat a binding with
-  multiple occurrences of the same variable as equivalent to the
-  binding in which all but the last occurrence of each variable is
-  replaced by a new variable which does not occur free in the body of
-  the binding.  <math display="block"><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi><mo>,</mo>
-  <mi>v</mi> <mo>,</mo> <mi>v</mi> <mo>,</mo><mi
-  mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> is semantically
-  equivalent to: <math display="block"><mi
-  mathvariant="bold">binding</mi> <mo>(</mo><mi>lambda</mi> <mo>,</mo>
-  <msup><mi>v</mi><mo>'</mo></msup> <mo>,</mo> <mi>v</mi>
-  <mo>,</mo><mi mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math> so that the
-  resulting function is actually a constant in its first argument
-  (<math><msup><mi>v</mi><mo>'</mo></msup></math> does not occur free
-  in the body <math><mi mathvariant="bold">application</mi>
-  <mo>(</mo><mi>times</mi><mo>,</mo><mi>v</mi>
-  <mo>,</mo><mi>v</mi><mo>)</mo> <mo>)</mo></math>).</para>
-
-  
+<para>
+  <phrase revisionflag="changed"> Note that repeated variable bindings of the same
+  variable in a binding object are allowed, but make little sense semantically and are
+  therefore discouraged: the first binding binds only references in the subsequent
+  bindings up to and including the next binding for the same name. 
+  Therefore, an &OM; application may choose to <math><mi>&#945;</mi></math>-convert all
+  but the last binding to new variables. Concretely, the following replacement is carried
+  out until there are no more  bound variable duplications:
+  <math display="block">
+    <mrow>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>u</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>y</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </mrow>
+    <mo>&#x27F6;</mo>
+    <mrow>
+      <mi mathvariant="bold">binding</mi>
+      <mo>(</mo>
+      <mi>B</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>u</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>x'</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>v'</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>y'</mi>
+      <mo>,</mo>
+      <mover>
+	<mi>w</mi>
+	<mo>&#x2192;</mo>
+      </mover>
+      <mo>,</mo>
+      <mi>C</mi>
+      <mo>)</mo>
+    </mrow>
+  </math>
+  where <math><mi>x</mi></math> and <math><mi>y</mi></math> are (possibly attributed)
+  variables with the same head <math><mi>z</mi></math>, the heads of bound (attributed)
+  variables in <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math> are all different
+  from <math><mi>z</mi></math>, and <math><mi>x'</mi></math>,
+  <math><mi>y'</mi></math>, and 
+  <math><mover><mi>v'</mi><mo>&#x2192;</mo></mover></math> are obtained from
+  <math><mi>x</mi></math>,   <math><mi>y</mi></math>, and 
+  <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>
+  by replacing <math><mi>z</mi></math> with a variable
+  <math><mi>z'</mi></math> that does not occur in <math><mi>x</mi></math>,
+  <math><mi>y</mi></math>, <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math>,
+  <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>,
+  <math><mover><mi>w</mi><mo>&#x2192;</mo></mover></math>, and <math><mi>C</mi></math>.
+  </phrase>
+</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
-  object with a sequence of one or more pairs made up of an &OM;
+  object <phrase revisionflag="added">(called the <quote>syntactic head</quote> of the attribution)</phrase> with a sequence of one or more pairs made up of an &OM;
   symbol, the <quote>attribute</quote>, and an associated object, 
   the <quote>value of the
   attribute</quote>.  The value of the attribute can be an <phrase
@@ -708,7 +959,10 @@ expression could be attributed with its spoken or visual rendering.
   width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo><mtext>.</mtext></math>
   The operation that produces an object with a single layer of
-  attribution is called <emphasis>flattening</emphasis>.</para>
+  attribution is called <emphasis>flattening</emphasis>. <phrase revisionflag="added">The
+  <quote>head</quote> of an attribution is the syntactic head of the fully (recursively)
+  flattened version.</phrase>
+</para>
 
 <para>Multiple attributes with the same name are allowed.  While the
   order of the given attributes does not imply any notion of priority,
@@ -742,7 +996,7 @@ displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
 Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are
-<phrase role="finaledit">arbitary</phrase> &OM;
+<phrase role="finaledit">arbitrary</phrase> &OM;
 objects <phrase role="finaledit">whereas <math><mi>colour</mi></math> is
 a symbol</phrase>.
 An example of the use of a semantic attribution would be to indicate the
@@ -753,7 +1007,7 @@ mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 represents the judgment stating that object <math><mi>A</mi></math>
 has type <math><mi>t</mi></math>. Note that both
 <math><mi>A</mi></math> and <math><mi>t</mi></math> are <phrase
-role="finaledit">arbitary</phrase> &OM;
+role="finaledit">arbitrary</phrase> &OM;
 objects <phrase role="finaledit">whereas <math><mi>type</mi></math> is
 a symbol</phrase>.</para>
 
@@ -1210,9 +1464,8 @@ for more detailed information.</para>
   <OMV name="x"/>  
 </OMA>]]></literallayout>
   provided that the symbol <systemitem>sin</systemitem> is defined to be a function
-  symbol in a Content Dictionary named <systemitem>transc1</systemitem>.</para>
-
-  
+  symbol in a Content Dictionary named <systemitem>transc1</systemitem>.
+</para>
 </listitem>
 </varlistentry>
 <varlistentry><term>Binding</term><listitem><para>is encoded using the <systemitem>OMBIND</systemitem> element.  The binding
@@ -1264,9 +1517,12 @@ or to express the type of a variable:
     <OMS cd="ecc" name="real" />
   </OMATP> 
   <OMV name="x" />
-</OMATTR>]]></literallayout></para>
+</OMATTR>]]></literallayout>
+</para>
 
-  
+</listitem>
+</varlistentry>
+<varlistentry><term>Foreign Objects</term><listitem>
 <para>
 A special use of attributions is to associate non-&OM; data with an
 &OM; object.  This is done using the
@@ -1384,7 +1640,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
  <systemitem>href</systemitem> attribute. Note that this copy
  is <emphasis>structurally equal</emphasis>, but not identical
  to the element referenced. <phrase role="finaledit">These URI
- refererences will often be relative, in which case they are resolved using
+ references will often be relative, in which case they are resolved using
  the base URI of the document containing the &OM;.</phrase></para>
 
  <para>For instance, the &OM; object
@@ -1485,7 +1741,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
         <OMV name="a"/>
       </OMA>
     </OMA>
-  </OMA>
+  </OMA>                        </OMA>
 </OMOBJ>                     </OMOBJ>]]>
 </literallayout>
 </figure>
@@ -2876,7 +3132,7 @@ For example,
       scoping devices is to associate a <systemitem>cdbase</systemitem> with an
       object. The start token [9] (or [137] if the long flag is set) is followed
       by a single-byte (or 4-byte- if the long flag is set) number
-      <math><mi>n</mi></math> and then by a seqence of <math><mi>n</mi></math>
+      <math><mi>n</mi></math> and then by a sequence of <math><mi>n</mi></math>
       bytes that represent the value of the <systemitem>cdbase</systemitem>
       attribute (a URI) in <acronym>utf-8</acronym> encoding. This is then followed by the binary
       encoding of a single object: the object over which this
@@ -3719,7 +3975,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       element determines the default value for all contained
       <systemitem>OMOBJ</systemitem> elements.  Similarly, the value of the optional
       <systemitem>cdgroup</systemitem> attribute determines the default of
-      <systemitem>cdgroup</systemitem> contined <systemitem>OMOBJ</systemitem> elements.
+      <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
     </para>
   </listitem>
   </varlistentry>
@@ -3969,7 +4225,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
     <systemitem>CDSignatures</systemitem> element determines the default value for all
     contained <systemitem>OMOBJ</systemitem> elements.  Similarly, the value of the
     optional <systemitem>cdgroup</systemitem> attribute determines the default of
-    <systemitem>cdgroup</systemitem> contined <systemitem>OMOBJ</systemitem> elements.
+    <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
   </para>
 
   <para revisionflag="added">
@@ -4882,18 +5138,32 @@ details of how this attribute is used are not mandated by the standard.
         </para>
       </listitem>
     </itemizedlist>
-    
-    </section>
+  </section>
 
-      <section id="chgr2">
+    <section id="chgr2">
     <title>Changes in 2.0 Revision 2</title>
-    
     <itemizedlist>
       <listitem>
 	<para revisionflag="added">
 	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
 	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
         </para>
+      </listitem>
+      <listitem>
+	<para revisionflag="added">
+	  The notion of the head of an attribution has been introduced to clarify the
+	  notion of an attributed variable.
+	</para>
+	<para revisionflag="added">
+	  The notion of alphabetic renaming has been clarified. It now specifies what
+	  should happen in the presence of attributed bound variables: the variables in
+	  the attribute values need to be renamed as well.  
+	</para>
+	<para revisionflag="added">
+	  Duplicate bound variables in binders have been deprecated, since they make no
+	  sense. The fallback semantics of duplicate variables been clarified for the case
+	  of attributed bound variables.
+	</para>
       </listitem>
       <listitem>
 	<para revisionflag="added">
@@ -4935,7 +5205,6 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
     </itemizedlist>
   </section>
-  
 </appendix>
 
 
@@ -6288,3 +6557,36 @@ Types</title>
 </book>
 
 
+
+<!--  LocalWords:  Buswell Caprotti machine-generatable summarizes recognize bignums th
+-->
+<!--  LocalWords:  cdbase bytearray bytearrays indeterminates rdf transc1 mathml:csymbol
+-->
+<!--  LocalWords:  xmlns:mathml xsd:NCName rfc aritherror mathml unhandled_csymbol xmlns
+-->
+<!--  LocalWords:  Acyclicity varname cdname symbname bvars attrpairs attrvar xf 160;the
+-->
+<!--  LocalWords:  characterize arith1:plus arith1 documentclass maketitle regexp-based
+-->
+<!--  LocalWords:  openmath.rnc attlist.OMS arith1.rnc arith1.ocd Freundt Roozemond Nuprl
+-->
+<!--  LocalWords:  Gonnet Fuchssteiner Cleaveland Mendler Panangaden TeXbook Ppml Spivak
+-->
+<!--  LocalWords:  Beguelin Dongarra Manchek Sunderam factorization Capani Niesi Robbiano
+-->
+<!--  LocalWords:  Giovini Bibliomiscs Visigenic Pingali Vavasis Zippel Melham Mechanized
+-->
+<!--  LocalWords:  Gefwert Orponen Voronkov Ballarin Calmet Levelt Howgrave-Graham Andr
+-->
+<!--  LocalWords:  Strotmann bner Bibliomisc ller Manocha Multipolynomial Waldspurger
+-->
+<!--  LocalWords:  Sausse Vorkoetter Shand Marrin Formalized Lemmink isenkatu Seppala
+-->
+<!--  LocalWords:  Geuvers Calculemus Borenstein Yergeau Arjeh Jebelean Kriftner Tomuta
+-->
+<!--  LocalWords:  Vasaru Analytica Devitt Soiffer Sutor CtCoqmath Pecchiari Talcott
+-->
+<!--  LocalWords:  Bertot Well-formedness Labrou phane Huchet Limongelli cdgroup 160;the
+-->
+<!--  LocalWords:  prioritized Internationalized 160;the cdurl n-ary
+-->

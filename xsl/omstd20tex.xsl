@@ -770,6 +770,7 @@ changelog entry here
 <xsl:template match="mo[.='&#945;']">\alpha </xsl:template>
 <xsl:template match="mi[.='&#960;']">\pi </xsl:template>
 <xsl:template match="mi[.='&#8230;']">\ldots </xsl:template>
+<xsl:template match="mo[.='&#8804;']">\leq </xsl:template>
 
 <xsl:template match="phrase[.='&#8230;']">\ldots </xsl:template>
 <xsl:template match="phrase[.='&#8211;']">\textendash </xsl:template>
