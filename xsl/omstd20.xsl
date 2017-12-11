@@ -213,6 +213,7 @@ background-color: yellow;
 .lowerroman {
 list-style-type: lower-roman;
 }
+.definiendum {font-weight:bold;}
 </style>
 </xsl:variable>
 
@@ -623,7 +624,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:template>
 
 <xsl:template match="term[@id]" priority="1">
- <span id="{@id}"><xsl:apply-templates/></span>
+ <span id="{@id}" class="definiendum"><xsl:apply-templates/></span>
 </xsl:template>
 
 <xsl:template match="varname">

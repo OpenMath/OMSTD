@@ -45,7 +45,7 @@ please consult the &OM; web-site at
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
 <para revisionflag="changed">This document includes an overview of the
-&OM; architecture, an abstract description of &OM; objects and two
+&OM; architecture, an abstract description of <xref linkend="omobj"/>s and two
 mechanisms for producing concrete encodings of such objects.  The first,
 in &exml; (either innate or Strict Content MathML), is designed primarily 
 for use on the web, in documents, and
@@ -88,15 +88,15 @@ linkend="fig_om"/> and summarizes the interactions among the different
 &OM; components.  There are three layers of representation of a
 mathematical object. The first is a  private layer that
 is the internal representation used by an application.  The second is
-an abstract layer that is the representation as an &OM; object.
+an abstract layer that is the representation as an <xref linkend="omobj"/>.
 <phrase>Note that these
 two layers may, in some cases, be the same.</phrase>
 The third is a
-communication layer that translates the &OM; object representation into
+communication layer that translates the <xref linkend="omobj"/> representation into
 a stream of bytes. An application dependent program manipulates the
 mathematical objects using its internal representation, it can convert
-them to &OM; objects and communicate them by using the byte stream
-representation of &OM; objects.</para>
+them to <xref linkend="omobj"/>s and communicate them by using the byte stream
+representation of <xref linkend="omobj"/>s.</para>
 <para revisionflag="added">
  This standard does not describe the mechanisms by which software systems may offer,
  or make use of, computational services. The currently-suggested mechanism is the 
@@ -108,13 +108,12 @@ Symbolic Computation Software Composability Protocol (SCSCP)
 <section id="sec_intro-obj">
 <title>&OM; Objects and Encodings</title>
 
-
-<para>&OM; objects are representations of mathematical entities that
+<para><xref linkend="omobj"/>s are representations of mathematical entities that
 can be communicated among various software applications in a
 meaningful way, that is, preserving their
 <quote>semantics</quote>.</para>
 
-<para>&OM; objects and encodings are described in detail in <xref
+<para><xref linkend="omobj"/>s and encodings are described in detail in <xref
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
@@ -139,7 +138,7 @@ linkend="cha_obj"/>. </phrase>
 
 
 <para>Content Dictionaries (CDs) are used to assign informal and formal
-semantics to all symbols used in the &OM; objects. They define the
+semantics to all symbols used in the <xref linkend="omobj"/>s. They define the
 symbols used to represent concepts arising in a particular area of
 mathematics.</para>
 
@@ -170,19 +169,19 @@ discussed by the standard.</para>
 <section id="sec_phrasebooks">
 <title>Phrasebooks</title>
 
-<para>The conversion of an &OM; object to/from the internal
+<para>The conversion of an <xref linkend="omobj"/> to/from the internal
 representation in a software application is performed by an interface
-program called a <emphasis>Phrasebook</emphasis>. The translation is
+program called a <term id="phrasebook">Phrasebook</term>. The translation is
 governed by the Content Dictionaries and the specifics of the
 application. It is envisioned that a software application dealing with
 a specific area of mathematics declares which Content Dictionaries it
-understands. As a consequence, it is expected that the Phrasebook of
-the application is able to translate &OM; objects built using symbols
+understands. As a consequence, it is expected that the <xref linkend="phrasebook"/> of
+the application is able to translate <xref linkend="omobj"/>s built using symbols
 from these Content Dictionaries to/from the internal mathematical
 objects of the application.
 </para>
 
- <para revisionflag="changed">&OM; objects do not
+ <para revisionflag="changed"><xref linkend="omobj"/>s do not
 specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
@@ -204,39 +203,40 @@ the Symbolic Computation Software Composability Protocol (SCSCP)
 <chapter id="cha_obj">
 <title>&OM; Objects</title>
 
-
-
-<para>In this chapter we provide a self-contained description of &OM;
-objects. We first do so by means of an abstract grammar
-description (<xref linkend="sec_omabs"/>)
-and then give a more informal description (<xref
-linkend="sec_omin"/>).</para>
+<para>
+  In this chapter we provide a self-contained description of <xref linkend="omobj"/>s. We first do so
+  by means of an abstract grammar description (<xref linkend="sec_omabs"/>) and then give
+  a more informal description (<xref linkend="sec_omin"/>).
+</para>
 
 
 <section id="sec_omabs">
 <title>Formal Definition of &OM; Objects</title>
 
-
-<para>&OM; represents mathematical objects as terms or as labelled
-trees that are called &OM; objects or &OM; expressions. The definition
-of an abstract &OM; object is then the following.</para>
+<para>&OM; represents mathematical objects as terms or as labelled trees that are called
+<term id='omobj'>&OM; object</term>s or &OM; expressions. The definition of an abstract
+<xref linkend="omobj"/> is then the following.</para>
 
 
 <section id="sec_basic">
-<title>Basic &OM; objects</title> <para>The Basic &OM; Objects form
-the leaves of the &OM; Object tree.  A Basic &OM; Object is of one of
-the following.</para> 
-<itemizedlist>
-<listitem><para><phrase>(i)</phrase> Integer.</para> <para>Integers in
-  the mathematical sense, with no predefined range.  They are
-  <quote>infinite precision</quote> integers (also called
-  <quote>bignums</quote> in computer algebra).</para>
-
-</listitem>
-<listitem><para><phrase>(ii)</phrase> <acronym>ieee</acronym> floating point
-    number.</para> <para>Double precision floating-point numbers
-    following the <acronym>ieee</acronym> 754-1985
-    standard&#160;<citation>ieee754_85</citation>.</para>
+  <title>Basic &OM; objects</title>
+  <para>
+    The Basic &OM; Objects form the leaves of the &OM; Object tree.  A Basic &OM;
+    Object is of one of the following.
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para><phrase>(i)</phrase> Integer.</para>
+      <para>
+	Integers in the mathematical sense, with no predefined range.  They are
+	<quote>infinite precision</quote> integers (also called <quote>bignums</quote> in
+	computer algebra).
+      </para>
+    </listitem>
+    <listitem>
+      <para><phrase>(ii)</phrase> <acronym>ieee</acronym> floating point number.</para>
+      <para>Double precision floating-point numbers following the <acronym>ieee</acronym>
+      754-1985 standard&#160;<citation>ieee754_85</citation>.</para>
 
 </listitem>
 <listitem><para><phrase>(iii)</phrase> Character string.</para>
@@ -253,34 +253,30 @@ the following.</para>
 </listitem>
 <listitem><para><phrase>(v)</phrase> Symbol.</para>
 
-    <para>A Symbol encodes three fields of
-    information, a <emphasis>symbol name</emphasis>, a <emphasis>Content
-    Dictionary name</emphasis>, and (optionally) a <emphasis>Content
-    Dictionary base URI</emphasis>, The name of a symbol is a sequence
-    of characters matching the regular expression described in <xref
-    linkend="sec_names"/>.  The Content Dictionary is the location of
-    the definition of the symbol, consisting of a name (a sequence of
-    characters matching the regular expression described in <xref
-    linkend="sec_names"/>) and, optionally, a unique prefix called a
-    <emphasis>cdbase</emphasis> which is used to disambiguate multiple
-    Content Dictionaries of the same name.  There are other properties
-    of the symbol that are not explicit in these fields but whose
-    values may be obtained by inspecting the Content Dictionary
-    specified. These include the symbol definition, formal properties
-    and examples and, optionally, a <emphasis>Role</emphasis> which is
-    a restriction on where the symbol may appear in an &OM; object.  The
-    possible roles are described in <xref linkend="sec_roles"/>.
+    <para>A Symbol encodes three fields of information, a <term id="symname">symbol
+    name</term>, a <term id="cdname">Content Dictionary name</term>, and (optionally) a
+    <term id="cdbase">Content Dictionary base URI</term>, The name of a symbol is a
+    sequence of characters matching the regular expression described in <xref
+    linkend="sec_names"/>.  The Content Dictionary is the location of the definition of
+    the symbol, consisting of a name (a sequence of characters matching the regular
+    expression described in <xref linkend="sec_names"/>) and, optionally, a unique prefix
+    called a <term id="cdbase">cdbase</term> which is used to disambiguate multiple
+    Content Dictionaries of the same name.  There are other properties of the symbol that
+    are not explicit in these fields but whose values may be obtained by inspecting the
+    Content Dictionary specified. These include the symbol definition, formal properties
+    and examples and, optionally, a <xref linkend="role"/> which is a restriction on where
+    the symbol may appear in an <xref linkend="omobj"/>.  The possible roles are described in <xref
+    linkend="sec_roles"/>.
     </para>
-
 </listitem>
-<listitem><para><phrase>(vi)</phrase> Variable.</para>
 
-
-<para>A Variable <phrase>must have</phrase> a
-<emphasis>name</emphasis> which is a sequence of characters matching a
-regular expression, as described in <xref linkend="sec_names"/>.
+<listitem>
+  <para>
+    <phrase>(vi)</phrase> Variable.
+  </para>
+<para>A Variable must have a <term id="varname">name</term> which is a sequence of
+characters matching a regular expression, as described in <xref linkend="sec_names"/>.
 </para>
-
 </listitem>
 </itemizedlist>
 </section>
@@ -288,16 +284,16 @@ regular expression, as described in <xref linkend="sec_names"/>.
 <section id="sec_derived">
 <title>Derived &OM; Objects</title>
 
-<para>Derived &OM; objects are currently used as a way by which non-&OM;
-data is embedded inside an &OM; object.
-A derived &OM; object is built as follows: 
+<para>Derived &OM; objects are currently used as a way by which non-&OM; data is embedded
+inside an <xref linkend="omobj"/>.  A <term id="derivedobj">derived &OM; object</term> is built as follows:
 <itemizedlist>
-<listitem><para><phrase>(i)</phrase> If <math><mi>A</mi></math> is
-<emphasis>not</emphasis> an &OM; object, then <math><mi
-mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM;
-<emphasis>foreign object</emphasis>.  An &OM; foreign object may optionally
-have an <emphasis>encoding</emphasis> field which describes how its contents
-should be interpreted.</para> 
+  <listitem>
+    <para><phrase>(i)</phrase> If <math><mi>A</mi></math> is <emphasis>not</emphasis> an
+    <xref linkend="omobj"/>, then <math><mi
+    mathvariant="bold">foreign</mi><mfenced><mi>A</mi></mfenced></math> is an &OM; <term
+    id="foreignobj">foreign object</term>.  An &OM; foreign object may optionally have an
+    <term id="encoding">encoding</term> field which describes how its contents should be
+    interpreted.</para>
 </listitem>
 </itemizedlist>
 </para>
@@ -306,11 +302,11 @@ should be interpreted.</para>
 <section id="sec_compound">
 <title>&OM; Objects</title>
   
-<para>&OM; objects are built recursively as follows.
+<para><xref linkend="omobj"/>s are built recursively as follows.
 <itemizedlist>
-<listitem><para><phrase>(i)</phrase> Basic &OM; objects are &OM; objects.
-(<phrase>Note that derived &OM; objects are
-<emphasis>not</emphasis> &OM; objects, but are used to construct &OM;
+<listitem><para><phrase>(i)</phrase> Basic &OM; objects are <xref linkend="omobj"/>s.
+(<phrase>Note that <xref linkend="derivedobj"/>s are
+<emphasis>not</emphasis> <xref linkend="omobj"/>s, but are used to construct &OM;
 objects as described below.)</phrase></para>
 </listitem>
 
@@ -321,20 +317,26 @@ objects as described below.)</phrase></para>
     <phrase>&#8230;</phrase>,
     <math><msub><mi>A</mi><mi>n</mi></msub></math>
     <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math>
-    are &OM; objects, then
+    are <xref linkend="omobj"/>s, then
   <math display="block">
   <mi mathvariant="bold">application</mi><mo>(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
-  is an &OM; <emphasis>application object</emphasis>.</para>
+  is an <term id="applobj">&OM; application object</term>. <phrase revisionflag="added">We call
+  <math><msub><mi>A</mi><mn>1</mn></msub></math> the <term id="function">function</term>
+  and  <math><msub><mi>A</mi><mn>2</mn></msub></math> to
+  <math><msub><mi>A</mi><mn>1</mn></msub></math> the <term
+  id="argument">argument</term>s.</phrase></para>
     
  </listitem> <listitem><para><phrase>(iii)</phrase> If
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
   are &OM; symbols, and
 <phrase>
-<math><mi>A</mi></math> is an &OM; object, and
-  <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>A</mi><mi>n</mi></msub></math> <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are &OM; objects or &OM; derived objects, then
+<math><mi>A</mi></math> is an <xref linkend="omobj"/>, and
+<math><msub><mi>A</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>,
+<math><msub><mi>A</mi><mi>n</mi></msub></math>
+<math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are <xref linkend="omobj"/>s or
+<xref linkend="derivedobj"/>s, then
 </phrase>
 
   <math display="block"><mi mathvariant="bold">attribution</mi>
@@ -342,52 +344,43 @@ objects as described below.)</phrase></para>
   <mspace width=".3em"/> <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo>
   <mspace width=".3em"/> <mi>&#8230;</mi> <mspace width=".3em"/>
   <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
-  <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM;
-  <emphasis>attribution object</emphasis>.
+  <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM; <term
+  id="attrobj">attribution object</term>. <phrase revisionflag="added">We call
+  <math><mi>A</mi></math> the <term id="attobject">attributed object</term>, the
+  <math><msub><mi>S</mi><mi>i</mi></msub></math> the <term id="key">keys</term>, and the
+  <math><msub><mi>A</mi><mi>i</mi></msub></math> the <term id="attval">attribute
+  value</term>s.</phrase>
   </para> 
 
-  <para>
-  <math><mi>A</mi></math>
-  is the object <emphasis>stripped of attributions</emphasis>. <phrase
- >
-  <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
-  <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
-  are referred to as <emphasis>keys</emphasis> and
-  <math><msub><mi>A</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>,
-  <math><msub><mi>A</mi><mi>n</mi></msub></math> as their associated
-  <emphasis>values</emphasis></phrase>.
-  <phrase >If, after  recursively
-  applying stripping to remove attributions, the resulting
-  un-attributed object is a 
-  variable, the original attributed object is called an <emphasis>attributed
-  variable</emphasis>.</phrase>
+  <para revisionflag="changed">
+    If the <xref linkend="attobj"/> is a  variable, the original attribution is called an
+    <term id="attvar">attributed  variable</term>.
   </para>
 </listitem>
 
 <listitem>
   <para>
     <phrase>(iv)</phrase> If <math><mi>B</mi></math> and
-  <math><mi>C</mi></math> are &OM; objects, and
+  <math><mi>C</mi></math> are <xref linkend="omobj"/>s, and
   <math><msub><mi>v</mi><mn>1</mn></msub></math>,
   <math><mi>&#8230;</mi></math>,
   <math><msub><mi>v</mi><mi>n</mi></msub></math>
   <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
-  <mn>0</mn><mo>)</mo></math> are &OM; variables or attributed
-  variables, then 
+  <mn>0</mn><mo>)</mo></math> are &OM; variables or <xref linkend="attvar"/>s, then 
   <math display="block">
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
-  is an &OM; <emphasis>binding object</emphasis>.
+  is an &OM; <term id="bindingobj">binding object</term>.
   <phrase revisionflag="added">
-    <math><mi>B</mi></math> is called the <emphasis>binder</emphasis>,  
+    <math><mi>B</mi></math> is called the <term id="binder">binder</term>,  
     <math><msub><mi>v</mi><mn>1</mn></msub></math>,
     <math><mi>&#8230;</mi></math>,
     <math><msub><mi>v</mi><mi>n</mi></msub></math>
-    are called <emphasis>variable bindings</emphasis>,
+    are called <term id="varbindings">variable binding</term>s,
     and <math><mi>C</mi></math> is called the
-    <emphasis>body</emphasis> of the binding object above.   To distinguish the two different ways how variable objects are used, any variable object
-  that is not a variable binding is called a <emphasis>variable reference</emphasis>.
+    <term id="body">body</term> of the binding object above.
+    To distinguish the two different ways how variable objects are used, any variable object
+    that is not a variable binding is called a <term id="varreference">variable reference</term>.
   </phrase>
 </para>
 </listitem>
@@ -397,17 +390,17 @@ objects as described below.)</phrase></para>
 <phrase>&#8230;</phrase>,
 <math><msub><mi>A</mi><mi>n</mi></msub></math>
 <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
-<mn>0</mn><mo>)</mo></math> are &OM; objects 
-<phrase> or &OM; derived objects</phrase>, then <math
+<mn>0</mn><mo>)</mo></math> are <xref linkend="omobj"/>s 
+<phrase> or <xref linkend="derivedobj"/>s</phrase>, then <math
 display="block"><mi mathvariant="bold">error</mi>
 <mo>(</mo><mi>S</mi><mo>,</mo>
 <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
-  is an &OM; <emphasis>error object</emphasis>.</para>
+  is an &OM; <term id="errorobject">error object</term>.</para>
 </listitem>
 </itemizedlist>
- <phrase>&OM; objects that are constructed via rules (ii)
-   to (v) are jointly called <phrase role="sl">compound &OM; objects</phrase></phrase>
+ <xref linkend="omobj"/>s that are constructed via rules (ii)
+   to (v) are jointly called <term id="compoundobject">compound &OM; object</term>s.
 </para>
 </section>
 
@@ -415,62 +408,74 @@ display="block"><mi mathvariant="bold">error</mi>
 <title>&OM; Symbol Roles</title>
 
 <para>
-We say that an &OM; symbol is used to <emphasis>construct</emphasis>
-an &OM; object if it is the first child of an &OM; application,
-binding or error object, or an even-indexed child of an &OM;
-attribution object (i.e. the <emphasis>key</emphasis> in a
-<emphasis>(key, value)</emphasis> pair).
-The <emphasis>role</emphasis> of an &OM; symbol is a restriction
-on how it may be used to construct a compound &OM; object and, in the
-case of the key in an attribution object, a clarification of how that
-attribution should be interpreted.  <phrase role="finaledit">The </phrase>possible roles are:
+We say that an &OM; symbol is used to <emphasis>construct</emphasis> an <xref linkend="omobj"/> if it
+is the first child of an <xref linkend="applobj"/>, <xref linkend="bindingobj"/> or <xref
+linkend="errorobj"/>, or an even-indexed child of an &OM; <xref linkend="attrobj"/>
+(i.e. the <xref linkend="key"/> in a <emphasis>(key, value)</emphasis> pair).  The <term
+id="role">role</term> of an &OM; symbol is a restriction on how it may be used to
+construct a <xref linkend="compoundobj"/> and, in the case of the key in an <xref linkend="attrobj"/>, a
+clarification of how that attribution should be interpreted.  The possible roles are:
 <orderedlist numeration="lowerroman">
+  <listitem>
+    <para><term id="binderrole">binder</term> The symbol may 
+    appear as the first child of an &OM; binding object.
+    </para>
+  </listitem>
 
-<listitem><para><emphasis>binder</emphasis> The symbol may 
-appear as the first child of an &OM; binding object.
-</para></listitem>
+  <listitem>
+    <para><term id="attributionrole">attribution</term>
+    The symbol may 
+    be used as key in an &OM; <xref linkend="attrobj"/>, i.e. as the first
+    element of a (key, value) pair, or in an equivalent context (for example
+    to refer to the value of an attribution).  This form of attribution
+    may be ignored by an application, so should be used for information
+    which does not change the meaning of the attributed &OM; object.
+    </para>
+  </listitem> 
 
-<listitem><para> <emphasis>attribution</emphasis> The symbol may 
-be used as key in an &OM; attribution object, i.e. as the first
-element of a (key, value) pair, or in an equivalent context (for example
-to refer to the value of an attribution).  This form of attribution
-may be ignored by an application, so should be used for information
-which does not change the meaning of the attributed &OM; object.
-</para></listitem> 
+  <listitem>
+    <para>
+      <term id="semantic-attribution-role">semantic-attribution</term> This is the same as
+      <xref linkend="attributionrole"/> except that it modifies the meaning of the
+      attributed &OM; object and thus cannot be ignored by an application, without
+      changing the meaning.
+    </para>
+  </listitem>
 
-<listitem><para> <emphasis>semantic-attribution</emphasis> This is the
-same as <emphasis>attribution</emphasis> except that it modifies the
-meaning of the attributed &OM; object and thus cannot be ignored by an
-application<phrase role="finaledit">, without changing the meaning</phrase>.  </para></listitem> 
+  <listitem>
+    <para>
+      <term id="errorrole">error</term> The symbol may appear as the first child of an
+      &OM; <xref linkend="errorobj"/>.
+    </para>
+  </listitem>
 
-<listitem><para> <emphasis>error</emphasis> The symbol <phrase role="finaledit">may</phrase> appear
-as the first child of an &OM; error object.  </para></listitem>
+  <listitem>
+    <para>
+      <term id="applicationrole">application</term> The symbol may appear as the first
+      child of an &OM; <xref linkend="applobj"/>.
+    </para>
+  </listitem>
 
-<listitem><para> <emphasis>application</emphasis> The symbol <phrase role="finaledit">may</phrase> appear
-as the first child of an &OM; application object.  </para></listitem>
-
-<listitem><para> <emphasis>constant</emphasis> The symbol cannot be
-used to construct an &OM; compound object.
-
-</para></listitem>
-
+  <listitem>
+    <para>
+      <term id="constantrole">constant</term> The symbol cannot be used to construct an
+     <xref linkend="compoundobj"/>.
+    </para>
+  </listitem>
 </orderedlist>
 
-A symbol cannot have more than one role and 
-cannot be used to construct a compound &OM; object in a way
-which requires a different role (using the definition of construct given
-earlier in this section).
-This means that one cannot use a symbol which binds some variables to
-construct, say, an application object.  However it does not prevent
-the use of that symbol as an <emphasis>argument</emphasis> in an
-application object (where by argument we mean a child with index
-greater than 1). 
+A symbol cannot have more than one role and cannot be used to construct a <xref
+linkend="compoundobj"/> in a way which requires a different role (using the definition of
+construct given earlier in this section).  This means that one cannot use a symbol which
+binds some variables to construct, say, an <xref linkend="applobj"/>.  However it does not
+prevent the use of that symbol as an <xref linkend="argument"/> in an <xref
+linkend="appobj"/><phrase revisionflag="deleted"> (where by argument we mean a child
+with index greater than 1)</phrase>.
 </para>
 
 <para> 
-If no role is indicated then the symbol can be used anywhere.  Note
-that this is not the same as saying that the symbol's role is
-<emphasis>constant</emphasis>.
+  If no role is indicated then the symbol can be used anywhere.  Note that this is not the
+  same as saying that the symbol's role is <xref linkend="constantrole"/>.
 </para>
 </section>
 </section>
@@ -478,126 +483,146 @@ that this is not the same as saying that the symbol's role is
 <section id="sec_omin">
 <title>Further Description of &OM; Objects</title>
 
-<para>Informally, an &OM; <phrase role="sl">object</phrase> can be
-viewed as a tree and is also referred to as a term.  The objects at
-the leaves of &OM; trees are called <phrase role="sl">basic
-objects</phrase>.  The basic objects supported by &OM; are:
+<para>
+  Informally, an &OM; <phrase role="sl">object</phrase> can be viewed as a tree and is
+  also referred to as a term.  The objects at the leaves of &OM; trees are called <phrase
+  role="sl">basic objects</phrase>.  The basic objects supported by &OM; are:
+  <variablelist>
+    <varlistentry>
+      <term>Integer</term>
+      <listitem>
+	<para>Arbitrary Precision integers.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Float</term>
+      <listitem>
+	<para>
+	  &OM; floats are <acronym>ieee</acronym> 754 Double precision floating-point
+	numbers. Other types of floating point number may be encoded in &OM; by the use of
+	suitable content dictionaries.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Character strings</term>
+      <listitem>
+	<para>are sequences of characters. These characters come from the Unicode
+	standard&#160;<citation>UNICODE</citation>.
+	</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Bytearrays</term>
+      <listitem>
+	<para>are sequences of bytes. There is no <quote>byte</quote> in &OM; as an object
+	of its own. However, a single byte can of course be represented by a bytearray of
+	length 1.  The difference between strings and bytearrays is the following: a
+	character string is a sequence of bytes with a fixed interpretation (as
+	characters, Unicode texts may require several bytes to code one character),
+	whereas a bytearray is an uninterpreted sequence of bytes with no intrinsic
+	meaning.  Bytearrays could be used inside &OM; errors to provide information to,
+	for example, a debugger; they could also contain intermediate results of
+	calculations, or <quote>handles</quote> into computations or databases.</para>
+      </listitem>
+    </varlistentry>
+
+    <varlistentry>
+      <term>Symbols</term>
+      <listitem>
+	<para>
+	  are uniquely defined by the Content Dictionary in which they occur and by a
+	  name.  The form of these definitions is explained in <xref linkend="cha_cd"/>.
+	  Each symbol has no more than one definition in a Content Dictionary. Many
+	  Content Dictionaries may define differently a symbol with the same name
+	  (e.g. the symbol <systemitem>union</systemitem> is defined as
+	  associative-commutative set theoretic union in a Content Dictionary
+	  <systemitem>set1</systemitem> but another Content Dictionary,
+	  <systemitem>multiset1</systemitem> might define a symbol
+	  <systemitem>union</systemitem> as the union of multi-sets).
+	</para>
+      </listitem>
+    </varlistentry>
+    
+    <varlistentry>
+      <term>Variables</term>
+      <listitem>
+	<para>are meant to denote parameters, variables or indeterminates (such as bound
+	variables of function definitions, variables in summations and integrals, independent
+	variables of derivatives).
+	</para>
+      </listitem>
+    </varlistentry>
+  </variablelist>
+</para>
+
+
+<para>
+  Derived &OM; objects are constructed from non-&OM; data.  They differ from bytearrays in
+  that they can have any structure.  Currently there is only one way of making a <xref
+  linkend="derivedobj"/>.
+</para>
+
 <variablelist>
-<varlistentry><term>Integer</term><listitem><para>Arbitrary Precision
-integers.</para> </listitem></varlistentry>
-<varlistentry><term>Float</term><listitem> <para>&OM; floats are
-<acronym>ieee</acronym> 754 Double precision floating-point
-numbers. Other types of floating point number may be encoded in &OM;
-by the use of suitable content dictionaries.</para>
-  
-</listitem>
-</varlistentry>
-<varlistentry><term>Character strings</term><listitem><para>are
-  sequences of characters. These characters come from the Unicode
-  standard&#160;<citation>UNICODE</citation>.</para>
-  
-</listitem></varlistentry>
-<varlistentry><term>Bytearrays</term><listitem><para>are sequences of
-bytes. There is no <quote>byte</quote> in &OM; as an object of its
-own. However, a single byte can of course be represented by a
-bytearray of length 1.  The difference between strings and bytearrays
-is the following: a character string is a sequence of bytes with a
-fixed interpretation (as characters, Unicode texts may require several
-bytes to code one character), whereas a bytearray is an uninterpreted
-sequence of bytes with no intrinsic meaning.  Bytearrays could be used
-inside &OM; errors to provide information to, for example, a debugger;
-they could also contain intermediate results of calculations, or
-<quote>handles</quote> into computations or databases.</para>
-</listitem>
-</varlistentry>
-<varlistentry><term>Symbols</term><listitem>
-  
-  
-  <para>
- are uniquely defined by the Content Dictionary in which they occur
-  and by a name.
-  The form of these definitions is explained in
-  <xref linkend="cha_cd"/>.  Each symbol has no more than one
-  definition in a Content Dictionary. Many Content Dictionaries may
-  define differently a symbol with the same name (e.g. the symbol
-  <systemitem>union</systemitem> is defined as
-  associative-commutative set theoretic union in a Content Dictionary
-  <systemitem>set1</systemitem> but another Content Dictionary,
-  <systemitem>multiset1</systemitem> might define a symbol
-  <systemitem>union</systemitem> as the union of multi-sets).
-</para>
-  
- 
-  </listitem>
-</varlistentry>
-<varlistentry><term>Variables</term><listitem><para>are meant to
-  denote parameters, variables or indeterminates (such as bound
-  variables of function definitions, variables in summations and
-  integrals, independent variables of derivatives).  
-</para>
-</listitem>
-</varlistentry>
-</variablelist> </para>
-
-
-<para>Derived &OM; objects are constructed from
-non-&OM; data.  They differ from bytearrays in that they can have any
-structure.  Currently there is only one way of making a derived &OM;
-object.</para>
-
-<variablelist>
-<varlistentry><term>Foreign</term><listitem><para>is used to import a
-non-&OM; object into an &OM; attribution.  Examples of its use could
-be to annotate a formula with a visual or aural rendering, an
-animation, etc.  They may also appear in &OM; error objects, for
-example to allow an application to report an error in processing such
-an object.  
-</para>
-</listitem>
-</varlistentry>
+  <varlistentry>
+    <term>Foreign</term>
+    <listitem>
+      <para>
+	is used to import a non-&OM; object into an &OM; attribution.  Examples of its use
+	could be to annotate a formula with a visual or aural rendering, an animation,
+	etc.  They may also appear in &OM; <xref linkend="errorobj"/>s, for example to allow an
+	application to report an error in processing such an object.
+      </para>
+    </listitem>
+  </varlistentry>
 </variablelist>
 
-
-<para>The four following constructs can be used to make compound
- &OM; objects <phrase> out of basic or derived &OM;
-objects</phrase>.</para>
+<para>
+  The four following constructs can be used to make <xref linkend="compoundobj"/> out of
+  basic or <xref linkend="derivedobj"/>s.
+</para>
 <variablelist>
-<varlistentry><term>Application</term><listitem><para>constructs an
-  &OM; object from a sequence of one or more &OM; objects. The first
-  <phrase role="finaledit">child</phrase>
-  of an application is referred to as its <quote>head</quote> while
-  the remaining objects are called its <quote>arguments</quote>.  An &OM;
-  application object can be used to convey the mathematical notion of
-  application of a function to a set of arguments.  For instance,
-  suppose that the &OM; symbol <math><mi>sin</mi></math> is defined in
-  a <phrase>suitable</phrase> Content Dictionary,
-  then <math><mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
-  <mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
-  corresponding to <math><mi>sin</mi> <mo>(</mo><mi>x</mi>
-  <mo>)</mo></math>.  More generally, an &OM; application object can
-  be used as a constructor to convey a mathematical object built from
-  other objects such as a polynomial constructed from a set of
-  monomials.  Constructors build inhabitants of some symbolic type,
-  for instance the type of rational numbers or the type of
-  polynomials.  The rational number, usually denoted as
-  <math><mn>1</mn><mo>/</mo><mn>2</mn></math>, is represented by the
-  &OM; application object <math><mi
-  mathvariant="bold">application</mi><mo>(</mo><mi>Rational</mi><mo>,</mo>
-  <mn>1</mn><mo>,</mo> <mn>2</mn><mo>)</mo></math>. The symbol
-  <math><mi>Rational</mi></math> must be defined, by a Content
-  Dictionary, as a constructor symbol for the rational numbers.</para>
-   
-<figure id="fig_obj">
-    <title>The &OM; application and binding objects for
-<math><mi>sin</mi> <mo>(</mo><mi>x</mi> <mo>)</mo></math> and
-<math><mi>&#955;</mi> <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo>
-<mn>2</mn></math> in tree-like notation.</title>  <graphic fileref="lambda"
-width="600" depth="190"/>
-</figure>
-</listitem>
-</varlistentry>
-
+  <varlistentry>
+    <term>Application</term>
+    <listitem>
+      <para>
+	constructs an &OM; object from a sequence of one or more &OM; objects. The first
+	<phrase role="finaledit">child</phrase> of an application is referred to as its
+	<quote>head</quote> while the remaining objects are called its
+	<quote>arguments</quote>.  An &OM; <xref linkend="applobj"/> can be used to convey
+	the mathematical notion of application of a <xref linkend="function"/> to a set of
+	<xref linkend="argument"/>.  For instance, suppose that the &OM; symbol
+	<math><mi>sin</mi></math> is defined in a <phrase>suitable</phrase> Content
+	Dictionary, then <math><mi
+	mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
+	<mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
+	corresponding to <math><mi>sin</mi> <mo>(</mo><mi>x</mi>
+	<mo>)</mo></math>.  More generally, an &OM; <xref linkend="applobj"/> can
+	be used as a constructor to convey a mathematical object built from
+	other objects such as a polynomial constructed from a set of
+	monomials.  Constructors build inhabitants of some symbolic type,
+	for instance the type of rational numbers or the type of
+	polynomials.  The rational number, usually denoted as
+	<math><mn>1</mn><mo>/</mo><mn>2</mn></math>, is represented by the
+	&OM; <xref linkend="applobj"/> <math><mi
+	mathvariant="bold">application</mi><mo>(</mo><mi>Rational</mi><mo>,</mo>
+	<mn>1</mn><mo>,</mo> <mn>2</mn><mo>)</mo></math>. The symbol
+	<math><mi>Rational</mi></math> must be defined, by a Content
+      Dictionary, as a constructor symbol for the rational numbers.</para>
+      
+      <figure id="fig_obj">
+	<title>The &OM; application and binding objects for
+	<math><mi>sin</mi> <mo>(</mo><mi>x</mi> <mo>)</mo></math> and
+	<math><mi>&#955;</mi> <mi>x</mi><mo>.</mo><mi>x</mi> <mo>+</mo>
+	<mn>2</mn></math> in tree-like notation.</title>  <graphic fileref="lambda"
+	width="600" depth="190"/>
+      </figure>
+    </listitem>
+  </varlistentry>
+  
 <varlistentry>
   <term>Binding</term>
   <listitem>
@@ -617,10 +642,10 @@ width="600" depth="190"/>
       <mo>)</mo>
       <mtext>.</mtext>
     </math>
-    The <emphasis>scope</emphasis> of a variable binding
+    The <term id="scope">scope</term> of a variable binding
     <math><msub><mi>v</mi><mi>i</mi></msub></math>
     (<math><mn>1</mn><mo>&#8804;</mo><mi>i</mi><mo>&#8804;</mo><mi>n</mi></math>)
-    is constituted by the body
+    is constituted by the <xref linkend="body"/>
     <math><mi>C</mi></math> together with the attribute values of subsequent variable
     bindings <math><msub><mi>v</mi><mi>j</mi></msub></math> with
     <math><mi>i</mi><mo>&lt;</mo><mi>j</mi><mo>&#8804;</mo><mi>n</mi></math>.
@@ -634,8 +659,7 @@ width="600" depth="190"/>
     Binding objects are allowed to have no bound variables, but the binder object and the
     body should be present.
     </para>
-    <para> Binding can be used to express functions or
-    logical statements.  The function
+    <para> Binding can be used to express functions or logical statements.  The function
     <math>
       <mi>&#955;</mi>
       <mi>x</mi>
@@ -667,12 +691,12 @@ width="600" depth="190"/>
       </math>
     </para>
 
-    <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>-conversion</emphasis>
+    <para><xref linkend="phrasebook"/>s are allowed to use <term id="alphaconversion"><math><mi>&#945;</mi></math>-conversion</term>
     <phrase revisionflag="added">(also called <emphasis>alphabetic
     renaming</emphasis>)</phrase>
     in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
     can be replaced by a
-    <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in
+    <term id="newvar">new variable</term>, i.e. one that does not occur anywhere in
     the scope of the binding, if all variable references it binds are replaced accordingly:</phrase> 
     Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
     object
@@ -756,7 +780,7 @@ in <math><mi>&#937;</mi></math> by
   <mi>C'</mi>
   <mo>)</mo>
 </math>
-where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
+where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
 </math> or <math><mi>C</mi></math>
   <phrase revisionflag="added"> 
     and 
@@ -839,7 +863,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
   therefore discouraged: the first binding binds only references in the subsequent
   bindings up to and including the next binding for the same name. 
   Therefore, an &OM; application may choose to <math><mi>&#945;</mi></math>-convert all
-  but the last binding to new variables. Concretely, the following replacement is carried
+  but the last binding to <xref linkend="newvar"/>s. Concretely, the following replacement is carried
   out until there are no more  bound variable duplications:
   <math display="block">
     <mrow>
@@ -915,22 +939,24 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
 </para>
 </listitem>
 </varlistentry>
-<varlistentry><term>Attribution</term><listitem><para>decorates an
-  object <phrase revisionflag="added">(called the <quote>syntactic head</quote> of the attribution)</phrase> with a sequence of one or more pairs made up of an &OM;
-  symbol, the <quote>attribute</quote>, and an associated object, 
-  the <quote>value of the
-  attribute</quote>.  The value of the attribute can be an <phrase
- >&OM;</phrase> attribution object itself. As an
-  example of this, consider the &OM; objects representing groups,
-  automorphism groups, and group dimensions. It is then possible to
-  attribute an &OM; object representing a group by its automorphism
-  group, itself attributed by its dimension.</para>
-
-<para>
-&OM; objects can be attributed with &OM; foreign objects, which are
-containers for non-&OM; structures.  For example a mathematical
-expression could be attributed with its spoken or visual rendering.
-</para>
+<varlistentry>
+  <term>Attribution</term>
+  <listitem>
+    <para>
+      decorates an object <phrase revisionflag="added">(called the <quote>syntactic
+      head</quote> of the attribution)</phrase> with a sequence of one or more pairs made
+      up of an &OM; symbol, the <quote>attribute</quote>, and an associated object, the
+      <quote>value of the attribute</quote>.  The value of the attribute can be an <phrase
+      >&OM;</phrase> <xref linkend="attrobj"/> itself. As an example of this, consider the
+      &OM; objects representing groups, automorphism groups, and group dimensions. It is
+      then possible to attribute an &OM; object representing a group by its automorphism
+      group, itself attributed by its dimension.
+    </para>
+    <para>
+      &OM; objects can be attributed with &OM; <xref linkend="foreignobj"/>, which are
+      containers for non-&OM; structures.  For example a mathematical expression could be
+      attributed with its spoken or visual rendering.
+    </para>
 
 <para>Composition of attributions, as in
   <math display="block">
@@ -959,49 +985,44 @@ expression could be attributed with its spoken or visual rendering.
   width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo><mtext>.</mtext></math>
   The operation that produces an object with a single layer of
-  attribution is called <emphasis>flattening</emphasis>. <phrase revisionflag="added">The
+  attribution is called <term id="flattening">flattening</term>. <phrase revisionflag="added">The
   <quote>head</quote> of an attribution is the syntactic head of the fully (recursively)
   flattened version.</phrase>
 </para>
 
-<para>Multiple attributes with the same name are allowed.  While the
+<para>
+  Multiple attributes with the same name are allowed.  While the
   order of the given attributes does not imply any notion of priority,
   potentially it could be significant. For instance, consider the case
   in which <math><msub><mi>S</mi><mi>h</mi></msub> <mo>=</mo>
   <msub><mi>S</mi><mi>n</mi></msub></math> (<math><mi>h</mi>
-  <mo>&lt;</mo> <mi>n</mi></math>) in the example above. Then, the
-  object is to be interpreted as if the value
-  <math><msub><mi>A</mi><mi>n</mi></msub></math> overwrites the value
-  <math><msub><mi>A</mi><mi>h</mi></msub></math>.  (&OM; however does
-  not mandate that an application preserves the attributes or their
-  order.)</para>
+  <mo>&lt;</mo> <mi>n</mi></math>) in the example above. Then, the object is to be
+  interpreted as if the value <math><msub><mi>A</mi><mi>n</mi></msub></math> overwrites
+  the value <math><msub><mi>A</mi><mi>h</mi></msub></math>.  (&OM; however does not
+  mandate that an application preserves the attributes or their order.)
+</para>
 
-<para>Attribution acts as either adornment
-  annotation or as semantical annotation. When the key has role
-  <emphasis>attribution</emphasis>, then replacement of the
-  attributed object by the object itself is not harmful and preserves
-  the semantics. When the key has role
-  <emphasis>semantic-attribution</emphasis> then the attributed
-  object is modified by the attribution and cannot be viewed as
-  semantically equivalent to the stripped object. If the attribute
-  lacks the role specification then attribution is acting as adornment
-  annotation.
+  <para>
+    Attribution acts as either adornment annotation or as semantical annotation. When the
+    key has role <xref linkend="attributionrole"/>, then replacement of the attributed
+    object by the object itself is not harmful and preserves the semantics. When the key
+    has role <xref linkend="semantic-attribution-role"/> then the attributed object is
+    modified by the attribution and cannot be viewed as semantically equivalent to the
+    stripped object. If the attribute lacks the role specification then attribution is
+    acting as adornment annotation.
   </para>
 
 
 <para revisionflag="changed">Objects can be decorated in a multitude of ways.
-<phrase>An example of the use of an adornment attribution
+An example of the use of an adornment attribution
 would be to indicate the colour in which an &OM; object should be
 displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
-<mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
-Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are
-<phrase role="finaledit">arbitrary</phrase> &OM;
-objects <phrase role="finaledit">whereas <math><mi>colour</mi></math> is
-a symbol</phrase>.
-An example of the use of a semantic attribution would be to indicate the
-type of an object.  For example</phrase>
-the object <math><mi
+<mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.  Note that both
+<math><mi>A</mi></math> and <math><mi>red</mi></math> are arbitrary &OM; objects <phrase
+role="finaledit">whereas <math><mi>colour</mi></math> is a symbol</phrase>.  An example of
+the use of a semantic attribution would be to indicate the type of an object.  For
+example the object <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>type</mi> <mspace width=".3em"/> <mi>t</mi> <mo>)</mo></math>
 represents the judgment stating that object <math><mi>A</mi></math>
@@ -1019,7 +1040,7 @@ a symbol</phrase>.</para>
   no direct mathematical meaning.  Errors occur as the result of some
   treatment on an &OM; object and are thus of real interest only when
   some sort of communication is taking place. Errors may occur inside
-  other objects and also inside other errors.  Error objects might
+  other objects and also inside other errors.  <xref linkend="errorobj"/>s might
   consist only of a symbol as in the object: <math><mi
   mathvariant="bold">error</mi> <mo>(</mo><mi>S</mi>
   <mo>)</mo></math>.</para> 
@@ -1176,8 +1197,8 @@ MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</c
   floating-point numbers, character strings, bytearrays, and
   variables.</para>
 </listitem>
-<listitem> <para>&OM; compound objects are of four kinds:
-  applications, bindings, errors, and attributions.</para>
+<listitem> <para><xref linkend="compoundobj"/>s are of four kinds: applications, bindings,
+errors, and attributions.</para>
 </listitem>
 <listitem> <para>&OM; objects may be attributed
 with non-&OM; objects via the use of foreign &OM; objects.
@@ -1189,10 +1210,10 @@ with non-&OM; objects via the use of foreign &OM; objects.
 </itemizedlist>
 
  <para>Observe that an &OM;
-application object is viewed as a <quote>tree</quote> by software
+<xref linkend="applobj"/> is viewed as a <quote>tree</quote> by software
 applications that do not understand Content Dictionaries, whereas a
-Phrasebook that understands the semantics of the symbols, as defined
-in the Content Dictionaries, should interpret the object as functional
+<xref linkend="phrasebook"/> that understands the semantics of the symbols, as defined
+in the Content Dictionaries, should interpret the object as function
 application, constructor, or binding accordingly. Thus, for example,
 for some applications, the &OM; object corresponding to
 <math><mn>2</mn><mo>+</mo><mn>5</mn></math> may result in a command
@@ -1572,9 +1593,9 @@ attribute see <xref linkend="sec_compl_omforeign"/>.
  <term>Errors</term> 
  <listitem><para>are encoded using the <systemitem>OME</systemitem> element. The error whose
   symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects
-<phrase>or &OM; derived objects</phrase>
+or <xref linkend="derivedobj"/>
  <math><msub><mi>e</mi><mn>1</mn></msub></math>,
-  <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
+  &#8230;, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math>&#8230; <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
   of <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
 <para>If an <systemitem>aritherror</systemitem> Content Dictionary contained a
@@ -1631,7 +1652,8 @@ an &exml; document.
  <term>References</term>
  <listitem><para>
  &OM; integers, <phrase revisionflag="added">symbols, variables,</phrase> floating point numbers, character strings,
- bytearrays, applications, binding, attributions, error, <phrase revisionflag="added">and foreign objects</phrase> can also be encoded
+ bytearrays, applications, binding, attributions, error, <phrase revisionflag="added">and
+ <xref linkend="foreignobj"/>s</phrase> can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
  attribute whose value is the value of a URI referencing an id
  attribute of an &OM; object of that type.
@@ -1764,7 +1786,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <title>An Acyclicity Constraint</title>
 
 <para>The occurrences of the <systemitem>OMR</systemitem> element must obey the following global
-<emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
+<term id="acyc-constraint">acyclicity constraint</term>: An &OM; element may not dominate itself.</para>
 
 <para>Consider for instance the following (illegal) &exml; representation
 <literallayout revisionflag="changed"><![CDATA[<OMOBJ version="2.0">
@@ -2880,15 +2902,14 @@ The identifier is stored in the first <phrase>five
   the version attribute on the &OM; object
   introduced in &OM;&#160;2, the tokens with sharing flag 1 should be used.</para>
 
-<para>To facilitate the streaming of &OM; objects, some basic
-  objects (integers, strings, bytearrays, and foreign objects) have variant token
-  identifiers with the fifth bit set. The idea behind this is that these basic
-  objects can be split into packets. If the fifth bit is not set, this packet is
-  the final packet of the basic object. If the bit is set, then more packets of
-  the basic object will follow directly after this one. Note that all packets
-  making up a basic object must have the same token identifier (up to the fifth
-  bit). In <xref linkend="fig_bin-enc_stream"/> we have represented an integer
-  that is split up into three packets.  </para>
+<para>To facilitate the streaming of &OM; objects, some basic objects (integers, strings,
+bytearrays, and <xref linkend="foreignobj"/>s) have variant token identifiers with the
+fifth bit set. The idea behind this is that these basic objects can be split into
+packets. If the fifth bit is not set, this packet is the final packet of the basic
+object. If the bit is set, then more packets of the basic object will follow directly
+after this one. Note that all packets making up a basic object must have the same token
+identifier (up to the fifth bit). In <xref linkend="fig_bin-enc_stream"/> we have
+represented an integer that is split up into three packets.  </para>
 
 <para>Here is a description of the binary encodings of every kind of &OM; object:
 
@@ -3102,7 +3123,8 @@ For example,
   </listitem>
 </varlistentry>
 
-<varlistentry> <term>Foreign Objects</term>
+<varlistentry>
+  <term>Foreign Objects</term>
   <listitem>
     <para>are encoded using the foreign object tags (token identifier 12) with the
       long flag set if the number of bytes is greater than or equal to 256 and the
@@ -3685,7 +3707,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       equation. All this information is held within some Content
       Dictionaries which both applications agree upon.</para>
     
-    <para>A <emphasis> Content Dictionary</emphasis> holds the meanings of
+    <para>A <term id="cd"> Content Dictionary</term> holds the meanings of
       (various) mathematical <quote>words</quote>. These words are &OM;
       basic objects referred to as <emphasis>symbols</emphasis> in
       <xref linkend="sec_omabs"/>.</para>
@@ -3711,7 +3733,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       Content Dictionaries in some way).</para>
     
     <para>The primary use of Content Dictionaries is thought to be for
-      designers of Phrasebooks, the programs which translate between the &OM;
+      designers of <xref linkend="phrasebook"/>s, the programs which translate between the &OM;
       mathematical object and the corresponding (often internal) structure
       of the particular application in question. For such a use the Content
       Dictionaries have themselves been designed to be as readable and
@@ -3743,7 +3765,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <para>The key points from this section are:
       <itemizedlist>
 	<listitem><para>Content Dictionaries should be readable and precise to help
-	    Phrasebook designers,</para>
+	    <xref linkend="phrasebook"/> designers,</para>
 	</listitem>
 	<listitem><para>Content Dictionaries should be readily write-able to encourage
 	    widespread use,</para>
@@ -3765,8 +3787,9 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <para>A Content Dictionary consists of the
       following mandatory pieces of information:
       <orderedlist>
-	<listitem><para>A <emphasis>name</emphasis> corresponding to the rules
-	    described in <xref linkend="sec_names"/>.</para>
+	<listitem>
+	  <para>A <emphasis>name</emphasis> corresponding to the rules described in <xref
+	  linkend="sec_names"/>.</para>
 	</listitem>
 	<listitem><para>A <emphasis>description</emphasis> of the Content
 	    Dictionary.
@@ -4546,12 +4569,12 @@ she must recognise that this process is not an identity transformation.
 <section id="sec_compl_omforeign">
 <title>&OM; Foreign Objects</title>
 
-<para> An &OM; Foreign Object may be attributed with a string indicating
+<para> An &OM; <xref linkend="foreignobj"/> may be attributed with a string indicating
 the format of its contents.  Although this information is optional, an
-&OM;-compliant application which generates &OM; Foreign Objects should
+&OM;-compliant application which generates &OM; <xref linkend="foreignobj"/>s should
 always include it where possible (see the discussion of MathML conversion
 below for an example of a situation where it is not always possible).  It is
-recommended that, where the contents of the Foreign Object are in an
+recommended that, where the contents of the <xref linkend="foreignobj"/> are in an
 &exml; dialect, the namespace <citation>xmlns</citation> of the
 &exml; dialect is used as the value of the encoding.  For example
 (using the &exml; encoding):
@@ -4571,7 +4594,7 @@ recommended that, where the contents of the Foreign Object are in an
   </OMATP>
   <OMS cd="nums1" name="e"/>
 </OMATTR>]]></literallayout>
-Where the contents of the Foreign Object is a format other than &exml;,
+Where the contents of the <xref linkend="foreignobj"/> is a format other than &exml;,
 it is recommended that its MIME type <citation>rfc2046</citation> is
 used as the value of the encoding.
 For example (again using the &exml; encoding):
@@ -4651,7 +4674,7 @@ should refer to the implicit CD Group <systemitem>all</systemitem>.</para>
 
 <para>If a compliant application supports a Content Dictionary then it must
 explicitly declare any symbols in the Content Dictionaries that are not
-supported. Phrasebooks are encouraged to support every symbol in the 
+supported. <xref linkend="phrasebook"/>s are encouraged to support every symbol in the 
 Content Dictionaries.</para>
 
 <para>Symbols which are not listed as unsupported are
@@ -4951,7 +4974,7 @@ or, using the Relax NG compact syntax:
     <itemizedlist>
       <listitem>
         <para>&OM; symbols have an optional role qualifier which restricts the
-          place where they may occur within compound objects.
+          place where they may occur within <xref linkend="compoundobj"/>
           Although part of the abstract description of a symbol this information
           is intended to be stored in the CD.  In the &exml; encoding it may be
           used to provide a more restricted schema leading to tighter
@@ -4979,7 +5002,7 @@ or, using the Relax NG compact syntax:
         </para>
       </listitem>
       <listitem>
-        <para>In addition, an &OM; error object may take as its
+        <para>In addition, an &OM; <xref linkend="errorobj"/> may take as its
 arguments non-&OM; objects wrapped in the new
 <emphasis>foreign</emphasis> constructor.
         </para>
