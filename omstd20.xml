@@ -692,8 +692,8 @@ with index greater than 1)</phrase>.
     </para>
 
     <para><xref linkend="phrasebook"/>s are allowed to use <term id="alphaconversion"><math><mi>&#945;</mi></math>-conversion</term>
-    <phrase revisionflag="added">(also called <emphasis>alphabetic
-    renaming</emphasis>)</phrase>
+    <phrase revisionflag="added">(also called <term id="alpharenaming">alphabetic
+    renaming</term>)</phrase>
     in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
     can be replaced by a
     <term id="newvar">new variable</term>, i.e. one that does not occur anywhere in
@@ -1052,27 +1052,22 @@ a symbol</phrase>.</para>
 <section id="sec_names">
 <title>Names</title>
 
-<para>The names of symbols, variables and content dictionaries must
-conform to the production <systemitem>Name</systemitem> specified in the following
-grammar
-(which is identical to that for &exml; names in XML 1.1,
-<citation>xml_04</citation>). Informally speaking, a name is a sequence
-of Unicode <citation>UNICODE</citation>
-characters which begins with a letter and cannot contain
-certain punctuation and combining  characters.  The notation
-<systemitem>#x...</systemitem> represents the hexadecimal value of 
-the encoding of a Unicode character. 
-Some of the character values or <emphasis>code points</emphasis> in the
-following productions are currently unassigned, but this is
-likely to change in the future as Unicode evolves<footnote id="xml1">
 <para>
-We note that in XML 1 the name production explicitly listed 
-the characters that were allowed, so all the characters added in
-versions of Unicode after 2.0 (which amounted to tens of thousands of
-characters) were not allowed in names.
-</para>
-</footnote>.
-
+  The names of symbols, variables and content dictionaries must conform to the production
+  <systemitem>Name</systemitem> specified in the following grammar (which is identical to
+  that for &exml; names in XML 1.1, <citation>xml_04</citation>). Informally speaking, a
+  name is a sequence of Unicode <citation>UNICODE</citation> characters which begins with
+  a letter and cannot contain certain punctuation and combining characters.  The notation
+  <systemitem>#x...</systemitem> represents the hexadecimal value of the encoding of a
+  Unicode character.  Some of the character values or <emphasis>code points</emphasis> in
+  the following productions are currently unassigned, but this is likely to change in the
+  future as Unicode evolves<footnote id="xml1">
+  <para>
+    We note that in XML 1 the name production explicitly listed the characters that were
+    allowed, so all the characters added in versions of Unicode after 2.0 (which amounted
+    to tens of thousands of characters) were not allowed in names.
+  </para>
+  </footnote>.
 </para>
 
 <blockquote>
@@ -1115,14 +1110,14 @@ Applications should ignore any white space surrounding the URL.</para>
 
 </formalpara>
 
-<formalpara><title>Note on content dictionary names</title>
-<para>
-It is a common convention to store a Content Dictionary in a file of
-the same name, which can cause difficulties on many file systems.  If
-this convention is to be followed then &OM;
-<emphasis>recommends</emphasis> that the name be restricted to the
-subset of the above grammar which is a legal POSIX
-<citation>POSIX</citation> filename, namely:
+<formalpara>
+  <title>Note on content dictionary names</title>
+  <para>
+    It is a common convention to store a Content Dictionary in a file of the same name,
+    which can cause difficulties on many file systems.  If this convention is to be
+    followed then &OM; <emphasis>recommends</emphasis> that the name be restricted to the
+    subset of the above grammar which is a legal POSIX <citation>POSIX</citation>
+    filename, namely:
 <blockquote>
 <informaltable>
 <tgroup cols="3">
@@ -1650,20 +1645,21 @@ an &exml; document.
 
 <varlistentry>
  <term>References</term>
- <listitem><para>
- &OM; integers, <phrase revisionflag="added">symbols, variables,</phrase> floating point numbers, character strings,
- bytearrays, applications, binding, attributions, error, <phrase revisionflag="added">and
- <xref linkend="foreignobj"/>s</phrase> can also be encoded
- as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
- attribute whose value is the value of a URI referencing an id
- attribute of an &OM; object of that type.
-The &OM; element represented by this <systemitem>OMR</systemitem>
- reference is a copy of the &OM; element referenced
- <systemitem>href</systemitem> attribute. Note that this copy
- is <emphasis>structurally equal</emphasis>, but not identical
- to the element referenced. <phrase role="finaledit">These URI
- references will often be relative, in which case they are resolved using
- the base URI of the document containing the &OM;.</phrase></para>
+ <listitem>
+   <para>
+     &OM; integers, <phrase revisionflag="added">symbols, variables,</phrase> floating
+     point numbers, character strings, bytearrays, applications, binding, attributions,
+     error, <phrase revisionflag="added">and <xref linkend="foreignobj"/>s</phrase> can
+     also be encoded as an empty <systemitem>OMR</systemitem> element with an
+     <systemitem>href</systemitem> attribute whose value is the value of a URI referencing
+     an id attribute of an &OM; object of that type.  The &OM; element represented by this
+     <systemitem>OMR</systemitem> reference is a copy of the &OM; element referenced
+     <systemitem>href</systemitem> attribute. Note that this copy is
+     <emphasis>structurally equal</emphasis>, but not identical to the element
+     referenced. <phrase role="finaledit">These URI references will often be relative, in
+     which case they are resolved using the base URI of the document containing the
+     &OM;.</phrase>
+   </para>
 
  <para>For instance, the &OM; object
 
@@ -1862,7 +1858,7 @@ representation of an &OM; object.</para>
 <title>Sharing and Bound Variables</title>
 
 <para>Note that the <systemitem>OMR</systemitem> element is a
-<emphasis>syntactic</emphasis> referencing mechanism: an
+<term id="omr-syntactic">syntactic</term> referencing mechanism: an
 <systemitem>OMR</systemitem> element stands for the exact &exml;
 element it points to. In particular, referencing does not interact
 with binding in a semantically intuitive way, since it allows for
@@ -2849,16 +2845,17 @@ implementations).</para>
       <emphasis>empty</emphasis> stands for the empty list of tokens.</phrase>
   </para>
   
-  <para><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
-    where <emphasis>xxxx</emphasis> is one of <emphasis>symbname</emphasis>,
-    <emphasis>cdname</emphasis>, <emphasis>varname</emphasis>,
-    <emphasis>uri</emphasis>, <emphasis>id</emphasis>, <emphasis>digits</emphasis>, or
-    <emphasis>bytes</emphasis> denotes a sequence of <math><mi>n</mi></math> bytes
-    that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
-    instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
-    <emphasis>cdname</emphasis> this is the regular expression described in
-    <xref linkend="sec_names"/>, <phrase revisionflag="changed">for <emphasis>uri</emphasis> it is the grammar for
-    IRIs in <citation>IETF3987</citation></phrase>.</para>
+  <para><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>, where <emphasis>xxxx</emphasis>
+  is one of <emphasis>symbname</emphasis>, <emphasis>cdname</emphasis>,
+  <emphasis>varname</emphasis>, <emphasis>uri</emphasis>, <emphasis>id</emphasis>,
+  <emphasis>digits</emphasis>, or <emphasis>bytes</emphasis> denotes a sequence of
+  <math><mi>n</mi></math> bytes that conforms to the constraints on
+  <emphasis>xxxx</emphasis> strings. For instance, for <emphasis>symbname</emphasis>,
+  <emphasis>varname</emphasis>, or <emphasis>cdname</emphasis> this is the regular
+  expression described in <xref linkend="sec_names"/>, <phrase revisionflag="changed">for
+  <emphasis>uri</emphasis> it is the grammar for IRIs in
+  <citation>IETF3987</citation></phrase>.
+  </para>
 </section>
 
 <section id="sec_bin-desc">
@@ -3788,39 +3785,38 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       following mandatory pieces of information:
       <orderedlist>
 	<listitem>
-	  <para>A <emphasis>name</emphasis> corresponding to the rules described in <xref
+	  <para>A <term id="cdname">name</term> corresponding to the rules described in <xref
 	  linkend="sec_names"/>.</para>
 	</listitem>
-	<listitem><para>A <emphasis>description</emphasis> of the Content
-	    Dictionary.
+	<listitem><para>A <term id="cddescription">description</term> of the Content
+	Dictionary.
 	  </para>
 	</listitem>
-	<listitem><para>A <emphasis>revision date</emphasis>, the date of the
+	<listitem><para>A <term id="cdrevisiondate">revision date</term>, the date of the
 	    last change to the Content Dictionary.  Dates should be stored in the
 	    ISO-compliant format YYYY-MM-DD, e.g. 1966-02-03. 
 	  </para>
 	</listitem>
-	<listitem><para>A <emphasis>review date</emphasis>, a date until which
+	<listitem><para>A <term id="cdreviewdate">review date</term>, a date until which
 	    the content dictionary is guaranteed to remain unchanged. 
 	  </para>
 	</listitem>
-	<listitem><para>A <emphasis>version number</emphasis> which consists
+	<listitem><para>A <term id="cdversion">version number</term> which consists
 	    of a major and minor part (see <xref linkend="sec_version"/>). 
 	  </para>
 	</listitem>
-	<listitem><para>A <emphasis>status</emphasis>, as described in <xref
+	<listitem><para>A <term id="cdstatus">status</term>, as described in <xref
 									     linkend="sec_status"/>. 
 	  </para>
 	</listitem>
-	<listitem><para>A <emphasis>CD base</emphasis> which, when combined
+	<listitem><para>A <term id="cdcdbase">CD base</term> which, when combined
 	    with the CD name, forms a unique
 	    identifier for the Content Dictionary. It may or may not refer to an
 	    actual location from which it can be retrieved.   
 	  </para>
 	</listitem>
-	<listitem><para>A series of one or more
-	    <emphasis>symbol definitions</emphasis> as
-	    described below.
+	<listitem><para>A series of one or more <term id="cdsymdef">symbol
+	definitions</term> as described below.
 	  </para>
 	</listitem>
       </orderedlist>
@@ -3829,31 +3825,31 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     <para>A symbol definition consists of the
       following pieces of information:
       <orderedlist>
-	<listitem><para>A mandatory <emphasis>name</emphasis> corresponding to the rules
-	    described in <xref linkend="sec_names"/>.</para>
+	<listitem><para>A mandatory <term id="symdefname">name</term> corresponding to the
+	rules described in <xref linkend="sec_names"/>.</para>
 	</listitem>
-	<listitem><para>A mandatory <emphasis>description</emphasis> of the symbol,
+	<listitem><para>A mandatory <term id="symdefdescription">description</term> of the symbol,
 	    which can be as formal or informal as the author likes.
 	  </para>
 	</listitem>
-	<listitem><para>An optional <emphasis>role</emphasis> as described in
+	<listitem><para>An optional <term id="symdefrole">role</term> as described in
 	    <xref linkend="sec_roles"/>.
 	  </para>
 	</listitem>
-	<listitem><para>Zero or more <emphasis>commented mathematical
-	      properties</emphasis> which are mathematical properties of the symbol
+	<listitem><para>Zero or more <term id="symdefCMP">commented mathematical
+	      properties</term> which are mathematical properties of the symbol
 	    expressed in a mechanism other than &OM;.
 	  </para>
 	</listitem>
-	<listitem><para>Zero or more <emphasis>formal mathematical
-	      properties</emphasis> which are mathematical properties of the symbol
+	<listitem><para>Zero or more <term id="symdefFMP">formal mathematical
+	      properties</term> which are mathematical properties of the symbol
 	    expressed in &OM;.  Note that it is common for commented and formal
 	    mathematical properties to be introduced in pairs, with the former
 	    describing the latter.
 	  </para>
 	  
 	  <para>A Formal Mathematical Property may be given an optional
-	    <emphasis>kind</emphasis> attribute.  An author of a Content Dictionary
+	    <term id="symdefkind">kind</term> attribute.  An author of a Content Dictionary
 	    may use this to indicate whether, for example, the property provides an
 	    algorithm for evaluation of the concept it is associated with.  At
 	    present no fixed scheme is mandated for how this information should be
@@ -3861,7 +3857,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	  </para>
 	  
 	</listitem>
-	<listitem><para>Zero or more <emphasis>examples</emphasis> which are
+	<listitem><para>Zero or more <term id="symdefexamples">examples</term> which are
 	    intended to demonstrate the use of the symbol within an &OM; object.
 	  </para>
 	</listitem>
@@ -3878,7 +3874,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     
     
     <para revisionflag="changed">
-      Content Dictionaries may be grouped into <emphasis>CD Groups</emphasis>. These
+      Content Dictionaries may be grouped into <term id="cdgroup">CD Group</term>s. These
       groups allow applications to easily refer to collections of Content
       Dictionaries. One particular CDGroup of interest is the <quote>MathML
       CDGroup</quote>. This group consists of the collection of core Content Dictionaries
@@ -3920,10 +3916,10 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       
       <para>A version number must consist of two parts, a major version and
 	a revision, both of which should be non-negative integers.  In CDs
-	that do not have status <emphasis>experimental</emphasis>, the version
+	that do not have status <systemitem>experimental</systemitem>, the version
 	number should be a positive integer.</para>
       
-      <para>Unless a CD has status <emphasis>experimental</emphasis>,
+      <para>Unless a CD has status <systemitem>experimental</systemitem>,
 	no changes should ever be
 	introduced that invalidate objects built with previous versions.
 	Any change that influences phrasebook compliance, like adding a new
@@ -3934,7 +3930,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	changed, but an increase should be made to the revision number.
 	Note that a change such as removing a symbol should
 	not be made unless the CD has status
-	<emphasis>experimental</emphasis>.
+	<systemitem>experimental</systemitem>.
 	Should this be required then a new CD with a different name should be
 	produced so as not to invalidate existing objects.</para>
       
@@ -4103,13 +4099,14 @@ name of a symbol.
 </varlistentry>
 
 <varlistentry><term><systemitem>Role</systemitem></term>
-<listitem><para>The role of a symbol: it must be one of
-<emphasis>binder</emphasis>, 
-<emphasis>attribution</emphasis>, 
-<emphasis>semantic-attribution</emphasis>, 
-<emphasis>error</emphasis>, 
-<emphasis>application</emphasis>, or
-<emphasis>constant</emphasis>. 
+<listitem>
+  <para>The role of a symbol: it must be one of
+  <systemitem>binder</systemitem>, 
+  <systemitem>attribution</systemitem>, 
+  <systemitem>semantic-attribution</systemitem>, 
+  <systemitem>error</systemitem>, 
+  <systemitem>application</systemitem>, or
+  <systemitem>constant</systemitem>. 
 </para>
 </listitem>
 </varlistentry>
@@ -4188,11 +4185,10 @@ to assign types to &OM; symbols.</para>
   signature takes the form of an &OM; object in an appropriate encoding.
 </para>
 
-
 <orderedlist>
   <listitem>
     <para>
-      A <emphasis>type definition</emphasis>: the name of the Content Dictionary or of the
+      A <term id="typedef">type definition</term>: the name of the Content Dictionary or of the
       CDGroup (cfg. <xref linkend="ssec_cdgroups"/>) that represents the type system being
       used.
     </para>
@@ -4470,13 +4466,6 @@ For the syntactical
 </varlistentry>
 </variablelist>
 
-
-
-
-
-
-
-
 </section>
 </section>
 </section>
@@ -4484,19 +4473,15 @@ For the syntactical
 <section id="cdapprove">
 <title>Content Dictionaries Reviewing Process</title>
 
-
-
-<para>The &OM; Society is responsible  for implementing a
-review and referee process to assess the accuracy of the mathematical
-content of Content Dictionaries.  The status (see <systemitem>CDStatus</systemitem>)
-and/or the version number (see <systemitem>CDVersion</systemitem> ) of a Content
-Dictionary may change as a result of this review process.</para>
+<para>
+  The &OM; Society is responsible for implementing a review and referee process to assess
+  the accuracy of the mathematical content of Content Dictionaries.  The status (see
+  <systemitem>CDStatus</systemitem>) and/or the version number (see
+  <systemitem>CDVersion</systemitem> ) of a Content Dictionary may change as a result of
+  this review process.
+</para>
 </section>
 </chapter>
-
-
-
-
 
 <chapter id="cha_comp">
 <title>&OM; Compliance</title>
