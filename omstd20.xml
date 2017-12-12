@@ -1590,7 +1590,7 @@ attribute see <xref linkend="sec_compl_omforeign"/>.
   symbol is <math><mi>s</mi></math> and whose arguments are the &OM; objects
 or <xref linkend="derivedobj"/>
  <math><msub><mi>e</mi><mn>1</mn></msub></math>,
-  &#8230;, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math>&#8230; <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
+  <phrase>&#8230;</phrase>, <math><msub><mi>e</mi><mi>n</mi></msub></math> is encoded as <systemitem>&lt;OME></systemitem> <math><msub><mi>C</mi><mi>s</mi></msub></math> <math><msub><mi>C</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase> <math><msub><mi>C</mi><mi>n</mi></msub></math> <systemitem>&lt;/OME></systemitem> where <math><msub><mi>C</mi><mi>s</mi></msub></math> is the encoding of <math><mi>s</mi></math> and <math><msub><mi>C</mi><mi>i</mi></msub></math> the encoding
   of <math><msub><mi>e</mi><mi>i</mi></msub></math>.</para>
 
 <para>If an <systemitem>aritherror</systemitem> Content Dictionary contained a
