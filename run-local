@@ -1,0 +1,157 @@
+set -e
+
+# http://saxon.sourceforge.net/
+if [ -f saxon9he.jar ]; then
+export XSLT="java -jar ../saxon9he.jar -versionmsg:off "
+else
+export XSLT="java -jar /tmp/jars/saxon9he.jar -versionmsg:off "
+fi
+
+
+
+# https://code.google.com/archive/p/jing-trang/downloads
+if [ -f saxon9he.jar ]; then
+export TRANG="java -jar ../trang.jar "
+else
+    export TRANG="java -jar /tmp/jars/trang.jar "
+fi
+
+if [ "$1" == "final" ]
+then
+    DRAFT=no
+    TARGET=om20-2017-12-01
+    shift
+else
+    DRAFT=yes
+    TARGET=om20-editors-draft
+fi
+
+case "$TRAVIS_COMMIT_MESSAGE" in 
+\[ci\ final\]*)
+    DRAFT=no
+    TARGET=om20-2017-12-01
+esac
+
+
+echo TARGET=$TARGET
+
+# check validity
+# back this out for now
+# xmllint --noout  --loaddtd --valid omstd20.xml 
+
+DATE=`date "+%Y-%m-%d"`
+
+if [ ! -d build ] ; then
+echo "make build directory"
+mkdir build 2> /dev/null
+else
+echo "dont make build directory"
+fi
+
+cp *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
+# cp support/rnc2dbk build
+cp openmath.cls build
+
+cd build
+
+
+
+echo single page html5
+$XSLT  -strip:none  ../omstd20.xml omstd20.xsl html5=yes prefix=omstd20 draft=$DRAFT date=$DATE
+
+echo html diff version
+$XSLT -strip:none ../omstd20.xml omstd20.xsl showdiffs=true html5=yes prefix=omstd20-diff  draft=$DRAFT date=$DATE
+
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html
+# $XSLT -dtd:on  -o:omstd20html.xml ../omstd20.xml omstd20.xsl
+
+# currently doesn't work and probably not required
+# echo chunked html
+# $XSLT   ../omstd20.xml omstd20.xsl chunk="true"
+
+# old pmathml.xsl rendering doesn't work in current browsers
+# echo html-diff
+# $XSLT  -o:omstd20html-diff.xml ../omstd20.xml omstd20.xsl showdiffs=true
+
+
+echo tex
+export SOURCE_DATE_EPOCH=1498228223 # 2017/06/23  date +'%s'
+export FORCE_SOURCE_DATE=1
+export SOURCE_DATE_EPOCH_TEX_PRIMITIVES=1 # old version
+
+$XSLT -strip:none -o:omstd20.tex ../omstd20.xml omstd20tex.xsl  draft=$DRAFT date=$DATE
+echo tex-diff
+$XSLT -strip:none -o:omstd20-diff.tex ../omstd20.xml omstd20tex.xsl showdiffs=true draft=$DRAFT date=$DATE
+export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+
+echo pdf
+
+pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log; false)
+if (grep -i ' rerun ' omstd20.log)
+  then
+  pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
+  if (grep -i ' rerun ' omstd20.log)
+    then 
+    pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
+    if (grep -i ' rerun ' omstd20.log)
+      then
+      pdflatex \\batchmode \\input omstd20.tex ||(echo "ERROR in TeX"; cat omstd20.log;false)
+    fi
+  fi
+fi
+
+cat omstd20.log
+
+echo pdf-diff
+pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
+if (grep -i ' rerun ' omstd20-diff.log)
+  then
+  pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
+  if (grep -i ' rerun ' omstd20-diff.log)
+    then 
+    pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
+    if (grep -i ' rerun ' omstd20-diff.log)
+      then
+      pdflatex \\batchmode \\input omstd20-diff.tex ||(echo "ERROR in TeX"; cat omstd20-diff.log;false)
+    fi
+  fi
+fi
+
+
+echo zip
+rm tmp.*
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run 
+
+if [ "$1" = "copy" ] && [ -d "../../OpenMath.github.io/standard/$TARGET" ]
+   then
+       echo copying documents to ../OpenMath.github.io/standard/om20-editors-draft
+       cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
+	  ../../OpenMath.github.io/standard/$TARGET
+       cp {omcd2,omcdsig2,omcdgroup2,openmath2}.{rnc,rng,xsd,dtd} \
+	   ../../OpenMath.github.io/standard/$TARGET
+else
+
+if [ "$TRAVIS" = "true" ] && [ "$TRAVIS_PULL_REQUEST" = "false" ]  && [ "$TRAVIS_BRANCH" = "master" ]; then
+   echo "travis job push to om website"
+   	rm -rf OpenMath.github.io
+	echo clone
+	git config --global user.email "dpcarlisle@gmail.com"
+	git config --global user.name "Travis CI"
+	git config --global push.default simple
+
+	git clone https://$ghauth@github.com/OpenMath/OpenMath.github.io.git
+	cp omstd20.html omstd20-diff.html omstd20.pdf omstd20-diff.pdf \
+	   OpenMath.github.io/standard/$TARGET
+	cp {omcd2,omcdsig2,omcdgroup2,openmath2}.{rnc,rng,xsd,dtd} \
+	   OpenMath.github.io/standard/$TARGET
+	cd OpenMath.github.io
+	NEW_MSG=`echo "$TRAVIS_COMMIT_MESSAGE" | sed -e 's/#/iss./g' -e 's/[*?]//g'`
+	git commit -a -m "from travis ci: $NEW_MSG" || echo no changes
+	git push
+	
+else
+    echo skipping copying to website
+fi
+fi
+
