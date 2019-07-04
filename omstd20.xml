@@ -3643,6 +3643,841 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 </section>
 </section>
 
+<section id="sec_json-the-json-encoding" revisionflag="added">
+  <title>The JSON encoding</title>
+  <!-- TODO: Citation of the relevant parts -->
+  <para>
+    JSON is a lightweight data format natively supported by many
+    programming languages. The JSON encoding aims to ensure that
+    &OM; objects can be represented as JSON objects with
+    human-readable attribute names. Furthermore, it aims to make
+    translation from XML to JSON schema easily possible. It uses
+    JSON-native types where possible, and avoid XML peculiarities like
+    pseudo elements.
+  </para>
+  <para>
+    The Typescript Definition File can be found in <xref linkend="app_dts" /> and the JSON Schema Definition can be found in <xref linkend="app_json" /> . 
+  </para>
+  <section id="sec_json-general-structure">
+    <title>General Structure</title>
+    <para>
+      In general, each &OM; object is represented as a JSON
+      structure. For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+    &quot;id&quot;: &quot;something&quot;,
+    &quot;name&quot;: &quot;x&quot;
+}
+</programlisting>
+    <para>
+      This already shows two attributes that can be used with any &OM; Element:
+    </para>
+    <orderedlist numeration="arabic">
+      <listitem>
+<para>
+The <systemitem>kind</systemitem> attribute, which defines the kind of &OM; object in question.
+This has to be present on every &OM; JSON object, and the values are the corresponding &OM; XML element name. It can be used to easily distinguish between the different types of objects.
+In TypeScript terms, this is called a <emphasis>TypeGuard</emphasis>.
+</para>
+      </listitem>
+      <listitem>
+<para>
+The <systemitem>id</systemitem> attribute, which can be used for Structure sharing.
+This works similar to the XML encoding, but more on this later.
+</para>
+      </listitem>
+    </orderedlist>
+    <para>
+      In the TypeScript schema, this is expressed using the following two types:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          The <systemitem>element</systemitem> type is used by any &OM; 
+          (or &OM;-related) element, and only enforces that <systemitem>kind</systemitem> is a string.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <systemitem>referencable</systemitem> type is any &OM; element
+          that can optionally be given an <systemitem>id</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <systemitem>withCD</systemitem> type is used by any &OM;
+          element which uses a <systemitem>cdBase</systemitem> base url.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Note that for simplicity, the <systemitem>id</systemitem>
+      attribute is omitted in any of the below. 
+    </para>
+  </section>
+  <section id="sec_json-helper-types">
+    <title>Helper Types</title>
+    <para>
+      While JSON provides many types, sometimes more restrictions than
+      the general type is required. The JSON Schema provides several
+      facilities for this, for example strings matching a particular
+      regular expression.
+    </para>
+    <para>
+      The schema uses the following helper types:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+        <systemitem>uri</systemitem> represents any URI encoded as a string.
+          This uses the JSONSchema <systemitem>format: uri</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>name</systemitem> represents any valid name. In this schema uses
+          any kind of string.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>integer</systemitem>represents an arbitrary precise JSON-native
+          integer. Uses JSON numbers as underlying type, and the JSON
+          Schema <systemitem>number</systemitem> type.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>decimalInteger</systemitem> represents a string representing the
+          decimal expansion of an integer. Uses the regular expression
+          <systemitem>^-?[0-9]+$</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>hexInteger</systemitem> represents a string representing the
+          heximadecimal expansion of an integer. Uses the regular
+          expression <systemitem>^-?x[0-9A-F]+.$</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>float</systemitem> represents any IEEE 32-bit integer, represented
+          as a native JSON integer.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>decimalFloat</systemitem> represents a string representing the
+          decimal expansion of an IEEE floating point number. Uses the
+          regular expression
+          <systemitem>^(-?)([0-9]+)?(\.[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+        <systemitem>hexFloat</systemitem> represents a string representing the hexadecimal expansion of an IEEE floating point number.
+Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>byte</systemitem> represents a byte of data represented as an
+          integer, between <systemitem>0</systemitem> and
+          <systemitem>255</systemitem> (inclusive).
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>base64string</systemitem> represents a string representing a set
+          of bytes encoded as a <systemitem>base64</systemitem> string. Uses
+          the regular expression
+          <systemitem>^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$</systemitem>.
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="sec_json-omobj-om-object-constructor">
+    <title>The Object Constructor</title>
+    <para>
+      We can use the <systemitem>OMOBJ</systemitem> type to create a new
+      &OM; object.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+
+    /** optional version of openmath being used */
+    &quot;openmath&quot;: &quot;2.0&quot;,
+
+    /** the actual object */
+    &quot;object&quot;: omel /* any element, see below */
+}
+</programlisting>
+    <para>
+      For example, the integer <systemitem>3</systemitem>:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+    &quot;openmath&quot;: &quot;2.0&quot;,
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMI&quot;, 
+        &quot;integer&quot;: 3
+    }
+}
+</programlisting>
+    <para>
+      The object can be any &OM; element, as expressed by the
+      <systemitem>omel</systemitem> type.
+    </para>
+  </section>
+  <section id="sec_json-the-omel-type">
+    <title>The omel type</title>
+    <para>
+      The <systemitem>omel</systemitem> type represents any element
+    </para>
+    <para>
+      It is defined as any of the following:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <systemitem>OMS</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMV</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMI</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMB</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMSTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMF</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMA</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMBIND</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OME</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMATTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMR</systemitem>
+        </para>
+      </listitem>
+    </itemizedlist>
+  </section>
+  <section id="sec_json-oms---symbol">
+    <title>OpenMath Symbols</title>
+    <para>
+      A symbol is represented using the <systemitem>OMS</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMS&quot;,
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** content dictonary the symbol is in, any name */
+    &quot;cd&quot;: name,
+
+    /** name of the symbol */
+    &quot;name&quot;: name
+}
+</programlisting>
+    <para>
+      For example the <systemitem>sin</systemitem> symbol from the
+      <systemitem>transc1</systemitem> content dictionary:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMS&quot;,
+
+    &quot;cd&quot;: &quot;transc1&quot;,
+    &quot;name&quot;: &quot;sin&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omv---variable">
+    <title>Variables</title>
+    <para>
+      A variable is represented using the <systemitem>OMV</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+
+    /** name of the variable */
+    &quot;name&quot;: name
+}
+</programlisting>
+    <para>
+      For example, the variable <systemitem>x</systemitem>:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+    &quot;name&quot;: &quot;x&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omi---integers">
+    <title>Integers</title>
+    <para>
+      Integers can be represented in three different ways, to both make
+      use of json and enable easy translation from the XML encoding.
+    </para>
+    <section id="sec_json-json-integers">
+      <title>JSON Integers</title>
+      <para>
+        Integers can be represented as a native JSON Integer, using an
+        <systemitem>integer</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+
+    /** integer value */
+    &quot;integer&quot;: integer
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;integer&quot;: -120
+}
+</programlisting>
+    </section>
+    <section id="sec_json-decimal-integers">
+      <title>Decimal Integers</title>
+      <para>
+        Integers can be represented using their decimal encoding, using
+        the <systemitem>decimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;, 
+
+    /** decimal value */
+    &quot;decimal&quot;: decimalInteger
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;decimal&quot;: &quot;-120&quot;
+}
+</programlisting>
+    </section>
+    <section id="sec_json-hexadecimal-integers">
+      <title>Hexadecimal Integers</title>
+      <para>
+        Integers can be represented using their hexadecimal encoding,
+        using the <systemitem>hexadecimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+
+    /** hexadecimal value */
+    &quot;hexadecimal&quot;: hexInteger
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;hexadecimal&quot;: &quot;-x78&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-omf---floats">
+    <title>Floats</title>
+    <para>
+      Floats, like integers, can be represented in three different ways.
+    </para>
+    <section id="sec_json-json-floats">
+      <title>JSON Floats</title>
+      <para>
+        Floats can be represented as a native JSON Numbers, using a
+        <systemitem>float</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** float value */
+    &quot;float&quot;: float
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;float&quot;: 1e-10
+}
+</programlisting>
+    </section>
+    <section id="sec_json-decimal-floating-point-numbers">
+      <title>Decimal Floating Point Numbers</title>
+      <para>
+        Integers can be represented using their decimal encoding, using
+        the <systemitem>decimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** decimal value */
+    &quot;decimal&quot;: decimalFloat
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;decimal&quot;: &quot;1.0e-10&quot;
+}
+</programlisting>
+    </section>
+    <section id="sec_json-hexadecimal-floats">
+      <title>Hexadecimal Floats</title>
+      <para>
+        Floats can be represented using their hexadecimal encoding,
+        using the <systemitem>hexadecimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** hexadecimal value */
+    &quot;hexadecimal&quot;: hexFloat
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;hexaecimal&quot;: &quot;3DDB7CDFD9D7BDBB&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-omb---bytes">
+    <title>Bytes</title>
+    <para>
+      Byte Arrays can be represented using two ways, as a native array
+      of JSON integers, or base64-encoded as a string.
+    </para>
+    <section id="sec_json-json-byte-arrays">
+      <title>JSON Byte Arrays</title>
+      <para>
+        Bytes can be represented as a native JSON Byte Array, using a
+        <systemitem>bytes</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+
+    /** an array of bytes */
+    &quot;bytes&quot;: byte[]
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+    &quot;bytes&quot;: [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]
+}
+</programlisting>
+    </section>
+    <section id="sec_json-base64-encoded-bytes">
+      <title>Base64-encoded bytes</title>
+      <para>
+        Bytes can also be encoded as a base64 encoded string.
+      </para>
+      <programlisting language="javascript">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+
+    /** a base64 encoded string */
+    &quot;base64&quot;: base64string
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+    &quot;base64&quot;: &quot;aGVsbG8gd29ybGQ=&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-oms-strings">
+    <title>Strings</title>
+    <para>
+      Strings can be represented using normal JSON strings and the
+      <systemitem>OMS</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMSTR&quot;, 
+
+    /** the string */
+    &quot;string&quot;: string
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMSTR&quot;, 
+    &quot;string&quot;: &quot;Hello world&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-oma-application">
+    <title>Applications</title>
+    <para>
+      Applications can be represented using the <systemitem>OMA</systemitem>
+      type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMA&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** the term that is being applied */
+    &quot;applicant&quot;: omel, 
+
+    /** the arguments that the applicant is being applied to, optional */
+    &quot;arguments&quot;?: omel[]
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMA&quot;,
+
+    &quot;applicant&quot;: {
+        &quot;kind&quot;: &quot;OMS&quot;,
+
+        &quot;cd&quot;: &quot;transc1&quot;,
+        &quot;name&quot;: &quot;sin&quot;
+    },
+
+    &quot;arguments&quot;: [{
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;x&quot;
+    }]
+}
+</programlisting>
+  </section>
+  <section id="sec_json-oma-attribution">
+    <title>Attribution</title>
+    <para>
+      Attribution can be represented using the <systemitem>OMB</systemitem>
+      type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMATTR&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** attributes attributed to this object, non-empty */
+    &quot;attributes&quot;: ([
+        OMS, omel|OMFOREIGN
+    ])[]
+
+    /** object that is being attributed */
+    &quot;object&quot;: omel
+}
+</programlisting>
+    <para>
+      Here the attributes are being encoded as an array of pairs. Each
+      pair consists of a symbol (the attribute name) and a value (an
+      element or foreign element).
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMATTR&quot;,
+    &quot;attributes&quot;: [
+        [
+            {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;ecc&quot;,
+                &quot;name&quot;: &quot;type&quot;
+            },
+            {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;ecc&quot;,
+                &quot;name&quot;: &quot;real&quot;
+            }
+        ]
+    ],
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMV&quot;,
+        &quot;name&quot;: &quot;x&quot;
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omb---binding">
+    <title>Binding</title>
+    <para>
+      Binding can be represented using the <systemitem>OMB</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMBIND&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** the binder being used */
+    &quot;binder&quot;: omel
+
+    /** the variables being bound, non-empty */
+    &quot;variables&quot;: (OMV | attvar)[]
+
+    /** the object that is being bound */
+    &quot;object&quot;: omel
+}
+</programlisting>
+    <para>
+      Here, the variables can be a list of variables or attributed
+      variables. Attributed variables are represented using the
+      <systemitem>attvar</systemitem> type. This is any
+      <systemitem>OMATTR</systemitem> element (see above), where the
+      <systemitem>object</systemitem> being attributed is an
+      <systemitem>OMV</systemitem> instance.
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{  
+    &quot;kind&quot;: &quot;OMBIND&quot;,
+    &quot;binder&quot;:{  
+        &quot;kind&quot;: &quot;OMS&quot;,
+        &quot;cd&quot;: &quot;fns1&quot;,
+        &quot;name&quot;: &quot;lambda&quot;
+    },
+    &quot;variables&quot;:[  
+        {  
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;x&quot;
+        }
+    ],
+    &quot;object&quot;: {  
+        &quot;kind&quot;: &quot;OMA&quot;,
+        &quot;applicant&quot;: {  
+            &quot;kind&quot;: &quot;OMS&quot;,
+            &quot;cd&quot;: &quot;transc1&quot;,
+            &quot;name&quot;:&quot;sin&quot;
+        },
+        &quot;arguments&quot;: [  
+            {  
+                &quot;kind&quot;:&quot;OMV&quot;,
+                &quot;name&quot;:&quot;x&quot;
+            }
+        ]
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-ome---errors">
+    <title>Errors</title>
+    <para>
+      Errors can be represented using the <systemitem>OME</systemitem> object:
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OME&quot;, 
+
+    /** the error that has occured */
+    &quot;error&quot;: OMS,
+
+    /** arguments to the error, optional  */
+    &quot;arguments&quot;: (omel|OMFOREIGN)[]
+}
+</programlisting>
+    <para>
+      Here, the variables can be a list of elements or foreign objects.
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OME&quot;,
+    &quot;error&quot;: {
+        &quot;kind&quot;: &quot;OMS&quot;,
+        &quot;cd&quot;: &quot;aritherror&quot;,
+        &quot;name&quot;: &quot;DivisionByZero&quot;
+    },
+    &quot;arguments&quot;: [
+        {
+            &quot;kind&quot;: &quot;OMA&quot;,
+            &quot;applicant&quot;: {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;arith1&quot;,
+                &quot;name&quot;: &quot;divide&quot;
+            },
+            &quot;arguments&quot;: [
+                {
+                    &quot;kind&quot;: &quot;OMV&quot;,
+                    &quot;name&quot;: &quot;x&quot;
+                },
+                {
+                    &quot;kind&quot;: &quot;OMI&quot;,
+                    &quot;integer&quot;: 0
+                }
+            ]
+        }
+    ]
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omrs-and-structure-sharing">
+    <title>References and Structure Sharing</title>
+    <para>
+      Just like in the XML encoding, the <systemitem>OMR</systemitem> type can
+      be used for structure sharing. This can use an
+      <systemitem>href</systemitem> property.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMR&quot;
+
+    /** element that is being referenced */
+    &quot;href&quot;: uri
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMA&quot;,
+        &quot;applicant&quot;: {
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;f&quot;
+        },
+        &quot;arguments&quot;: [
+            {
+                &quot;kind&quot;: &quot;OMA&quot;,
+                &quot;id&quot;: &quot;t1&quot;,
+                &quot;applicant&quot;: {
+                    &quot;kind&quot;: &quot;OMV&quot;,
+                    &quot;name&quot;: &quot;f&quot;
+                },
+                &quot;arguments&quot;: [
+                    {
+                        &quot;kind&quot;: &quot;OMA&quot;,
+                        &quot;id&quot;: &quot;t11&quot;,
+                        &quot;applicant&quot;: {
+                            &quot;kind&quot;: &quot;OMV&quot;,
+                            &quot;name&quot;: &quot;f&quot;
+                        },
+                        &quot;arguments&quot;: [
+                            {
+                                &quot;kind&quot;: &quot;OMV&quot;,
+                                &quot;name&quot;: &quot;a&quot;
+                            },
+                            {
+                                &quot;kind&quot;: &quot;OMV&quot;,
+                                &quot;name&quot;: &quot;a&quot;
+                            }
+                        ]
+                    },
+                    {
+                        &quot;kind&quot;: &quot;OMR&quot;,
+                        &quot;href&quot;: &quot;#t11&quot;
+                    }
+                ]
+            },
+            {
+                &quot;kind&quot;: &quot;OMR&quot;,
+                &quot;href&quot;: &quot;#t1&quot;
+            }
+        ]
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omforeign---foreign-objects">
+    <title>Foreign Objects</title>
+    <para>
+      Just like in the XML encoding, the <systemitem>OMFOREIGN</systemitem>
+      type can be used for foreign objects. This can use an
+      <systemitem>href</systemitem> property.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMFOREIGN&quot;
+
+    /** encoding of the foreign object */
+    &quot;encoding&quot;?: string
+
+    /** the foreign object */
+    &quot;foreign&quot;: any
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMFOREIGN&quot;,
+    &quot;encoding&quot;: &quot;text/latex&quot;,
+    &quot;foreign&quot;: &quot;$x=\frac{1+y}{1+2z^2}$&quot;
+}
+</programlisting>
+  </section>
+</section>
+
 <section id="sec_enc_summary">
   <title>Summary</title>
   
@@ -3657,6 +4492,9 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       <listitem><para>The binary encoding for &OM; objects should be used when
 	  efficiency is a key issue. It is compact yet simple enough to allow
 	  fast encoding and decoding of objects.</para>
+      </listitem>
+      <listitem revisionflag="added"><para>The JSON encoding is readable, writable and can be
+	  widely used by different programming languages.</para>
       </listitem>
     </itemizedlist>
   </para>
@@ -4928,6 +5766,23 @@ or, using the Relax NG compact syntax:
     contain any XML defined in the DTD.
   </para>
   <literallayout role="dtd" file="openmath2.dtd"/>
+</appendix>
+
+
+<appendix id="app_dts" revisionflag="added">
+  <title>&OM; .d.ts (Normative)</title>
+  
+  <para>This is the main TypeScript Defintion File for the OpenMath JSON encoding. 
+  </para>
+  <literallayout role="dts" file="openmath2.d.ts"/>
+</appendix>
+
+<appendix id="app_json" revisionflag="added">
+  <title>&OM; .json Schema (Non-Normative)</title>
+  
+  <para>This is the (derived) OpenMath-JSON file
+  </para>
+  <literallayout role="dts" file="openmath2.json"/>
 </appendix>
 
 <appendix  id="app_whats_new">
