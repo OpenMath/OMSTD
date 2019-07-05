@@ -22,7 +22,7 @@
 
 <abstract>
 
-<para revisionflag="changed">This document describes version 2 revision 1 of
+<para>This document describes version 2 revision 1 of
 &OM;: a standard for
 the representation and communication of mathematical objects.
 <phrase role="finaledit">This revision clarifies the first &OM; 2.0 
@@ -37,14 +37,14 @@ a meaningful and correct way.  It is designed to be machine-generatable
 and machine-readable, rather than written by hand.
 </para>
 
-<para revisionflag="changed">The &OM; Standard is the official reference for
+<para>The &OM; Standard is the official reference for
 the &OM; language and has been approved by the &OM; Society.  It is not
 intended as an introductory document or a user's guide, for the latest
 available material of this nature, and the latest version of the standard, 
 please consult the &OM; web-site at
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
-<para revisionflag="changed">This document includes an overview of the
+<para>This document includes an overview of the
 &OM; architecture, an abstract description of &OM; objects and two
 mechanisms for producing concrete encodings of such objects.  The first,
 in &exml; (either innate or Strict Content MathML), is designed primarily 
@@ -97,7 +97,7 @@ a stream of bytes. An application dependent program manipulates the
 mathematical objects using its internal representation, it can convert
 them to &OM; objects and communicate them by using the byte stream
 representation of &OM; objects.</para>
-<para revisionflag="added">
+<para>
  This standard does not describe the mechanisms by which software systems may offer,
  or make use of, computational services. The currently-suggested mechanism is the 
 Symbolic Computation Software Composability Protocol (SCSCP) 
@@ -120,7 +120,7 @@ linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 <para revisionflag="changed">The standard endorses two encodings 
 in &exml; (an innate one described here, and one in Strict Content 
-MathML) and a  binary format.
+MathML), a binary format and a JSON.
 <phrase>At the time of writing, these are the encodings
 supported by most existing &OM; tools and applications,</phrase>
 however they are not the only possible encodings of &OM;
@@ -182,7 +182,7 @@ from these Content Dictionaries to/from the internal mathematical
 objects of the application.
 </para>
 
- <para revisionflag="changed">&OM; objects do not
+ <para>&OM; objects do not
 specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
@@ -379,7 +379,7 @@ objects as described below.)</phrase></para>
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
   is an &OM; <emphasis>binding object</emphasis>.
-  <phrase revisionflag="added">
+  <phrase>
     <math><mi>B</mi></math> is called the <emphasis>binder</emphasis>,  
     <math><msub><mi>v</mi><mn>1</mn></msub></math>,
     <math><mi>&#8230;</mi></math>,
@@ -601,7 +601,7 @@ width="600" depth="190"/>
 <varlistentry>
   <term>Binding</term>
   <listitem>
-    <para revisionflag="changed">objects are of the form
+    <para>objects are of the form
     <math>
       <mi mathvariant="bold">binding</mi>
       <mo>(</mo>
@@ -668,15 +668,15 @@ width="600" depth="190"/>
     </para>
 
     <para>Phrasebooks are allowed to use <emphasis><math><mi>&#945;</mi></math>-conversion</emphasis>
-    <phrase revisionflag="added">(also called <emphasis>alphabetic
+    <phrase>(also called <emphasis>alphabetic
     renaming</emphasis>)</phrase>
-    in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
+    in order to avoid clashes of variable names: <phrase> the variable in a variable binding
     can be replaced by a
     <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in
     the scope of the binding, if all variable references it binds are replaced accordingly:</phrase> 
     Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
     object
-    <math revisionflag="changed">
+    <math>
       <mi mathvariant="bold">binding</mi>
       <mo>(</mo>
       <mi>B</mi>
@@ -696,7 +696,7 @@ width="600" depth="190"/>
       <mi>C</mi>
       <mo>)</mo>
     </math>
-    <phrase revisionflag="added">where
+    <phrase>where
     <math>
       <mover>
 	<mi>v</mi>
@@ -714,7 +714,7 @@ width="600" depth="190"/>
   sequences of bound, possibly attributed variables and <math><mi>x</mi></math> is a
   variable</phrase>. 
   This object
-  <math revisionflag="changed">
+  <math>
     <mi mathvariant="bold">binding</mi>
     <mo>(</mo>
     <mi>B</mi>
@@ -736,7 +736,7 @@ width="600" depth="190"/>
   </math>
 can be replaced
 in <math><mi>&#937;</mi></math> by
-<math revisionflag="changed">
+<math>
   <mi  mathvariant="bold">binding</mi>
   <mo>(</mo>
   <mi>B</mi>
@@ -758,7 +758,7 @@ in <math><mi>&#937;</mi></math> by
 </math>
 where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
 </math> or <math><mi>C</mi></math>
-  <phrase revisionflag="added"> 
+  <phrase> 
     and 
   <math>
     <mover>
@@ -771,7 +771,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
   are
   </phrase> obtained
   from
-  <phrase revisionflag="added">
+  <phrase>
   <math>
     <mover>
       <mi>w</mi>
@@ -783,7 +783,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
   <math><mi>C</mi></math>,
   by replacing each free occurrence
   of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
-  <phrase revisionflag="added">
+  <phrase>
     If instead of 
     <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>,  we have an attributed
     variable 
@@ -834,7 +834,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
   </math>
 </para>
 <para>
-  <phrase revisionflag="changed"> Note that repeated variable bindings of the same
+  <phrase> Note that repeated variable bindings of the same
   variable in a binding object are allowed, but make little sense semantically and are
   therefore discouraged: the first binding binds only references in the subsequent
   bindings up to and including the next binding for the same name. 
@@ -916,7 +916,7 @@ where <math><mi>y</mi></math> is a <emphasis>new variable</emphasis>, i.e. one t
 </listitem>
 </varlistentry>
 <varlistentry><term>Attribution</term><listitem><para>decorates an
-  object <phrase revisionflag="added">(called the <quote>syntactic head</quote> of the attribution)</phrase> with a sequence of one or more pairs made up of an &OM;
+  object <phrase>(called the <quote>syntactic head</quote> of the attribution)</phrase> with a sequence of one or more pairs made up of an &OM;
   symbol, the <quote>attribute</quote>, and an associated object, 
   the <quote>value of the
   attribute</quote>.  The value of the attribute can be an <phrase
@@ -959,7 +959,7 @@ expression could be attributed with its spoken or visual rendering.
   width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo><mtext>.</mtext></math>
   The operation that produces an object with a single layer of
-  attribution is called <emphasis>flattening</emphasis>. <phrase revisionflag="added">The
+  attribution is called <emphasis>flattening</emphasis>. <phrase>The
   <quote>head</quote> of an attribution is the syntactic head of the fully (recursively)
   flattened version.</phrase>
 </para>
@@ -989,7 +989,7 @@ expression could be attributed with its spoken or visual rendering.
   </para>
 
 
-<para revisionflag="changed">Objects can be decorated in a multitude of ways.
+<para>Objects can be decorated in a multitude of ways.
 <phrase>An example of the use of an adornment attribution
 would be to indicate the colour in which an &OM; object should be
 displayed, for example <math><mi
@@ -1087,7 +1087,7 @@ characters) were not allowed in names.
 
 <formalpara><title>CD Base</title>
 
-<para revisionflag="changed">A cdbase is interpreted as an IRI
+<para>A cdbase is interpreted as an IRI
 <citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.
 Applications should ignore any white space surrounding the URL.</para>
 
@@ -1125,7 +1125,7 @@ subset of the above grammar which is a legal POSIX
 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
 </entry>
 </row>
-<row revisionflag="added">
+<row>
 <entry>Digit</entry>
 <entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> 
@@ -1153,7 +1153,7 @@ So for example the URI for the symbol with cdbase
 <systemitem>transc1</systemitem> and name <systemitem>sin</systemitem>
 is:
 <blockquote>
-  <para revisionflag="changed"><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
+  <para><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
 </blockquote>
 In particular, this now allows us to refer uniquely to an &OM; symbol from a
 MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</citation> section 4.2.3 for MathML-3):
@@ -1204,14 +1204,14 @@ that writes <math><mn>7</mn></math>.</para>
 <title>&OM; Encodings</title>
 
 
-<para revisionflag="changed">In this chapter, two encodings are defined 
+<para>In this chapter, two encodings are defined 
 that map between &OM; objects and byte streams.  These byte streams constitute a low level
 representation that can be easily exchanged between processes (via
 almost any communication method) or stored and retrieved from
 files. In addition, OpenMath can be represented in Strict Content MathML, 
 as described in Section 4.1.3 of <citation>MathML_2014</citation>.</para>
 
-<para revisionflag="changed">The first encoding is the innate character-based
+<para>The first encoding is the innate character-based
 encoding in &exml; format.  In previous versions of the &OM; Standard
 this encoding was a restricted subset of the full legal &exml; syntax.
 In this version, however, we have removed all these restrictions so that
@@ -1225,7 +1225,7 @@ applications.</para>
 used when the compactness of the encoding is important (inter-process
 communications over a network is an example).</para>
 
-<para revisionflag="changed">Note that these two encodings are sufficiently 
+<para>Note that these two encodings are sufficiently 
 different for auto-detection to be effective: an application reading the bytes can
 very easily determine which encoding is used. In the case of the MathML 
 encoding, the reading application should already be expecting MathML.</para>
@@ -1245,7 +1245,7 @@ encoding, the reading application should already be expecting MathML.</para>
 </orderedlist> 
 </para>
 
-<section id="ssec_xml" revisionflag="added">
+<section id="ssec_xml">
 <title>A <phrase>Schema</phrase> for the &exml; Encoding</title>
 
 <para>The &exml; encoding of an &OM; object is
@@ -1266,7 +1266,7 @@ respectively.</para>
 
 <literallayout role="rnc" file="openmath2.rnc"/>
 
-<para revisionflag="changed"><emphasis role="bold">Note:</emphasis> 
+<para><emphasis role="bold">Note:</emphasis> 
 In the original edition of OpenMath 2.0 as published, names are specified
 as being of the <systemitem>xsd:NCName</systemitem> type. 
 When the original edition of OpenMath 2.0 was published, 
@@ -1292,7 +1292,7 @@ version of the &OM; standard it conforms.  In previous versions of this standard
 attribute did not exist, so any &OM; object without such an attribute must conform to
 version 1 (or equivalently 1.1) of the &OM; standard.  Objects which conform to the
 description given in this document should have <systemitem>version="2.0"</systemitem>.
-<phrase revisionflag="added"> If the <systemitem>version</systemitem> attribute is not
+<phrase> If the <systemitem>version</systemitem> attribute is not
 present, the document format embedding the <systemitem>OMOBJ</systemitem> may provide a
 method for determining version information (the XML encoding for &OM; content dictionaries
 does, for instance). The <systemitem>OMOBJ</systemitem> element can also take an optional
@@ -1343,7 +1343,7 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   between two content dictionaries with the same name.  If a symbol does not have an
   explicit <systemitem>cdbase</systemitem> attribute, then it inherits its
   <systemitem>cdbase</systemitem> from the first ancestor in the &exml; tree with one,
-  should such an element exist. <phrase revisionflag="added">If no CD base can be
+  should such an element exist. <phrase>If no CD base can be
   determined in this way, then it is determined by the catalog induced by the CD group
   determined for the <systemitem>OMOBJ</systemitem>. Should this be impossible, the CD
   base defaults to <systemitem>http://www.openmath.org/cd</systemitem>.</phrase> In this
@@ -1397,7 +1397,7 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <para>or one of the special values: INF, -INF or
   NaN.</para>
 </blockquote>
-  <para revisionflag="changed">The value of
+  <para>The value of
   <systemitem>hex</systemitem> is a base 16 representation of the 
  64 bits of the <acronym>ieee</acronym> Double.
  Thus the number represents mantissa, exponent, and sign in network byte order.
@@ -1630,8 +1630,8 @@ an &exml; document.
 <varlistentry>
  <term>References</term>
  <listitem><para>
- &OM; integers, <phrase revisionflag="added">symbols, variables,</phrase> floating point numbers, character strings,
- bytearrays, applications, binding, attributions, error, <phrase revisionflag="added">and foreign objects</phrase> can also be encoded
+ &OM; integers, <phrase>symbols, variables,</phrase> floating point numbers, character strings,
+ bytearrays, applications, binding, attributions, error, <phrase>and foreign objects</phrase> can also be encoded
  as an empty <systemitem>OMR</systemitem> element with an <systemitem>href</systemitem>
  attribute whose value is the value of a URI referencing an id
  attribute of an &OM; object of that type.
@@ -1753,7 +1753,7 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
 <para>We say that an &OM; element dominates all its children and all elements
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
 i.e. the element that carries the <systemitem>id</systemitem> attribute pointed to
-by the <systemitem revisionflag="changed">href</systemitem> attribute. For instance in the representation
+by the <systemitem>href</systemitem> attribute. For instance in the representation
 in <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
@@ -1767,7 +1767,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <emphasis>acyclicity constraint</emphasis>: An &OM; element may not dominate itself.</para>
 
 <para>Consider for instance the following (illegal) &exml; representation
-<literallayout revisionflag="changed"><![CDATA[<OMOBJ version="2.0">
+<literallayout><![CDATA[<OMOBJ version="2.0">
   <OMA id="foo">
     <OMS cd="arith1" name="divide"/>
     <OMI>1</OMI>
@@ -1824,11 +1824,11 @@ shows.</para>
 
 <para> Here, the <systemitem>OMA</systemitem> with
 <systemitem>id="bar"</systemitem> dominates its third child, the
-<systemitem>OMR</systemitem> with <systemitem revisionflag="changed">href="#baz"</systemitem>,
+<systemitem>OMR</systemitem> with <systemitem>href="#baz"</systemitem>,
 which dominates its target <systemitem>OMA</systemitem> with
 <systemitem>id="baz"</systemitem>, which in turn dominates its third
 child, the <systemitem>OMR</systemitem> with
-<systemitem revisionflag="changed">href="#bar"</systemitem>, this finally dominates its
+<systemitem>href="#bar"</systemitem>, this finally dominates its
 target, the original <systemitem>OMA</systemitem> element with
 <systemitem>id="bar"</systemitem>. So this pair of &OM; objects
 violates the acyclicity constraint and is not the &exml;
@@ -2835,7 +2835,7 @@ implementations).</para>
     that conforms to the constraints on <emphasis>xxxx</emphasis> strings. For
     instance, for <emphasis>symbname</emphasis>, <emphasis>varname</emphasis>, or
     <emphasis>cdname</emphasis> this is the regular expression described in
-    <xref linkend="sec_names"/>, <phrase revisionflag="changed">for <emphasis>uri</emphasis> it is the grammar for
+    <xref linkend="sec_names"/>, <phrase>for <emphasis>uri</emphasis> it is the grammar for
     IRIs in <citation>IETF3987</citation></phrase>.</para>
 </section>
 
@@ -2894,7 +2894,7 @@ The identifier is stored in the first <phrase>five
 
 <variablelist>
 <varlistentry>
-  <term>Integers</term><listitem><para revisionflag="changed">are encoded depending on how large they
+  <term>Integers</term><listitem><para>are encoded depending on how large they
       are. There are four possible formats.  Integers between -128 and 127 are
       encoded as the small integer tags (<phrase>token
 	identifier</phrase> 1) followed by a single byte that is the 
@@ -3045,7 +3045,7 @@ The identifier is stored in the first <phrase>five
 
 <varlistentry>
 <term>Floating-point number</term>
-<listitem><para revisionflag="changed">are encoded using the floating-point
+<listitem><para>are encoded using the floating-point
   number tags (<phrase>token identifier</phrase> 3) followed by eight bytes that are the IEEE 754
   representation&#160;<citation>ieee754_85</citation>, most significant bytes first.
 For example, 
@@ -3086,7 +3086,7 @@ For example,
 
 <varlistentry>
   <term>Bytearrays</term>
-  <listitem><para revisionflag="changed">are encoded using the bytearray 
+  <listitem><para>are encoded using the bytearray 
   tags (<phrase>token identifier</phrase> 4) with the
       long flag set if the number of elements is
       greater than or equal to 256. Then, there is the number of elements,
@@ -3247,9 +3247,9 @@ For example,
 <title>Example of Binary Encoding</title>
 
 <para>As
-<phrase revisionflag="added">a simple</phrase>
+<phrase>a simple</phrase>
 example of the binary encoding, we can consider the &OM; object
-<math display="block" revisionflag="added">
+<math display="block">
   <mi mathvariant="bold">application</mi>
   <mo fence="true">(</mo>
   <mi>times</mi>
@@ -4692,7 +4692,7 @@ Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
     </para>
     
     
-    <para revisionflag="changed">
+    <para>
       Content Dictionaries may be grouped into <emphasis>CD Groups</emphasis>. These
       groups allow applications to easily refer to collections of Content
       Dictionaries. One particular CDGroup of interest is the <quote>MathML
@@ -4801,7 +4801,7 @@ Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
 <variablelist>
   <varlistentry><term><systemitem>CD</systemitem></term>
   <listitem>
-    <para revisionflag="added">
+    <para>
       The <systemitem>CD</systemitem> element can take an optional
       <systemitem>version</systemitem> attribute which indicate to which version of the
       &OM; standard it conforms. In previous versions of this standard this attribute did
@@ -5048,7 +5048,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 
 <literallayout role="rnc" file="omcdsig2.rnc"/>
 
-  <para revisionflag="added">
+  <para>
     The <systemitem>CDSignatures</systemitem> element specifies which CD the
     <systemitem>Signature</systemitem> elements contained pertain to via the
     <systemitem>cd</systemitem> attribute. The optional <systemitem>cdurl</systemitem> can
@@ -5066,7 +5066,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
     <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
   </para>
 
-  <para revisionflag="added">
+  <para>
     The contents of the <systemitem>CDSignatures</systemitem> element are made up of
     <systemitem>CDSComment</systemitem>, <systemitem>CDSReviewDate</systemitem>, and
     <systemitem>CDSStatus</systemitem>, which are completely analogous to their CD
@@ -5098,7 +5098,7 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 </OMOBJ>
 </Signature>
 ]]></literallayout>
-<phrase revisionflag="added">Conceptually, it associates the symbol
+<phrase>Conceptually, it associates the symbol
 <systemitem>plus</systemitem> with an &OM;-encoded type; here an n-ary function from an
 Abelian Semigroup to itself.</phrase>  
 </para>
@@ -5110,12 +5110,12 @@ Abelian Semigroup to itself.</phrase>
 
 <para>
   The CD Group mechanism is a convenience mechanism for identifying collections of CDs
-  <phrase revisionflag="added">and specifying their location by an URI</phrase>.  A CD
+  <phrase>and specifying their location by an URI</phrase>.  A CD
   Group file is an &exml; document used in the (static or dynamic) negotiation phase where
   communicating applications declare and agree on the Content Dictionaries which they
   process.  It is a complement, or an alternative, to the individual declaration of
   Content Dictionaries understood by an application.  <phrase
-  revisionflag="added">Additionally, a CD Group file can also be used as a catalog for
+ >Additionally, a CD Group file can also be used as a catalog for
   defaulting the CD bases of &OM; symbols.</phrase> Note that CD Groups do
   <emphasis>not</emphasis> affect the &OM; objects themselves.  Symbols in an object
   always refer to content dictionaries, not groups.</para>
@@ -5159,7 +5159,7 @@ CDs, identified by name and optionally version number and URL.</para>
     <literallayout role="rnc" file="omcdgroup2.rnc"/>
 </figure>
 
-<para revisionflag="added">
+<para>
   The <systemitem>CD</systemitem> element can take optional
   <systemitem>version</systemitem> attribute which indicates to which version of the &OM;
   standard it conforms.  In previous versions of this standard this attribute did not
@@ -5205,7 +5205,7 @@ version numbers of the CDGroup.
 <varlistentry><term><systemitem>CDGroupURL</systemitem></term>
 <listitem><para>The text occurring in the <systemitem>CDGroupURL</systemitem>
   element identifies the location of the CDGroup file, not necessarily
-  of the member Content Dictionaries. <phrase revisionflag="added">If the
+  of the member Content Dictionaries. <phrase>If the
   <systemitem>CDGroupURL</systemitem> element is missing, it defaults to the URL of
   the current CD group file.</phrase> For the syntactical
   requirements, see <systemitem>CDURL</systemitem> in <xref linkend="sect_pcdata"/>.</para>
@@ -5226,7 +5226,7 @@ mathematical area of the CDGroup.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDGroupInclude</systemitem></term>
-<listitem><para revisionflag="added">The text content of the
+<listitem><para>The text content of the
 <systemitem>CDGroupInclude</systemitem> identifies an external CD group file whose CDGroup
 members are to be included into the current one. Technically: the set of CDs of CD group
 given by a CD group file with <systemitem>CDGroupInclude</systemitem> elements is
@@ -5242,10 +5242,10 @@ For the syntactical
 </varlistentry>
 <varlistentry><term><systemitem>CDName</systemitem></term>
 <listitem>
-  <para><phrase revisionflag="changed">The text occurring in the
+  <para><phrase>The text occurring in the
   <systemitem>CDName</systemitem> element names the referenced Content Dictionary (see
   <systemitem>CDURL</systemitem> below) in this CD group,</phrase> <phrase
-  revisionflag="added">it must be unique in the CD group. In particular,
+ >it must be unique in the CD group. In particular,
   <systemitem>OMS</systemitem> elements in an <systemitem>OMOBJ</systemitem> whose
   <systemitem>cdgroup</systemitem> attribute references the current CD group derive their CD base
   via this <systemitem>CDName</systemitem>.</phrase> For the syntactical requirements, see
@@ -5429,7 +5429,7 @@ For example (again using the &exml; encoding):
 </OMATTR>]]></literallayout>
 </para>
 
-<para revisionflag="changed"> An exception to the above guidelines occurs when a MathML object
+<para> An exception to the above guidelines occurs when a MathML object
 is converted to &OM;.  MathML also has an
 <systemitem>encoding</systemitem> attribute which can appear in various
 places and whose format is a string.  Only two values are predefined,
@@ -5509,12 +5509,12 @@ the accuracy of these representations.</para>
 
 
 <para>
-  <phrase revisionflag="added">Given the inheritance mechanism for CD bases &OM;
+  <phrase>Given the inheritance mechanism for CD bases &OM;
   symbols,</phrase> Content Dictionaries available from the official &OM; repository at
   <systemitem>http://www.openmath.org</systemitem> need only be referenced by name, other
   Content Dictionaries <emphasis>should</emphasis> be referenced using the
   <systemitem>CDBase</systemitem> and the <systemitem>CDName</systemitem> <phrase
-  revisionflag="added"> or via the CD Group-based CD base inheritance mechanism</phrase>.
+ > or via the CD Group-based CD base inheritance mechanism</phrase>.
 </para>
 
 <para>When receiving an &OM; symbol, e.g.&#160;<math><mi>s</mi></math>,
@@ -5954,42 +5954,42 @@ details of how this attribute is used are not mandated by the standard.
     
     <itemizedlist>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	    There are now explicitly two XML encodings: the previous one and 
 	    the Strict Content MathML one. This necessitated changes to the 
 	    preamble and the start of Chapter 3.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		The description of the encoding of <systemitem>xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1</systemitem> in base 256 was corrected (the <systemitem>0xab</systemitem> (base 256/positive) byte was omitted and <systemitem>0xF1</systemitem> had been written <systemitem>0xFI</systemitem>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The phrase <quote>in little endian format</quote> was unhelpfully included in the description of the binary integer encoding, which contradicted the later <quote>network byte order</quote>. Now removed.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		<xref linkend="sec_xml-desc"/> described the OpenMath XML value of <systemitem>hex</systemitem> as <quote>from lowest to highest bits using a  least significant byte ordering</quote>.  Replaced by the current <quote>in network byte order</quote>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		The example of binary encoding of floats in <xref linkend="sec_bin-desc"/> For example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>" was wrong, and has been replaced by the same example as the XML encoding.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">A citation to MathML 3 was added.
+	<para>A citation to MathML 3 was added.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">The <quote>Note on names</quote>, which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
+	<para>The <quote>Note on names</quote>, which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
+	<para>Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
         </para>
       </listitem>
     </itemizedlist>
@@ -5999,35 +5999,35 @@ details of how this attribute is used are not mandated by the standard.
     <title>Changes in 2.0 Revision 2</title>
     <itemizedlist>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
 	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The notion of the head of an attribution has been introduced to clarify the
 	  notion of an attributed variable.
 	</para>
-	<para revisionflag="added">
+	<para>
 	  The notion of alphabetic renaming has been clarified. It now specifies what
 	  should happen in the presence of attributed bound variables: the variables in
 	  the attribute values need to be renamed as well.  
 	</para>
-	<para revisionflag="added">
+	<para>
 	  Duplicate bound variables in binders have been deprecated, since they make no
 	  sense. The fallback semantics of duplicate variables been clarified for the case
 	  of attributed bound variables.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	 The RelaxNG schema has been corrected to allow hexadecimal representation of integers to match 
 	 <xref linkend="sec_xml-desc"/>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  For a better alignment with MathML3, the <systemitem>OMOBJ</systemitem> element
 	  has been extended by a <systemitem>cdgroup</systemitem> attribute that specifies
 	  a CDGroup file that acts as a catalog for the CD bases of
@@ -6037,21 +6037,21 @@ details of how this attribute is used are not mandated by the standard.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The meaning of <systemitem>CDGroup/CDGroupMember/CDName</systemitem> has been
 	  clarified in terms of uniqueness conditions and correspondence to name of the
 	  referenced CD.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  An inclusion mechanism has been introduced to make the
 	  <systemitem>cdgroup</systemitem> catalog mechanism in MathML more realistic and
 	  manageable.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The top level elements of the XML encodings of CDs, CD signatures, and CD groups
 	  have been augmented with <systemitem>version</systemitem> attribute and the
 	  first two with a <systemitem>cdgroup</systemitem> attribute that give the
@@ -6091,7 +6091,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry revisionflag="changed" id="IETF3987" role="misc">
+  <biblioentry id="IETF3987" role="misc">
     <author><othername>IETF</othername></author>
     <title>RFC 3987 - Internationalized Resource Identifiers (IRIs)</title>
     <pubdate>January 2005</pubdate>
@@ -6886,7 +6886,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="erratum_NE17" role="misc" revisionflag="added">
+  <biblioentry id="erratum_NE17" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Namespaces in XML 1.0 (Second Edition) Errata</title>
     <pubdate role="month">November</pubdate>
@@ -7063,7 +7063,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/MathML2/</bibliomisc>
   </biblioentry>
    
-  <biblioentry id="MathML_2014" role="misc" revisionflag="added">
+  <biblioentry id="MathML_2014" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 3.0 Specification
     2nd Edition</title>
