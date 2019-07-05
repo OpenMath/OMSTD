@@ -118,9 +118,9 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para revisionflag="changed">The standard endorses two encodings 
+<para>The standard endorses two encodings 
 in &exml; (an innate one described here, and one in Strict Content 
-MathML), a binary format and a JSON.
+MathML)<phrase revisionflag="deleted">and</phrase><phrase revisionflag="added">,</phrase> a binary format <phrase revisionflag="added">and a JSON encoding</phrase>.
 <phrase>At the time of writing, these are the encodings
 supported by most existing &OM; tools and applications,</phrase>
 however they are not the only possible encodings of &OM;
@@ -3645,18 +3645,21 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 
 <section id="sec_json-the-json-encoding" revisionflag="added">
   <title>The JSON encoding</title>
-  <!-- TODO: Citation of the relevant parts -->
+  <!-- TODO: Citation of one of the JSON standards -->
   <para>
-    JSON is a lightweight data format natively supported by many
-    programming languages. The JSON encoding aims to ensure that
-    &OM; objects can be represented as JSON objects with
-    human-readable attribute names. Furthermore, it aims to make
-    translation from XML to JSON schema easily possible. It uses
+    JSON <citation>url_JSON</citation> is a lightweight data format natively supported by many
+    programming languages, in particular JavaScript and other web-based languages. 
+    The JSON encoding aims to ensure that &OM; objects can be represented as JSON objects 
+    with human-readable attribute names thus making &OM; more interoperable with the web. 
+    Furthermore, it aims to make translation from XML to JSON schema easily possible. It uses
     JSON-native types where possible, and avoid XML peculiarities like
     pseudo elements.
   </para>
   <para>
-    The Typescript Definition File can be found in <xref linkend="app_dts" /> and the JSON Schema Definition can be found in <xref linkend="app_json" /> . 
+    JSON Schema <citation>handrewsjsonschema</citation> is a format that allows structural verification of JSON objects. 
+    This format is difficult to edit, hence the normative schema is authored as a TypeScript <citation>url_typescript</citation> definition file which can be found in <xref linkend="app_dts" />. 
+    A non-normative JSON Schema is then generated from this definition files. 
+    It can be found in <xref linkend="app_json" />. 
   </para>
   <section id="sec_json-general-structure">
     <title>General Structure</title>
@@ -3705,99 +3708,11 @@ This works similar to the XML encoding, but more on this later.
           that can optionally be given an <systemitem>id</systemitem>.
         </para>
       </listitem>
-      <listitem>
-        <para>
-          The <systemitem>withCD</systemitem> type is used by any &OM;
-          element which uses a <systemitem>cdBase</systemitem> base url.
-        </para>
-      </listitem>
     </itemizedlist>
     <para>
       Note that for simplicity, the <systemitem>id</systemitem>
       attribute is omitted in any of the below. 
     </para>
-  </section>
-  <section id="sec_json-helper-types">
-    <title>Helper Types</title>
-    <para>
-      While JSON provides many types, sometimes more restrictions than
-      the general type is required. The JSON Schema provides several
-      facilities for this, for example strings matching a particular
-      regular expression.
-    </para>
-    <para>
-      The schema uses the following helper types:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-        <systemitem>uri</systemitem> represents any URI encoded as a string.
-          This uses the JSONSchema <systemitem>format: uri</systemitem>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>name</systemitem> represents any valid name. In this schema uses
-          any kind of string.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>integer</systemitem>represents an arbitrary precise JSON-native
-          integer. Uses JSON numbers as underlying type, and the JSON
-          Schema <systemitem>number</systemitem> type.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>decimalInteger</systemitem> represents a string representing the
-          decimal expansion of an integer. Uses the regular expression
-          <systemitem>^-?[0-9]+$</systemitem>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>hexInteger</systemitem> represents a string representing the
-          heximadecimal expansion of an integer. Uses the regular
-          expression <systemitem>^-?x[0-9A-F]+.$</systemitem>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>float</systemitem> represents any IEEE 32-bit integer, represented
-          as a native JSON integer.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>decimalFloat</systemitem> represents a string representing the
-          decimal expansion of an IEEE floating point number. Uses the
-          regular expression
-          <systemitem>^(-?)([0-9]+)?(\.[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-        <systemitem>hexFloat</systemitem> represents a string representing the hexadecimal expansion of an IEEE floating point number.
-Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>byte</systemitem> represents a byte of data represented as an
-          integer, between <systemitem>0</systemitem> and
-          <systemitem>255</systemitem> (inclusive).
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>base64string</systemitem> represents a string representing a set
-          of bytes encoded as a <systemitem>base64</systemitem> string. Uses
-          the regular expression
-          <systemitem>^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$</systemitem>.
-        </para>
-      </listitem>
-    </itemizedlist>
   </section>
   <section id="sec_json-omobj-om-object-constructor">
     <title>The Object Constructor</title>
@@ -3833,72 +3748,6 @@ Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
       The object can be any &OM; element, as expressed by the
       <systemitem>omel</systemitem> type.
     </para>
-  </section>
-  <section id="sec_json-the-omel-type">
-    <title>The omel type</title>
-    <para>
-      The <systemitem>omel</systemitem> type represents any element
-    </para>
-    <para>
-      It is defined as any of the following:
-    </para>
-    <itemizedlist>
-      <listitem>
-        <para>
-          <systemitem>OMS</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMV</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMI</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMB</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMSTR</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMF</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMA</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMBIND</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OME</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMATTR</systemitem>
-        </para>
-      </listitem>
-      <listitem>
-        <para>
-          <systemitem>OMR</systemitem>
-        </para>
-      </listitem>
-    </itemizedlist>
   </section>
   <section id="sec_json-oms---symbol">
     <title>OpenMath Symbols</title>
@@ -5772,15 +5621,172 @@ or, using the Relax NG compact syntax:
 <appendix id="app_dts" revisionflag="added">
   <title>&OM; .d.ts (Normative)</title>
   
-  <para>This is the main TypeScript Defintion File for the OpenMath JSON encoding. 
+  <para>
+    JSON Schemas <citation>handrewsjsonschema</citation> define a vocabulary 
+    allowing us to validate and annotate JSON documents. 
+    Unfortunately, JSON schema is often tedious to read and write for humans. 
+    This is especially true when it comes to recursively defined data 
+    structures. As OpenMath has many recursive structures, the normative JSON
+    encoding is instead authored as a human readable TypeScript <citation>url_typescript</citation> definition file. 
+    This file can be found below. 
   </para>
+
   <literallayout role="dts" file="openmath2.d.ts"/>
+
+  <para>
+    While JSON provides many types, sometimes more restrictions than
+    the general type is required. The JSON Schema provides several
+    facilities for this, for example strings matching a particular
+    regular expression.
+  </para>
+  <para>
+    The schema uses the following helper types:
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+      <systemitem>uri</systemitem> represents any URI encoded as a string.
+        This uses the JSONSchema <systemitem>format: uri</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>name</systemitem> represents any valid name. In this schema uses
+        any kind of string.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>integer</systemitem>represents an arbitrary precise JSON-native
+        integer. Uses JSON numbers as underlying type, and the JSON
+        Schema <systemitem>number</systemitem> type.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>decimalInteger</systemitem> represents a string representing the
+        decimal expansion of an integer. Uses the regular expression
+        <systemitem>^-?[0-9]+$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>hexInteger</systemitem> represents a string representing the
+        heximadecimal expansion of an integer. Uses the regular
+        expression <systemitem>^-?x[0-9A-F]+.$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>float</systemitem> represents any IEEE 32-bit integer, represented
+        as a native JSON integer.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>decimalFloat</systemitem> represents a string representing the
+        decimal expansion of an IEEE floating point number. Uses the
+        regular expression
+        <systemitem>^(-?)([0-9]+)?(\.[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <systemitem>hexFloat</systemitem> represents a string representing the hexadecimal expansion of an IEEE floating point number.
+Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>byte</systemitem> represents a byte of data represented as an
+        integer, between <systemitem>0</systemitem> and
+        <systemitem>255</systemitem> (inclusive).
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>base64string</systemitem> represents a string representing a set
+        of bytes encoded as a <systemitem>base64</systemitem> string. Uses
+        the regular expression
+        <systemitem>^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$</systemitem>.
+      </para>
+    </listitem>
+  </itemizedlist>
+    <para>
+      The main type in the schema is the <systemitem>omel</systemitem> type. 
+      It is defined as any of the following:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <systemitem>OMS</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMV</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMI</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMB</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMSTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMF</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMA</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMBIND</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OME</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMATTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMR</systemitem>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Concrete (non-normative) examples can be found in <xref linkend="sec_json-the-json-encoding" />. 
+    </para>
 </appendix>
 
 <appendix id="app_json" revisionflag="added">
   <title>&OM; .json Schema (Non-Normative)</title>
   
-  <para>This is the (derived) OpenMath-JSON file
+  <para>
+    This section contains the  non-normative JSON Schema
+    <citation>handrewsjsonschema</citation> file for the
+    &OM; JSON encoding. It is generated using
+    <citation>url_vega-ts-jscon-schema-generator</citation> from the the TypeScript definition file in <xref linkend="app_json"/>. 
+    It can be used to perform machine-validation of JSON-encoded &OM; objects. 
   </para>
   <literallayout role="dts" file="openmath2.json"/>
 </appendix>
@@ -6057,6 +6063,17 @@ details of how this attribute is used are not mandated by the standard.
 	  first two with a <systemitem>cdgroup</systemitem> attribute that give the
 	  defaults for the contained <systemitem>OMOBJ</systemitem> elements.
 	</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="chgr3" revisionflag="added">
+    <title>Changes in 2.0 Revision 3</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          A newly endorsed JSON encoding was added. 
+        </para>
       </listitem>
     </itemizedlist>
   </section>
@@ -7406,7 +7423,37 @@ Types</title>
     <pubdate role="month">June 15&#8211;16</pubdate>
     <pubdate>1999</pubdate>
   </biblioentry>
+
+  <biblioentry id="url_JSON" role="misc">
+    <title>JSON (JavaScript Object Notation)</title>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>http://json.org/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="handrewsjsonschema" role="misc">
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
+    <author><firstname>H.</firstname> <surname>Andrews</surname></author>
+    <author><firstname>A.</firstname> <surname>Wright</surname></author>
+    <pubdate role="month">March 19</pubdate>
+    <pubdate>2018</pubdate>
+    <bibliomisc>https://tools.ietf.org/html/draft-handrews-json-schema-01</bibliomisc>
+  </biblioentry>
   
+  <biblioentry id="url_typescript" role="misc">
+    <title>TypeScript - JavaScript that scales.</title>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>https://www.typescriptlang.org/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="url_vega-ts-jscon-schema-generator" role="misc">
+    <title>ts-json-schema-generator</title>
+    <author><firstname>Dominik</firstname> <surname>Moritz</surname></author>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>https://github.com/vega/ts-json-schema-generator</bibliomisc>
+  </biblioentry>
   
 </bibliography>
 </book>
