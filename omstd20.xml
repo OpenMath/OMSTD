@@ -118,7 +118,7 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para>The standard endorses two encodings 
+<para>The standard endorSses two encodings 
 in &exml; (an innate one described here, and one in Strict Content 
 MathML)<phrase revisionflag="deleted">and</phrase><phrase revisionflag="added">,</phrase> a binary format <phrase revisionflag="added">and a JSON encoding</phrase>.
 <phrase>At the time of writing, these are the encodings
@@ -4342,8 +4342,10 @@ This works similar to the XML encoding, but more on this later.
 	  efficiency is a key issue. It is compact yet simple enough to allow
 	  fast encoding and decoding of objects.</para>
       </listitem>
-      <listitem revisionflag="added"><para>The JSON encoding is readable, writable and can be
-	  widely used by different programming languages.</para>
+      <listitem revisionflag="added"><para>
+      JSON is a widely used standard, with implementations in most programming 
+      languages, in particular JavaScript and other languages used on the web. 
+      The JSON encoding thus makes &OM; objects web-interoparable. </para>
       </listitem>
     </itemizedlist>
   </para>
@@ -6073,6 +6075,9 @@ details of how this attribute is used are not mandated by the standard.
       <listitem>
         <para>
           A newly endorsed JSON encoding was added. 
+          JSON is a standard available in many programming languages, in particular in JavaScript and other languages powering modern web applications. 
+          The &OM; JSON enocoding thus makes &OM; web-interoperable. 
+          See newly added Section 3.3, Appendix F and Appendix G. 
         </para>
       </listitem>
     </itemizedlist>
@@ -7424,14 +7429,14 @@ Types</title>
     <pubdate>1999</pubdate>
   </biblioentry>
 
-  <biblioentry id="url_JSON" role="misc">
+  <biblioentry id="url_JSON" role="misc" revisionflag="added">
     <title>JSON (JavaScript Object Notation)</title>
     <pubdate role="month">July 5</pubdate>
     <pubdate>2019</pubdate>
     <bibliomisc>http://json.org/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="handrewsjsonschema" role="misc">
+  <biblioentry id="handrewsjsonschema" role="misc" revisionflag="added">
     <title>JSON Schema: A Media Type for Describing JSON Documents</title>
     <author><firstname>H.</firstname> <surname>Andrews</surname></author>
     <author><firstname>A.</firstname> <surname>Wright</surname></author>
@@ -7440,14 +7445,14 @@ Types</title>
     <bibliomisc>https://tools.ietf.org/html/draft-handrews-json-schema-01</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="url_typescript" role="misc">
+  <biblioentry id="url_typescript" role="misc" revisionflag="added">
     <title>TypeScript - JavaScript that scales.</title>
     <pubdate role="month">July 5</pubdate>
     <pubdate>2019</pubdate>
     <bibliomisc>https://www.typescriptlang.org/</bibliomisc>
   </biblioentry>
 
-  <biblioentry id="url_vega-ts-jscon-schema-generator" role="misc">
+  <biblioentry id="url_vega-ts-jscon-schema-generator" role="misc" revisionflag="added">
     <title>ts-json-schema-generator</title>
     <author><firstname>Dominik</firstname> <surname>Moritz</surname></author>
     <pubdate role="month">July 5</pubdate>
