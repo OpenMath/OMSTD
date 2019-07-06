@@ -84,7 +84,7 @@
 }
 
 \begin{document}
-\catcode`\%=12
+%\catcode`\%=12
 \catcode`\{=12
 \catcode`\}=12
 
