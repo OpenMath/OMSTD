@@ -7437,9 +7437,9 @@ Types</title>
   </biblioentry>
 
   <biblioentry id="handrewsjsonschema" role="misc" revisionflag="added">
-    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
     <author><firstname>H.</firstname> <surname>Andrews</surname></author>
     <author><firstname>A.</firstname> <surname>Wright</surname></author>
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
     <pubdate role="month">March 19</pubdate>
     <pubdate>2018</pubdate>
     <bibliomisc>https://tools.ietf.org/html/draft-handrews-json-schema-01</bibliomisc>
@@ -7453,8 +7453,8 @@ Types</title>
   </biblioentry>
 
   <biblioentry id="url_vega-ts-jscon-schema-generator" role="misc" revisionflag="added">
-    <title>ts-json-schema-generator</title>
     <author><firstname>Dominik</firstname> <surname>Moritz</surname></author>
+    <title>ts-json-schema-generator</title>
     <pubdate role="month">July 5</pubdate>
     <pubdate>2019</pubdate>
     <bibliomisc>https://github.com/vega/ts-json-schema-generator</bibliomisc>
