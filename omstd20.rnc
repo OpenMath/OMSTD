@@ -33,7 +33,8 @@ bibliography?
 
 # frontmatter
 
-title = element title {(text|phrase|xref|filename|math|emphasis|acronym)*}
+title = element title {(text|phrase|xref|filename|math|emphasis|acronym)*,
+attribute revisionflag{"added"|"changed"|"deleted"}?}
 bookinfo = element bookinfo {
 releaseinfo,
 author*,

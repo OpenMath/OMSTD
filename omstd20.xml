@@ -5957,8 +5957,8 @@ details of how this attribute is used are not mandated by the standard.
   </section>
 </appendix>
 
-<appendix  id="om2-revisions" revisionflag="changed">
-  <title>Revisions to  &OM;&#160;2 (Non-Normative)</title>
+<appendix  id="om2-revisions">
+  <title  revisionflag="added">Revisions to  &OM;&#160;2 (Non-Normative)</title>
 
   <para revisionflag="added">
     In this appendix we describe the revisions to the &OM; 2  standard. All of these
