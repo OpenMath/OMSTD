@@ -34,7 +34,7 @@ bibliography?
 # frontmatter
 
 title = element title {(text|phrase|xref|filename|math|emphasis|acronym)*,
-attribute revisionflag{"added"|"changed"|"deleted"}?}
+attribute revisionflag{"added"|"changed"|"deleted"}?} 
 bookinfo = element bookinfo {
 releaseinfo,
 author*,
@@ -160,7 +160,8 @@ author = element author {
 (firstname|othername|surname)*
 }
 editor = element editor {
-(firstname|othername|surname)*
+(firstname|othername|surname)*,
+attribute revisionflag{"added"|"changed"|"deleted"}?}
 }
 othername = element othername {(text|emphasis)*}
 firstname = element firstname {(text|emphasis)*}
