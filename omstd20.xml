@@ -9,7 +9,7 @@
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
 <editor><firstname>D.</firstname><othername>P.</othername><surname>Carlisle</surname></editor>
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
-<editor><firstname>M.</firstname><surname role="finaledit">Ga&#235;tano</surname></editor>
+<editor><firstname>M.</firstname><surname>Ga&#235;tano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
 <editor><firstname>J.</firstname><othername>H.</othername><surname>Davenport (revision 1)</surname></editor>
 <editor><firstname>P.</firstname><othername>D.F.</othername><surname>Ion (revision 1)</surname></editor>
@@ -26,8 +26,8 @@
 <para>This document describes version 2 revision 1 of
 &OM;: a standard for
 the representation and communication of mathematical objects.
-<phrase role="finaledit">This revision clarifies the first &OM; 2.0 
-<citation>OM_2.0r0</citation>.</phrase>
+This revision clarifies the first &OM; 2.0 
+<citation>OM_2.0r0</citation>.
  &OM;
 allows the <emphasis>meaning</emphasis> of an object to be encoded
 rather than just a visual representation.  It is designed to allow the
@@ -57,9 +57,9 @@ a lot of data as efficiently as possible.  This document also includes a
 description of Content Dictionaries - the mechanism by which the meaning
 of a symbol in the &OM; language is encoded, as well as an XML encoding
 for them.  Finally it includes guidelines for the development of
-&OM;-compliant applications. <phrase role="finaledit">Further background
+&OM;-compliant applications. Further background
 on &OM; and guidelines for its use in applications may be found in the
-accompanying Primer <citation>OM_primer</citation>.</phrase></para>
+accompanying Primer <citation>OM_primer</citation>.</para>
 
 </abstract>
 </bookinfo>
@@ -424,7 +424,7 @@ attribution object (i.e. the <emphasis>key</emphasis> in a
 The <emphasis>role</emphasis> of an &OM; symbol is a restriction
 on how it may be used to construct a compound &OM; object and, in the
 case of the key in an attribution object, a clarification of how that
-attribution should be interpreted.  <phrase role="finaledit">The </phrase>possible roles are:
+attribution should be interpreted.  The possible roles are:
 <orderedlist numeration="lowerroman">
 
 <listitem><para><emphasis>binder</emphasis> The symbol may 
@@ -442,12 +442,12 @@ which does not change the meaning of the attributed &OM; object.
 <listitem><para> <emphasis>semantic-attribution</emphasis> This is the
 same as <emphasis>attribution</emphasis> except that it modifies the
 meaning of the attributed &OM; object and thus cannot be ignored by an
-application<phrase role="finaledit">, without changing the meaning</phrase>.  </para></listitem> 
+application, without changing the meaning.  </para></listitem> 
 
-<listitem><para> <emphasis>error</emphasis> The symbol <phrase role="finaledit">may</phrase> appear
+<listitem><para> <emphasis>error</emphasis> The symbol may appear
 as the first child of an &OM; error object.  </para></listitem>
 
-<listitem><para> <emphasis>application</emphasis> The symbol <phrase role="finaledit">may</phrase> appear
+<listitem><para> <emphasis>application</emphasis> The symbol may appear
 as the first child of an &OM; application object.  </para></listitem>
 
 <listitem><para> <emphasis>constant</emphasis> The symbol cannot be
@@ -565,7 +565,7 @@ objects</phrase>.</para>
 <variablelist>
 <varlistentry><term>Application</term><listitem><para>constructs an
   &OM; object from a sequence of one or more &OM; objects. The first
-  <phrase role="finaledit">child</phrase>
+  child
   of an application is referred to as its <quote>head</quote> while
   the remaining objects are called its <quote>arguments</quote>.  An &OM;
   application object can be used to convey the mathematical notion of
@@ -997,9 +997,9 @@ displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.
 Note that both <math><mi>A</mi></math> and <math><mi>red</mi></math> are
-<phrase role="finaledit">arbitrary</phrase> &OM;
-objects <phrase role="finaledit">whereas <math><mi>colour</mi></math> is
-a symbol</phrase>.
+arbitrary &OM;
+objects whereas <math><mi>colour</mi></math> is
+a symbol.
 An example of the use of a semantic attribution would be to indicate the
 type of an object.  For example</phrase>
 the object <math><mi
@@ -1007,10 +1007,9 @@ mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>type</mi> <mspace width=".3em"/> <mi>t</mi> <mo>)</mo></math>
 represents the judgment stating that object <math><mi>A</mi></math>
 has type <math><mi>t</mi></math>. Note that both
-<math><mi>A</mi></math> and <math><mi>t</mi></math> are <phrase
-role="finaledit">arbitrary</phrase> &OM;
-objects <phrase role="finaledit">whereas <math><mi>type</mi></math> is
-a symbol</phrase>.</para>
+<math><mi>A</mi></math> and <math><mi>t</mi></math> are arbitrary &OM;
+objects whereas <math><mi>type</mi></math> is
+a symbol.</para>
 
 
 </listitem>
@@ -1640,9 +1639,9 @@ The &OM; element represented by this <systemitem>OMR</systemitem>
  reference is a copy of the &OM; element referenced
  <systemitem>href</systemitem> attribute. Note that this copy
  is <emphasis>structurally equal</emphasis>, but not identical
- to the element referenced. <phrase role="finaledit">These URI
+ to the element referenced. These URI
  references will often be relative, in which case they are resolved using
- the base URI of the document containing the &OM;.</phrase></para>
+ the base URI of the document containing the &OM;.</para>
 
  <para>For instance, the &OM; object
 
@@ -2018,7 +2017,7 @@ implementations).</para>
 <figure id="fig_bin-enc">
     <title>Grammar of the binary encoding of &OM; objects.</title>
     
-    <informaltable role="finaledit">
+    <informaltable>
       <tgroup cols="6">
         <tbody>
           <row>
@@ -2717,7 +2716,7 @@ implementations).</para>
             <entry>vars </entry>
             <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry>
-	      <emphasis  role="finaledit">empty</emphasis>
+	      <emphasis>empty</emphasis>
 	    </entry>
           </row>
           
@@ -2824,8 +2823,8 @@ implementations).</para>
     {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
     <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
     denotes an arbitrary sequence of four bytes.
-    <phrase role="finaledit">Finally,
-      <emphasis>empty</emphasis> stands for the empty list of tokens.</phrase>
+    Finally,
+    <emphasis>empty</emphasis> stands for the empty list of tokens.
   </para>
   
   <para><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>,
@@ -2966,7 +2965,7 @@ The identifier is stored in the first <phrase>five
       integer. The sign of this packet determines the sign of the overall
       integer.</para>
 
-    <figure id="fig_bin-enc_stream" role="finaledit">
+    <figure id="fig_bin-enc_stream">
       <title>Streaming a large Integer in the Binary Encoding.</title>
 
       <informaltable>
@@ -6726,7 +6725,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
   </biblioentry>
   
-   <biblioentry id="OM_1.1"  role="finaledit">
+   <biblioentry id="OM_1.1">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 1.1</title>
     <pubdate>2002</pubdate>
@@ -6734,7 +6733,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.openmath.org/standard/om11/</bibliomisc>
   </biblioentry>
 
-   <biblioentry id="OM_2.0r0"  role="finaledit">
+   <biblioentry id="OM_2.0r0">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 2.0</title>
     <pubdate>2004</pubdate>
@@ -6743,7 +6742,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-   <biblioentry id="OM_primer"  role="finaledit">
+   <biblioentry id="OM_primer">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Primer</title>
     <pubdate>2004</pubdate>
@@ -6821,7 +6820,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>RFC: 2045</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
+    <bibliomisc>http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="rfc2046" role="misc">
@@ -6832,7 +6831,7 @@ Types</title>
     <bibliomisc>RFC: 2046</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
+    <bibliomisc>http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="iso646_83" role="misc">
