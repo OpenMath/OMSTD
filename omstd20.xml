@@ -23,7 +23,7 @@
 
 <abstract>
 
-<para revisionflag="changed">This document describes version 2 revision 3 of
+<para>This document describes <phrase  revisionflag="changed">version 2 revision 3</phrase> of
 &OM;: a standard for
 the representation and communication of mathematical objects.
 This revision clarifies the first &OM; 2.0 
@@ -5967,7 +5967,7 @@ details of how this attribute is used are not mandated by the standard.
   </para>
   
     <section id="chgr1">
-    <title>Changes in 2.0 Revision 1</title>
+    <title>Changes in 2.0 Revision 1 (July 2017) </title>
     
     <itemizedlist>
       <listitem>
@@ -6013,7 +6013,7 @@ details of how this attribute is used are not mandated by the standard.
   </section>
 
     <section id="chgr2">
-    <title>Changes in 2.0 Revision 2</title>
+    <title>Changes in 2.0 Revision 2 (August 2018)</title>
     <itemizedlist>
       <listitem>
 	<para>
@@ -6079,7 +6079,7 @@ details of how this attribute is used are not mandated by the standard.
   </section>
 
   <section id="chgr3" revisionflag="added">
-    <title>Changes in 2.0 Revision 3</title>
+    <title>Changes in 2.0 Revision 3 (July 2019)</title>
     <itemizedlist>
       <listitem>
         <para>
