@@ -5787,7 +5787,7 @@ Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
     This section contains the  non-normative JSON Schema
     <citation>handrewsjsonschema</citation> file for the
     &OM; JSON encoding. It is generated using
-    <citation>url_vega-ts-jscon-schema-generator</citation> from the the TypeScript definition file in <xref linkend="app_json"/>. 
+    <citation>url_vega-ts-jscon-schema-generator</citation> from the TypeScript definition file in <xref linkend="app_json"/>. 
     It can be used to perform machine-validation of JSON-encoded &OM; objects. 
   </para>
   <literallayout role="dts" file="openmath2.json"/>
