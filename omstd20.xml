@@ -554,6 +554,14 @@ animation, etc.  They may also appear in &OM; error objects, for
 example to allow an application to report an error in processing such
 an object.  
 </para>
+<para>
+	Although foreign objects can come with a standarized encoding 
+	field, their interpretation is an issue beyond the &OM; 
+	standard. In particular, a foreign object is primarily data 
+	that has been encoded in some format, and there is no 
+	promise that foreign objects encountered within one encoding 
+	of &OM; can be faithfully represented in another.
+</para>
 </listitem>
 </varlistentry>
 </variablelist>
