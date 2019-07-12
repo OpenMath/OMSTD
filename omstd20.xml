@@ -566,10 +566,6 @@ with index greater than 1)</phrase>.
 	promise that foreign objects encountered within one encoding 
 	of &OM; can be faithfully represented in another.
 </para>
-</listitem>
-</varlistentry>
-</variablelist>
-
 
 <para>
   Derived &OM; objects are constructed from non-&OM; data.  They differ from bytearrays in
