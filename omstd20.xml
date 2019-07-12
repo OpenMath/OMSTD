@@ -2,31 +2,32 @@
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0r2</releaseinfo>
+<releaseinfo>2.0r3</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 
 <editor><firstname>S.</firstname><surname>Buswell</surname></editor>
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
 <editor><firstname>D.</firstname><othername>P.</othername><surname>Carlisle</surname></editor>
 <editor><firstname>M.</firstname><othername>C.</othername><surname>Dewar</surname></editor>
-<editor><firstname>M.</firstname><surname role="finaledit">Ga&#235;tano</surname></editor>
+<editor><firstname>M.</firstname><surname>Ga&#235;tano</surname></editor>
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
 <editor><firstname>J.</firstname><othername>H.</othername><surname>Davenport (revision 1)</surname></editor>
 <editor><firstname>P.</firstname><othername>D.F.</othername><surname>Ion (revision 1)</surname></editor>
-<date>September 2017</date>
+<editor revisionflag="added"><firstname>T.</firstname><surname>Wiesing (revision 3)</surname></editor>
+<date>July 2019</date>
 
 <copyright>
-<year>2000&#8211;2017</year>
+<year>2000&#8211;2019</year>
 <holder>The OpenMath Society</holder>
 </copyright>
 
 <abstract>
 
-<para revisionflag="changed">This document describes version 2 revision 1 of
+<para>This document describes <phrase  revisionflag="changed">version 2 revision 3</phrase> of
 &OM;: a standard for
 the representation and communication of mathematical objects.
-<phrase role="finaledit">This revision clarifies the first &OM; 2.0 
-<citation>OM_2.0r0</citation>.</phrase>
+This revision clarifies the first &OM; 2.0 
+<citation>OM_2.0r0</citation>.
  &OM;
 allows the <emphasis>meaning</emphasis> of an object to be encoded
 rather than just a visual representation.  It is designed to allow the
@@ -37,14 +38,14 @@ a meaningful and correct way.  It is designed to be machine-generatable
 and machine-readable, rather than written by hand.
 </para>
 
-<para revisionflag="changed">The &OM; Standard is the official reference for
+<para>The &OM; Standard is the official reference for
 the &OM; language and has been approved by the &OM; Society.  It is not
 intended as an introductory document or a user's guide, for the latest
 available material of this nature, and the latest version of the standard, 
 please consult the &OM; web-site at
 <ulink url="http://www.openmath.org">http://www.openmath.org</ulink>.</para>
 
-<para revisionflag="changed">This document includes an overview of the
+<para>This document includes an overview of the
 &OM; architecture, an abstract description of <xref linkend="omobj"/>s and two
 mechanisms for producing concrete encodings of such objects.  The first,
 in &exml; (either innate or Strict Content MathML), is designed primarily 
@@ -56,9 +57,9 @@ a lot of data as efficiently as possible.  This document also includes a
 description of Content Dictionaries - the mechanism by which the meaning
 of a symbol in the &OM; language is encoded, as well as an XML encoding
 for them.  Finally it includes guidelines for the development of
-&OM;-compliant applications. <phrase role="finaledit">Further background
+&OM;-compliant applications. Further background
 on &OM; and guidelines for its use in applications may be found in the
-accompanying Primer <citation>OM_primer</citation>.</phrase></para>
+accompanying Primer <citation>OM_primer</citation>.</para>
 
 </abstract>
 </bookinfo>
@@ -89,15 +90,13 @@ linkend="fig_om"/> and summarizes the interactions among the different
 mathematical object. The first is a  private layer that
 is the internal representation used by an application.  The second is
 an abstract layer that is the representation as an <xref linkend="omobj"/>.
-<phrase>Note that these
-two layers may, in some cases, be the same.</phrase>
-The third is a
-communication layer that translates the <xref linkend="omobj"/> representation into
+Note that these two layers may, in some cases, be the same.
+The third is a communication layer that translates the <xref linkend="omobj"/> representation into
 a stream of bytes. An application dependent program manipulates the
 mathematical objects using its internal representation, it can convert
 them to <xref linkend="omobj"/>s and communicate them by using the byte stream
 representation of <xref linkend="omobj"/>s.</para>
-<para revisionflag="added">
+<para>
  This standard does not describe the mechanisms by which software systems may offer,
  or make use of, computational services. The currently-suggested mechanism is the 
 Symbolic Computation Software Composability Protocol (SCSCP) 
@@ -117,18 +116,17 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para revisionflag="changed">The standard endorses two encodings 
+<para>The standard endorSses two encodings 
 in &exml; (an innate one described here, and one in Strict Content 
-MathML) and a  binary format.
-<phrase>At the time of writing, these are the encodings
-supported by most existing &OM; tools and applications,</phrase>
+MathML)<phrase revisionflag="deleted">and</phrase><phrase revisionflag="added">,</phrase> a binary format <phrase revisionflag="added">and a JSON encoding</phrase>.
+At the time of writing, these are the encodings
+supported by most existing &OM; tools and applications,
 however they are not the only possible encodings of &OM;
-objects. Users who wish to define their own encoding<phrase>,
-are free to</phrase>
-do so provided that there is
-<phrase>a well-defined correspondence
+objects. Users who wish to define their own encoding,
+are free to do so provided that there is
+a well-defined correspondence
 between the new encoding and the abstract model defined in <xref
-linkend="cha_obj"/>. </phrase>
+linkend="cha_obj"/>.
 </para>
 
 </section>
@@ -181,7 +179,7 @@ from these Content Dictionaries to/from the internal mathematical
 objects of the application.
 </para>
 
- <para revisionflag="changed"><xref linkend="omobj"/>s do not
+ <para><xref linkend="omobj"/>s do not
 specify any computational behaviour, they merely represent mathematical
 expressions.  Part of the &OM; philosophy is to leave it to the
 application to decide what it does with an object once it has received
@@ -305,9 +303,9 @@ inside an <xref linkend="omobj"/>.  A <term id="derivedobj">derived &OM; object<
 <para><xref linkend="omobj"/>s are built recursively as follows.
 <itemizedlist>
 <listitem><para><phrase>(i)</phrase> Basic &OM; objects are <xref linkend="omobj"/>s.
-(<phrase>Note that <xref linkend="derivedobj"/>s are
+(Note that <xref linkend="derivedobj"/>s are
 <emphasis>not</emphasis> <xref linkend="omobj"/>s, but are used to construct &OM;
-objects as described below.)</phrase></para>
+objects as described below.)</para>
 </listitem>
 
 <listitem>
@@ -321,35 +319,32 @@ objects as described below.)</phrase></para>
   <math display="block">
   <mi mathvariant="bold">application</mi><mo>(</mo><msub><mi>A</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
-  is an <term id="applobj">&OM; application object</term>. <phrase revisionflag="added">We call
+  is an <term id="applobj">&OM; application object</term>. We call
   <math><msub><mi>A</mi><mn>1</mn></msub></math> the <term id="function">function</term>
   and  <math><msub><mi>A</mi><mn>2</mn></msub></math> to
   <math><msub><mi>A</mi><mn>1</mn></msub></math> the <term
-  id="argument">argument</term>s.</phrase></para>
+  id="argument">argument</term>s.</para>
     
  </listitem> <listitem><para><phrase>(iii)</phrase> If
   <math><msub><mi>S</mi><mn>1</mn></msub><mo>,</mo>
   <mi>&#8230;</mi><mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub></math>
   are &OM; symbols, and
-<phrase>
 <math><mi>A</mi></math> is an <xref linkend="omobj"/>, and
 <math><msub><mi>A</mi><mn>1</mn></msub></math>, <phrase>&#8230;</phrase>,
 <math><msub><mi>A</mi><mi>n</mi></msub></math>
 <math><mo>(</mo><mi>n</mi><mo>&gt;</mo><mn>0</mn><mo>)</mo></math> are <xref linkend="omobj"/>s or
 <xref linkend="derivedobj"/>s, then
-</phrase>
-
   <math display="block"><mi mathvariant="bold">attribution</mi>
   <mo>(</mo><mi>A</mi><mo>,</mo> <msub><mi>S</mi><mn>1</mn></msub>
   <mspace width=".3em"/> <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo>
   <mspace width=".3em"/> <mi>&#8230;</mi> <mspace width=".3em"/>
   <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM; <term
-  id="attrobj">attribution object</term>. <phrase revisionflag="added">We call
+  id="attrobj">attribution object</term>. We call
   <math><mi>A</mi></math> the <term id="attobject">attributed object</term>, the
   <math><msub><mi>S</mi><mi>i</mi></msub></math> the <term id="key">keys</term>, and the
   <math><msub><mi>A</mi><mi>i</mi></msub></math> the <term id="attval">attribute
-  value</term>s.</phrase>
+  value</term>s.
   </para> 
 
   <para revisionflag="changed">
@@ -371,7 +366,6 @@ objects as described below.)</phrase></para>
   <mi mathvariant="bold">binding</mi> <mo>(</mo><mi>B</mi><mo>,</mo> <msub><mi>v</mi><mn>1</mn></msub><mo>,</mo> <mi>&#8230;</mi><mo>,</mo> <msub><mi>v</mi><mi>n</mi></msub><mo>,</mo> <mi>C</mi><mo>)</mo>
   </math>
   is an &OM; <term id="bindingobj">binding object</term>.
-  <phrase revisionflag="added">
     <math><mi>B</mi></math> is called the <term id="binder">binder</term>,  
     <math><msub><mi>v</mi><mn>1</mn></msub></math>,
     <math><mi>&#8230;</mi></math>,
@@ -381,7 +375,6 @@ objects as described below.)</phrase></para>
     <term id="body">body</term> of the binding object above.
     To distinguish the two different ways how variable objects are used, any variable object
     that is not a variable binding is called a <term id="varreference">variable reference</term>.
-  </phrase>
 </para>
 </listitem>
 
@@ -391,7 +384,7 @@ objects as described below.)</phrase></para>
 <math><msub><mi>A</mi><mi>n</mi></msub></math>
 <math><mo>(</mo><mi>n</mi> <mo>&#8805;</mo>
 <mn>0</mn><mo>)</mo></math> are <xref linkend="omobj"/>s 
-<phrase> or <xref linkend="derivedobj"/>s</phrase>, then <math
+ or <xref linkend="derivedobj"/>s, then <math
 display="block"><mi mathvariant="bold">error</mi>
 <mo>(</mo><mi>S</mi><mo>,</mo>
 <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
@@ -469,8 +462,7 @@ linkend="compoundobj"/> in a way which requires a different role (using the defi
 construct given earlier in this section).  This means that one cannot use a symbol which
 binds some variables to construct, say, an <xref linkend="applobj"/>.  However it does not
 prevent the use of that symbol as an <xref linkend="argument"/> in an <xref
-linkend="appobj"/><phrase revisionflag="deleted"> (where by argument we mean a child
-with index greater than 1)</phrase>.
+linkend="appobj"/>.
 </para>
 
 <para> 
@@ -597,12 +589,12 @@ with index greater than 1)</phrase>.
     <listitem>
       <para>
 	constructs an &OM; object from a sequence of one or more &OM; objects. The first
-	<phrase role="finaledit">child</phrase> of an application is referred to as its
+	child of an application is referred to as its
 	<quote>head</quote> while the remaining objects are called its
 	<quote>arguments</quote>.  An &OM; <xref linkend="applobj"/> can be used to convey
 	the mathematical notion of application of a <xref linkend="function"/> to a set of
 	<xref linkend="argument"/>.  For instance, suppose that the &OM; symbol
-	<math><mi>sin</mi></math> is defined in a <phrase>suitable</phrase> Content
+	<math><mi>sin</mi></math> is defined in a suitable Content
 	Dictionary, then <math><mi
 	mathvariant="bold">application</mi><mo>(</mo><mi>sin</mi><mo>,</mo>
 	<mi>x</mi> <mo>)</mo></math> is the abstract &OM; object
@@ -633,7 +625,7 @@ with index greater than 1)</phrase>.
 <varlistentry>
   <term>Binding</term>
   <listitem>
-    <para revisionflag="changed">objects are of the form
+    <para>objects are of the form
     <math>
       <mi mathvariant="bold">binding</mi>
       <mo>(</mo>
@@ -699,15 +691,15 @@ with index greater than 1)</phrase>.
     </para>
 
     <para><xref linkend="phrasebook"/>s are allowed to use <term id="alphaconversion"><math><mi>&#945;</mi></math>-conversion</term>
-    <phrase revisionflag="added">(also called <term id="alpharenaming">alphabetic
-    renaming</term>)</phrase>
-    in order to avoid clashes of variable names: <phrase revisionflag="added"> the variable in a variable binding
+    (also called <term id="alpharenaming">alphabetic
+    renaming</term>)
+    in order to avoid clashes of variable names:  the variable in a variable binding
     can be replaced by a
     <term id="newvar">new variable</term>, i.e. one that does not occur anywhere in
-    the scope of the binding, if all variable references it binds are replaced accordingly:</phrase> 
+    the scope of the binding, if all variable references it binds are replaced accordingly:
     Suppose <math><mi>&#937;</mi></math> contains an occurrence of the
     object
-    <math revisionflag="changed">
+    <math>
       <mi mathvariant="bold">binding</mi>
       <mo>(</mo>
       <mi>B</mi>
@@ -727,7 +719,7 @@ with index greater than 1)</phrase>.
       <mi>C</mi>
       <mo>)</mo>
     </math>
-    <phrase revisionflag="added">where
+    where
     <math>
       <mover>
 	<mi>v</mi>
@@ -743,9 +735,9 @@ with index greater than 1)</phrase>.
   </math>
   are (possibly empty)
   sequences of bound, possibly attributed variables and <math><mi>x</mi></math> is a
-  variable</phrase>. 
+  variable. 
   This object
-  <math revisionflag="changed">
+  <math>
     <mi mathvariant="bold">binding</mi>
     <mo>(</mo>
     <mi>B</mi>
@@ -767,7 +759,7 @@ with index greater than 1)</phrase>.
   </math>
 can be replaced
 in <math><mi>&#937;</mi></math> by
-<math revisionflag="changed">
+<math>
   <mi  mathvariant="bold">binding</mi>
   <mo>(</mo>
   <mi>B</mi>
@@ -789,7 +781,6 @@ in <math><mi>&#937;</mi></math> by
 </math>
 where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does not occur anywhere in <math><mover><mi>w</mi><mo>&#x2192;</mo></mover>
 </math> or <math><mi>C</mi></math>
-  <phrase revisionflag="added"> 
     and 
   <math>
     <mover>
@@ -799,10 +790,7 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   </math>
   and
   <math><mi>C'</mi></math>
-  are
-  </phrase> obtained
-  from
-  <phrase revisionflag="added">
+  are  obtained  from
   <math>
     <mover>
       <mi>w</mi>
@@ -810,11 +798,9 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
     </mover>
   </math>
   and 
-  </phrase>
   <math><mi>C</mi></math>,
   by replacing each free occurrence
   of <math><mi>x</mi></math> by <math><mi>y</mi></math>.
-  <phrase revisionflag="added">
     If instead of 
     <math><mi>x</mi></math> in   <math><mi>&#937;</mi></math>,  we have an attributed
     variable 
@@ -841,7 +827,6 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
       </mover>
       <mo>)</mo>
     </math>
-  </phrase>
   This operation preserves the semantics of the object
   <math><mi>&#937;</mi></math>. In the above example, a phrasebook is
   thus allowed to transform the object to, e.g. 
@@ -865,7 +850,7 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   </math>
 </para>
 <para>
-  <phrase revisionflag="changed"> Note that repeated variable bindings of the same
+ Note that repeated variable bindings of the same
   variable in a binding object are allowed, but make little sense semantically and are
   therefore discouraged: the first binding binds only references in the subsequent
   bindings up to and including the next binding for the same name. 
@@ -942,7 +927,6 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   <math><mi>y</mi></math>, <math><mover><mi>u</mi><mo>&#x2192;</mo></mover></math>,
   <math><mover><mi>v</mi><mo>&#x2192;</mo></mover></math>,
   <math><mover><mi>w</mi><mo>&#x2192;</mo></mover></math>, and <math><mi>C</mi></math>.
-  </phrase>
 </para>
 </listitem>
 </varlistentry>
@@ -950,11 +934,10 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   <term>Attribution</term>
   <listitem>
     <para>
-      decorates an object <phrase revisionflag="added">(called the <quote>syntactic
-      head</quote> of the attribution)</phrase> with a sequence of one or more pairs made
+      decorates an object (called the <quote>syntactic
+      head</quote> of the attribution) with a sequence of one or more pairs made
       up of an &OM; symbol, the <quote>attribute</quote>, and an associated object, the
-      <quote>value of the attribute</quote>.  The value of the attribute can be an <phrase
-      >&OM;</phrase> <xref linkend="attrobj"/> itself. As an example of this, consider the
+      <quote>value of the attribute</quote>.  The value of the attribute can be an &OM; <xref linkend="attrobj"/> itself. As an example of this, consider the
       &OM; objects representing groups, automorphism groups, and group dimensions. It is
       then possible to attribute an &OM; object representing a group by its automorphism
       group, itself attributed by its dimension.
@@ -992,9 +975,9 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo><mtext>.</mtext></math>
   The operation that produces an object with a single layer of
-  attribution is called <term id="flattening">flattening</term>. <phrase revisionflag="added">The
+  attribution is called <term id="flattening">flattening</term>. The
   <quote>head</quote> of an attribution is the syntactic head of the fully (recursively)
-  flattened version.</phrase>
+  flattened version.
 </para>
 
 <para>
@@ -1020,24 +1003,22 @@ where <math><mi>y</mi></math> is a <xref linkend="newvar"/>, i.e. one that does 
   </para>
 
 
-<para revisionflag="changed">Objects can be decorated in a multitude of ways.
+<para>Objects can be decorated in a multitude of ways.
 An example of the use of an adornment attribution
 would be to indicate the colour in which an &OM; object should be
 displayed, for example <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>colour</mi> <mspace width=".3em"/> <mi>red</mi> <mo>)</mo></math>.  Note that both
-<math><mi>A</mi></math> and <math><mi>red</mi></math> are arbitrary &OM; objects <phrase
-role="finaledit">whereas <math><mi>colour</mi></math> is a symbol</phrase>.  An example of
+<math><mi>A</mi></math> and <math><mi>red</mi></math> are arbitrary &OM; objects whereas <math><mi>colour</mi></math> is a symbol.  An example of
 the use of a semantic attribution would be to indicate the type of an object.  For
 example the object <math><mi
 mathvariant="bold">attribution</mi><mo>(</mo><mi>A</mi><mo>,</mo>
 <mi>type</mi> <mspace width=".3em"/> <mi>t</mi> <mo>)</mo></math>
 represents the judgment stating that object <math><mi>A</mi></math>
 has type <math><mi>t</mi></math>. Note that both
-<math><mi>A</mi></math> and <math><mi>t</mi></math> are <phrase
-role="finaledit">arbitrary</phrase> &OM;
-objects <phrase role="finaledit">whereas <math><mi>type</mi></math> is
-a symbol</phrase>.</para>
+<math><mi>A</mi></math> and <math><mi>t</mi></math> are arbitrary &OM;
+objects whereas <math><mi>type</mi></math> is
+a symbol.</para>
 
 
 </listitem>
@@ -1110,7 +1091,7 @@ a symbol</phrase>.</para>
 
 <formalpara><title>CD Base</title>
 
-<para revisionflag="changed">A cdbase is interpreted as an IRI
+<para>A cdbase is interpreted as an IRI
 <citation>IETF3987</citation>, which specifies how strings are encoded and interpreted as URL.
 Applications should ignore any white space surrounding the URL.</para>
 
@@ -1148,7 +1129,7 @@ Applications should ignore any white space surrounding the URL.</para>
 'a' | 'b' | ... | 'z' | 'A' | 'B' | ... | 'Z'
 </entry>
 </row>
-<row revisionflag="added">
+<row>
 <entry>Digit</entry>
 <entry> <math><mo>&longrightarrow;</mo></math> </entry>
 <entry> 
@@ -1176,7 +1157,7 @@ So for example the URI for the symbol with cdbase
 <systemitem>transc1</systemitem> and name <systemitem>sin</systemitem>
 is:
 <blockquote>
-  <para revisionflag="changed"><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
+  <para><systemitem>http://www.openmath.org/cd/transc1#sin</systemitem></para>
 </blockquote>
 In particular, this now allows us to refer uniquely to an &OM; symbol from a
 MathML-2 document <citation>MathML_2003</citation> (see <citation>MathML_2014</citation> section 4.2.3 for MathML-3):
@@ -1227,14 +1208,14 @@ that writes <math><mn>7</mn></math>.</para>
 <title>&OM; Encodings</title>
 
 
-<para revisionflag="changed">In this chapter, two encodings are defined 
+<para>In this chapter, two encodings are defined 
 that map between &OM; objects and byte streams.  These byte streams constitute a low level
 representation that can be easily exchanged between processes (via
 almost any communication method) or stored and retrieved from
 files. In addition, OpenMath can be represented in Strict Content MathML, 
 as described in Section 4.1.3 of <citation>MathML_2014</citation>.</para>
 
-<para revisionflag="changed">The first encoding is the innate character-based
+<para>The first encoding is the innate character-based
 encoding in &exml; format.  In previous versions of the &OM; Standard
 this encoding was a restricted subset of the full legal &exml; syntax.
 In this version, however, we have removed all these restrictions so that
@@ -1248,7 +1229,7 @@ applications.</para>
 used when the compactness of the encoding is important (inter-process
 communications over a network is an example).</para>
 
-<para revisionflag="changed">Note that these two encodings are sufficiently 
+<para>Note that these two encodings are sufficiently 
 different for auto-detection to be effective: an application reading the bytes can
 very easily determine which encoding is used. In the case of the MathML 
 encoding, the reading application should already be expecting MathML.</para>
@@ -1268,8 +1249,8 @@ encoding, the reading application should already be expecting MathML.</para>
 </orderedlist> 
 </para>
 
-<section id="ssec_xml" revisionflag="added">
-<title>A <phrase>Schema</phrase> for the &exml; Encoding</title>
+<section id="ssec_xml">
+<title>A Schema for the &exml; Encoding</title>
 
 <para>The &exml; encoding of an &OM; object is
 defined by the Relax NG schema <citation>RELAX</citation> given below.
@@ -1289,7 +1270,7 @@ respectively.</para>
 
 <literallayout role="rnc" file="openmath2.rnc"/>
 
-<para revisionflag="changed"><emphasis role="bold">Note:</emphasis> 
+<para><emphasis role="bold">Note:</emphasis> 
 In the original edition of OpenMath 2.0 as published, names are specified
 as being of the <systemitem>xsd:NCName</systemitem> type. 
 When the original edition of OpenMath 2.0 was published, 
@@ -1305,8 +1286,8 @@ and there is no known contradiction remaining.
 </section>
 
 <section id="sec_xml-desc">
-<title><phrase>Informal</phrase> description of
-the <phrase>&exml; Encoding</phrase></title>
+<title>Informal description of
+the &exml; Encoding</title>
 
 <para>An encoded &OM; object is placed inside an <systemitem>OMOBJ</systemitem> element.
 This element can contain the elements (and integers) described above.  It can take an
@@ -1315,7 +1296,7 @@ version of the &OM; standard it conforms.  In previous versions of this standard
 attribute did not exist, so any &OM; object without such an attribute must conform to
 version 1 (or equivalently 1.1) of the &OM; standard.  Objects which conform to the
 description given in this document should have <systemitem>version="2.0"</systemitem>.
-<phrase revisionflag="added"> If the <systemitem>version</systemitem> attribute is not
+ If the <systemitem>version</systemitem> attribute is not
 present, the document format embedding the <systemitem>OMOBJ</systemitem> may provide a
 method for determining version information (the XML encoding for &OM; content dictionaries
 does, for instance). The <systemitem>OMOBJ</systemitem> element can also take an optional
@@ -1326,7 +1307,7 @@ no <systemitem>cdgroup</systemitem> attribute is explicitly specified, the docum
 embedding this <systemitem>OMOBJ</systemitem> element may provide a method for determining
 CD bases. Otherwise the system must determine a CD base; in the absence of specific
 information <ulink url="http://www.openmath.org/cd">http://www.openmath.org/cd</ulink> is
-assumed as the CD base for all <systemitem>OMS</systemitem> elements.</phrase>
+assumed as the CD base for all <systemitem>OMS</systemitem> elements.
 </para>
 
 <para>We briefly discuss the &exml; encoding for each type of &OM; object
@@ -1366,10 +1347,10 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   between two content dictionaries with the same name.  If a symbol does not have an
   explicit <systemitem>cdbase</systemitem> attribute, then it inherits its
   <systemitem>cdbase</systemitem> from the first ancestor in the &exml; tree with one,
-  should such an element exist. <phrase revisionflag="added">If no CD base can be
+  should such an element exist. If no CD base can be
   determined in this way, then it is determined by the catalog induced by the CD group
   determined for the <systemitem>OMOBJ</systemitem>. Should this be impossible, the CD
-  base defaults to <systemitem>http://www.openmath.org/cd</systemitem>.</phrase> In this
+  base defaults to <systemitem>http://www.openmath.org/cd</systemitem>. In this
   document we have tended to omit the <systemitem>cdbase</systemitem> for clarity.  For
   example:
   <blockquote>
@@ -1420,7 +1401,7 @@ encoded as <systemitem>&lt;OMI> 10 &lt;/OMI> </systemitem> or as
   <para>or one of the special values: INF, -INF or
   NaN.</para>
 </blockquote>
-  <para revisionflag="changed">The value of
+  <para>The value of
   <systemitem>hex</systemitem> is a base 16 representation of the 
  64 bits of the <acronym>ieee</acronym> Double.
  Thus the number represents mantissa, exponent, and sign in network byte order.
@@ -1460,7 +1441,7 @@ hexadecimal representations of NaNs.
 <varlistentry><term>Bytearrays</term><listitem><para>are encoded using the <systemitem>OMB</systemitem> element. Its content
   is a sequence of characters that is a base64 encoding of the data.
   The base64 encoding is defined in <acronym>rfc</acronym>
-  <phrase>2045 <citation>rfc2045</citation></phrase>.
+  2045 <citation>rfc2045</citation>.
   Basically, it represents an arbitrary sequence of octets using 64
   <quote>digits</quote> (<systemitem>A</systemitem> through <systemitem>Z</systemitem>, <systemitem>a</systemitem> through <systemitem>z</systemitem>, <systemitem>0</systemitem> through <systemitem>9</systemitem>, <systemitem>+</systemitem> and /, in order of increasing
   value). Three octets are represented as four digits (the <systemitem>=</systemitem>
@@ -1654,18 +1635,18 @@ an &exml; document.
  <term>References</term>
  <listitem>
    <para>
-     &OM; integers, <phrase revisionflag="added">symbols, variables,</phrase> floating
+     &OM; integers, symbols, variables, floating
      point numbers, character strings, bytearrays, applications, binding, attributions,
-     error, <phrase revisionflag="added">and <xref linkend="foreignobj"/>s</phrase> can
+     error, and <xref linkend="foreignobj"/>s can
      also be encoded as an empty <systemitem>OMR</systemitem> element with an
      <systemitem>href</systemitem> attribute whose value is the value of a URI referencing
      an id attribute of an &OM; object of that type.  The &OM; element represented by this
      <systemitem>OMR</systemitem> reference is a copy of the &OM; element referenced
      <systemitem>href</systemitem> attribute. Note that this copy is
      <emphasis>structurally equal</emphasis>, but not identical to the element
-     referenced. <phrase role="finaledit">These URI references will often be relative, in
+     referenced. These URI references will often be relative, in
      which case they are resolved using the base URI of the document containing the
-     &OM;.</phrase>
+     &OM;.
    </para>
 
  <para>For instance, the &OM; object
@@ -1778,7 +1759,7 @@ an &exml; document.
 <para>We say that an &OM; element dominates all its children and all elements
 they dominate. An <systemitem>OMR</systemitem> element dominates its target,
 i.e. the element that carries the <systemitem>id</systemitem> attribute pointed to
-by the <systemitem revisionflag="changed">href</systemitem> attribute. For instance in the representation
+by the <systemitem>href</systemitem> attribute. For instance in the representation
 in <xref linkend="fig_shared_vs_unshared"/>, the
 <systemitem>OMA</systemitem> element with <systemitem>id="t1"</systemitem> and
 also the second <systemitem>OMR</systemitem> dominate the
@@ -1792,7 +1773,7 @@ also the second <systemitem>OMR</systemitem> dominate the
 <term id="acyc-constraint">acyclicity constraint</term>: An &OM; element may not dominate itself.</para>
 
 <para>Consider for instance the following (illegal) &exml; representation
-<literallayout revisionflag="changed"><![CDATA[<OMOBJ version="2.0">
+<literallayout><![CDATA[<OMOBJ version="2.0">
   <OMA id="foo">
     <OMS cd="arith1" name="divide"/>
     <OMI>1</OMI>
@@ -1849,11 +1830,11 @@ shows.</para>
 
 <para> Here, the <systemitem>OMA</systemitem> with
 <systemitem>id="bar"</systemitem> dominates its third child, the
-<systemitem>OMR</systemitem> with <systemitem revisionflag="changed">href="#baz"</systemitem>,
+<systemitem>OMR</systemitem> with <systemitem>href="#baz"</systemitem>,
 which dominates its target <systemitem>OMA</systemitem> with
 <systemitem>id="baz"</systemitem>, which in turn dominates its third
 child, the <systemitem>OMR</systemitem> with
-<systemitem revisionflag="changed">href="#bar"</systemitem>, this finally dominates its
+<systemitem>href="#bar"</systemitem>, this finally dominates its
 target, the original <systemitem>OMA</systemitem> element with
 <systemitem>id="bar"</systemitem>. So this pair of &OM; objects
 violates the acyclicity constraint and is not the &exml;
@@ -2020,7 +2001,7 @@ strings&#160;<citation>xml_04</citation>.
 <para>If such &exml; features are used then the &exml; application controlling the
 document must, if passing the &OM; fragment to an &OM; application,
 remove any such extra attributes and must ensure that the
-fragment is encoded according to the <phrase>schema</phrase> specified above.</para>
+fragment is encoded according to the schema specified above.</para>
 </section>
 </section>
 
@@ -2042,7 +2023,7 @@ implementations).</para>
 <figure id="fig_bin-enc">
     <title>Grammar of the binary encoding of &OM; objects.</title>
     
-    <informaltable role="finaledit">
+    <informaltable>
       <tgroup cols="6">
         <tbody>
           <row>
@@ -2741,7 +2722,7 @@ implementations).</para>
             <entry>vars </entry>
             <entry><math><mo>&longrightarrow;</mo></math></entry>
             <entry>
-	      <emphasis  role="finaledit">empty</emphasis>
+	      <emphasis>empty</emphasis>
 	    </entry>
           </row>
           
@@ -2840,16 +2821,16 @@ implementations).</para>
   </figure>
   
   <para><xref linkend="fig_bin-enc"/> gives a grammar for the binary
-    encoding <phrase> (<quote>start</quote> is the start
-      symbol).</phrase>.</para>
+    encoding  (<quote>start</quote> is the start
+      symbol).</para>
   <para>The following conventions are used in this section:
     [<math><mi>n</mi></math>] denotes a byte whose value is the integer
     <math><mi>n</mi></math> (<math><mi>n</mi></math> can range from 0 to 255),
     {<math><mi>m</mi></math>} denotes four bytes representing the (unsigned) integer
     <math><mi>m</mi></math> in network byte order, [_] denotes an arbitrary byte, {_}
     denotes an arbitrary sequence of four bytes.
-    <phrase role="finaledit">Finally,
-      <emphasis>empty</emphasis> stands for the empty list of tokens.</phrase>
+    Finally,
+    <emphasis>empty</emphasis> stands for the empty list of tokens.
   </para>
   
   <para><emphasis>xxxx</emphasis>:<math><mi>n</mi></math>, where <emphasis>xxxx</emphasis>
@@ -2859,9 +2840,9 @@ implementations).</para>
   <math><mi>n</mi></math> bytes that conforms to the constraints on
   <emphasis>xxxx</emphasis> strings. For instance, for <emphasis>symbname</emphasis>,
   <emphasis>varname</emphasis>, or <emphasis>cdname</emphasis> this is the regular
-  expression described in <xref linkend="sec_names"/>, <phrase revisionflag="changed">for
+  expression described in <xref linkend="sec_names"/>, for
   <emphasis>uri</emphasis> it is the grammar for IRIs in
-  <citation>IETF3987</citation></phrase>.
+  <citation>IETF3987</citation>.
   </para>
 </section>
 
@@ -2869,21 +2850,20 @@ implementations).</para>
   <title>Description of the Grammar</title>
   
 <para>An &OM; object is encoded as a sequence of bytes starting with the begin object tag
-(<phrase>values 24 and 88</phrase>) and ending with the end
+(values 24 and 88) and ending with the end
 object tag (value&#160;25). These are similar to
 the <systemitem>&lt;OMOBJ></systemitem> and <systemitem>&lt;/OMOBJ></systemitem> tags of
-the &exml; encoding. <phrase>Objects with start token [88]
+the &exml; encoding. Objects with start token [88]
   have two additional bytes <math><mi>m</mi></math> and <math><mi>n</mi></math>
 that characterize the version
 (<math><mrow><mi>m</mi><mo>.</mo><mi>n</mi></mrow></math>) of the encoding
 directly after the start token. This is similar to <systemitem>&lt;OMOBJ
-  version="m.n"></systemitem></phrase></para> 
+  version="m.n"></systemitem></para> 
 
 <para>The encoding of each kind of &OM; object begins with a tag that is a single byte,
-holding a <phrase role="sl">token identifier</phrase>
-<phrase> that describes the kind of object</phrase>, 
-<phrase>two flags, and a status bit.</phrase>
-The identifier is stored in the first <phrase>five
+holding a <phrase role="sl">token identifier</phrase>  that describes the kind of object, 
+two flags, and a status bit.
+The identifier is stored in the first five
   bits (1 to 5). Bit 6 is used as a 
   <phrase role="sl">status bit</phrase> which is currently only used for managing
   streaming of some basic objects. Bits 7 and 8 are the <phrase role="sl">sharing
@@ -2895,7 +2875,7 @@ The identifier is stored in the first <phrase>five
   an identifier that serves as the target of a reference (internal with token
   identifier 30 or external with token identifier 31). If the long
   flag is set, this signifies that  the names, strings, and data fields in the
-  encoded &OM; object are longer than 255 bytes or characters. </phrase>
+  encoded &OM; object are longer than 255 bytes or characters.
 </para>
 
 <para>The concept of structure sharing in &OM; encodings and
@@ -2919,10 +2899,10 @@ represented an integer that is split up into three packets.  </para>
 
 <variablelist>
 <varlistentry>
-  <term>Integers</term><listitem><para revisionflag="changed">are encoded depending on how large they
+  <term>Integers</term><listitem><para>are encoded depending on how large they
       are. There are four possible formats.  Integers between -128 and 127 are
-      encoded as the small integer tags (<phrase>token
-	identifier</phrase> 1) followed by a single byte that is the 
+      encoded as the small integer tags (token
+	identifier 1) followed by a single byte that is the 
       value of the integer (interpreted as a signed character). For
       example 16 is encoded as <systemitem>0x01 0x10</systemitem>.  Integers between
       <math>
@@ -2956,24 +2936,23 @@ represented an integer that is split up into three packets.  </para>
       (<systemitem>0x2B</systemitem>) or <systemitem>-</systemitem>
       (<systemitem>0x2D</systemitem>) for the sign or-ed with the base mask bits
       that can be <systemitem>0</systemitem> for base 10 
-      or <systemitem>0x40</systemitem> for base 16 <phrase>or
-	<systemitem>0x80</systemitem> for <quote>base 256</quote></phrase>.  It is
-      followed by the <phrase>sequence</phrase> of digits (as 
-      characters <phrase>for bases 10 and 16 as in the &exml;
-	encoding, and as bytes for base 256</phrase>) in their natural
-      order.  For example, <phrase>the decimal
-	number</phrase> 8589934592
+      or <systemitem>0x40</systemitem> for base 16 or
+	<systemitem>0x80</systemitem> for <quote>base 256</quote>.  It is
+      followed by the sequence of digits (as 
+      characters for bases 10 and 16 as in the &exml;
+	encoding, and as bytes for base 256) in their natural
+      order.  For example, the decimal number 8589934592
       (<math><msup><mn>2</mn><mn>33</mn></msup></math>) is encoded  as
       <systemitem>0x02 
         0x0A 0x2B 0x38 0x35 0x38 0x39 0x39 0x33 0x34 0x35 0x39 0x32</systemitem>
       and the
-      <phrase>hexadecimal number</phrase>
+      hexadecimal number
       <systemitem>xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1</systemitem> is 
       encoded as <systemitem>0x02 0x08
 	0x6b 0x66 0x66 0x66 0x66 0x66 0x66 0x66 0x31</systemitem>
-      <phrase> in the base 16
+       in the base 16
       character encoding and as <systemitem>0x02 0x04 0xab 
-	0xFF 0xFF 0xFF 0xF1</systemitem> in the byte encoding (base 256)</phrase>.</para>
+	0xFF 0xFF 0xFF 0xF1</systemitem> in the byte encoding (base 256).</para>
     <para> Note that it is    
       permitted to encode a <quote>small</quote> integer in any <quote>bigger</quote>
       format.</para>
@@ -2990,7 +2969,7 @@ represented an integer that is split up into three packets.  </para>
       integer. The sign of this packet determines the sign of the overall
       integer.</para>
 
-    <figure id="fig_bin-enc_stream" role="finaledit">
+    <figure id="fig_bin-enc_stream">
       <title>Streaming a large Integer in the Binary Encoding.</title>
 
       <informaltable>
@@ -3043,14 +3022,14 @@ represented an integer that is split up into three packets.  </para>
 <varlistentry>
 <term>Symbols</term>
 <listitem><para>are encoded as the symbol tags
-    (<phrase>token identifier</phrase> 8) with the long flag
-    set if the maximum of the length <phrase>in bytes in the <acronym>utf-8</acronym> encoding</phrase> of the Content Dictionary name
-    or the symbol name is greater than or equal to 256. <phrase>The symbol tag is  followed by the
+    (token identifier 8) with the long flag
+    set if the maximum of the length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name
+    or the symbol name is greater than or equal to 256. The symbol tag is  followed by the
   length in bytes in the <acronym>utf-8</acronym> encoding of the Content Dictionary name, the symbol
   name, and the <systemitem>id</systemitem> (if the shared bit was set) as a byte
   (if the long flag was not set) or a four byte integer (in network byte
   order). These are followed by the bytes of the <acronym>utf-8</acronym> encoding of the Content
-  Dictionary name, the symbol name, and the <systemitem>id</systemitem>.</phrase>
+  Dictionary name, the symbol name, and the <systemitem>id</systemitem>.
 </para>
 </listitem>
 </varlistentry>
@@ -3058,7 +3037,7 @@ represented an integer that is split up into three packets.  </para>
 <varlistentry>
 <term>Variables</term>
 <listitem><para>are encoded using the variable tags
-    (<phrase>token identifiers</phrase> 5) with the long
+    (token identifiers 5) with the long
   flag set if the number of bytes in the <acronym>utf-8</acronym> encoding of the variable name is
   greater than or equal to 256.  Then, there is the number of characters
   as a byte (if the long flag was not set) or a four byte integer
@@ -3070,8 +3049,8 @@ represented an integer that is split up into three packets.  </para>
 
 <varlistentry>
 <term>Floating-point number</term>
-<listitem><para revisionflag="changed">are encoded using the floating-point
-  number tags (<phrase>token identifier</phrase> 3) followed by eight bytes that are the IEEE 754
+<listitem><para>are encoded using the floating-point
+  number tags (token identifier 3) followed by eight bytes that are the IEEE 754
   representation&#160;<citation>ieee754_85</citation>, most significant bytes first.
 For example, 
   <math><mn>1</mn><mo>&#215;</mo>
@@ -3084,21 +3063,21 @@ For example,
 <varlistentry>
 <term>Character string</term>
 <listitem><para>are encoded in two ways depending on whether
-  <phrase>the string is encoded in
+  the string is encoded in
   <acronym>utf-16</acronym> or <acronym>iso-8859-1</acronym>
   (<acronym>latin-1</acronym>).
-  In the case of <acronym>latin-1</acronym></phrase> it is encoded as the one
-  byte character string tags (<phrase>token identifier</phrase> 6) with the long flag set if the number
+  In the case of <acronym>latin-1</acronym> it is encoded as the one
+  byte character string tags (token identifier 6) with the long flag set if the number
   of bytes (characters) in the string is greater than or equal to 256.
   Then, there is the number of characters as a byte (if the length
   flag was not set) or a four byte integer (in network byte order),
-  followed by the characters in the string. If the string<phrase> is encoded in
-  <acronym>utf-16</acronym>, it is encoded as the <acronym>utf-16</acronym></phrase> character string
-  tags (<phrase>token identifier</phrase> 7) with the long flag set if the number of characters in the
+  followed by the characters in the string. If the string is encoded in
+  <acronym>utf-16</acronym>, it is encoded as the <acronym>utf-16</acronym> character string
+  tags (token identifier 7) with the long flag set if the number of characters in the
   string is greater or equal to 256. Then, there is the number of
-  <phrase><acronym>utf-16</acronym> units, which will be the
+  <acronym>utf-16</acronym> units, which will be the
   number of characters unless characters in the higher planes of
-  Unicode are used,</phrase> as a byte (if the long flag was not set) or a four byte
+  Unicode are used, as a byte (if the long flag was not set) or a four byte
   integer (in network byte order), followed by the characters
   (<acronym>utf-16</acronym> encoded  Unicode).</para>
 
@@ -3111,8 +3090,8 @@ For example,
 
 <varlistentry>
   <term>Bytearrays</term>
-  <listitem><para revisionflag="changed">are encoded using the bytearray 
-  tags (<phrase>token identifier</phrase> 4) with the
+  <listitem><para>are encoded using the bytearray 
+  tags (token identifier 4) with the
       long flag set if the number of elements is
       greater than or equal to 256. Then, there is the number of elements,
       as a byte (if the long flag was not set) or a four byte integer
@@ -3169,41 +3148,39 @@ For example,
 
 <varlistentry>
   <term>Applications</term>
-  <listitem><para>are encoded using the application tags (<phrase
->token identifiers</phrase> 16 and 17). More
+  <listitem><para>are encoded using the application tags (token identifiers 16 and 17). More
   precisely, the application of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
   <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded
-  using the application tags (<phrase>token
-    identifier</phrase> 16), the sequence of the encodings of 
+  using the application tags (token identifier 16), the sequence of the encodings of 
   <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end application tags
-  (<phrase>token identifier</phrase> 17).</para> 
+  (token identifier 17).</para> 
 </listitem>
 </varlistentry>
 
 <varlistentry> 
   <term>Bindings</term>
   <listitem><para>are encoded using the binding
- tags (<phrase>token identifiers</phrase> 26 and 27). More precisely,
+ tags (token identifiers 26 and 27). More precisely,
  the binding by <math><mi>B</mi></math> of variables
  <math><msub><mi>V</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
  <math><msub><mi>V</mi><mi>n</mi></msub></math> in <math><mi>C</mi></math> is
- encoded as the binding tag (<phrase>token
- identifier</phrase> 26), followed by the encoding of <math><mi>B</mi></math>,
- followed by the binding variables tags (<phrase>token
- identifier</phrase> 28), followed by the encodings of the variables
+ encoded as the binding tag (token
+ identifier 26), followed by the encoding of <math><mi>B</mi></math>,
+ followed by the binding variables tags (token
+ identifier 28), followed by the encodings of the variables
  <math><msub><mi>V</mi><mn>1</mn></msub></math> <phrase>&#8230;</phrase>
  <math><msub><mi>V</mi><mi>n</mi></msub></math>, followed by the end binding
- variables tags (<phrase>token identifier</phrase> 29),
+ variables tags (token identifier 29),
  followed by the encoding of <math><mi>C</mi></math>, followed by the end binding
- tags (<phrase>token identifier</phrase> 27).</para>
+ tags (token identifier 27).</para>
  </listitem> </varlistentry>
 
 <varlistentry>
  <term>Attributions</term>
  <listitem><para>are encoded using the attribution
-     tags (<phrase>token identifiers </phrase> 18 and 19). More
+     tags (token identifiers 18 and 19). More
      precisely, attribution of the object <math><mi>E</mi></math> with
      (<math><msub><mi>S</mi><mn>1</mn></msub></math>,
      <math><msub><mi>E</mi><mn>1</mn></msub></math>),
@@ -3211,29 +3188,27 @@ For example,
      (<math><msub><mi>S</mi><mi>n</mi></msub></math>,
      <math><msub><mi>E</mi><mi>n</mi></msub></math>) pairs (where
      <math><msub><mi>S</mi><mi>i</mi></msub></math> are the attributes) is 
-     encoded as the attributed object tag (<phrase>token
-       identifier</phrase> 18), followed by the encoding 
-     of the attribute pairs as the attribute pairs tags
-     (<phrase>token identifier</phrase> 20), followed by 
+     encoded as the attributed object tag (token identifier 18), followed by the encoding 
+     of the attribute pairs as the attribute pairs tags (token identifier 20), followed by 
      the encoding of each symbol and value, followed by the end attribute
-     pairs tag (<phrase>token identifier</phrase> 21),
+     pairs tag (token identifier 21),
      followed by the encoding of <math><mi>E</mi></math>, followed by the end 
-     attributed object tag (<phrase>token identifier</phrase> 19).</para>
+     attributed object tag (token identifier 19).</para>
  </listitem>
 </varlistentry>
 
 <varlistentry>
   <term>Errors</term>
   <listitem><para>are encoded using the error tags
-      (<phrase>token identifiers</phrase> 22 and 23). More precisely, 
+      (token identifiers 22 and 23). More precisely, 
   <math><msub><mi>S</mi><mn>0</mn></msub></math> applied to
   <math><msub><mi>E</mi><mn>1</mn></msub></math><phrase>&#8230;</phrase>
   <math><msub><mi>E</mi><mi>n</mi></msub></math> is encoded as the error tag
-  (<phrase>token identifier</phrase> 22), 
+  (token identifier 22), 
   the encoding of <math><msub><mi>S</mi><mn>0</mn></msub></math>, the sequence of
   the encodings of <math><msub><mi>E</mi><mn>0</mn></msub></math> to
   <math><msub><mi>E</mi><mi>n</mi></msub></math> and the end error tag
-  (<phrase>token identifier</phrase> 23).</para> 
+  (token identifier 23).</para> 
 </listitem>
 </varlistentry>
 
@@ -3272,10 +3247,8 @@ For example,
 <section id="sec_bin_example">
 <title>Example of Binary Encoding</title>
 
-<para>As
-<phrase revisionflag="added">a simple</phrase>
-example of the binary encoding, we can consider the &OM; object
-<math display="block" revisionflag="added">
+<para>As a simple example of the binary encoding, we can consider the &OM; object
+<math display="block">
   <mi mathvariant="bold">application</mi>
   <mo fence="true">(</mo>
   <mi>times</mi>
@@ -3439,11 +3412,10 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
   </para>
   
   <section id="sec_sharing">
-    <title>Sharing <phrase>in Objects beginning with the identifier [24]</phrase></title>
+    <title>Sharing in Objects beginning with the identifier [24]</title>
     
-    <para>This
-      <phrase>form of sharing is deprecated but included for
-	backwards compatibility with &OM;&#160;1.  It</phrase>
+    <para>This form of sharing is deprecated but included for
+	backwards compatibility with &OM;&#160;1.  It
       supports the sharing of symbols, variables and strings
       (up to a certain length for strings) within one object. That is, sharing between
       objects is not supported.  A reference to a shared symbol, variable or string is
@@ -3669,6 +3641,690 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 </section>
 </section>
 
+<section id="sec_json-the-json-encoding" revisionflag="added">
+  <title>The JSON encoding</title>
+  <!-- TODO: Citation of one of the JSON standards -->
+  <para>
+    JSON <citation>url_JSON</citation> is a lightweight data format natively supported by many
+    programming languages, in particular JavaScript and other web-based languages. 
+    The JSON encoding aims to ensure that &OM; objects can be represented as JSON objects 
+    with human-readable attribute names thus making &OM; more interoperable with the web. 
+    Furthermore, it aims to make translation from XML to JSON schema easily possible. It uses
+    JSON-native types where possible, and avoid XML peculiarities like
+    pseudo elements.
+  </para>
+  <para>
+    JSON Schema <citation>handrewsjsonschema</citation> is a format that allows structural verification of JSON objects. 
+    This format is difficult to edit, hence the normative schema is authored as a TypeScript <citation>url_typescript</citation> definition file which can be found in <xref linkend="app_dts" />. 
+    A non-normative JSON Schema is then generated from this definition files. 
+    It can be found in <xref linkend="app_json" />. 
+  </para>
+  <section id="sec_json-general-structure">
+    <title>General Structure</title>
+    <para>
+      In general, each &OM; object is represented as a JSON
+      structure. For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+    &quot;id&quot;: &quot;something&quot;,
+    &quot;name&quot;: &quot;x&quot;
+}
+</programlisting>
+    <para>
+      This already shows two attributes that can be used with any &OM; Element:
+    </para>
+    <orderedlist numeration="arabic">
+      <listitem>
+<para>
+The <systemitem>kind</systemitem> attribute, which defines the kind of &OM; object in question.
+This has to be present on every &OM; JSON object, and the values are the corresponding &OM; XML element name. It can be used to easily distinguish between the different types of objects.
+In TypeScript terms, this is called a <emphasis>TypeGuard</emphasis>.
+</para>
+      </listitem>
+      <listitem>
+<para>
+The <systemitem>id</systemitem> attribute, which can be used for Structure sharing.
+This works similar to the XML encoding, but more on this later.
+</para>
+      </listitem>
+    </orderedlist>
+    <para>
+      In the TypeScript schema, this is expressed using the following two types:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          The <systemitem>element</systemitem> type is used by any &OM; 
+          (or &OM;-related) element, and only enforces that <systemitem>kind</systemitem> is a string.
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          The <systemitem>referencable</systemitem> type is any &OM; element
+          that can optionally be given an <systemitem>id</systemitem>.
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Note that for simplicity, the <systemitem>id</systemitem>
+      attribute is omitted in any of the below. 
+    </para>
+  </section>
+  <section id="sec_json-omobj-om-object-constructor">
+    <title>The Object Constructor</title>
+    <para>
+      We can use the <systemitem>OMOBJ</systemitem> type to create a new
+      &OM; object.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+
+    /** optional version of openmath being used */
+    &quot;openmath&quot;: &quot;2.0&quot;,
+
+    /** the actual object */
+    &quot;object&quot;: omel /* any element, see below */
+}
+</programlisting>
+    <para>
+      For example, the integer <systemitem>3</systemitem>:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+    &quot;openmath&quot;: &quot;2.0&quot;,
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMI&quot;, 
+        &quot;integer&quot;: 3
+    }
+}
+</programlisting>
+    <para>
+      The object can be any &OM; element, as expressed by the
+      <systemitem>omel</systemitem> type.
+    </para>
+  </section>
+  <section id="sec_json-oms---symbol">
+    <title>OpenMath Symbols</title>
+    <para>
+      A symbol is represented using the <systemitem>OMS</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMS&quot;,
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** content dictonary the symbol is in, any name */
+    &quot;cd&quot;: name,
+
+    /** name of the symbol */
+    &quot;name&quot;: name
+}
+</programlisting>
+    <para>
+      For example the <systemitem>sin</systemitem> symbol from the
+      <systemitem>transc1</systemitem> content dictionary:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMS&quot;,
+
+    &quot;cd&quot;: &quot;transc1&quot;,
+    &quot;name&quot;: &quot;sin&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omv---variable">
+    <title>Variables</title>
+    <para>
+      A variable is represented using the <systemitem>OMV</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+
+    /** name of the variable */
+    &quot;name&quot;: name
+}
+</programlisting>
+    <para>
+      For example, the variable <systemitem>x</systemitem>:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMV&quot;,
+    &quot;name&quot;: &quot;x&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omi---integers">
+    <title>Integers</title>
+    <para>
+      Integers can be represented in three different ways, to both make
+      use of json and enable easy translation from the XML encoding.
+    </para>
+    <section id="sec_json-json-integers">
+      <title>JSON Integers</title>
+      <para>
+        Integers can be represented as a native JSON Integer, using an
+        <systemitem>integer</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+
+    /** integer value */
+    &quot;integer&quot;: integer
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;integer&quot;: -120
+}
+</programlisting>
+    </section>
+    <section id="sec_json-decimal-integers">
+      <title>Decimal Integers</title>
+      <para>
+        Integers can be represented using their decimal encoding, using
+        the <systemitem>decimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;, 
+
+    /** decimal value */
+    &quot;decimal&quot;: decimalInteger
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;decimal&quot;: &quot;-120&quot;
+}
+</programlisting>
+    </section>
+    <section id="sec_json-hexadecimal-integers">
+      <title>Hexadecimal Integers</title>
+      <para>
+        Integers can be represented using their hexadecimal encoding,
+        using the <systemitem>hexadecimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+
+    /** hexadecimal value */
+    &quot;hexadecimal&quot;: hexInteger
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMI&quot;,
+    &quot;hexadecimal&quot;: &quot;-x78&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-omf---floats">
+    <title>Floats</title>
+    <para>
+      Floats, like integers, can be represented in three different ways.
+    </para>
+    <section id="sec_json-json-floats">
+      <title>JSON Floats</title>
+      <para>
+        Floats can be represented as a native JSON Numbers, using a
+        <systemitem>float</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** float value */
+    &quot;float&quot;: float
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;float&quot;: 1e-10
+}
+</programlisting>
+    </section>
+    <section id="sec_json-decimal-floating-point-numbers">
+      <title>Decimal Floating Point Numbers</title>
+      <para>
+        Integers can be represented using their decimal encoding, using
+        the <systemitem>decimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** decimal value */
+    &quot;decimal&quot;: decimalFloat
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;decimal&quot;: &quot;1.0e-10&quot;
+}
+</programlisting>
+    </section>
+    <section id="sec_json-hexadecimal-floats">
+      <title>Hexadecimal Floats</title>
+      <para>
+        Floats can be represented using their hexadecimal encoding,
+        using the <systemitem>hexadecimal</systemitem> property:
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+
+    /** hexadecimal value */
+    &quot;hexadecimal&quot;: hexFloat
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMF&quot;,
+    &quot;hexaecimal&quot;: &quot;3DDB7CDFD9D7BDBB&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-omb---bytes">
+    <title>Bytes</title>
+    <para>
+      Byte Arrays can be represented using two ways, as a native array
+      of JSON integers, or base64-encoded as a string.
+    </para>
+    <section id="sec_json-json-byte-arrays">
+      <title>JSON Byte Arrays</title>
+      <para>
+        Bytes can be represented as a native JSON Byte Array, using a
+        <systemitem>bytes</systemitem> property.
+      </para>
+      <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+
+    /** an array of bytes */
+    &quot;bytes&quot;: byte[]
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+    &quot;bytes&quot;: [104, 101, 108, 108, 111, 32, 119, 111, 114, 108, 100]
+}
+</programlisting>
+    </section>
+    <section id="sec_json-base64-encoded-bytes">
+      <title>Base64-encoded bytes</title>
+      <para>
+        Bytes can also be encoded as a base64 encoded string.
+      </para>
+      <programlisting language="javascript">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+
+    /** a base64 encoded string */
+    &quot;base64&quot;: base64string
+}
+</programlisting>
+      <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMB&quot;,
+    &quot;base64&quot;: &quot;aGVsbG8gd29ybGQ=&quot;
+}
+</programlisting>
+    </section>
+  </section>
+  <section id="sec_json-oms-strings">
+    <title>Strings</title>
+    <para>
+      Strings can be represented using normal JSON strings and the
+      <systemitem>OMS</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMSTR&quot;, 
+
+    /** the string */
+    &quot;string&quot;: string
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMSTR&quot;, 
+    &quot;string&quot;: &quot;Hello world&quot;
+}
+</programlisting>
+  </section>
+  <section id="sec_json-oma-application">
+    <title>Applications</title>
+    <para>
+      Applications can be represented using the <systemitem>OMA</systemitem>
+      type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMA&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** the term that is being applied */
+    &quot;applicant&quot;: omel, 
+
+    /** the arguments that the applicant is being applied to, optional */
+    &quot;arguments&quot;?: omel[]
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMA&quot;,
+
+    &quot;applicant&quot;: {
+        &quot;kind&quot;: &quot;OMS&quot;,
+
+        &quot;cd&quot;: &quot;transc1&quot;,
+        &quot;name&quot;: &quot;sin&quot;
+    },
+
+    &quot;arguments&quot;: [{
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;x&quot;
+    }]
+}
+</programlisting>
+  </section>
+  <section id="sec_json-oma-attribution">
+    <title>Attribution</title>
+    <para>
+      Attribution can be represented using the <systemitem>OMB</systemitem>
+      type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMATTR&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** attributes attributed to this object, non-empty */
+    &quot;attributes&quot;: ([
+        OMS, omel|OMFOREIGN
+    ])[]
+
+    /** object that is being attributed */
+    &quot;object&quot;: omel
+}
+</programlisting>
+    <para>
+      Here the attributes are being encoded as an array of pairs. Each
+      pair consists of a symbol (the attribute name) and a value (an
+      element or foreign element).
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMATTR&quot;,
+    &quot;attributes&quot;: [
+        [
+            {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;ecc&quot;,
+                &quot;name&quot;: &quot;type&quot;
+            },
+            {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;ecc&quot;,
+                &quot;name&quot;: &quot;real&quot;
+            }
+        ]
+    ],
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMV&quot;,
+        &quot;name&quot;: &quot;x&quot;
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omb---binding">
+    <title>Binding</title>
+    <para>
+      Binding can be represented using the <systemitem>OMB</systemitem> type.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMBIND&quot;, 
+
+    /** the base for the cd, optional */
+    &quot;cdbase&quot;: uri, 
+
+    /** the binder being used */
+    &quot;binder&quot;: omel
+
+    /** the variables being bound, non-empty */
+    &quot;variables&quot;: (OMV | attvar)[]
+
+    /** the object that is being bound */
+    &quot;object&quot;: omel
+}
+</programlisting>
+    <para>
+      Here, the variables can be a list of variables or attributed
+      variables. Attributed variables are represented using the
+      <systemitem>attvar</systemitem> type. This is any
+      <systemitem>OMATTR</systemitem> element (see above), where the
+      <systemitem>object</systemitem> being attributed is an
+      <systemitem>OMV</systemitem> instance.
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{  
+    &quot;kind&quot;: &quot;OMBIND&quot;,
+    &quot;binder&quot;:{  
+        &quot;kind&quot;: &quot;OMS&quot;,
+        &quot;cd&quot;: &quot;fns1&quot;,
+        &quot;name&quot;: &quot;lambda&quot;
+    },
+    &quot;variables&quot;:[  
+        {  
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;x&quot;
+        }
+    ],
+    &quot;object&quot;: {  
+        &quot;kind&quot;: &quot;OMA&quot;,
+        &quot;applicant&quot;: {  
+            &quot;kind&quot;: &quot;OMS&quot;,
+            &quot;cd&quot;: &quot;transc1&quot;,
+            &quot;name&quot;:&quot;sin&quot;
+        },
+        &quot;arguments&quot;: [  
+            {  
+                &quot;kind&quot;:&quot;OMV&quot;,
+                &quot;name&quot;:&quot;x&quot;
+            }
+        ]
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-ome---errors">
+    <title>Errors</title>
+    <para>
+      Errors can be represented using the <systemitem>OME</systemitem> object:
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OME&quot;, 
+
+    /** the error that has occured */
+    &quot;error&quot;: OMS,
+
+    /** arguments to the error, optional  */
+    &quot;arguments&quot;: (omel|OMFOREIGN)[]
+}
+</programlisting>
+    <para>
+      Here, the variables can be a list of elements or foreign objects.
+    </para>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OME&quot;,
+    &quot;error&quot;: {
+        &quot;kind&quot;: &quot;OMS&quot;,
+        &quot;cd&quot;: &quot;aritherror&quot;,
+        &quot;name&quot;: &quot;DivisionByZero&quot;
+    },
+    &quot;arguments&quot;: [
+        {
+            &quot;kind&quot;: &quot;OMA&quot;,
+            &quot;applicant&quot;: {
+                &quot;kind&quot;: &quot;OMS&quot;,
+                &quot;cd&quot;: &quot;arith1&quot;,
+                &quot;name&quot;: &quot;divide&quot;
+            },
+            &quot;arguments&quot;: [
+                {
+                    &quot;kind&quot;: &quot;OMV&quot;,
+                    &quot;name&quot;: &quot;x&quot;
+                },
+                {
+                    &quot;kind&quot;: &quot;OMI&quot;,
+                    &quot;integer&quot;: 0
+                }
+            ]
+        }
+    ]
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omrs-and-structure-sharing">
+    <title>References and Structure Sharing</title>
+    <para>
+      Just like in the XML encoding, the <systemitem>OMR</systemitem> type can
+      be used for structure sharing. This can use an
+      <systemitem>href</systemitem> property.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMR&quot;
+
+    /** element that is being referenced */
+    &quot;href&quot;: uri
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMOBJ&quot;,
+    &quot;object&quot;: {
+        &quot;kind&quot;: &quot;OMA&quot;,
+        &quot;applicant&quot;: {
+            &quot;kind&quot;: &quot;OMV&quot;,
+            &quot;name&quot;: &quot;f&quot;
+        },
+        &quot;arguments&quot;: [
+            {
+                &quot;kind&quot;: &quot;OMA&quot;,
+                &quot;id&quot;: &quot;t1&quot;,
+                &quot;applicant&quot;: {
+                    &quot;kind&quot;: &quot;OMV&quot;,
+                    &quot;name&quot;: &quot;f&quot;
+                },
+                &quot;arguments&quot;: [
+                    {
+                        &quot;kind&quot;: &quot;OMA&quot;,
+                        &quot;id&quot;: &quot;t11&quot;,
+                        &quot;applicant&quot;: {
+                            &quot;kind&quot;: &quot;OMV&quot;,
+                            &quot;name&quot;: &quot;f&quot;
+                        },
+                        &quot;arguments&quot;: [
+                            {
+                                &quot;kind&quot;: &quot;OMV&quot;,
+                                &quot;name&quot;: &quot;a&quot;
+                            },
+                            {
+                                &quot;kind&quot;: &quot;OMV&quot;,
+                                &quot;name&quot;: &quot;a&quot;
+                            }
+                        ]
+                    },
+                    {
+                        &quot;kind&quot;: &quot;OMR&quot;,
+                        &quot;href&quot;: &quot;#t11&quot;
+                    }
+                ]
+            },
+            {
+                &quot;kind&quot;: &quot;OMR&quot;,
+                &quot;href&quot;: &quot;#t1&quot;
+            }
+        ]
+    }
+}
+</programlisting>
+  </section>
+  <section id="sec_json-omforeign---foreign-objects">
+    <title>Foreign Objects</title>
+    <para>
+      Just like in the XML encoding, the <systemitem>OMFOREIGN</systemitem>
+      type can be used for foreign objects. This can use an
+      <systemitem>href</systemitem> property.
+    </para>
+    <programlisting language="typescript">
+{
+    &quot;kind&quot;: &quot;OMFOREIGN&quot;
+
+    /** encoding of the foreign object */
+    &quot;encoding&quot;?: string
+
+    /** the foreign object */
+    &quot;foreign&quot;: any
+}
+</programlisting>
+    <para>
+      For example:
+    </para>
+    <programlisting language="json">
+{
+    &quot;kind&quot;: &quot;OMFOREIGN&quot;,
+    &quot;encoding&quot;: &quot;text/latex&quot;,
+    &quot;foreign&quot;: &quot;$x=\frac{1+y}{1+2z^2}$&quot;
+}
+</programlisting>
+  </section>
+</section>
+
 <section id="sec_enc_summary">
   <title>Summary</title>
   
@@ -3683,6 +4339,11 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       <listitem><para>The binary encoding for &OM; objects should be used when
 	  efficiency is a key issue. It is compact yet simple enough to allow
 	  fast encoding and decoding of objects.</para>
+      </listitem>
+      <listitem revisionflag="added"><para>
+      JSON is a widely used standard, with implementations in most programming 
+      languages, in particular JavaScript and other languages used on the web. 
+      The JSON encoding thus makes &OM; objects web-interoparable. </para>
       </listitem>
     </itemizedlist>
   </para>
@@ -3752,15 +4413,12 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
       Dictionary. This means that Content Dictionaries may be passed in the
       same way as other (&OM;) mathematical data.</para>
     
-    <para>Finally, the syntax of the
-      <phrase>reference encoding for</phrase>
+    <para>Finally, the syntax of the reference encoding for
       Content Dictionaries has been designed to be relatively easy to learn
       and to write, and also free from the need for any specialist
       software. This is because it is acknowledged that there is an enormous
       amount of mathematical information to represent, and so most 
-      Content Dictionaries 
-      <phrase>are</phrase> 
-      written by <quote>ordinary</quote>
+      Content Dictionaries are written by <quote>ordinary</quote>
       mathematicians, encoding their particular fields of expertise.  A
       further reason is that the mathematics conveyed by a specific Content
       Dictionary should be understandable independently of any
@@ -3784,8 +4442,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
   <section id="sect_func">
     <title>Abstract Content Dictionaries</title>
     
-    <para>In this section we define the <phrase>abstract</phrase> structure of Content
-      Dictionaries.</para>
+    <para>In this section we define the abstract structure of Content Dictionaries.</para>
     
     
     <para>A Content Dictionary consists of the
@@ -3880,7 +4537,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     </para>
     
     
-    <para revisionflag="changed">
+    <para>
       Content Dictionaries may be grouped into <term id="cdgroup">CD Group</term>s. These
       groups allow applications to easily refer to collections of Content
       Dictionaries. One particular CDGroup of interest is the <quote>MathML
@@ -3954,13 +4611,12 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
   </section>
   
   <section id="sec_xml_cd">
-    <title>The <phrase>Reference</phrase> Encoding for Content Dictionaries</title>    
+    <title>The Reference Encoding for Content Dictionaries</title>    
     
-    <para><phrase>The reference encoding of</phrase>
+    <para>The reference encoding of
       Content Dictionaries are as &exml; documents.  A valid Content Dictionary
-      document should <phrase>conform to the Relax NG Schema for
+      document should conform to the Relax NG Schema for
 	Content Dictionaries given in <xref linkend="sec_cd_schema"/>.
-      </phrase>
     </para>
     
     <para>An example of a complete Content Dictionary is given in
@@ -3977,7 +4633,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
     </section>
 
     <section id="sect_pcdata">
-<title>Further <phrase>Description of the CD Schema</phrase></title>
+<title>Further Description of the CD Schema</title>
 <para>
   We now describe the elements used in the above schema in terms of the abstract
   description of CDs in <xref linkend="sect_func"/>.  Unless stated otherwise information
@@ -3989,7 +4645,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 <variablelist>
   <varlistentry><term><systemitem>CD</systemitem></term>
   <listitem>
-    <para revisionflag="added">
+    <para>
       The <systemitem>CD</systemitem> element can take an optional
       <systemitem>version</systemitem> attribute which indicate to which version of the
       &OM; standard it conforms. In previous versions of this standard this attribute did
@@ -4076,9 +4732,8 @@ CD base of the CD.
    be a series of <systemitem>CDName</systemitem> elements, each
    naming a Content Dictionary used in the
    <systemitem>Example</systemitem> and <systemitem>FMP</systemitem>s
-   of the current Content Dictionary. <phrase
->This element is optional and deprecated since
-the information can easily be extracted automatically.</phrase></para>
+   of the current Content Dictionary. This element is optional and deprecated since
+the information can easily be extracted automatically.</para>
    
  </listitem>
 </varlistentry>
@@ -4133,20 +4788,15 @@ and cannot be <quote>loose</quote> in the Content Dictionary.</para>
 <varlistentry><term><systemitem>CMP</systemitem></term>
 <listitem><para>
 
-<phrase>
 A Commented Mathematical Property.
-</phrase>
-
 </para>
   
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>FMP</systemitem></term><listitem><para>
 
-<phrase>
 A Formal Mathematical Property.  It may take an optional
 <systemitem>kind</systemitem> attribute.
-</phrase>
 
 </para>
 </listitem>
@@ -4162,7 +4812,7 @@ A Formal Mathematical Property.  It may take an optional
 <para>
   Content Dictionaries contain just one part of the information that can be associated to
   a symbol in order to define its meaning and its functionality. &OM; Signature
-  <phrase>dictionaries</phrase>, CDGroups, and possibly <phrase>collections</phrase> of
+  dictionaries, CDGroups, and possibly collections of
   extra mathematical properties, are used to convey the different aspects that as a whole
   make up a mathematical definition.
 </para>
@@ -4236,7 +4886,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
 
 <literallayout role="rnc" file="omcdsig2.rnc"/>
 
-  <para revisionflag="added">
+  <para>
     The <systemitem>CDSignatures</systemitem> element specifies which CD the
     <systemitem>Signature</systemitem> elements contained pertain to via the
     <systemitem>cd</systemitem> attribute. The optional <systemitem>cdurl</systemitem> can
@@ -4254,7 +4904,7 @@ designed to be used with Content Dictionaries in the &exml; encoding.
     <systemitem>cdgroup</systemitem> contained <systemitem>OMOBJ</systemitem> elements.
   </para>
 
-  <para revisionflag="added">
+  <para>
     The contents of the <systemitem>CDSignatures</systemitem> element are made up of
     <systemitem>CDSComment</systemitem>, <systemitem>CDSReviewDate</systemitem>, and
     <systemitem>CDSStatus</systemitem>, which are completely analogous to their CD
@@ -4286,9 +4936,9 @@ name="plus"/></systemitem>: <literallayout><![CDATA[
 </OMOBJ>
 </Signature>
 ]]></literallayout>
-<phrase revisionflag="added">Conceptually, it associates the symbol
+Conceptually, it associates the symbol
 <systemitem>plus</systemitem> with an &OM;-encoded type; here an n-ary function from an
-Abelian Semigroup to itself.</phrase>  
+Abelian Semigroup to itself.
 </para>
 </section>
 </section>
@@ -4298,13 +4948,13 @@ Abelian Semigroup to itself.</phrase>
 
 <para>
   The CD Group mechanism is a convenience mechanism for identifying collections of CDs
-  <phrase revisionflag="added">and specifying their location by an URI</phrase>.  A CD
+  and specifying their location by an URI.  A CD
   Group file is an &exml; document used in the (static or dynamic) negotiation phase where
   communicating applications declare and agree on the Content Dictionaries which they
   process.  It is a complement, or an alternative, to the individual declaration of
-  Content Dictionaries understood by an application.  <phrase
-  revisionflag="added">Additionally, a CD Group file can also be used as a catalog for
-  defaulting the CD bases of &OM; symbols.</phrase> Note that CD Groups do
+  Content Dictionaries understood by an application.  
+ >Additionally, a CD Group file can also be used as a catalog for
+  defaulting the CD bases of &OM; symbols. Note that CD Groups do
   <emphasis>not</emphasis> affect the &OM; objects themselves.  Symbols in an object
   always refer to content dictionaries, not groups.</para>
 
@@ -4328,7 +4978,7 @@ CDGroup G.</para>
 <para>CDGroups are &exml; documents, hence  a valid  CDGroup
  should 
 <itemizedlist>
-<listitem><para>be valid according to the <phrase>schema</phrase> given in
+<listitem><para>be valid according to the schema given in
   <xref linkend="fig_cdgroup.dtd"/>,</para>
 </listitem>
 <listitem><para>adhere to the extra conditions on the content of the elements
@@ -4343,11 +4993,11 @@ CDs, identified by name and optionally version number and URL.</para>
 
 
 <figure id="fig_cdgroup.dtd">
-    <title><phrase>Relax NG</phrase> Specification of CDGroups</title>
+    <title>Relax NG Specification of CDGroups</title>
     <literallayout role="rnc" file="omcdgroup2.rnc"/>
 </figure>
 
-<para revisionflag="added">
+<para>
   The <systemitem>CD</systemitem> element can take optional
   <systemitem>version</systemitem> attribute which indicates to which version of the &OM;
   standard it conforms.  In previous versions of this standard this attribute did not
@@ -4362,7 +5012,7 @@ CDs, identified by name and optionally version number and URL.</para>
 
 <para>The notion of being a valid CDGroup implies that the following
 requirements on the content of the elements described by the 
-<phrase>schema</phrase> given in
+schema given in
   <xref linkend="sect_sigschema"/> are also met.</para>
 
 
@@ -4393,9 +5043,9 @@ version numbers of the CDGroup.
 <varlistentry><term><systemitem>CDGroupURL</systemitem></term>
 <listitem><para>The text occurring in the <systemitem>CDGroupURL</systemitem>
   element identifies the location of the CDGroup file, not necessarily
-  of the member Content Dictionaries. <phrase revisionflag="added">If the
+  of the member Content Dictionaries. If the
   <systemitem>CDGroupURL</systemitem> element is missing, it defaults to the URL of
-  the current CD group file.</phrase> For the syntactical
+  the current CD group file. For the syntactical
   requirements, see <systemitem>CDURL</systemitem> in <xref linkend="sect_pcdata"/>.</para>
   
 </listitem>
@@ -4414,7 +5064,7 @@ mathematical area of the CDGroup.</para>
 </listitem>
 </varlistentry>
 <varlistentry><term><systemitem>CDGroupInclude</systemitem></term>
-<listitem><para revisionflag="added">The text content of the
+<listitem><para>The text content of the
 <systemitem>CDGroupInclude</systemitem> identifies an external CD group file whose CDGroup
 members are to be included into the current one. Technically: the set of CDs of CD group
 given by a CD group file with <systemitem>CDGroupInclude</systemitem> elements is
@@ -4430,13 +5080,12 @@ For the syntactical
 </varlistentry>
 <varlistentry><term><systemitem>CDName</systemitem></term>
 <listitem>
-  <para><phrase revisionflag="changed">The text occurring in the
+  <para>The text occurring in the
   <systemitem>CDName</systemitem> element names the referenced Content Dictionary (see
-  <systemitem>CDURL</systemitem> below) in this CD group,</phrase> <phrase
-  revisionflag="added">it must be unique in the CD group. In particular,
+  <systemitem>CDURL</systemitem> below) in this CD group, it must be unique in the CD group. In particular,
   <systemitem>OMS</systemitem> elements in an <systemitem>OMOBJ</systemitem> whose
   <systemitem>cdgroup</systemitem> attribute references the current CD group derive their CD base
-  via this <systemitem>CDName</systemitem>.</phrase> For the syntactical requirements, see
+  via this <systemitem>CDName</systemitem>. For the syntactical requirements, see
   <systemitem>CDName</systemitem> in <xref linkend="sect_pcdata"/>.</para>
 </listitem>
 </varlistentry>
@@ -4606,7 +5255,7 @@ For example (again using the &exml; encoding):
 </OMATTR>]]></literallayout>
 </para>
 
-<para revisionflag="changed"> An exception to the above guidelines occurs when a MathML object
+<para> An exception to the above guidelines occurs when a MathML object
 is converted to &OM;.  MathML also has an
 <systemitem>encoding</systemitem> attribute which can appear in various
 places and whose format is a string.  Only two values are predefined,
@@ -4686,17 +5335,16 @@ the accuracy of these representations.</para>
 
 
 <para>
-  <phrase revisionflag="added">Given the inheritance mechanism for CD bases &OM;
-  symbols,</phrase> Content Dictionaries available from the official &OM; repository at
+  Given the inheritance mechanism for CD bases &OM;
+  symbols, Content Dictionaries available from the official &OM; repository at
   <systemitem>http://www.openmath.org</systemitem> need only be referenced by name, other
   Content Dictionaries <emphasis>should</emphasis> be referenced using the
-  <systemitem>CDBase</systemitem> and the <systemitem>CDName</systemitem> <phrase
-  revisionflag="added"> or via the CD Group-based CD base inheritance mechanism</phrase>.
+  <systemitem>CDBase</systemitem> and the <systemitem>CDName</systemitem>
+  or via the CD Group-based CD base inheritance mechanism.
 </para>
 
 <para>When receiving an &OM; symbol, e.g.&#160;<math><mi>s</mi></math>,
- that is not <phrase>defined in</phrase>
-a supported Content Dictionary, a
+ that is not defined in a supported Content Dictionary, a
  compliant application will act as if it had received the &OM; object
  <math display="block"><mi
  mathvariant="bold">error</mi><mo>(</mo><mi>unhandled_symbol</mi><mo
@@ -4945,6 +5593,180 @@ or, using the Relax NG compact syntax:
   <literallayout role="dtd" file="openmath2.dtd"/>
 </appendix>
 
+
+<appendix id="app_dts" revisionflag="added">
+  <title>&OM; .d.ts (Normative)</title>
+  
+  <para>
+    JSON Schemas <citation>handrewsjsonschema</citation> define a vocabulary 
+    allowing us to validate and annotate JSON documents. 
+    Unfortunately, JSON schema is often tedious to read and write for humans. 
+    This is especially true when it comes to recursively defined data 
+    structures. As OpenMath has many recursive structures, the normative JSON
+    encoding is instead authored as a human readable TypeScript <citation>url_typescript</citation> definition file. 
+    This file can be found below. 
+  </para>
+
+  <literallayout role="dts" file="openmath2.d.ts"/>
+
+  <para>
+    While JSON provides many types, sometimes more restrictions than
+    the general type is required. The JSON Schema provides several
+    facilities for this, for example strings matching a particular
+    regular expression.
+  </para>
+  <para>
+    The schema uses the following helper types:
+  </para>
+  <itemizedlist>
+    <listitem>
+      <para>
+      <systemitem>uri</systemitem> represents any URI encoded as a string.
+        This uses the JSONSchema <systemitem>format: uri</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>name</systemitem> represents any valid name. In this schema uses
+        any kind of string.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>integer</systemitem>represents an arbitrary precise JSON-native
+        integer. Uses JSON numbers as underlying type, and the JSON
+        Schema <systemitem>number</systemitem> type.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>decimalInteger</systemitem> represents a string representing the
+        decimal expansion of an integer. Uses the regular expression
+        <systemitem>^-?[0-9]+$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>hexInteger</systemitem> represents a string representing the
+        heximadecimal expansion of an integer. Uses the regular
+        expression <systemitem>^-?x[0-9A-F]+.$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>float</systemitem> represents any IEEE 32-bit integer, represented
+        as a native JSON integer.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>decimalFloat</systemitem> represents a string representing the
+        decimal expansion of an IEEE floating point number. Uses the
+        regular expression
+        <systemitem>^(-?)([0-9]+)?(\.[0-9]+)?([eE](-?)[0-9]+)?</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+      <systemitem>hexFloat</systemitem> represents a string representing the hexadecimal expansion of an IEEE floating point number.
+Uses the regular expression <systemitem>^([0-9A-F]+)$</systemitem>.
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>byte</systemitem> represents a byte of data represented as an
+        integer, between <systemitem>0</systemitem> and
+        <systemitem>255</systemitem> (inclusive).
+      </para>
+    </listitem>
+    <listitem>
+      <para>
+        <systemitem>base64string</systemitem> represents a string representing a set
+        of bytes encoded as a <systemitem>base64</systemitem> string. Uses
+        the regular expression
+        <systemitem>^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$</systemitem>.
+      </para>
+    </listitem>
+  </itemizedlist>
+    <para>
+      The main type in the schema is the <systemitem>omel</systemitem> type. 
+      It is defined as any of the following:
+    </para>
+    <itemizedlist>
+      <listitem>
+        <para>
+          <systemitem>OMS</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMV</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMI</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMB</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMSTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMF</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMA</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMBIND</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OME</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMATTR</systemitem>
+        </para>
+      </listitem>
+      <listitem>
+        <para>
+          <systemitem>OMR</systemitem>
+        </para>
+      </listitem>
+    </itemizedlist>
+    <para>
+      Concrete (non-normative) examples can be found in <xref linkend="sec_json-the-json-encoding" />. 
+    </para>
+</appendix>
+
+<appendix id="app_json" revisionflag="added">
+  <title>&OM; .json Schema (Non-Normative)</title>
+  
+  <para>
+    This section contains the  non-normative JSON Schema
+    <citation>handrewsjsonschema</citation> file for the
+    &OM; JSON encoding. It is generated using
+    <citation>url_vega-ts-jscon-schema-generator</citation> from the TypeScript definition file in <xref linkend="app_json"/>. 
+    It can be used to perform machine-validation of JSON-encoded &OM; objects. 
+  </para>
+  <literallayout role="dts" file="openmath2.json"/>
+</appendix>
+
 <appendix  id="app_whats_new">
   <title>Changes between &OM;&#160;1.1 and &OM;&#160;2 (Non-Normative)</title>
   
@@ -5107,87 +5929,96 @@ details of how this attribute is used are not mandated by the standard.
       </listitem>
     </itemizedlist>
   </section>
-  
+</appendix>
+
+<appendix  id="om2-revisions">
+  <title  revisionflag="added">Revisions to  &OM;&#160;2 (Non-Normative)</title>
+
+  <para revisionflag="added">
+    In this appendix we describe the revisions to the &OM; 2  standard. All of these
+    revisions are either editorial, clarifications, or additions, so they only change
+    the &OM; 2 standard  conservatively. 
+  </para>
   
     <section id="chgr1">
-    <title>Changes in 2.0 Revision 1</title>
+    <title>Changes in 2.0 Revision 1 (July 2017) </title>
     
     <itemizedlist>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	    There are now explicitly two XML encodings: the previous one and 
 	    the Strict Content MathML one. This necessitated changes to the 
 	    preamble and the start of Chapter 3.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		The description of the encoding of <systemitem>xf&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f&zsp;f1</systemitem> in base 256 was corrected (the <systemitem>0xab</systemitem> (base 256/positive) byte was omitted and <systemitem>0xF1</systemitem> had been written <systemitem>0xFI</systemitem>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The phrase <quote>in little endian format</quote> was unhelpfully included in the description of the binary integer encoding, which contradicted the later <quote>network byte order</quote>. Now removed.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		<xref linkend="sec_xml-desc"/> described the OpenMath XML value of <systemitem>hex</systemitem> as <quote>from lowest to highest bits using a  least significant byte ordering</quote>.  Replaced by the current <quote>in network byte order</quote>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 		The example of binary encoding of floats in <xref linkend="sec_bin-desc"/> For example, 0.1 is encoded as <systemitem>0x03 0x000000000000f03f</systemitem>" was wrong, and has been replaced by the same example as the XML encoding.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">A citation to MathML 3 was added.
+	<para>A citation to MathML 3 was added.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">The <quote>Note on names</quote>, which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
+	<para>The <quote>Note on names</quote>, which used to refer to Unicode 2.0, has been upgraded to allow for XML 1.0 5th edition and more specifically erratum NE17 in <citation>erratum_NE17</citation>, so that the current version of Unicode is incorporated.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
+	<para>Various included example files (such as <filename>arith1.ocd</filename>) have been updated to match the versions on the OpenMath web site.
         </para>
       </listitem>
     </itemizedlist>
   </section>
 
     <section id="chgr2">
-    <title>Changes in 2.0 Revision 2</title>
+    <title>Changes in 2.0 Revision 2 (August 2018)</title>
     <itemizedlist>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	 <emphasis>cdbase</emphasis> and <emphasis>cd url</emphasis> are now defined in terms of
 	 Internationalized Resource Identifiers (IRIs) <citation>IETF3987</citation>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The notion of the head of an attribution has been introduced to clarify the
 	  notion of an attributed variable.
 	</para>
-	<para revisionflag="added">
+	<para>
 	  The notion of alphabetic renaming has been clarified. It now specifies what
 	  should happen in the presence of attributed bound variables: the variables in
 	  the attribute values need to be renamed as well.  
 	</para>
-	<para revisionflag="added">
+	<para>
 	  Duplicate bound variables in binders have been deprecated, since they make no
 	  sense. The fallback semantics of duplicate variables been clarified for the case
 	  of attributed bound variables.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	 The RelaxNG schema has been corrected to allow hexadecimal representation of integers to match 
 	 <xref linkend="sec_xml-desc"/>.
         </para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  For a better alignment with MathML3, the <systemitem>OMOBJ</systemitem> element
 	  has been extended by a <systemitem>cdgroup</systemitem> attribute that specifies
 	  a CDGroup file that acts as a catalog for the CD bases of
@@ -5197,26 +6028,40 @@ details of how this attribute is used are not mandated by the standard.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The meaning of <systemitem>CDGroup/CDGroupMember/CDName</systemitem> has been
 	  clarified in terms of uniqueness conditions and correspondence to name of the
 	  referenced CD.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  An inclusion mechanism has been introduced to make the
 	  <systemitem>cdgroup</systemitem> catalog mechanism in MathML more realistic and
 	  manageable.
 	</para>
       </listitem>
       <listitem>
-	<para revisionflag="added">
+	<para>
 	  The top level elements of the XML encodings of CDs, CD signatures, and CD groups
 	  have been augmented with <systemitem>version</systemitem> attribute and the
 	  first two with a <systemitem>cdgroup</systemitem> attribute that give the
 	  defaults for the contained <systemitem>OMOBJ</systemitem> elements.
 	</para>
+      </listitem>
+    </itemizedlist>
+  </section>
+
+  <section id="chgr3" revisionflag="added">
+    <title>Changes in 2.0 Revision 3 (July 2019)</title>
+    <itemizedlist>
+      <listitem>
+        <para>
+          A newly endorsed JSON encoding was added. 
+          JSON is a standard available in many programming languages, in particular in JavaScript and other languages powering modern web applications. 
+          The &OM; JSON enocoding thus makes &OM; web-interoperable. 
+          See newly added Section 3.3, Appendix F and Appendix G. 
+        </para>
       </listitem>
     </itemizedlist>
   </section>
@@ -5251,7 +6096,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.ietf.org/rfc/rfc2396.txt</bibliomisc>
   </biblioentry>
   
-  <biblioentry revisionflag="changed" id="IETF3987" role="misc">
+  <biblioentry id="IETF3987" role="misc">
     <author><othername>IETF</othername></author>
     <title>RFC 3987 - Internationalized Resource Identifiers (IRIs)</title>
     <pubdate>January 2005</pubdate>
@@ -5863,7 +6708,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>ftp://ftp-sop.inria.fr/safir/OM/v1.ps</bibliomisc>
   </biblioentry>
   
-   <biblioentry id="OM_1.1"  role="finaledit">
+   <biblioentry id="OM_1.1">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 1.1</title>
     <pubdate>2002</pubdate>
@@ -5871,7 +6716,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>http://www.openmath.org/standard/om11/</bibliomisc>
   </biblioentry>
 
-   <biblioentry id="OM_2.0r0"  role="finaledit">
+   <biblioentry id="OM_2.0r0">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Version 2.0</title>
     <pubdate>2004</pubdate>
@@ -5880,7 +6725,7 @@ details of how this attribute is used are not mandated by the standard.
   </biblioentry>
   
   
-   <biblioentry id="OM_primer"  role="finaledit">
+   <biblioentry id="OM_primer">
     <author><othername>&OM; Consortium</othername></author>
     <title>&OM; Primer</title>
     <pubdate>2004</pubdate>
@@ -5927,7 +6772,7 @@ details of how this attribute is used are not mandated by the standard.
   
   <biblioentry id="UNICODE" role="book">
     <author><othername>Unicode Consortium</othername></author>
-    <title>The Unicode Standard: Version <phrase>4.0.0</phrase></title>
+    <title>The Unicode Standard: Version 4.0.0</title>
     <publisher><publishername>Addison-Wesley</publishername></publisher>
     <pubdate>2003</pubdate>
     <isbn>ISBN 0-321-18578-1</isbn>
@@ -5958,7 +6803,7 @@ details of how this attribute is used are not mandated by the standard.
     <bibliomisc>RFC: 2045</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
+    <bibliomisc>http://www.ietf.org/rfc/rfc2045.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="rfc2046" role="misc">
@@ -5969,7 +6814,7 @@ Types</title>
     <bibliomisc>RFC: 2046</bibliomisc>
     <pubdate role="month">November</pubdate>
     <pubdate>1996</pubdate>
-    <bibliomisc  role="finaledit">http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
+    <bibliomisc>http://www.ietf.org/rfc/rfc2046.txt</bibliomisc>
   </biblioentry>
   
   <biblioentry id="iso646_83" role="misc">
@@ -6046,7 +6891,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/1998/REC-xml-19980210</bibliomisc>
   </biblioentry>
   
-  <biblioentry id="erratum_NE17" role="misc" revisionflag="added">
+  <biblioentry id="erratum_NE17" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Namespaces in XML 1.0 (Second Edition) Errata</title>
     <pubdate role="month">November</pubdate>
@@ -6223,7 +7068,7 @@ Types</title>
     <bibliomisc>http://www.w3.org/TR/MathML2/</bibliomisc>
   </biblioentry>
    
-  <biblioentry id="MathML_2014" role="misc" revisionflag="added">
+  <biblioentry id="MathML_2014" role="misc">
     <author><othername>World Wide Web Consortium</othername></author>
     <title>Mathematical Markup Language (MathML) 3.0 Specification
     2nd Edition</title>
@@ -6566,7 +7411,37 @@ Types</title>
     <pubdate role="month">June 15&#8211;16</pubdate>
     <pubdate>1999</pubdate>
   </biblioentry>
+
+  <biblioentry id="url_JSON" role="misc" revisionflag="added">
+    <title>JSON (JavaScript Object Notation)</title>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>http://json.org/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="handrewsjsonschema" role="misc" revisionflag="added">
+    <author><firstname>H.</firstname> <surname>Andrews</surname></author>
+    <author><firstname>A.</firstname> <surname>Wright</surname></author>
+    <title>JSON Schema: A Media Type for Describing JSON Documents</title>
+    <pubdate role="month">March 19</pubdate>
+    <pubdate>2018</pubdate>
+    <bibliomisc>https://tools.ietf.org/html/draft-handrews-json-schema-01</bibliomisc>
+  </biblioentry>
   
+  <biblioentry id="url_typescript" role="misc" revisionflag="added">
+    <title>TypeScript - JavaScript that scales.</title>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>https://www.typescriptlang.org/</bibliomisc>
+  </biblioentry>
+
+  <biblioentry id="url_vega-ts-jscon-schema-generator" role="misc" revisionflag="added">
+    <author><firstname>Dominik</firstname> <surname>Moritz</surname></author>
+    <title>ts-json-schema-generator</title>
+    <pubdate role="month">July 5</pubdate>
+    <pubdate>2019</pubdate>
+    <bibliomisc>https://github.com/vega/ts-json-schema-generator</bibliomisc>
+  </biblioentry>
   
 </bibliography>
 </book>
