@@ -84,7 +84,7 @@
 }
 
 \begin{document}
-\catcode`\%=12
+%\catcode`\%=12
 \catcode`\{=12
 \catcode`\}=12
 
@@ -615,6 +615,7 @@ changelog entry here
 \catcode`\{=1
 \catcode`\}=2
 \catcode`\^=7
+\catcode`\%=14
 \parskip0pt
 \hypersetup{pageanchor=false}
 \tableofcontents
@@ -627,6 +628,7 @@ changelog entry here
 \catcode`\{=1
 \catcode`\}=2
 \catcode`\^=7
+\catcode`\%=14
 \parskip0pt
 \hypersetup{pageanchor=false}
 \listoffigures

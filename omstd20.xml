@@ -558,6 +558,17 @@ with index greater than 1)</phrase>.
     </varlistentry>
   </variablelist>
 </para>
+<para>
+	Although foreign objects can come with a standarized encoding 
+	field, their interpretation is an issue beyond the &OM; 
+	standard. In particular, a foreign object is primarily data 
+	that has been encoded in some format, and there is no 
+	promise that foreign objects encountered within one encoding 
+	of &OM; can be faithfully represented in another.
+</para>
+</listitem>
+</varlistentry>
+</variablelist>
 
 
 <para>
@@ -3364,7 +3375,7 @@ It is binary encoded as the sequence of bytes given in <xref linkend="fig_bin-en
 	  <row>
 	    <entry>11</entry><entry>74</entry><entry>t  .</entry>
 	    <entry>29</entry><entry>70</entry><entry>p (symbol name begin</entry>
-	    <entry>50</entry><entry>11</entry><entry>end application tag </entry>
+	    <entry>50</entry><entry>19</entry><entry>end object tag </entry>
 	  </row>
 	  <row>
 	    <entry>12</entry><entry>68</entry><entry>h  .</entry>
