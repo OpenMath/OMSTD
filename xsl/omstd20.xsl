@@ -213,6 +213,7 @@ background-color: yellow;
 .lowerroman {
 list-style-type: lower-roman;
 }
+.definiendum {font-weight:bold;}
 </style>
 </xsl:variable>
 
@@ -623,7 +624,7 @@ relative to the OpenMath 2.0 document...</p>
 </xsl:template>
 
 <xsl:template match="term[@id]" priority="1">
- <span id="{@id}"><xsl:apply-templates/></span>
+ <span id="{@id}" class="definiendum"><xsl:apply-templates/></span>
 </xsl:template>
 
 <xsl:template match="varname">
@@ -773,7 +774,7 @@ count="figure[not(ancestor-or-self::*/@revisionflag='deleted')]" level="any"  fr
 
 
 
-<xsl:template match="literallayout[@file][@role=('dtd')]">
+<xsl:template match="literallayout[@file][@role=('dtd','json','dts')]">
  <xsl:variable name="l">
   <section xmlns="">
    <xsl:copy-of select="ancestor::section[@id][1]/@id"/>
@@ -1186,7 +1187,6 @@ select="substring-before(.,':')"/>:</a>
 <xsl:template match="rng:grammar" xmlns:rng="http://relaxng.org/ns/structure/1.0">
 <xsl:apply-templates mode="verb" select="."/>
 </xsl:template>
-
 
 <xsl:template match="xsd:schema" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 <xsl:apply-templates mode="verb" select="."/>

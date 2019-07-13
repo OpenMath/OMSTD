@@ -26,7 +26,6 @@ else
     TARGET=om20-editors-draft
 fi
 
-
 case "$TRAVIS_COMMIT_MESSAGE" in 
 \[ci\ final\]*)
     DRAFT=no
@@ -53,125 +52,8 @@ cp *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
 # cp support/rnc2dbk build
 cp openmath.cls build
 
-# copy over json + d.ts files for OpenMath JSON
-cp openmath2.d.ts openmath2.json build
-
 cd build
 
-# echo RNC/xml
-# for i in omcd2.rnc omcdsig2.rnc openmath2.rnc omcdgroup2.rnc
-# do
-# echo $i
-# perl rnc2dbk $i > ${i%%.rnc}rnc.xml
-# done
-
-
-# openmath2.rnc has to be last
-echo RNG
-for i in omcd2.rnc omcdsig2.rnc  omcdgroup2.rnc openmath2.rnc
-do
-echo $i
-$TRANG  $i ${i%%rnc}rng
-# dos2unix
-tr -d '\r' < ${i%%rnc}rng > ${i%%rnc}rng-
-mv ${i%%rnc}rng- ${i%%rnc}rng
-done
-
-# openmath2.rnc has to be last
-echo XSD
-for i in omcd2.rnc omcdsig2.rnc omcdgroup2.rnc  openmath2.rnc
-do
-echo $i
-$TRANG  $i ${i%%rnc}xsd
-# dos2unix
-tr -d '\r' < ${i%%rnc}xsd > ${i%%rnc}xsd-
-mv ${i%%rnc}xsd- ${i%%rnc}xsd
-done
-
->trang.txt
-echo DTD
-for i in openmath2.rnc
-do
-echo $i
-sed -e "s/attvar =[^}]*}/attvar = OMATTR/" \
-    -e "s/notom =.*$//" \
-    -e "s/^.*element \*.*$//" \
-    -e "s/ (omel|notom)\*/omel/" \
-    -e "s/^.* text.$//" \
-    -e "s/{pattern.*}}/}/" \
-    -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
-        $i >tmp.rnc
-
-$TRANG  tmp.rnc tmp.dtd 2>> trang.txt
- 
- sed -e "s/OMFOREIGN .*>/OMFOREIGN ANY>/" \
-     -e "s/:*ns1:*//g" \
-     -e "s/\# OMDTD/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
-        tmp.dtd > ${i%%rnc}dtd
-# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
-done
-
-for i in omcd2.rnc 
-do
-echo DTD
-echo $i
-sed -e  "s/| OMOBJ//" \
-    -e "s/OMOBJ/text/" \
-    -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
-    -e "s/\(CDRevision[^,]*\)[)],/\\1)+,/" \
-    -e "s/\(Description\)[)],/\\1)+,/" \
-    -e "s/\(Role\)[?]/\\1/" \
-    -e "s/ &/ |/g" \
-        $i >tmp.rnc
-
-$TRANG  tmp.rnc tmp.dtd  2>> trang.txt
- 
-
- sed -e "s/text-or-om \"(#PCDATA/text-or-om \"(#PCDATA|OMOBJ/" \
-     -e "s/FMP (#PCDATA)/FMP (OMOBJ)/" \
-     -e "s/:ns1//g" \
-     -e "s/ns1://g" \
-     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
-        tmp.dtd > ${i%%rnc}dtd
-# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
-
-
-done
-
-echo DTD
-echo omcdgroup2.rnc
-$TRANG  omcdgroup2.rnc omcdgroup2.dtd 2>> trang.txt
-
-for i in  omcdsig2.rnc
-do
-echo DTD
- echo $i
- sed -e  "s/| OMOBJ//" \
-     -e "s/OMOBJ/text/" \
-     -e "s/include .openmath2.rnc. {.*}/# OMDTD/" \
-     -e "s/(CDSReviewDate[?] & CDSStatus)/((CDSReviewDate,CDSStatus)|(CDSStatus,CDSReviewDate?))/g" \
-         $i >tmp.rnc
-
-
- $TRANG  tmp.rnc tmp.dtd  2>> trang.txt
-
-
- sed -e "s/Signature ..#PCDATA..../Signature (OMOBJ)/" \
-     -e "s/:ns1//g" \
-     -e "s/ns1://g" \
-     -e "s/<!-- OMDTD -->/<!ENTITY % omdtd SYSTEM \"openmath2.dtd\"> %omdtd;/"\
-        tmp.dtd > ${i%%rnc}dtd
-# sed -e "s/</\&lt;/g" ${i%%rnc}dtd > ${i%%.rnc}dtd.xml
-
-
-done
-
-for i in omcd2.rnc omcdsig2.rnc omcdgroup2.rnc  openmath2.rnc
-do
-# dos2unix
-tr -d '\r' < ${i%%rnc}dtd > ${i%%rnc}dtd-
-mv ${i%%rnc}dtd- ${i%%rnc}dtd
-done
 
 
 echo single page html5
@@ -239,7 +121,7 @@ fi
 
 echo zip
 rm tmp.*
-zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd *.json *.d.ts  o*.pdf *.png *.ocd run 
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run 
 
 if [ "$1" = "copy" ] && [ -d "../../OpenMath.github.io/standard/$TARGET" ]
    then
