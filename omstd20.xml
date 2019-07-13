@@ -116,7 +116,7 @@ meaningful way, that is, preserving their
 linkend="cha_obj"/> and <xref linkend="cha_enco"/>.</para>
 
 
-<para>The standard endorSses two encodings 
+<para>The standard endorses two encodings 
 in &exml; (an innate one described here, and one in Strict Content 
 MathML)<phrase revisionflag="deleted">and</phrase><phrase revisionflag="added">,</phrase> a binary format <phrase revisionflag="added">and a JSON encoding</phrase>.
 At the time of writing, these are the encodings
@@ -341,13 +341,13 @@ objects as described below.)</para>
   <mo>,</mo> <msub><mi>S</mi><mi>n</mi></msub> <mspace width=".3em"/>
   <msub><mi>A</mi><mi>n</mi></msub><mo>)</mo></math> is an &OM; <term
   id="attrobj">attribution object</term>. We call
-  <math><mi>A</mi></math> the <term id="attobject">attributed object</term>, the
+  <math><mi>A</mi></math> the <term id="attobj">attributed object</term>, the
   <math><msub><mi>S</mi><mi>i</mi></msub></math> the <term id="key">keys</term>, and the
   <math><msub><mi>A</mi><mi>i</mi></msub></math> the <term id="attval">attribute
   value</term>s.
   </para> 
 
-  <para revisionflag="changed">
+  <para>
     If the <xref linkend="attobj"/> is a  variable, the original attribution is called an
     <term id="attvar">attributed  variable</term>.
   </para>
@@ -389,11 +389,11 @@ display="block"><mi mathvariant="bold">error</mi>
 <mo>(</mo><mi>S</mi><mo>,</mo>
 <msub><mi>A</mi><mn>1</mn></msub><mo>,</mo><mi>&#8230;</mi><mo>,</mo><msub><mi>A</mi><mi>n</mi></msub><mo>)</mo>
   </math>
-  is an &OM; <term id="errorobject">error object</term>.</para>
+  is an &OM; <term id="errorobj">error object</term>.</para>
 </listitem>
 </itemizedlist>
  <xref linkend="omobj"/>s that are constructed via rules (ii)
-   to (v) are jointly called <term id="compoundobject">compound &OM; object</term>s.
+   to (v) are jointly called <term id="compoundobj">compound &OM; object</term>s.
 </para>
 </section>
 
@@ -462,7 +462,7 @@ linkend="compoundobj"/> in a way which requires a different role (using the defi
 construct given earlier in this section).  This means that one cannot use a symbol which
 binds some variables to construct, say, an <xref linkend="applobj"/>.  However it does not
 prevent the use of that symbol as an <xref linkend="argument"/> in an <xref
-linkend="appobj"/>.
+linkend="applobj"/>.
 </para>
 
 <para> 
