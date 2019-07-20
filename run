@@ -30,7 +30,7 @@ fi
 case "$TRAVIS_COMMIT_MESSAGE" in 
 \[ci\ final\]*)
     DRAFT=no
-    TARGET=om20-2017-12-01
+    TARGET=om20-2019-07-01
 esac
 
 
