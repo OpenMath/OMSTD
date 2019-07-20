@@ -53,6 +53,9 @@ cp *.rnc xsl/*.xsl png/*.png *.ocd *.sts *.cdg build
 # cp support/rnc2dbk build
 cp openmath.cls build
 
+# copy over json + d.ts files for OpenMath JSON
+cp openmath2.d.ts openmath2.json build
+
 cd build
 
 # echo RNC/xml
@@ -236,7 +239,7 @@ fi
 
 echo zip
 rm tmp.*
-zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd o*.pdf *.png *.ocd run 
+zip -q om20.zip omstd*.html o*.xml *.dtd [opv][me]*.xsl *.rnc *.rng *.xsd *.json *.d.ts  o*.pdf *.png *.ocd run 
 
 if [ "$1" = "copy" ] && [ -d "../../OpenMath.github.io/standard/$TARGET" ]
    then
