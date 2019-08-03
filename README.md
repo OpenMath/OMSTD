@@ -13,9 +13,20 @@ The HTML and PDF versions of the standard are automatically built (by travis) fr
 
 ### The Normative OpenMath Standard
 
-If a commit with message starting with `[ci final]` is pushed, then a non-editors draft is built and the website is update in the standard directory (currently `standard/om20-2017-07-22`). It will be available as "[OpenMath](https://openmath.github.io/standard/om20-2017-07-22/)" on the [OpenMath Web Site](http://openmath.github.io).
+If a commit with message starting with `[ci final]` is pushed, then a non-editors draft is built and the website is update in the standard directory (currently `standard/om20-2019-07-01`). It will be available as "[OpenMath](https://openmath.github.io/standard/om20-2019-07-01/)" on the [OpenMath Web Site](http://openmath.github.io).
 
-If you want to commit without forcing Travis to rebuild, add `[ci skip]` to your commit message.
+If you want to commit without forcing Travis to rebuild, add `[ci skip]` to your commit
+message.
+
+### Making a new Standard Revision available on OpenMath.org
+Normally, we already have an editor's draft for this (see above).
+
+1. In the [OpenMath Website Repository](https://github.com/openmath/openmath.github.io) make
+a new subdirectory with the ISO-date of the OpenMath Standard Revision. Best by copying
+over the one for the current directory.
+2. In the [run script](run), change `TARGET=om20-2019-07-01` to the release date (it must
+match with the subdirectory date on the web site under 1.)
+3. commit with `[ci final]` and push (see above). 
 
 ## Building locally
 
@@ -52,7 +63,9 @@ The best way of proposing changes to the standard development is by making a [pu
 
 The repository was initialised as copy of the original version in the
 [OpenMath SVN repository](https://github.com/OpenMath/OMSVN), specifically 
-[www/standard/om20-2004-06-30](https://github.com/OpenMath/OMSVN/tree/master/www/standard/om20-2004-06-30). It has been updated with a draft version which had been prepared as dropbox om-2017-03-17.
+[www/standard/om20-2004-06-30](https://github.com/OpenMath/OMSVN/tree/master/www/standard/om20-2004-06-30). It
+has been updated with a draft version which had been prepared as dropbox
+om-2017-03-17. All subsequent version history can be found in this directory. 
 
 The development history of the OpenMath standard before that time has been retained as part of the repository https://github.com/OpenMath/OMSVN. 
 
