@@ -2,7 +2,7 @@
 <book xml:space="preserve">
 <title>The &OM; Standard</title>
 <bookinfo>
-<releaseinfo>2.0r3</releaseinfo>
+<releaseinfo>2.0r2</releaseinfo>
 <author><firstname>The &OM; Society</firstname></author>
 <editor><firstname>S.</firstname><surname>Buswell</surname></editor>
 <editor><firstname>O.</firstname><surname>Caprotti</surname></editor>
@@ -12,7 +12,7 @@
 <editor><firstname>M.</firstname><surname>Kohlhase</surname></editor>
 <editor><firstname>J.</firstname><othername>H.</othername><surname>Davenport (revision 1)</surname></editor>
 <editor><firstname>P.</firstname><othername>D.F.</othername><surname>Ion (revision 1)</surname></editor>
-<editor revisionflag="added"><firstname>T.</firstname><surname>Wiesing (revision 3)</surname></editor>
+<editor revisionflag="added"><firstname>T.</firstname><surname>Wiesing (revision 2)</surname></editor>
 <date>July 2019</date>
 
 <copyright>
@@ -22,7 +22,7 @@
 
 <abstract>
 
-<para>This document describes <phrase  revisionflag="changed">version 2 revision 3</phrase> of
+<para>This document describes <phrase  revisionflag="changed">version 2 revision 2</phrase> of
 &OM;: a standard for
 the representation and communication of mathematical objects.
 This revision clarifies the first &OM; 2.0 
