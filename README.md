@@ -39,7 +39,7 @@ The repository is organized as follows:
 * `.travis.yml`, `run`, `support`, `openmath.cls`, and `xsl`, the build system. 
 
 To build it, just run `source ./run` on top-level. If you have `trang.jar` and
-`saxon9he.jar` installed (`support/install-jars` does that for you), this should build the standard for you.
+`saxon-he.jar` installed (`support/install-jars` does that for you), this should build the standard for you.
 
 To make a final draft use `./run final` rather than `./run`  . 
 

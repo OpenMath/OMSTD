@@ -1,16 +1,16 @@
 set -e
 
 # http://saxon.sourceforge.net/
-if [ -f saxon9he.jar ]; then
-export XSLT="java -jar ../saxon9he.jar -versionmsg:off "
+if [ -f saxon-he.jar ]; then
+export XSLT="java -jar ../saxon-he.jar -versionmsg:off "
 else
-export XSLT="java -jar /tmp/jars/saxon9he.jar -versionmsg:off "
+export XSLT="java -jar /tmp/jars/saxon-he.jar -versionmsg:off "
 fi
 
 
 
 # https://code.google.com/archive/p/jing-trang/downloads
-if [ -f saxon9he.jar ]; then
+if [ -f saxon-he.jar ]; then
 export TRANG="java -jar ../trang.jar "
 else
     export TRANG="java -jar /tmp/jars/trang.jar "

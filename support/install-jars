@@ -15,15 +15,16 @@ fi
 
 cd /tmp/jars
 
-if [ ! -f saxon9he.jar ]; then
-    wget http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.8.0-2/Saxon-HE-9.8.0-2.jar
-    mv Saxon-HE-9.8.0-2.jar saxon9he.jar
+if [ ! -f saxon-he.jar ]; then
+#   wget http://central.maven.org/maven2/net/sf/saxon/Saxon-HE/9.8.0-2/Saxon-HE-9.8.0-2.jar
+    wget https://repo1.maven.org/maven2/net/sf/saxon/Saxon-HE/10.6/Saxon-HE-10.6.jar
+    mv Saxon-HE-10.6.jar saxon-he.jar
 else
-    echo "/tmp/jars/saxon9he.jar exists. To force a re-download, delete it manually and re-run this script. "
+    echo "/tmp/jars/saxon-he.jar exists. To force a re-download, delete it manually and re-run this script. "
 fi
 
 if [ ! -f trang.jar ]; then
-    wget http://central.maven.org/maven2/com/thaiopensource/trang/20091111/trang-20091111.jar
+    wget https://repo1.maven.org/maven2/com/thaiopensource/trang/20091111/trang-20091111.jar
     mv trang-20091111.jar trang.jar
 else
     echo "/tmp/jars/trang.jar exists. To force a re-download, delete it manually and re-run this script. "
